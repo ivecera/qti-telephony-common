@@ -17,7 +17,7 @@
     .locals 1
 
     .line 15
-    sget-boolean v0, Lmiui/os/Build;->IS_GLOBAL_BUILD:Z
+    const v0, 1
 
     return v0
 .end method
