@@ -29,6 +29,20 @@
 
     iput-object v0, p0, Landroid/hardware/radio/V1_0/CdmaNumberInfoRecord;->number:Ljava/lang/String;
 
+    .line 6
+    const/4 v0, 0x0
+
+    iput-byte v0, p0, Landroid/hardware/radio/V1_0/CdmaNumberInfoRecord;->numberType:B
+
+    .line 7
+    iput-byte v0, p0, Landroid/hardware/radio/V1_0/CdmaNumberInfoRecord;->numberPlan:B
+
+    .line 8
+    iput-byte v0, p0, Landroid/hardware/radio/V1_0/CdmaNumberInfoRecord;->pi:B
+
+    .line 9
+    iput-byte v0, p0, Landroid/hardware/radio/V1_0/CdmaNumberInfoRecord;->si:B
+
     return-void
 .end method
 
@@ -450,7 +464,7 @@
     iput-object v2, p0, Landroid/hardware/radio/V1_0/CdmaNumberInfoRecord;->number:Ljava/lang/String;
 
     .line 99
-    iget-object v2, p0, Landroid/hardware/radio/V1_0/CdmaNumberInfoRecord;->number:Ljava/lang/String;
+    nop
 
     .line 100
     invoke-virtual {v2}, Ljava/lang/String;->getBytes()[B

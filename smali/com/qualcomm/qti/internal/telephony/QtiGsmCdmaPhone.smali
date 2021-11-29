@@ -1,40 +1,51 @@
 .class public Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;
-.super Lcom/android/internal/telephony/GsmCdmaPhone;
+.super Lcom/android/internal/telephony/vendor/VendorGsmCdmaPhone;
 .source "QtiGsmCdmaPhone.java"
 
 
 # static fields
+.field private static final BIT_IMS_STACK_UP:I = 0x3
+
+.field private static final BIT_OEM_HOOK_READY:I = 0x2
+
+.field private static final BIT_PHONE_READY_REQUIRED:I = 0x0
+
+.field private static final BIT_RIL_CONNECTED:I = 0x1
+
+.field private static final BIT_TOTAL_COUNT:I = 0x4
+
 .field private static final DEFAULT_PHONE_INDEX:I = 0x0
 
-.field private static final EVENT_OEM_HOOK_SERVICE_READY:I = 0x35
+.field private static final EVENT_OEM_HOOK_SERVICE_READY:I = 0x3b
+
+.field private static final EVENT_RESET_CARRIER_KEY_IMSI_ENCRYPTION:I = 0x3c
 
 .field private static final LOG_TAG:Ljava/lang/String; = "QtiGsmCdmaPhone"
 
-.field private static final PROP_EVENT_START:I = 0x34
+.field private static final PROP_EVENT_START:I = 0x3a
 
-.field private static READY:I
+.field private static final READY:I = 0x1
 
 
 # instance fields
-.field private mIsPhoneReadyPending:Z
+.field private imsiToken:I
 
-.field private mIsPhoneReadySent:Z
+.field private mImsManagerConnector:Lcom/android/ims/FeatureConnector;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Lcom/android/ims/FeatureConnector<",
+            "Lcom/android/ims/ImsManager;",
+            ">;"
+        }
+    .end annotation
+.end field
+
+.field private final mPhoneReadyBits:Ljava/util/BitSet;
 
 .field private mQtiRilInterface:Lcom/qualcomm/qti/internal/telephony/BaseRilInterface;
 
 
 # direct methods
-.method static constructor <clinit>()V
-    .locals 1
-
-    .line 61
-    const/4 v0, 0x1
-
-    sput v0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->READY:I
-
-    return-void
-.end method
-
 .method public constructor <init>(Landroid/content/Context;Lcom/android/internal/telephony/CommandsInterface;Lcom/android/internal/telephony/PhoneNotifier;IILcom/android/internal/telephony/TelephonyComponentFactory;)V
     .locals 8
     .param p1, "context"    # Landroid/content/Context;
@@ -44,7 +55,7 @@
     .param p5, "precisePhoneType"    # I
     .param p6, "telephonyComponentFactory"    # Lcom/android/internal/telephony/TelephonyComponentFactory;
 
-    .line 66
+    .line 82
     const/4 v4, 0x0
 
     move-object v0, p0
@@ -63,12 +74,12 @@
 
     invoke-direct/range {v0 .. v7}, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;-><init>(Landroid/content/Context;Lcom/android/internal/telephony/CommandsInterface;Lcom/android/internal/telephony/PhoneNotifier;ZIILcom/android/internal/telephony/TelephonyComponentFactory;)V
 
-    .line 68
+    .line 84
     return-void
 .end method
 
 .method public constructor <init>(Landroid/content/Context;Lcom/android/internal/telephony/CommandsInterface;Lcom/android/internal/telephony/PhoneNotifier;ZIILcom/android/internal/telephony/TelephonyComponentFactory;)V
-    .locals 3
+    .locals 4
     .param p1, "context"    # Landroid/content/Context;
     .param p2, "ci"    # Lcom/android/internal/telephony/CommandsInterface;
     .param p3, "notifier"    # Lcom/android/internal/telephony/PhoneNotifier;
@@ -77,60 +88,135 @@
     .param p6, "precisePhoneType"    # I
     .param p7, "telephonyComponentFactory"    # Lcom/android/internal/telephony/TelephonyComponentFactory;
 
-    .line 73
-    invoke-direct/range {p0 .. p7}, Lcom/android/internal/telephony/GsmCdmaPhone;-><init>(Landroid/content/Context;Lcom/android/internal/telephony/CommandsInterface;Lcom/android/internal/telephony/PhoneNotifier;ZIILcom/android/internal/telephony/TelephonyComponentFactory;)V
+    .line 89
+    invoke-direct/range {p0 .. p7}, Lcom/android/internal/telephony/vendor/VendorGsmCdmaPhone;-><init>(Landroid/content/Context;Lcom/android/internal/telephony/CommandsInterface;Lcom/android/internal/telephony/PhoneNotifier;ZIILcom/android/internal/telephony/TelephonyComponentFactory;)V
 
-    .line 59
+    .line 74
+    new-instance v0, Ljava/util/BitSet;
+
+    const/4 v1, 0x4
+
+    invoke-direct {v0, v1}, Ljava/util/BitSet;-><init>(I)V
+
+    iput-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mPhoneReadyBits:Ljava/util/BitSet;
+
+    .line 77
     const/4 v0, 0x0
 
-    iput-boolean v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mIsPhoneReadySent:Z
+    iput v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->imsiToken:I
 
-    .line 60
-    iput-boolean v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mIsPhoneReadyPending:Z
-
-    .line 75
+    .line 91
     const-string v0, "QtiGsmCdmaPhone"
 
     const-string v1, "Constructor"
 
     invoke-static {v0, v1}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 76
+    .line 92
     invoke-direct {p0}, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->getQtiRilInterface()Lcom/qualcomm/qti/internal/telephony/BaseRilInterface;
 
-    move-result-object v0
+    move-result-object v1
 
-    iput-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mQtiRilInterface:Lcom/qualcomm/qti/internal/telephony/BaseRilInterface;
+    iput-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mQtiRilInterface:Lcom/qualcomm/qti/internal/telephony/BaseRilInterface;
 
-    .line 77
-    iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mQtiRilInterface:Lcom/qualcomm/qti/internal/telephony/BaseRilInterface;
+    .line 93
+    const/16 v2, 0x3b
 
-    const/16 v1, 0x35
+    const/4 v3, 0x0
 
-    const/4 v2, 0x0
+    invoke-interface {v1, p0, v2, v3}, Lcom/qualcomm/qti/internal/telephony/BaseRilInterface;->registerForServiceReadyEvent(Landroid/os/Handler;ILjava/lang/Object;)V
 
-    invoke-interface {v0, p0, v1, v2}, Lcom/qualcomm/qti/internal/telephony/BaseRilInterface;->registerForServiceReadyEvent(Landroid/os/Handler;ILjava/lang/Object;)V
+    .line 94
+    invoke-static {p1}, Lcom/android/ims/ImsManager;->isImsSupportedOnDevice(Landroid/content/Context;)Z
 
-    .line 78
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    .line 95
+    new-instance v1, Lcom/android/ims/FeatureConnector;
+
+    new-instance v2, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone$1;
+
+    invoke-direct {v2, p0, p5, p1}, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone$1;-><init>(Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;ILandroid/content/Context;)V
+
+    invoke-direct {v1, p1, p5, v2, v0}, Lcom/android/ims/FeatureConnector;-><init>(Landroid/content/Context;ILcom/android/ims/FeatureConnector$Listener;Ljava/lang/String;)V
+
+    iput-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mImsManagerConnector:Lcom/android/ims/FeatureConnector;
+
+    .line 117
+    invoke-virtual {v1}, Lcom/android/ims/FeatureConnector;->connect()V
+
+    goto :goto_0
+
+    .line 119
+    :cond_0
+    iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mPhoneReadyBits:Ljava/util/BitSet;
+
+    const/4 v1, 0x3
+
+    invoke-virtual {v0, v1}, Ljava/util/BitSet;->set(I)V
+
+    .line 121
+    :goto_0
+    iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mCi:Lcom/android/internal/telephony/CommandsInterface;
+
+    const/16 v1, 0x3c
+
+    invoke-interface {v0, p0, v1, v3}, Lcom/android/internal/telephony/CommandsInterface;->registerForCarrierInfoForImsiEncryption(Landroid/os/Handler;ILjava/lang/Object;)V
+
+    .line 123
+    return-void
+.end method
+
+.method static synthetic access$000(Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;)Ljava/util/BitSet;
+    .locals 1
+    .param p0, "x0"    # Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;
+
+    .line 54
+    iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mPhoneReadyBits:Ljava/util/BitSet;
+
+    return-object v0
+.end method
+
+.method static synthetic access$100(Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;I)V
+    .locals 0
+    .param p0, "x0"    # Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;
+    .param p1, "x1"    # I
+
+    .line 54
+    invoke-direct {p0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->updatePhoneReady(I)V
+
+    return-void
+.end method
+
+.method static synthetic access$200(Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;Ljava/lang/String;)V
+    .locals 0
+    .param p0, "x0"    # Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;
+    .param p1, "x1"    # Ljava/lang/String;
+
+    .line 54
+    invoke-direct {p0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->logd(Ljava/lang/String;)V
+
     return-void
 .end method
 
 .method private getQtiRilInterface()Lcom/qualcomm/qti/internal/telephony/BaseRilInterface;
     .locals 1
 
-    .line 283
+    .line 323
     invoke-virtual {p0}, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->getUnitTestMode()Z
 
     move-result v0
 
     if-eqz v0, :cond_0
 
-    .line 284
+    .line 324
     const-string v0, "getQtiRilInterface, unitTestMode = true"
 
     invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->logd(Ljava/lang/String;)V
 
-    .line 285
+    .line 325
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mContext:Landroid/content/Context;
 
     invoke-static {v0}, Lcom/qualcomm/qti/internal/telephony/SimulatedQtiRilInterface;->getInstance(Landroid/content/Context;)Lcom/qualcomm/qti/internal/telephony/SimulatedQtiRilInterface;
@@ -140,7 +226,7 @@
     .local v0, "qtiRilInterface":Lcom/qualcomm/qti/internal/telephony/BaseRilInterface;
     goto :goto_0
 
-    .line 287
+    .line 327
     .end local v0    # "qtiRilInterface":Lcom/qualcomm/qti/internal/telephony/BaseRilInterface;
     :cond_0
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mContext:Landroid/content/Context;
@@ -149,7 +235,7 @@
 
     move-result-object v0
 
-    .line 289
+    .line 329
     .restart local v0    # "qtiRilInterface":Lcom/qualcomm/qti/internal/telephony/BaseRilInterface;
     :goto_0
     return-object v0
@@ -158,10 +244,10 @@
 .method private isCurrentSubValid()Z
     .locals 4
 
-    .line 145
+    .line 202
     const/4 v0, 0x1
 
-    .line 146
+    .line 203
     .local v0, "provisionStatus":I
     iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mContext:Landroid/content/Context;
 
@@ -169,7 +255,7 @@
 
     move-result-object v1
 
-    .line 148
+    .line 205
     .local v1, "subscriptionManager":Landroid/telephony/SubscriptionManager;
     :try_start_0
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;
@@ -178,7 +264,7 @@
 
     iget v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mPhoneId:I
 
-    .line 149
+    .line 206
     invoke-virtual {v2, v3}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->getCurrentUiccCardProvisioningStatus(I)I
 
     move-result v2
@@ -187,18 +273,18 @@
 
     move v0, v2
 
-    .line 152
+    .line 209
     goto :goto_0
 
-    .line 150
+    .line 207
     :catch_0
     move-exception v2
 
-    .line 151
+    .line 208
     .local v2, "ex":Ljava/lang/NullPointerException;
     const/4 v0, 0x0
 
-    .line 153
+    .line 210
     .end local v2    # "ex":Ljava/lang/NullPointerException;
     :goto_0
     new-instance v2, Ljava/lang/StringBuilder;
@@ -227,7 +313,7 @@
 
     invoke-static {v3, v2}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 154
+    .line 211
     invoke-virtual {p0}, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->getSubId()I
 
     move-result v2
@@ -255,7 +341,7 @@
     .locals 2
     .param p1, "msg"    # Ljava/lang/String;
 
-    .line 338
+    .line 357
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -282,7 +368,7 @@
 
     invoke-static {v1, v0}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 339
+    .line 358
     return-void
 .end method
 
@@ -290,7 +376,7 @@
     .locals 2
     .param p1, "msg"    # Ljava/lang/String;
 
-    .line 342
+    .line 361
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -317,7 +403,7 @@
 
     invoke-static {v1, v0}, Landroid/telephony/Rlog;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 343
+    .line 362
     return-void
 .end method
 
@@ -325,13 +411,25 @@
     .locals 5
     .param p1, "phoneId"    # I
 
-    .line 92
-    const/4 v0, 0x0
+    .line 139
+    iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mPhoneReadyBits:Ljava/util/BitSet;
 
-    .line 94
-    .local v0, "radioPowerOpt":I
     const/4 v1, 0x0
 
+    invoke-virtual {v0, v1}, Ljava/util/BitSet;->get(I)Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    return-void
+
+    .line 141
+    :cond_0
+    const/4 v0, 0x0
+
+    .line 143
+    .local v0, "radioPowerOpt":I
     :try_start_0
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;
 
@@ -343,7 +441,7 @@
 
     const-string v3, "persist.vendor.radio.poweron_opt"
 
-    .line 95
+    .line 144
     invoke-virtual {v2, v3, v1}, Lcom/qualcomm/qti/internal/telephony/QtiRIL;->getPropertyValueInt(Ljava/lang/String;I)I
 
     move-result v2
@@ -353,14 +451,14 @@
 
     move v0, v2
 
-    .line 98
+    .line 147
     goto :goto_0
 
-    .line 96
+    .line 145
     :catch_0
     move-exception v2
 
-    .line 97
+    .line 146
     .local v2, "ex":Ljava/lang/Exception;
     new-instance v3, Ljava/lang/StringBuilder;
 
@@ -380,53 +478,72 @@
 
     invoke-static {v4, v3}, Landroid/telephony/Rlog;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 100
+    .line 152
     .end local v2    # "ex":Ljava/lang/Exception;
     :goto_0
-    iget-boolean v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mIsPhoneReadySent:Z
+    iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mPhoneReadyBits:Ljava/util/BitSet;
 
-    if-nez v2, :cond_1
+    invoke-virtual {v2}, Ljava/util/BitSet;->cardinality()I
+
+    move-result v2
+
+    const/4 v3, 0x4
+
+    if-ne v2, v3, :cond_2
 
     const/4 v2, 0x1
 
-    if-ne v0, v2, :cond_1
+    if-ne v0, v2, :cond_2
 
-    .line 101
-    iget-object v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mQtiRilInterface:Lcom/qualcomm/qti/internal/telephony/BaseRilInterface;
-
-    invoke-interface {v3}, Lcom/qualcomm/qti/internal/telephony/BaseRilInterface;->isServiceReady()Z
-
-    move-result v3
-
-    if-nez v3, :cond_0
-
-    .line 102
-    iput-boolean v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mIsPhoneReadyPending:Z
-
-    .line 103
-    return-void
-
-    .line 105
-    :cond_0
+    .line 154
     const-string v3, "Sending Phone Ready to RIL."
 
     invoke-direct {p0, v3}, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->logd(Ljava/lang/String;)V
 
-    .line 106
+    .line 155
+    if-eqz p1, :cond_1
+
+    .line 158
+    invoke-virtual {p0}, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->getContext()Landroid/content/Context;
+
+    move-result-object v3
+
+    invoke-static {v3, v1}, Lcom/android/ims/ImsManager;->getInstance(Landroid/content/Context;I)Lcom/android/ims/ImsManager;
+
+    move-result-object v3
+
+    .line 159
+    .local v3, "imsManager":Lcom/android/ims/ImsManager;
+    invoke-virtual {v3}, Lcom/android/ims/ImsManager;->isServiceReady()Z
+
+    move-result v4
+
+    if-nez v4, :cond_1
+
+    .line 160
+    const-string v4, "Sending Phone Ready to RIL0 as required."
+
+    invoke-direct {p0, v4}, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->logd(Ljava/lang/String;)V
+
+    .line 161
+    iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mQtiRilInterface:Lcom/qualcomm/qti/internal/telephony/BaseRilInterface;
+
+    invoke-interface {v4, v2, v1}, Lcom/qualcomm/qti/internal/telephony/BaseRilInterface;->sendPhoneStatus(II)V
+
+    .line 164
+    .end local v3    # "imsManager":Lcom/android/ims/ImsManager;
+    :cond_1
     iget-object v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mQtiRilInterface:Lcom/qualcomm/qti/internal/telephony/BaseRilInterface;
 
-    sget v4, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->READY:I
+    invoke-interface {v3, v2, p1}, Lcom/qualcomm/qti/internal/telephony/BaseRilInterface;->sendPhoneStatus(II)V
 
-    invoke-interface {v3, v4, p1}, Lcom/qualcomm/qti/internal/telephony/BaseRilInterface;->sendPhoneStatus(II)V
+    .line 165
+    iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mPhoneReadyBits:Ljava/util/BitSet;
 
-    .line 107
-    iput-boolean v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mIsPhoneReadySent:Z
+    invoke-virtual {v2, v1}, Ljava/util/BitSet;->clear(I)V
 
-    .line 108
-    iput-boolean v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mIsPhoneReadyPending:Z
-
-    .line 110
-    :cond_1
+    .line 167
+    :cond_2
     return-void
 .end method
 
@@ -435,66 +552,54 @@
 .method public dispose()V
     .locals 1
 
-    .line 173
+    .line 225
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mQtiRilInterface:Lcom/qualcomm/qti/internal/telephony/BaseRilInterface;
 
     invoke-interface {v0, p0}, Lcom/qualcomm/qti/internal/telephony/BaseRilInterface;->unRegisterForServiceReadyEvent(Landroid/os/Handler;)V
 
-    .line 174
+    .line 226
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mQtiRilInterface:Lcom/qualcomm/qti/internal/telephony/BaseRilInterface;
 
-    .line 175
-    invoke-super {p0}, Lcom/android/internal/telephony/GsmCdmaPhone;->dispose()V
+    .line 227
+    iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mPhoneReadyBits:Ljava/util/BitSet;
 
-    .line 176
-    return-void
-.end method
+    invoke-virtual {v0}, Ljava/util/BitSet;->clear()V
 
-.method public fetchIMEI()V
-    .locals 2
+    .line 228
+    iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mImsManagerConnector:Lcom/android/ims/FeatureConnector;
 
-    .line 167
-    const-string v0, "QtiGsmCdmaPhone"
+    if-eqz v0, :cond_0
 
-    const-string v1, "fetching device id"
+    invoke-virtual {v0}, Lcom/android/ims/FeatureConnector;->disconnect()V
 
-    invoke-static {v0, v1}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
+    .line 229
+    :cond_0
+    invoke-super {p0}, Lcom/android/internal/telephony/vendor/VendorGsmCdmaPhone;->dispose()V
 
-    .line 168
-    iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mCi:Lcom/android/internal/telephony/CommandsInterface;
-
-    const/16 v1, 0x15
-
-    invoke-virtual {p0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->obtainMessage(I)Landroid/os/Message;
-
-    move-result-object v1
-
-    invoke-interface {v0, v1}, Lcom/android/internal/telephony/CommandsInterface;->getDeviceIdentity(Landroid/os/Message;)V
-
-    .line 169
+    .line 230
     return-void
 .end method
 
 .method public getCallForwardingIndicator()Z
     .locals 1
 
-    .line 138
+    .line 195
     invoke-direct {p0}, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->isCurrentSubValid()Z
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 139
+    .line 196
     const/4 v0, 0x0
 
     return v0
 
-    .line 141
+    .line 198
     :cond_0
-    invoke-super {p0}, Lcom/android/internal/telephony/GsmCdmaPhone;->getCallForwardingIndicator()Z
+    invoke-super {p0}, Lcom/android/internal/telephony/vendor/VendorGsmCdmaPhone;->getCallForwardingIndicator()Z
 
     move-result v0
 
@@ -504,12 +609,12 @@
 .method public getFullIccSerialNumber()Ljava/lang/String;
     .locals 3
 
-    .line 329
-    invoke-super {p0}, Lcom/android/internal/telephony/GsmCdmaPhone;->getFullIccSerialNumber()Ljava/lang/String;
+    .line 348
+    invoke-super {p0}, Lcom/android/internal/telephony/vendor/VendorGsmCdmaPhone;->getFullIccSerialNumber()Ljava/lang/String;
 
     move-result-object v0
 
-    .line 331
+    .line 350
     .local v0, "iccId":Ljava/lang/String;
     invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
@@ -517,7 +622,7 @@
 
     if-eqz v1, :cond_0
 
-    .line 332
+    .line 351
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;
 
     move-result-object v1
@@ -528,133 +633,16 @@
 
     move-result-object v0
 
-    .line 334
+    .line 353
     :cond_0
-    return-object v0
-.end method
-
-.method public getServiceState()Landroid/telephony/ServiceState;
-    .locals 3
-
-    .line 303
-    iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mSST:Lcom/android/internal/telephony/ServiceStateTracker;
-
-    if-eqz v0, :cond_0
-
-    iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mSST:Lcom/android/internal/telephony/ServiceStateTracker;
-
-    iget-object v0, v0, Lcom/android/internal/telephony/ServiceStateTracker;->mSS:Landroid/telephony/ServiceState;
-
-    invoke-virtual {v0}, Landroid/telephony/ServiceState;->getState()I
-
-    move-result v0
-
-    if-eqz v0, :cond_4
-
-    .line 306
-    :cond_0
-    iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mImsPhone:Lcom/android/internal/telephony/Phone;
-
-    if-eqz v0, :cond_2
-
-    iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mImsPhone:Lcom/android/internal/telephony/Phone;
-
-    invoke-virtual {v0}, Lcom/android/internal/telephony/Phone;->isVolteEnabled()Z
-
-    move-result v0
-
-    if-nez v0, :cond_1
-
-    iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mImsPhone:Lcom/android/internal/telephony/Phone;
-
-    .line 307
-    invoke-virtual {v0}, Lcom/android/internal/telephony/Phone;->isVideoEnabled()Z
-
-    move-result v0
-
-    if-nez v0, :cond_1
-
-    iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mImsPhone:Lcom/android/internal/telephony/Phone;
-
-    .line 308
-    invoke-virtual {v0}, Lcom/android/internal/telephony/Phone;->isWifiCallingEnabled()Z
-
-    move-result v0
-
-    if-eqz v0, :cond_2
-
-    :cond_1
-    const/4 v0, 0x1
-
-    goto :goto_0
-
-    :cond_2
-    const/4 v0, 0x0
-
-    .line 309
-    .local v0, "isImsEnabled":Z
-    :goto_0
-    if-eqz v0, :cond_4
-
-    .line 311
-    iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mSST:Lcom/android/internal/telephony/ServiceStateTracker;
-
-    if-nez v1, :cond_3
-
-    new-instance v1, Landroid/telephony/ServiceState;
-
-    invoke-direct {v1}, Landroid/telephony/ServiceState;-><init>()V
-
-    goto :goto_1
-
-    :cond_3
-    iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mSST:Lcom/android/internal/telephony/ServiceStateTracker;
-
-    iget-object v1, v1, Lcom/android/internal/telephony/ServiceStateTracker;->mSS:Landroid/telephony/ServiceState;
-
-    :goto_1
-    iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mImsPhone:Lcom/android/internal/telephony/Phone;
-
-    .line 312
-    invoke-virtual {v2}, Lcom/android/internal/telephony/Phone;->getServiceState()Landroid/telephony/ServiceState;
-
-    move-result-object v2
-
-    .line 310
-    invoke-static {v1, v2}, Landroid/telephony/ServiceState;->mergeServiceStates(Landroid/telephony/ServiceState;Landroid/telephony/ServiceState;)Landroid/telephony/ServiceState;
-
-    move-result-object v1
-
-    return-object v1
-
-    .line 316
-    .end local v0    # "isImsEnabled":Z
-    :cond_4
-    iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mSST:Lcom/android/internal/telephony/ServiceStateTracker;
-
-    if-eqz v0, :cond_5
-
-    .line 317
-    iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mSST:Lcom/android/internal/telephony/ServiceStateTracker;
-
-    iget-object v0, v0, Lcom/android/internal/telephony/ServiceStateTracker;->mSS:Landroid/telephony/ServiceState;
-
-    return-object v0
-
-    .line 320
-    :cond_5
-    new-instance v0, Landroid/telephony/ServiceState;
-
-    invoke-direct {v0}, Landroid/telephony/ServiceState;-><init>()V
-
     return-object v0
 .end method
 
 .method public handleMessage(Landroid/os/Message;)V
-    .locals 4
+    .locals 5
     .param p1, "msg"    # Landroid/os/Message;
 
-    .line 180
+    .line 234
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -675,43 +663,59 @@
 
     invoke-static {v1, v0}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 182
+    .line 236
     iget v0, p1, Landroid/os/Message;->what:I
 
-    const/4 v2, 0x1
+    const/4 v2, 0x0
 
-    const/4 v3, 0x0
+    const/4 v3, 0x1
 
-    if-eq v0, v2, :cond_8
+    if-eq v0, v3, :cond_8
 
-    const/4 v2, 0x3
+    const/4 v4, 0x3
 
-    if-eq v0, v2, :cond_6
+    if-eq v0, v4, :cond_6
 
-    const/16 v2, 0x17
+    const/16 v4, 0x17
 
-    if-eq v0, v2, :cond_5
+    if-eq v0, v4, :cond_5
 
-    const/16 v2, 0x29
+    const/16 v4, 0x29
 
-    if-eq v0, v2, :cond_4
+    if-eq v0, v4, :cond_4
 
-    const/16 v2, 0x35
+    const/16 v2, 0x3b
+
+    if-eq v0, v2, :cond_1
+
+    const/16 v2, 0x3c
 
     if-eq v0, v2, :cond_0
 
-    .line 230
-    invoke-super {p0, p1}, Lcom/android/internal/telephony/GsmCdmaPhone;->handleMessage(Landroid/os/Message;)V
+    .line 295
+    invoke-super {p0, p1}, Lcom/android/internal/telephony/vendor/VendorGsmCdmaPhone;->handleMessage(Landroid/os/Message;)V
 
-    goto/16 :goto_0
+    goto/16 :goto_1
 
-    .line 184
+    .line 290
     :cond_0
+    const-string v0, "Event EVENT_RESET_CARRIER_KEY_IMSI_ENCRYPTION"
+
+    invoke-static {v1, v0}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 291
+    invoke-super {p0}, Lcom/android/internal/telephony/vendor/VendorGsmCdmaPhone;->resetCarrierKeysForImsiEncryption()V
+
+    .line 292
+    goto/16 :goto_1
+
+    .line 238
+    :cond_1
     iget-object v0, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
     check-cast v0, Landroid/os/AsyncResult;
 
-    .line 185
+    .line 239
     .local v0, "ar":Landroid/os/AsyncResult;
     if-eqz v0, :cond_3
 
@@ -719,7 +723,7 @@
 
     if-eqz v2, :cond_3
 
-    .line 186
+    .line 240
     iget-object v2, v0, Landroid/os/AsyncResult;->result:Ljava/lang/Object;
 
     check-cast v2, Ljava/lang/Boolean;
@@ -728,78 +732,105 @@
 
     move-result v2
 
-    .line 187
+    .line 241
     .local v2, "isServiceReady":Z
+    const/4 v3, 0x2
+
     if-eqz v2, :cond_2
 
-    .line 188
-    iget-boolean v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mIsPhoneReadyPending:Z
+    .line 242
+    iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mPhoneReadyBits:Ljava/util/BitSet;
 
-    if-eqz v3, :cond_1
+    invoke-virtual {v4, v3}, Ljava/util/BitSet;->set(I)V
 
-    iget v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mPhoneId:I
-
-    invoke-direct {p0, v3}, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->updatePhoneReady(I)V
-
-    .line 189
-    :cond_1
+    .line 243
     const-string v3, "EVENT_OEM_HOOK_SERVICE_READY received"
 
     invoke-static {v1, v3}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 191
-    .end local v2    # "isServiceReady":Z
-    :cond_2
+    .line 244
+    iget v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mPhoneId:I
+
+    invoke-direct {p0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->updatePhoneReady(I)V
+
     goto :goto_0
 
-    .line 192
+    .line 246
+    :cond_2
+    const-string v4, "EVENT_OEM_HOOK_SERVICE_READY: service not ready"
+
+    invoke-static {v1, v4}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 247
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mPhoneReadyBits:Ljava/util/BitSet;
+
+    invoke-virtual {v1, v3}, Ljava/util/BitSet;->clear(I)V
+
+    .line 249
+    .end local v2    # "isServiceReady":Z
+    :goto_0
+    goto :goto_1
+
+    .line 250
     :cond_3
     const-string v2, "Error: empty result, EVENT_OEM_HOOK_SERVICE_READY"
 
     invoke-static {v1, v2}, Landroid/telephony/Rlog;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 196
-    goto :goto_0
+    .line 254
+    goto :goto_1
 
-    .line 214
+    .line 272
     .end local v0    # "ar":Landroid/os/AsyncResult;
     :cond_4
-    iput-boolean v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mIsPhoneReadySent:Z
+    iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mPhoneReadyBits:Ljava/util/BitSet;
 
-    .line 215
-    invoke-super {p0, p1}, Lcom/android/internal/telephony/GsmCdmaPhone;->handleMessage(Landroid/os/Message;)V
+    invoke-virtual {v0, v2}, Ljava/util/BitSet;->set(I)V
 
-    .line 216
-    goto :goto_0
+    .line 273
+    iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mPhoneReadyBits:Ljava/util/BitSet;
 
-    .line 219
+    invoke-virtual {v0, v3}, Ljava/util/BitSet;->set(I)V
+
+    .line 274
+    iget v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mPhoneId:I
+
+    invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->updatePhoneReady(I)V
+
+    .line 275
+    invoke-super {p0, p1}, Lcom/android/internal/telephony/vendor/VendorGsmCdmaPhone;->handleMessage(Landroid/os/Message;)V
+
+    .line 276
+    goto :goto_1
+
+    .line 279
     :cond_5
     const-string v0, "Event EVENT_NV_READY Received"
 
     invoke-static {v1, v0}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 220
+    .line 280
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mSST:Lcom/android/internal/telephony/ServiceStateTracker;
 
     invoke-virtual {v0}, Lcom/android/internal/telephony/ServiceStateTracker;->pollState()V
 
-    .line 222
+    .line 282
     const-string v0, "notifyMessageWaitingChanged"
 
     invoke-static {v1, v0}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 223
+    .line 283
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mNotifier:Lcom/android/internal/telephony/PhoneNotifier;
 
     invoke-interface {v0, p0}, Lcom/android/internal/telephony/PhoneNotifier;->notifyMessageWaitingChanged(Lcom/android/internal/telephony/Phone;)V
 
-    .line 224
+    .line 284
     invoke-virtual {p0}, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->updateVoiceMail()V
 
-    .line 227
-    goto :goto_0
+    .line 287
+    goto :goto_1
 
-    .line 199
+    .line 257
     :cond_6
     invoke-virtual {p0}, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->isPhoneTypeGsm()Z
 
@@ -807,7 +838,7 @@
 
     if-eqz v0, :cond_7
 
-    .line 200
+    .line 258
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -826,33 +857,35 @@
 
     invoke-static {v1, v0}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 201
+    .line 259
     invoke-virtual {p0}, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->notifyCallForwardingIndicator()V
 
-    .line 204
+    .line 262
     :cond_7
-    invoke-super {p0, p1}, Lcom/android/internal/telephony/GsmCdmaPhone;->handleMessage(Landroid/os/Message;)V
+    invoke-super {p0, p1}, Lcom/android/internal/telephony/vendor/VendorGsmCdmaPhone;->handleMessage(Landroid/os/Message;)V
 
-    .line 205
-    goto :goto_0
+    .line 263
+    goto :goto_1
 
-    .line 208
+    .line 266
     :cond_8
-    iput-boolean v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mIsPhoneReadySent:Z
+    iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mPhoneReadyBits:Ljava/util/BitSet;
 
-    .line 209
+    invoke-virtual {v0, v2}, Ljava/util/BitSet;->set(I)V
+
+    .line 267
     iget v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mPhoneId:I
 
     invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->updatePhoneReady(I)V
 
-    .line 210
-    invoke-super {p0, p1}, Lcom/android/internal/telephony/GsmCdmaPhone;->handleMessage(Landroid/os/Message;)V
+    .line 268
+    invoke-super {p0, p1}, Lcom/android/internal/telephony/vendor/VendorGsmCdmaPhone;->handleMessage(Landroid/os/Message;)V
 
-    .line 211
+    .line 269
     nop
 
-    .line 234
-    :goto_0
+    .line 299
+    :goto_1
     return-void
 .end method
 
@@ -860,7 +893,7 @@
     .locals 1
     .param p1, "address"    # Ljava/lang/String;
 
-    .line 294
+    .line 334
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mContext:Landroid/content/Context;
 
     invoke-static {v0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiEmergencyCallHelper;->isEmergencyNumber(Landroid/content/Context;Ljava/lang/String;)Z
@@ -874,15 +907,15 @@
     .locals 1
     .param p1, "newVoiceTech"    # I
 
-    .line 114
-    invoke-super {p0, p1}, Lcom/android/internal/telephony/GsmCdmaPhone;->phoneObjectUpdater(I)V
+    .line 171
+    invoke-super {p0, p1}, Lcom/android/internal/telephony/vendor/VendorGsmCdmaPhone;->phoneObjectUpdater(I)V
 
-    .line 115
+    .line 172
     iget v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mPhoneId:I
 
     invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->updatePhoneReady(I)V
 
-    .line 116
+    .line 173
     return-void
 .end method
 
@@ -890,78 +923,29 @@
     .locals 2
     .param p1, "rc"    # Lcom/android/internal/telephony/RadioCapability;
 
-    .line 122
+    .line 179
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mRadioCapability:Ljava/util/concurrent/atomic/AtomicReference;
 
     invoke-virtual {v0, p1}, Ljava/util/concurrent/atomic/AtomicReference;->set(Ljava/lang/Object;)V
 
-    .line 125
+    .line 182
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;
 
     move-result-object v0
 
-    .line 126
+    .line 183
     .local v0, "radioCapController":Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;
     if-eqz v0, :cond_0
 
-    .line 132
+    .line 189
     invoke-virtual {p0}, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->getPhoneId()I
 
     move-result v1
 
     invoke-virtual {v0, v1, p1}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->radioCapabilityUpdated(ILcom/android/internal/telephony/RadioCapability;)V
 
-    .line 134
+    .line 191
     :cond_0
-    return-void
-.end method
-
-.method public sendBurstDtmf(Ljava/lang/String;IILandroid/os/Message;)V
-    .locals 3
-    .param p1, "dtmfString"    # Ljava/lang/String;
-    .param p2, "on"    # I
-    .param p3, "off"    # I
-    .param p4, "onComplete"    # Landroid/os/Message;
-
-    .line 254
-    const/4 v0, 0x0
-
-    invoke-virtual {p1, v0}, Ljava/lang/String;->charAt(I)C
-
-    move-result v0
-
-    invoke-static {v0}, Ljava/lang/Character;->valueOf(C)Ljava/lang/Character;
-
-    move-result-object v0
-
-    .line 255
-    .local v0, "c":Ljava/lang/Character;
-    invoke-virtual {p1}, Ljava/lang/String;->length()I
-
-    move-result v1
-
-    const/4 v2, 0x1
-
-    if-ne v1, v2, :cond_0
-
-    invoke-virtual {v0}, Ljava/lang/Character;->charValue()C
-
-    move-result v1
-
-    const/16 v2, 0x44
-
-    if-ne v1, v2, :cond_0
-
-    .line 256
-    invoke-virtual {v0}, Ljava/lang/Character;->toString()Ljava/lang/String;
-
-    move-result-object p1
-
-    .line 258
-    :cond_0
-    invoke-super {p0, p1, p2, p3, p4}, Lcom/android/internal/telephony/GsmCdmaPhone;->sendBurstDtmf(Ljava/lang/String;IILandroid/os/Message;)V
-
-    .line 259
     return-void
 .end method
 
@@ -969,12 +953,12 @@
     .locals 4
     .param p1, "restoreNetworkSelection"    # Z
 
-    .line 263
+    .line 303
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/ExtTelephonyServiceImpl;->getInstance()Lcom/qualcomm/qti/internal/telephony/ExtTelephonyServiceImpl;
 
     move-result-object v0
 
-    .line 267
+    .line 307
     .local v0, "serviceImpl":Lcom/qualcomm/qti/internal/telephony/ExtTelephonyServiceImpl;
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver;->isSubsidyLockFeatureEnabled()Z
 
@@ -984,7 +968,7 @@
 
     iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mContext:Landroid/content/Context;
 
-    .line 268
+    .line 308
     invoke-static {v1}, Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver;->isSubsidyUnlocked(Landroid/content/Context;)Z
 
     move-result v1
@@ -1000,7 +984,7 @@
     :cond_0
     const/4 v1, 0x0
 
-    .line 269
+    .line 309
     :goto_0
     invoke-virtual {p0}, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->getPhoneId()I
 
@@ -1014,7 +998,7 @@
 
     if-eqz v1, :cond_1
 
-    .line 271
+    .line 311
     iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mContext:Landroid/content/Context;
 
     invoke-virtual {p0}, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->getSubId()I
@@ -1025,30 +1009,65 @@
 
     move-result v1
 
-    .line 272
+    .line 312
     .local v1, "type":I
     const/4 v2, 0x0
 
     invoke-virtual {p0, v1, v2}, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->setPreferredNetworkType(ILandroid/os/Message;)V
 
-    .line 274
+    .line 314
     const-string v3, " settings network selection mode to AUTO "
 
     invoke-direct {p0, v3}, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->logd(Ljava/lang/String;)V
 
-    .line 275
+    .line 315
     invoke-virtual {p0, v2}, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->setNetworkSelectionModeAutomatic(Landroid/os/Message;)V
 
-    .line 276
+    .line 316
     .end local v1    # "type":I
     goto :goto_1
 
-    .line 277
+    .line 317
     :cond_1
-    invoke-super {p0, p1}, Lcom/android/internal/telephony/GsmCdmaPhone;->sendSubscriptionSettings(Z)V
+    invoke-super {p0, p1}, Lcom/android/internal/telephony/vendor/VendorGsmCdmaPhone;->sendSubscriptionSettings(Z)V
 
-    .line 279
+    .line 319
     :goto_1
+    return-void
+.end method
+
+.method public setCarrierInfoForImsiEncryption(Landroid/telephony/ImsiEncryptionInfo;)V
+    .locals 2
+    .param p1, "imsiEncryptionInfo"    # Landroid/telephony/ImsiEncryptionInfo;
+
+    .line 339
+    iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mContext:Landroid/content/Context;
+
+    iget v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mPhoneId:I
+
+    invoke-static {p1, v0, v1}, Lcom/android/internal/telephony/CarrierInfoManager;->setCarrierInfoForImsiEncryption(Landroid/telephony/ImsiEncryptionInfo;Landroid/content/Context;I)V
+
+    .line 340
+    invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;
+
+    move-result-object v0
+
+    iget v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mPhoneId:I
+
+    invoke-virtual {v0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;->getRil(I)Lcom/qualcomm/qti/internal/telephony/QtiRIL;
+
+    move-result-object v0
+
+    iget v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->imsiToken:I
+
+    add-int/lit8 v1, v1, 0x1
+
+    iput v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->imsiToken:I
+
+    .line 341
+    invoke-virtual {v0, v1, p1}, Lcom/qualcomm/qti/internal/telephony/QtiRIL;->setCarrierInfoForImsiEncryption(ILandroid/telephony/ImsiEncryptionInfo;)V
+
+    .line 342
     return-void
 .end method
 
@@ -1056,7 +1075,7 @@
     .locals 2
     .param p1, "enable"    # Z
 
-    .line 159
+    .line 216
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mQtiRilInterface:Lcom/qualcomm/qti/internal/telephony/BaseRilInterface;
 
     invoke-interface {v0}, Lcom/qualcomm/qti/internal/telephony/BaseRilInterface;->isServiceReady()Z
@@ -1065,19 +1084,19 @@
 
     if-nez v0, :cond_0
 
-    .line 160
+    .line 217
     const-string v0, "QtiGsmCdmaPhone"
 
     const-string v1, "mQtiRilInterface is not ready yet"
 
     invoke-static {v0, v1}, Landroid/telephony/Rlog;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 161
+    .line 218
     const/4 v0, 0x0
 
     return v0
 
-    .line 163
+    .line 220
     :cond_0
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mQtiRilInterface:Lcom/qualcomm/qti/internal/telephony/BaseRilInterface;
 
@@ -1095,16 +1114,27 @@
     .param p1, "networkType"    # I
     .param p2, "response"    # Landroid/os/Message;
 
-    .line 83
+    .line 128
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;
 
     move-result-object v0
 
-    .line 84
+    .line 129
     .local v0, "radioCapController":Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;
     if-eqz v0, :cond_0
 
-    .line 85
+    .line 130
+    invoke-virtual {p0}, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->getPhoneId()I
+
+    move-result v1
+
+    invoke-virtual {v0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->isFlexMappingRequired(I)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    .line 131
     invoke-virtual {p0}, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->getPhoneId()I
 
     move-result v1
@@ -1113,81 +1143,18 @@
 
     goto :goto_0
 
-    .line 87
+    .line 133
     :cond_0
     const-string v1, "QtiGsmCdmaPhone"
 
-    const-string v2, " Error: Received null QtiRadioCapabilityController instante "
+    const-string v2, "Set preferred network type without flex mapping support"
 
-    invoke-static {v1, v2}, Landroid/telephony/Rlog;->e(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-static {v1, v2}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 89
-    :goto_0
-    return-void
-.end method
+    .line 134
+    invoke-super {p0, p1, p2}, Lcom/android/internal/telephony/vendor/VendorGsmCdmaPhone;->setPreferredNetworkType(ILandroid/os/Message;)V
 
-.method public startDtmf(C)V
-    .locals 2
-    .param p1, "c"    # C
-
-    .line 240
-    invoke-static {p1}, Landroid/telephony/PhoneNumberUtils;->is12Key(C)Z
-
-    move-result v0
-
-    const/16 v1, 0x44
-
-    if-nez v0, :cond_0
-
-    if-eq p1, v1, :cond_0
-
-    .line 241
-    new-instance v0, Ljava/lang/StringBuilder;
-
-    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v1, "startDtmf called with invalid character \'"
-
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
-
-    const-string v1, "\'"
-
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v0
-
-    const-string v1, "QtiGsmCdmaPhone"
-
-    invoke-static {v1, v0}, Landroid/telephony/Rlog;->e(Ljava/lang/String;Ljava/lang/String;)I
-
-    goto :goto_0
-
-    .line 243
-    :cond_0
-    invoke-virtual {p0}, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->isPhoneTypeCdma()Z
-
-    move-result v0
-
-    if-eqz v0, :cond_1
-
-    if-ne p1, v1, :cond_1
-
-    .line 244
-    const/16 p1, 0x23
-
-    .line 246
-    :cond_1
-    iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->mCi:Lcom/android/internal/telephony/CommandsInterface;
-
-    const/4 v1, 0x0
-
-    invoke-interface {v0, p1, v1}, Lcom/android/internal/telephony/CommandsInterface;->startDtmf(CLandroid/os/Message;)V
-
-    .line 248
+    .line 136
     :goto_0
     return-void
 .end method

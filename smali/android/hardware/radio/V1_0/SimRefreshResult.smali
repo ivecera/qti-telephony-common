@@ -18,6 +18,14 @@
     .line 4
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
+    .line 5
+    const/4 v0, 0x0
+
+    iput v0, p0, Landroid/hardware/radio/V1_0/SimRefreshResult;->type:I
+
+    .line 6
+    iput v0, p0, Landroid/hardware/radio/V1_0/SimRefreshResult;->efId:I
+
     .line 7
     new-instance v0, Ljava/lang/String;
 
@@ -412,7 +420,7 @@
     iput-object v6, v0, Landroid/hardware/radio/V1_0/SimRefreshResult;->aid:Ljava/lang/String;
 
     .line 87
-    iget-object v6, v0, Landroid/hardware/radio/V1_0/SimRefreshResult;->aid:Ljava/lang/String;
+    nop
 
     .line 88
     invoke-virtual {v6}, Ljava/lang/String;->getBytes()[B

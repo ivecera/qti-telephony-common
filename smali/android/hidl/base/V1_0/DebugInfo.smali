@@ -21,10 +21,23 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .locals 3
 
     .line 4
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 42
+    const/4 v0, 0x0
+
+    iput v0, p0, Landroid/hidl/base/V1_0/DebugInfo;->pid:I
+
+    .line 43
+    const-wide/16 v1, 0x0
+
+    iput-wide v1, p0, Landroid/hidl/base/V1_0/DebugInfo;->ptr:J
+
+    .line 44
+    iput v0, p0, Landroid/hidl/base/V1_0/DebugInfo;->arch:I
 
     return-void
 .end method

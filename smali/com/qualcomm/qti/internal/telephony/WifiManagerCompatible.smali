@@ -16,7 +16,7 @@
 .method public static isNeeded()Z
     .locals 1
 
-    .line 13
+    .line 15
     sget-boolean v0, Lmiui/os/Build;->IS_GLOBAL_BUILD:Z
 
     return v0
@@ -28,12 +28,22 @@
     .param p1, "set"    # I
 
     .line 9
-    invoke-static {p0}, Landroid/net/wifi/MiuiWifiManager;->getInstance(Landroid/content/Context;)Landroid/net/wifi/MiuiWifiManager;
+    const-string v0, "MiuiWifiService"
+
+    invoke-virtual {p0, v0}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
 
     move-result-object v0
 
-    invoke-virtual {v0, p1}, Landroid/net/wifi/MiuiWifiManager;->setSARLimit(I)V
+    check-cast v0, Landroid/net/wifi/MiuiWifiManager;
 
     .line 10
+    .local v0, "mws":Landroid/net/wifi/MiuiWifiManager;
+    if-eqz v0, :cond_0
+
+    .line 11
+    invoke-virtual {v0, p1}, Landroid/net/wifi/MiuiWifiManager;->setSARLimit(I)V
+
+    .line 12
+    :cond_0
     return-void
 .end method

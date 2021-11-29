@@ -142,9 +142,7 @@
     iput-object p1, p0, Lcom/qualcomm/qcrilhook/QcRilHook;->mContext:Landroid/content/Context;
 
     .line 106
-    iget-object v0, p0, Lcom/qualcomm/qcrilhook/QcRilHook;->mContext:Landroid/content/Context;
-
-    if-eqz v0, :cond_0
+    if-eqz p1, :cond_0
 
     .line 110
     new-instance v0, Landroid/content/Intent;
@@ -651,12 +649,12 @@
 
     invoke-direct {v0, v4, v2, v3}, Lorg/codeaurora/telephony/utils/AsyncResult;-><init>(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Throwable;)V
 
-    .end local v3    # "e":Ljava/lang/NullPointerException;
     .restart local v0    # "ar":Lorg/codeaurora/telephony/utils/AsyncResult;
     goto :goto_1
 
     .line 294
     .end local v0    # "ar":Lorg/codeaurora/telephony/utils/AsyncResult;
+    .end local v3    # "e":Ljava/lang/NullPointerException;
     :catch_1
     move-exception v3
 

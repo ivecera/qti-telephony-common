@@ -92,7 +92,7 @@
 
     iput-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->mQcrilHookCb:Lcom/qualcomm/qcrilhook/QcRilHookCallback;
 
-    .line 562
+    .line 572
     new-instance v2, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface$2;
 
     invoke-direct {v2, p0}, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface$2;-><init>(Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;)V
@@ -332,12 +332,12 @@
     .locals 1
     .param p1, "string"    # Ljava/lang/String;
 
-    .line 580
+    .line 590
     const-string v0, "QtiRilInterface"
 
     invoke-static {v0, p1}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 581
+    .line 591
     return-void
 .end method
 
@@ -345,12 +345,12 @@
     .locals 1
     .param p1, "string"    # Ljava/lang/String;
 
-    .line 588
+    .line 598
     const-string v0, "QtiRilInterface"
 
     invoke-static {v0, p1}, Landroid/telephony/Rlog;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 589
+    .line 599
     return-void
 .end method
 
@@ -358,12 +358,12 @@
     .locals 1
     .param p1, "string"    # Ljava/lang/String;
 
-    .line 584
+    .line 594
     const-string v0, "QtiRilInterface"
 
     invoke-static {v0, p1}, Landroid/telephony/Rlog;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 585
+    .line 595
     return-void
 .end method
 
@@ -454,12 +454,12 @@
     .locals 14
     .param p1, "data"    # [B
 
-    .line 480
+    .line 490
     invoke-static {p1}, Ljava/nio/ByteBuffer;->wrap([B)Ljava/nio/ByteBuffer;
 
     move-result-object v0
 
-    .line 481
+    .line 491
     .local v0, "byteBuf":Ljava/nio/ByteBuffer;
     invoke-static {}, Ljava/nio/ByteOrder;->nativeOrder()Ljava/nio/ByteOrder;
 
@@ -467,16 +467,16 @@
 
     invoke-virtual {v0, v1}, Ljava/nio/ByteBuffer;->order(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;
 
-    .line 483
+    .line 493
     invoke-virtual {v0}, Ljava/nio/ByteBuffer;->getShort()S
 
     move-result v1
 
-    .line 485
+    .line 495
     .local v1, "numRecords":I
     new-array v2, v1, [Lcom/qualcomm/qti/internal/telephony/uicccontact/QtiSimPhoneBookAdnRecord;
 
-    .line 488
+    .line 498
     .local v2, "AdnRecordsInfoGroup":[Lcom/qualcomm/qti/internal/telephony/uicccontact/QtiSimPhoneBookAdnRecord;
     const/4 v3, 0x0
 
@@ -484,14 +484,14 @@
     :goto_0
     if-ge v3, v1, :cond_6
 
-    .line 489
+    .line 499
     new-instance v4, Lcom/qualcomm/qti/internal/telephony/uicccontact/QtiSimPhoneBookAdnRecord;
 
     invoke-direct {v4}, Lcom/qualcomm/qti/internal/telephony/uicccontact/QtiSimPhoneBookAdnRecord;-><init>()V
 
     aput-object v4, v2, v3
 
-    .line 491
+    .line 501
     aget-object v4, v2, v3
 
     invoke-virtual {v0}, Ljava/nio/ByteBuffer;->getShort()S
@@ -500,25 +500,25 @@
 
     iput v5, v4, Lcom/qualcomm/qti/internal/telephony/uicccontact/QtiSimPhoneBookAdnRecord;->mRecordIndex:I
 
-    .line 493
+    .line 503
     invoke-virtual {v0}, Ljava/nio/ByteBuffer;->getShort()S
 
     move-result v4
 
-    .line 494
+    .line 504
     .local v4, "nameLength":I
     const-string v5, "UTF-8"
 
     if-lez v4, :cond_0
 
-    .line 495
+    .line 505
     new-array v6, v4, [B
 
-    .line 496
+    .line 506
     .local v6, "alphaTag":[B
     invoke-virtual {v0, v6}, Ljava/nio/ByteBuffer;->get([B)Ljava/nio/ByteBuffer;
 
-    .line 498
+    .line 508
     :try_start_0
     aget-object v7, v2, v3
 
@@ -530,23 +530,23 @@
     :try_end_0
     .catch Ljava/io/UnsupportedEncodingException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 502
+    .line 512
     goto :goto_1
 
-    .line 499
+    .line 509
     :catch_0
     move-exception v5
 
-    .line 500
+    .line 510
     .local v5, "e":Ljava/io/UnsupportedEncodingException;
     const-string v7, "Unsupport UTF-8 to parse name"
 
     invoke-direct {p0, v7}, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->loge(Ljava/lang/String;)V
 
-    .line 501
+    .line 511
     goto/16 :goto_9
 
-    .line 505
+    .line 515
     .end local v5    # "e":Ljava/io/UnsupportedEncodingException;
     .end local v6    # "alphaTag":[B
     :cond_0
@@ -555,18 +555,18 @@
 
     move-result v6
 
-    .line 506
+    .line 516
     .local v6, "numberLength":I
     if-lez v6, :cond_1
 
-    .line 507
+    .line 517
     new-array v7, v6, [B
 
-    .line 508
+    .line 518
     .local v7, "number":[B
     invoke-virtual {v0, v7}, Ljava/nio/ByteBuffer;->get([B)Ljava/nio/ByteBuffer;
 
-    .line 510
+    .line 520
     :try_start_1
     aget-object v8, v2, v3
 
@@ -574,7 +574,7 @@
 
     invoke-direct {v9, v7, v5}, Ljava/lang/String;-><init>([BLjava/lang/String;)V
 
-    .line 511
+    .line 521
     invoke-static {v9}, Lcom/qualcomm/qti/internal/telephony/uicccontact/QtiSimPhoneBookAdnRecord;->ConvertToPhoneNumber(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v9
@@ -583,23 +583,23 @@
     :try_end_1
     .catch Ljava/io/UnsupportedEncodingException; {:try_start_1 .. :try_end_1} :catch_1
 
-    .line 515
+    .line 525
     goto :goto_2
 
-    .line 512
+    .line 522
     :catch_1
     move-exception v5
 
-    .line 513
+    .line 523
     .restart local v5    # "e":Ljava/io/UnsupportedEncodingException;
     const-string v8, "Unsupport UTF-8 to parse number"
 
     invoke-direct {p0, v8}, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->loge(Ljava/lang/String;)V
 
-    .line 514
+    .line 524
     goto/16 :goto_9
 
-    .line 518
+    .line 528
     .end local v5    # "e":Ljava/io/UnsupportedEncodingException;
     .end local v7    # "number":[B
     :cond_1
@@ -608,46 +608,46 @@
 
     move-result v7
 
-    .line 519
+    .line 529
     .local v7, "numEmails":I
     if-lez v7, :cond_3
 
-    .line 520
+    .line 530
     aget-object v8, v2, v3
 
     iput v7, v8, Lcom/qualcomm/qti/internal/telephony/uicccontact/QtiSimPhoneBookAdnRecord;->mEmailCount:I
 
-    .line 521
+    .line 531
     aget-object v8, v2, v3
 
     new-array v9, v7, [Ljava/lang/String;
 
     iput-object v9, v8, Lcom/qualcomm/qti/internal/telephony/uicccontact/QtiSimPhoneBookAdnRecord;->mEmails:[Ljava/lang/String;
 
-    .line 522
+    .line 532
     const/4 v8, 0x0
 
     .local v8, "j":I
     :goto_3
     if-ge v8, v7, :cond_3
 
-    .line 523
+    .line 533
     invoke-virtual {v0}, Ljava/nio/ByteBuffer;->getShort()S
 
     move-result v9
 
-    .line 524
+    .line 534
     .local v9, "emailLength":I
     if-lez v9, :cond_2
 
-    .line 525
+    .line 535
     new-array v10, v9, [B
 
-    .line 526
+    .line 536
     .local v10, "email":[B
     invoke-virtual {v0, v10}, Ljava/nio/ByteBuffer;->get([B)Ljava/nio/ByteBuffer;
 
-    .line 528
+    .line 538
     :try_start_2
     aget-object v11, v2, v3
 
@@ -661,23 +661,23 @@
     :try_end_2
     .catch Ljava/io/UnsupportedEncodingException; {:try_start_2 .. :try_end_2} :catch_2
 
-    .line 532
+    .line 542
     goto :goto_4
 
-    .line 529
+    .line 539
     :catch_2
     move-exception v11
 
-    .line 530
+    .line 540
     .local v11, "e":Ljava/io/UnsupportedEncodingException;
     const-string v12, "Unsupport UTF-8 to parse email"
 
     invoke-direct {p0, v12}, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->loge(Ljava/lang/String;)V
 
-    .line 531
+    .line 541
     goto :goto_5
 
-    .line 522
+    .line 532
     .end local v9    # "emailLength":I
     .end local v10    # "email":[B
     .end local v11    # "e":Ljava/io/UnsupportedEncodingException;
@@ -687,7 +687,7 @@
 
     goto :goto_3
 
-    .line 537
+    .line 547
     .end local v8    # "j":I
     :cond_3
     :goto_5
@@ -695,46 +695,46 @@
 
     move-result v8
 
-    .line 538
+    .line 548
     .local v8, "numAnrs":I
     if-lez v8, :cond_5
 
-    .line 539
+    .line 549
     aget-object v9, v2, v3
 
     iput v8, v9, Lcom/qualcomm/qti/internal/telephony/uicccontact/QtiSimPhoneBookAdnRecord;->mAdNumCount:I
 
-    .line 540
+    .line 550
     aget-object v9, v2, v3
 
     new-array v10, v8, [Ljava/lang/String;
 
     iput-object v10, v9, Lcom/qualcomm/qti/internal/telephony/uicccontact/QtiSimPhoneBookAdnRecord;->mAdNumbers:[Ljava/lang/String;
 
-    .line 541
+    .line 551
     const/4 v9, 0x0
 
     .local v9, "k":I
     :goto_6
     if-ge v9, v8, :cond_5
 
-    .line 542
+    .line 552
     invoke-virtual {v0}, Ljava/nio/ByteBuffer;->getShort()S
 
     move-result v10
 
-    .line 543
+    .line 553
     .local v10, "anrLength":I
     if-lez v10, :cond_4
 
-    .line 544
+    .line 554
     new-array v11, v10, [B
 
-    .line 545
+    .line 555
     .local v11, "anr":[B
     invoke-virtual {v0, v11}, Ljava/nio/ByteBuffer;->get([B)Ljava/nio/ByteBuffer;
 
-    .line 547
+    .line 557
     :try_start_3
     aget-object v12, v2, v3
 
@@ -744,7 +744,7 @@
 
     invoke-direct {v13, v11, v5}, Ljava/lang/String;-><init>([BLjava/lang/String;)V
 
-    .line 548
+    .line 558
     invoke-static {v13}, Lcom/qualcomm/qti/internal/telephony/uicccontact/QtiSimPhoneBookAdnRecord;->ConvertToPhoneNumber(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v13
@@ -753,23 +753,23 @@
     :try_end_3
     .catch Ljava/io/UnsupportedEncodingException; {:try_start_3 .. :try_end_3} :catch_3
 
-    .line 552
+    .line 562
     goto :goto_7
 
-    .line 549
+    .line 559
     :catch_3
     move-exception v5
 
-    .line 550
+    .line 560
     .restart local v5    # "e":Ljava/io/UnsupportedEncodingException;
     const-string v12, "Unsupport UTF-8 to parse anr"
 
     invoke-direct {p0, v12}, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->loge(Ljava/lang/String;)V
 
-    .line 551
+    .line 561
     goto :goto_8
 
-    .line 541
+    .line 551
     .end local v5    # "e":Ljava/io/UnsupportedEncodingException;
     .end local v10    # "anrLength":I
     .end local v11    # "anr":[B
@@ -779,7 +779,7 @@
 
     goto :goto_6
 
-    .line 488
+    .line 498
     .end local v4    # "nameLength":I
     .end local v6    # "numberLength":I
     .end local v7    # "numEmails":I
@@ -791,7 +791,7 @@
 
     goto/16 :goto_0
 
-    .line 557
+    .line 567
     .end local v3    # "i":I
     :cond_6
     :goto_9
@@ -801,12 +801,43 @@
 
     invoke-direct {p0, v3}, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->logd(Ljava/lang/String;)V
 
-    .line 559
+    .line 569
     return-object v2
 .end method
 
 
 # virtual methods
+.method public abortIncrementalScan(I)Z
+    .locals 2
+    .param p1, "slotId"    # I
+
+    .line 469
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v1, "abortIncrementalScan, slotId: "
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->logd(Ljava/lang/String;)V
+
+    .line 470
+    iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->mQcRilHook:Lcom/qualcomm/qcrilhook/QcRilHook;
+
+    invoke-virtual {v0, p1}, Lcom/qualcomm/qcrilhook/QcRilHook;->qcRilAbortNetworkScan(I)Z
+
+    move-result v0
+
+    return v0
+.end method
+
 .method public getAdnRecord(Landroid/os/Message;I)V
     .locals 6
     .param p1, "callbackMsg"    # Landroid/os/Message;
@@ -819,8 +850,6 @@
 
     .line 318
     .local v0, "requestData":[B
-    iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->mQcRilHook:Lcom/qualcomm/qcrilhook/QcRilHook;
-
     invoke-static {v0}, Lcom/qualcomm/qcrilhook/QcRilHook;->createBufferWithNativeByteOrder([B)Ljava/nio/ByteBuffer;
 
     move-result-object v1
@@ -1030,8 +1059,6 @@
 
     .line 196
     .local v1, "requestData":[B
-    iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->mQcRilHook:Lcom/qualcomm/qcrilhook/QcRilHook;
-
     invoke-static {v1}, Lcom/qualcomm/qcrilhook/QcRilHook;->createBufferWithNativeByteOrder([B)Ljava/nio/ByteBuffer;
 
     move-result-object v2
@@ -1208,6 +1235,37 @@
     return v0
 .end method
 
+.method public performIncrementalScan(I)Z
+    .locals 2
+    .param p1, "slotId"    # I
+
+    .line 464
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v1, "performIncrementalScan, slotId: "
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->logd(Ljava/lang/String;)V
+
+    .line 465
+    iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->mQcRilHook:Lcom/qualcomm/qcrilhook/QcRilHook;
+
+    invoke-virtual {v0, p1}, Lcom/qualcomm/qcrilhook/QcRilHook;->qcRilPerformIncrManualScan(I)Z
+
+    move-result v0
+
+    return v0
+.end method
+
 .method public qcRilSendDDSInfo(III)V
     .locals 1
     .param p1, "ddsPhoneId"    # I
@@ -1310,14 +1368,12 @@
 .end method
 
 .method public registerForUnsol(Landroid/os/Handler;ILjava/lang/Object;)V
-    .locals 1
+    .locals 0
     .param p1, "handler"    # Landroid/os/Handler;
     .param p2, "event"    # I
     .param p3, "obj"    # Ljava/lang/Object;
 
     .line 431
-    iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->mQcRilHook:Lcom/qualcomm/qcrilhook/QcRilHook;
-
     invoke-static {p1, p2, p3}, Lcom/qualcomm/qcrilhook/QcRilHook;->register(Landroid/os/Handler;ILjava/lang/Object;)V
 
     .line 432
@@ -1340,8 +1396,6 @@
 
     .line 239
     .local v1, "requestData":[B
-    iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->mQcRilHook:Lcom/qualcomm/qcrilhook/QcRilHook;
-
     invoke-static {v1}, Lcom/qualcomm/qcrilhook/QcRilHook;->createBufferWithNativeByteOrder([B)Ljava/nio/ByteBuffer;
 
     move-result-object v2
@@ -1371,7 +1425,7 @@
     .param p1, "phoneId"    # I
     .param p2, "enable"    # Z
 
-    .line 476
+    .line 486
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->mQcRilHook:Lcom/qualcomm/qcrilhook/QcRilHook;
 
     invoke-virtual {v0, p1, p2}, Lcom/qualcomm/qcrilhook/QcRilHook;->setLocalCallHold(IZ)Z
@@ -1397,8 +1451,6 @@
 
     .line 250
     .local v1, "requestData":[B
-    iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->mQcRilHook:Lcom/qualcomm/qcrilhook/QcRilHook;
-
     invoke-static {v1}, Lcom/qualcomm/qcrilhook/QcRilHook;->createBufferWithNativeByteOrder([B)Ljava/nio/ByteBuffer;
 
     move-result-object v2
@@ -1540,8 +1592,6 @@
     new-array v1, v2, [B
 
     .line 179
-    iget-object v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->mQcRilHook:Lcom/qualcomm/qcrilhook/QcRilHook;
-
     invoke-static {v1}, Lcom/qualcomm/qcrilhook/QcRilHook;->createBufferWithNativeByteOrder([B)Ljava/nio/ByteBuffer;
 
     move-result-object v3
@@ -1593,22 +1643,20 @@
     .locals 1
     .param p1, "h"    # Landroid/os/Handler;
 
-    .line 464
+    .line 474
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->mServiceReadyRegistrantList:Landroid/os/RegistrantList;
 
     invoke-virtual {v0, p1}, Landroid/os/RegistrantList;->remove(Landroid/os/Handler;)V
 
-    .line 465
+    .line 475
     return-void
 .end method
 
 .method public unRegisterForUnsol(Landroid/os/Handler;)V
-    .locals 1
+    .locals 0
     .param p1, "handler"    # Landroid/os/Handler;
 
     .line 435
-    iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->mQcRilHook:Lcom/qualcomm/qcrilhook/QcRilHook;
-
     invoke-static {p1}, Lcom/qualcomm/qcrilhook/QcRilHook;->unregister(Landroid/os/Handler;)V
 
     .line 436
@@ -1619,12 +1667,12 @@
     .locals 1
     .param p1, "h"    # Landroid/os/Handler;
 
-    .line 468
+    .line 478
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->mAdnInitDoneRegistrantList:Landroid/os/RegistrantList;
 
     invoke-virtual {v0, p1}, Landroid/os/RegistrantList;->remove(Landroid/os/Handler;)V
 
-    .line 469
+    .line 479
     return-void
 .end method
 
@@ -1632,23 +1680,23 @@
     .locals 1
     .param p1, "h"    # Landroid/os/Handler;
 
-    .line 472
+    .line 482
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->mAdnRecordsInfoRegistrantList:Landroid/os/RegistrantList;
 
     invoke-virtual {v0, p1}, Landroid/os/RegistrantList;->remove(Landroid/os/Handler;)V
 
-    .line 473
+    .line 483
     return-void
 .end method
 
 .method public updateAdnRecord(Lcom/qualcomm/qti/internal/telephony/uicccontact/QtiSimPhoneBookAdnRecord;Landroid/os/Message;I)V
-    .locals 15
+    .locals 16
     .param p1, "adnRecordInfo"    # Lcom/qualcomm/qti/internal/telephony/uicccontact/QtiSimPhoneBookAdnRecord;
     .param p2, "callbackMsg"    # Landroid/os/Message;
     .param p3, "phoneId"    # I
 
     .line 335
-    move-object v1, p0
+    move-object/from16 v1, p0
 
     invoke-virtual/range {p1 .. p1}, Lcom/qualcomm/qti/internal/telephony/uicccontact/QtiSimPhoneBookAdnRecord;->getNumEmails()I
 
@@ -1765,49 +1813,50 @@
     :cond_2
     const/4 v8, 0x0
 
-    move v9, v0
+    move v15, v8
 
-    .end local v0    # "dataSize":I
-    .local v8, "j":I
-    .local v9, "dataSize":I
+    move v8, v0
+
+    move v0, v15
+
+    .local v0, "j":I
+    .local v8, "dataSize":I
     :goto_3
-    if-ge v8, v3, :cond_3
+    if-ge v0, v3, :cond_3
 
     .line 349
-    add-int/lit8 v9, v9, 0x2
+    add-int/lit8 v8, v8, 0x2
 
     .line 350
     invoke-virtual/range {p1 .. p1}, Lcom/qualcomm/qti/internal/telephony/uicccontact/QtiSimPhoneBookAdnRecord;->getAdNumbers()[Ljava/lang/String;
 
-    move-result-object v0
+    move-result-object v9
 
-    aget-object v0, v0, v8
+    aget-object v9, v9, v0
 
-    invoke-virtual {v0}, Ljava/lang/String;->getBytes()[B
+    invoke-virtual {v9}, Ljava/lang/String;->getBytes()[B
 
-    move-result-object v0
+    move-result-object v9
 
-    array-length v0, v0
+    array-length v9, v9
 
-    add-int/2addr v0, v7
+    add-int/2addr v9, v7
 
-    add-int/2addr v9, v0
+    add-int/2addr v8, v9
 
     .line 348
-    add-int/lit8 v8, v8, 0x1
+    add-int/lit8 v0, v0, 0x1
 
     goto :goto_3
 
     .line 353
-    .end local v8    # "j":I
+    .end local v0    # "j":I
     :cond_3
-    new-array v8, v9, [B
+    new-array v9, v8, [B
 
     .line 354
-    .local v8, "requestData":[B
-    iget-object v0, v1, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->mQcRilHook:Lcom/qualcomm/qcrilhook/QcRilHook;
-
-    invoke-static {v8}, Lcom/qualcomm/qcrilhook/QcRilHook;->createBufferWithNativeByteOrder([B)Ljava/nio/ByteBuffer;
+    .local v9, "requestData":[B
+    invoke-static {v9}, Lcom/qualcomm/qcrilhook/QcRilHook;->createBufferWithNativeByteOrder([B)Ljava/nio/ByteBuffer;
 
     move-result-object v10
 
@@ -1821,7 +1870,7 @@
 
     move-object/from16 v12, p2
 
-    invoke-direct {v0, p0, v12, v7}, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface$AdnOemHookCallback;-><init>(Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;Landroid/os/Message;I)V
+    invoke-direct {v0, v1, v12, v7}, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface$AdnOemHookCallback;-><init>(Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;Landroid/os/Message;I)V
 
     move-object v7, v0
 
@@ -1879,7 +1928,7 @@
     .local v0, "usee":Ljava/io/UnsupportedEncodingException;
     const-string v6, "Unsupport UTF-8 to parse name"
 
-    invoke-direct {p0, v6}, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->loge(Ljava/lang/String;)V
+    invoke-direct {v1, v6}, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->loge(Ljava/lang/String;)V
 
     .line 368
     return-void
@@ -1940,7 +1989,7 @@
     .restart local v0    # "usee":Ljava/io/UnsupportedEncodingException;
     const-string v6, "Unsupport UTF-8 to parse number"
 
-    invoke-direct {p0, v6}, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->loge(Ljava/lang/String;)V
+    invoke-direct {v1, v6}, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->loge(Ljava/lang/String;)V
 
     .line 383
     return-void
@@ -2017,7 +2066,7 @@
     .restart local v0    # "usee":Ljava/io/UnsupportedEncodingException;
     const-string v6, "Unsupport UTF-8 to parse email"
 
-    invoke-direct {p0, v6}, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->loge(Ljava/lang/String;)V
+    invoke-direct {v1, v6}, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->loge(Ljava/lang/String;)V
 
     .line 398
     return-void
@@ -2101,7 +2150,7 @@
     .restart local v0    # "usee":Ljava/io/UnsupportedEncodingException;
     const-string v6, "Unsupport UTF-8 to parse anr"
 
-    invoke-direct {p0, v6}, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->loge(Ljava/lang/String;)V
+    invoke-direct {v1, v6}, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->loge(Ljava/lang/String;)V
 
     .line 413
     return-void
@@ -2116,7 +2165,7 @@
 
     move/from16 v13, p3
 
-    invoke-virtual {v0, v6, v8, v7, v13}, Lcom/qualcomm/qcrilhook/QcRilHook;->sendQcRilHookMsgAsync(I[BLcom/qualcomm/qcrilhook/OemHookCallback;I)V
+    invoke-virtual {v0, v6, v9, v7, v13}, Lcom/qualcomm/qcrilhook/QcRilHook;->sendQcRilHookMsgAsync(I[BLcom/qualcomm/qcrilhook/OemHookCallback;I)V
 
     .line 423
     new-instance v0, Ljava/lang/StringBuilder;
@@ -2137,7 +2186,7 @@
 
     move-result-object v0
 
-    invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->logi(Ljava/lang/String;)V
+    invoke-direct {v1, v0}, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->logi(Ljava/lang/String;)V
 
     .line 424
     return-void

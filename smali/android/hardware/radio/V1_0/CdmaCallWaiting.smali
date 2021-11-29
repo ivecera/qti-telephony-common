@@ -19,7 +19,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 1
+    .locals 2
 
     .line 4
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -31,19 +31,30 @@
 
     iput-object v0, p0, Landroid/hardware/radio/V1_0/CdmaCallWaiting;->number:Ljava/lang/String;
 
+    .line 6
+    const/4 v0, 0x0
+
+    iput v0, p0, Landroid/hardware/radio/V1_0/CdmaCallWaiting;->numberPresentation:I
+
     .line 7
-    new-instance v0, Ljava/lang/String;
+    new-instance v1, Ljava/lang/String;
 
-    invoke-direct {v0}, Ljava/lang/String;-><init>()V
+    invoke-direct {v1}, Ljava/lang/String;-><init>()V
 
-    iput-object v0, p0, Landroid/hardware/radio/V1_0/CdmaCallWaiting;->name:Ljava/lang/String;
+    iput-object v1, p0, Landroid/hardware/radio/V1_0/CdmaCallWaiting;->name:Ljava/lang/String;
 
     .line 8
-    new-instance v0, Landroid/hardware/radio/V1_0/CdmaSignalInfoRecord;
+    new-instance v1, Landroid/hardware/radio/V1_0/CdmaSignalInfoRecord;
 
-    invoke-direct {v0}, Landroid/hardware/radio/V1_0/CdmaSignalInfoRecord;-><init>()V
+    invoke-direct {v1}, Landroid/hardware/radio/V1_0/CdmaSignalInfoRecord;-><init>()V
 
-    iput-object v0, p0, Landroid/hardware/radio/V1_0/CdmaCallWaiting;->signalInfoRecord:Landroid/hardware/radio/V1_0/CdmaSignalInfoRecord;
+    iput-object v1, p0, Landroid/hardware/radio/V1_0/CdmaCallWaiting;->signalInfoRecord:Landroid/hardware/radio/V1_0/CdmaSignalInfoRecord;
+
+    .line 9
+    iput v0, p0, Landroid/hardware/radio/V1_0/CdmaCallWaiting;->numberType:I
+
+    .line 10
+    iput v0, p0, Landroid/hardware/radio/V1_0/CdmaCallWaiting;->numberPlan:I
 
     return-void
 .end method
@@ -500,7 +511,7 @@
     iput-object v4, v0, Landroid/hardware/radio/V1_0/CdmaCallWaiting;->number:Ljava/lang/String;
 
     .line 106
-    iget-object v4, v0, Landroid/hardware/radio/V1_0/CdmaCallWaiting;->number:Ljava/lang/String;
+    nop
 
     .line 107
     invoke-virtual {v4}, Ljava/lang/String;->getBytes()[B
@@ -552,7 +563,7 @@
     iput-object v6, v0, Landroid/hardware/radio/V1_0/CdmaCallWaiting;->name:Ljava/lang/String;
 
     .line 114
-    iget-object v6, v0, Landroid/hardware/radio/V1_0/CdmaCallWaiting;->name:Ljava/lang/String;
+    nop
 
     .line 115
     invoke-virtual {v6}, Ljava/lang/String;->getBytes()[B

@@ -67,9 +67,7 @@
     iput-object p1, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver;->mContext:Landroid/content/Context;
 
     .line 67
-    iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver;->mContext:Landroid/content/Context;
-
-    invoke-static {v0}, Landroid/preference/PreferenceManager;->getDefaultSharedPreferences(Landroid/content/Context;)Landroid/content/SharedPreferences;
+    invoke-static {p1}, Landroid/preference/PreferenceManager;->getDefaultSharedPreferences(Landroid/content/Context;)Landroid/content/SharedPreferences;
 
     move-result-object v0
 
@@ -188,24 +186,24 @@
     .locals 3
 
     .line 317
-    const/4 v0, 0x0
+    const-string v0, "ro.vendor.radio.subsidylock"
 
-    const-string v1, "ro.vendor.radio.subsidylock"
+    const/4 v1, 0x0
 
-    invoke-static {v1, v0}, Landroid/os/SystemProperties;->getInt(Ljava/lang/String;I)I
+    invoke-static {v0, v1}, Landroid/os/SystemProperties;->getInt(Ljava/lang/String;I)I
 
-    move-result v1
+    move-result v0
 
     .line 318
-    .local v1, "propVal":I
+    .local v0, "propVal":I
     const/4 v2, 0x1
 
-    if-ne v1, v2, :cond_0
+    if-ne v0, v2, :cond_0
 
-    move v0, v2
+    move v1, v2
 
     :cond_0
-    return v0
+    return v1
 .end method
 
 .method public static isSubsidyLocked(Landroid/content/Context;)Z
@@ -312,15 +310,13 @@
     iput-object v0, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver;->mSettingsHandler:Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver$SubsidySettingsHandler;
 
     .line 85
-    iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver;->mCardInfoManager:Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager;
-
-    iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver;->mSettingsHandler:Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver$SubsidySettingsHandler;
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver;->mCardInfoManager:Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager;
 
     const/4 v2, 0x4
 
     const/4 v3, 0x0
 
-    invoke-virtual {v0, v1, v2, v3}, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager;->registerAllCardsInfoAvailable(Landroid/os/Handler;ILjava/lang/Object;)V
+    invoke-virtual {v1, v0, v2, v3}, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager;->registerAllCardsInfoAvailable(Landroid/os/Handler;ILjava/lang/Object;)V
 
     .line 88
     :cond_0
@@ -465,8 +461,6 @@
 # virtual methods
 .method public getHandler()Landroid/os/Handler;
     .locals 1
-    .annotation build Lcom/android/internal/annotations/VisibleForTesting;
-    .end annotation
 
     .line 323
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver;->mSettingsHandler:Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver$SubsidySettingsHandler;

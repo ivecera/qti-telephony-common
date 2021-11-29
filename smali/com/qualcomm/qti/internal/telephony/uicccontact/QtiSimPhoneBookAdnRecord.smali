@@ -301,10 +301,13 @@
 
     if-nez v1, :cond_1
 
-    move-object v1, v2
+    goto :goto_0
 
     :cond_1
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    move-object v2, v1
+
+    :goto_0
+    invoke-virtual {v0, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     .line 98
     const-string v1, ", email count = "

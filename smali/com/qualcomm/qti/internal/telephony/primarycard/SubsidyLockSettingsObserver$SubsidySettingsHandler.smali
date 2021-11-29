@@ -120,23 +120,21 @@
 
     const-string v2, ", not proceeding further."
 
-    const-string v3, "extphone"
+    const-string v3, "qti.radio.extphone"
 
-    const/4 v4, 0x0
+    const/4 v4, 0x3
 
-    const/4 v5, 0x3
-
-    const/4 v6, 0x1
+    const/4 v5, 0x1
 
     if-eqz v0, :cond_c
 
-    if-eq v0, v6, :cond_4
+    if-eq v0, v5, :cond_4
 
     const/4 v1, 0x2
 
     if-eq v0, v1, :cond_3
 
-    if-eq v0, v5, :cond_2
+    if-eq v0, v4, :cond_2
 
     const/4 v1, 0x4
 
@@ -162,7 +160,9 @@
     :cond_1
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver$SubsidySettingsHandler;->this$0:Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver;
 
-    invoke-virtual {v0, v4}, Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver;->onChange(Z)V
+    const/4 v1, 0x0
+
+    invoke-virtual {v0, v1}, Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver;->onChange(Z)V
 
     .line 195
     goto/16 :goto_b
@@ -196,7 +196,7 @@
 
     move-result-object v0
 
-    invoke-virtual {p0, v6, v0}, Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver$SubsidySettingsHandler;->obtainMessage(ILjava/lang/Object;)Landroid/os/Message;
+    invoke-virtual {p0, v5, v0}, Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver$SubsidySettingsHandler;->obtainMessage(ILjava/lang/Object;)Landroid/os/Message;
 
     move-result-object v0
 
@@ -221,36 +221,36 @@
 
     .line 234
     .local v0, "mExtTelephony1":Lorg/codeaurora/internal/IExtTelephony;
-    move v3, v4
+    const/4 v3, 0x0
 
     .local v3, "i":I
     :goto_0
     :try_start_0
-    iget v4, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver$SubsidySettingsHandler;->mNumSimSlots:I
+    iget v5, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver$SubsidySettingsHandler;->mNumSimSlots:I
 
-    if-ge v3, v4, :cond_a
+    if-ge v3, v5, :cond_a
 
     .line 235
-    iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver$SubsidySettingsHandler;->this$0:Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver;
+    iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver$SubsidySettingsHandler;->this$0:Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver;
 
-    invoke-static {v4}, Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver;->access$000(Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver;)Landroid/content/Context;
+    invoke-static {v5}, Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver;->access$000(Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver;)Landroid/content/Context;
 
-    move-result-object v4
+    move-result-object v5
 
-    invoke-static {v4}, Landroid/telephony/SubscriptionManager;->from(Landroid/content/Context;)Landroid/telephony/SubscriptionManager;
+    invoke-static {v5}, Landroid/telephony/SubscriptionManager;->from(Landroid/content/Context;)Landroid/telephony/SubscriptionManager;
 
-    move-result-object v4
+    move-result-object v5
 
     .line 236
-    invoke-virtual {v4, v3}, Landroid/telephony/SubscriptionManager;->getActiveSubscriptionInfoForSimSlotIndex(I)Landroid/telephony/SubscriptionInfo;
+    invoke-virtual {v5, v3}, Landroid/telephony/SubscriptionManager;->getActiveSubscriptionInfoForSimSlotIndex(I)Landroid/telephony/SubscriptionInfo;
 
-    move-result-object v4
+    move-result-object v5
 
     .line 237
-    .local v4, "sir":Landroid/telephony/SubscriptionInfo;
-    if-eqz v4, :cond_8
+    .local v5, "sir":Landroid/telephony/SubscriptionInfo;
+    if-eqz v5, :cond_8
 
-    invoke-virtual {v4}, Landroid/telephony/SubscriptionInfo;->getMcc()I
+    invoke-virtual {v5}, Landroid/telephony/SubscriptionInfo;->getMcc()I
 
     move-result v6
 
@@ -278,7 +278,7 @@
     nop
 
     .line 245
-    invoke-virtual {v4}, Landroid/telephony/SubscriptionInfo;->getSubscriptionId()I
+    invoke-virtual {v5}, Landroid/telephony/SubscriptionInfo;->getSubscriptionId()I
 
     move-result v7
 
@@ -306,7 +306,7 @@
     nop
 
     .line 249
-    invoke-virtual {v4}, Landroid/telephony/SubscriptionInfo;->getSubscriptionId()I
+    invoke-virtual {v5}, Landroid/telephony/SubscriptionInfo;->getSubscriptionId()I
 
     move-result v8
 
@@ -390,7 +390,7 @@
     nop
 
     .line 234
-    .end local v4    # "sir":Landroid/telephony/SubscriptionInfo;
+    .end local v5    # "sir":Landroid/telephony/SubscriptionInfo;
     :cond_9
     :goto_3
     add-int/lit8 v3, v3, 0x1
@@ -446,7 +446,7 @@
 
     .line 266
     :cond_b
-    invoke-virtual {p0, v5}, Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver$SubsidySettingsHandler;->obtainMessage(I)Landroid/os/Message;
+    invoke-virtual {p0, v4}, Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver$SubsidySettingsHandler;->obtainMessage(I)Landroid/os/Message;
 
     move-result-object v1
 
@@ -472,36 +472,36 @@
 
     .line 200
     .local v0, "mExtTelephony":Lorg/codeaurora/internal/IExtTelephony;
-    move v3, v4
+    const/4 v3, 0x0
 
     .restart local v3    # "i":I
     :goto_6
     :try_start_1
-    iget v4, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver$SubsidySettingsHandler;->mNumSimSlots:I
+    iget v6, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver$SubsidySettingsHandler;->mNumSimSlots:I
 
-    if-ge v3, v4, :cond_11
+    if-ge v3, v6, :cond_11
 
     .line 201
-    iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver$SubsidySettingsHandler;->this$0:Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver;
+    iget-object v6, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver$SubsidySettingsHandler;->this$0:Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver;
 
-    invoke-static {v4}, Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver;->access$000(Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver;)Landroid/content/Context;
+    invoke-static {v6}, Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver;->access$000(Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver;)Landroid/content/Context;
 
-    move-result-object v4
+    move-result-object v6
 
-    invoke-static {v4}, Landroid/telephony/SubscriptionManager;->from(Landroid/content/Context;)Landroid/telephony/SubscriptionManager;
+    invoke-static {v6}, Landroid/telephony/SubscriptionManager;->from(Landroid/content/Context;)Landroid/telephony/SubscriptionManager;
 
-    move-result-object v4
+    move-result-object v6
 
     .line 202
-    invoke-virtual {v4, v3}, Landroid/telephony/SubscriptionManager;->getActiveSubscriptionInfoForSimSlotIndex(I)Landroid/telephony/SubscriptionInfo;
+    invoke-virtual {v6, v3}, Landroid/telephony/SubscriptionManager;->getActiveSubscriptionInfoForSimSlotIndex(I)Landroid/telephony/SubscriptionInfo;
 
-    move-result-object v4
+    move-result-object v6
 
     .line 203
-    .restart local v4    # "sir":Landroid/telephony/SubscriptionInfo;
-    if-eqz v4, :cond_f
+    .local v6, "sir":Landroid/telephony/SubscriptionInfo;
+    if-eqz v6, :cond_f
 
-    invoke-virtual {v4}, Landroid/telephony/SubscriptionInfo;->getMcc()I
+    invoke-virtual {v6}, Landroid/telephony/SubscriptionInfo;->getMcc()I
 
     move-result v7
 
@@ -538,7 +538,7 @@
 
     move-result v7
 
-    if-ne v7, v6, :cond_10
+    if-ne v7, v5, :cond_10
 
     .line 213
     iget-object v7, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver$SubsidySettingsHandler;->this$0:Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver;
@@ -568,7 +568,7 @@
     invoke-direct {v8, v9}, Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver$SIMDeactivationRecords;-><init>(Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver;)V
 
     .line 217
-    invoke-virtual {v4}, Landroid/telephony/SubscriptionInfo;->getSubscriptionId()I
+    invoke-virtual {v6}, Landroid/telephony/SubscriptionInfo;->getSubscriptionId()I
 
     move-result v9
 
@@ -609,7 +609,7 @@
     nop
 
     .line 200
-    .end local v4    # "sir":Landroid/telephony/SubscriptionInfo;
+    .end local v6    # "sir":Landroid/telephony/SubscriptionInfo;
     :cond_10
     :goto_8
     add-int/lit8 v3, v3, 0x1
@@ -653,7 +653,7 @@
     invoke-static {v1, v2}, Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver;->access$200(Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver;I)V
 
     .line 228
-    invoke-virtual {p0, v5}, Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver$SubsidySettingsHandler;->obtainMessage(I)Landroid/os/Message;
+    invoke-virtual {p0, v4}, Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver$SubsidySettingsHandler;->obtainMessage(I)Landroid/os/Message;
 
     move-result-object v1
 

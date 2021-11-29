@@ -65,10 +65,26 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 1
+    .locals 2
 
     .line 4
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 5
+    const/4 v0, 0x0
+
+    iput v0, p0, Landroid/hardware/radio/V1_0/CellInfo;->cellInfoType:I
+
+    .line 6
+    iput-boolean v0, p0, Landroid/hardware/radio/V1_0/CellInfo;->registered:Z
+
+    .line 7
+    iput v0, p0, Landroid/hardware/radio/V1_0/CellInfo;->timeStampType:I
+
+    .line 8
+    const-wide/16 v0, 0x0
+
+    iput-wide v0, p0, Landroid/hardware/radio/V1_0/CellInfo;->timeStamp:J
 
     .line 9
     new-instance v0, Ljava/util/ArrayList;

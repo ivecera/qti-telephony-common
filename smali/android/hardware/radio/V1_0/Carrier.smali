@@ -34,6 +34,11 @@
 
     iput-object v0, p0, Landroid/hardware/radio/V1_0/Carrier;->mnc:Ljava/lang/String;
 
+    .line 7
+    const/4 v0, 0x0
+
+    iput v0, p0, Landroid/hardware/radio/V1_0/Carrier;->matchType:I
+
     .line 8
     new-instance v0, Ljava/lang/String;
 
@@ -436,7 +441,7 @@
     iput-object v4, v0, Landroid/hardware/radio/V1_0/Carrier;->mcc:Ljava/lang/String;
 
     .line 92
-    iget-object v4, v0, Landroid/hardware/radio/V1_0/Carrier;->mcc:Ljava/lang/String;
+    nop
 
     .line 93
     invoke-virtual {v4}, Ljava/lang/String;->getBytes()[B
@@ -477,7 +482,7 @@
     iput-object v6, v0, Landroid/hardware/radio/V1_0/Carrier;->mnc:Ljava/lang/String;
 
     .line 99
-    iget-object v6, v0, Landroid/hardware/radio/V1_0/Carrier;->mnc:Ljava/lang/String;
+    nop
 
     .line 100
     invoke-virtual {v6}, Ljava/lang/String;->getBytes()[B
@@ -529,7 +534,7 @@
     iput-object v6, v0, Landroid/hardware/radio/V1_0/Carrier;->matchData:Ljava/lang/String;
 
     .line 107
-    iget-object v6, v0, Landroid/hardware/radio/V1_0/Carrier;->matchData:Ljava/lang/String;
+    nop
 
     .line 108
     invoke-virtual {v6}, Ljava/lang/String;->getBytes()[B

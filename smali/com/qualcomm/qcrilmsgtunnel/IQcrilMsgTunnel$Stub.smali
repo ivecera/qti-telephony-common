@@ -94,36 +94,47 @@
 .method public static getDefaultImpl()Lcom/qualcomm/qcrilmsgtunnel/IQcrilMsgTunnel;
     .locals 1
 
-    .line 193
+    .line 199
     sget-object v0, Lcom/qualcomm/qcrilmsgtunnel/IQcrilMsgTunnel$Stub$Proxy;->sDefaultImpl:Lcom/qualcomm/qcrilmsgtunnel/IQcrilMsgTunnel;
 
     return-object v0
 .end method
 
 .method public static setDefaultImpl(Lcom/qualcomm/qcrilmsgtunnel/IQcrilMsgTunnel;)Z
-    .locals 1
+    .locals 2
     .param p0, "impl"    # Lcom/qualcomm/qcrilmsgtunnel/IQcrilMsgTunnel;
 
-    .line 186
+    .line 189
     sget-object v0, Lcom/qualcomm/qcrilmsgtunnel/IQcrilMsgTunnel$Stub$Proxy;->sDefaultImpl:Lcom/qualcomm/qcrilmsgtunnel/IQcrilMsgTunnel;
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_1
 
+    .line 192
     if-eqz p0, :cond_0
 
-    .line 187
+    .line 193
     sput-object p0, Lcom/qualcomm/qcrilmsgtunnel/IQcrilMsgTunnel$Stub$Proxy;->sDefaultImpl:Lcom/qualcomm/qcrilmsgtunnel/IQcrilMsgTunnel;
 
-    .line 188
+    .line 194
     const/4 v0, 0x1
 
     return v0
 
-    .line 190
+    .line 196
     :cond_0
     const/4 v0, 0x0
 
     return v0
+
+    .line 190
+    :cond_1
+    new-instance v0, Ljava/lang/IllegalStateException;
+
+    const-string v1, "setDefaultImpl() called twice"
+
+    invoke-direct {v0, v1}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
+
+    throw v0
 .end method
 
 

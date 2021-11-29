@@ -34,57 +34,55 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 5
+    .locals 6
 
     .line 63
     new-instance v0, Lcom/qualcomm/qcrilhook/PresenceOemHook$SubscriptionType;
 
-    const/4 v1, 0x0
+    const-string v1, "NONE"
 
-    const-string v2, "NONE"
+    const/4 v2, 0x0
 
-    invoke-direct {v0, v2, v1}, Lcom/qualcomm/qcrilhook/PresenceOemHook$SubscriptionType;-><init>(Ljava/lang/String;I)V
+    invoke-direct {v0, v1, v2}, Lcom/qualcomm/qcrilhook/PresenceOemHook$SubscriptionType;-><init>(Ljava/lang/String;I)V
 
     sput-object v0, Lcom/qualcomm/qcrilhook/PresenceOemHook$SubscriptionType;->NONE:Lcom/qualcomm/qcrilhook/PresenceOemHook$SubscriptionType;
 
     new-instance v0, Lcom/qualcomm/qcrilhook/PresenceOemHook$SubscriptionType;
 
-    const/4 v2, 0x1
+    const-string v1, "SIMPLE"
 
-    const-string v3, "SIMPLE"
+    const/4 v3, 0x1
 
-    invoke-direct {v0, v3, v2}, Lcom/qualcomm/qcrilhook/PresenceOemHook$SubscriptionType;-><init>(Ljava/lang/String;I)V
+    invoke-direct {v0, v1, v3}, Lcom/qualcomm/qcrilhook/PresenceOemHook$SubscriptionType;-><init>(Ljava/lang/String;I)V
 
     sput-object v0, Lcom/qualcomm/qcrilhook/PresenceOemHook$SubscriptionType;->SIMPLE:Lcom/qualcomm/qcrilhook/PresenceOemHook$SubscriptionType;
 
     new-instance v0, Lcom/qualcomm/qcrilhook/PresenceOemHook$SubscriptionType;
 
-    const/4 v3, 0x2
+    const-string v1, "POLLING"
 
-    const-string v4, "POLLING"
+    const/4 v4, 0x2
 
-    invoke-direct {v0, v4, v3}, Lcom/qualcomm/qcrilhook/PresenceOemHook$SubscriptionType;-><init>(Ljava/lang/String;I)V
+    invoke-direct {v0, v1, v4}, Lcom/qualcomm/qcrilhook/PresenceOemHook$SubscriptionType;-><init>(Ljava/lang/String;I)V
 
     sput-object v0, Lcom/qualcomm/qcrilhook/PresenceOemHook$SubscriptionType;->POLLING:Lcom/qualcomm/qcrilhook/PresenceOemHook$SubscriptionType;
 
     .line 62
-    const/4 v0, 0x3
+    const/4 v1, 0x3
 
-    new-array v0, v0, [Lcom/qualcomm/qcrilhook/PresenceOemHook$SubscriptionType;
+    new-array v1, v1, [Lcom/qualcomm/qcrilhook/PresenceOemHook$SubscriptionType;
 
-    sget-object v4, Lcom/qualcomm/qcrilhook/PresenceOemHook$SubscriptionType;->NONE:Lcom/qualcomm/qcrilhook/PresenceOemHook$SubscriptionType;
+    sget-object v5, Lcom/qualcomm/qcrilhook/PresenceOemHook$SubscriptionType;->NONE:Lcom/qualcomm/qcrilhook/PresenceOemHook$SubscriptionType;
 
-    aput-object v4, v0, v1
+    aput-object v5, v1, v2
 
-    sget-object v1, Lcom/qualcomm/qcrilhook/PresenceOemHook$SubscriptionType;->SIMPLE:Lcom/qualcomm/qcrilhook/PresenceOemHook$SubscriptionType;
+    sget-object v2, Lcom/qualcomm/qcrilhook/PresenceOemHook$SubscriptionType;->SIMPLE:Lcom/qualcomm/qcrilhook/PresenceOemHook$SubscriptionType;
 
-    aput-object v1, v0, v2
+    aput-object v2, v1, v3
 
-    sget-object v1, Lcom/qualcomm/qcrilhook/PresenceOemHook$SubscriptionType;->POLLING:Lcom/qualcomm/qcrilhook/PresenceOemHook$SubscriptionType;
+    aput-object v0, v1, v4
 
-    aput-object v1, v0, v3
-
-    sput-object v0, Lcom/qualcomm/qcrilhook/PresenceOemHook$SubscriptionType;->$VALUES:[Lcom/qualcomm/qcrilhook/PresenceOemHook$SubscriptionType;
+    sput-object v1, Lcom/qualcomm/qcrilhook/PresenceOemHook$SubscriptionType;->$VALUES:[Lcom/qualcomm/qcrilhook/PresenceOemHook$SubscriptionType;
 
     return-void
 .end method

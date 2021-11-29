@@ -32,6 +32,23 @@
     .line 4
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
+    .line 5
+    const/4 v0, 0x0
+
+    iput v0, p0, Landroid/hardware/radio/V1_0/CardStatus;->cardState:I
+
+    .line 6
+    iput v0, p0, Landroid/hardware/radio/V1_0/CardStatus;->universalPinState:I
+
+    .line 7
+    iput v0, p0, Landroid/hardware/radio/V1_0/CardStatus;->gsmUmtsSubscriptionAppIndex:I
+
+    .line 8
+    iput v0, p0, Landroid/hardware/radio/V1_0/CardStatus;->cdmaSubscriptionAppIndex:I
+
+    .line 9
+    iput v0, p0, Landroid/hardware/radio/V1_0/CardStatus;->imsSubscriptionAppIndex:I
+
     .line 10
     new-instance v0, Ljava/util/ArrayList;
 

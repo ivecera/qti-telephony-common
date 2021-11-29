@@ -41,24 +41,56 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 1
+    .locals 2
 
     .line 4
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
+    .line 5
+    const/4 v0, 0x0
+
+    iput v0, p0, Landroid/hardware/radio/V1_0/Call;->state:I
+
+    .line 6
+    iput v0, p0, Landroid/hardware/radio/V1_0/Call;->index:I
+
+    .line 7
+    iput v0, p0, Landroid/hardware/radio/V1_0/Call;->toa:I
+
+    .line 8
+    iput-boolean v0, p0, Landroid/hardware/radio/V1_0/Call;->isMpty:Z
+
+    .line 9
+    iput-boolean v0, p0, Landroid/hardware/radio/V1_0/Call;->isMT:Z
+
+    .line 10
+    iput-byte v0, p0, Landroid/hardware/radio/V1_0/Call;->als:B
+
+    .line 11
+    iput-boolean v0, p0, Landroid/hardware/radio/V1_0/Call;->isVoice:Z
+
+    .line 12
+    iput-boolean v0, p0, Landroid/hardware/radio/V1_0/Call;->isVoicePrivacy:Z
+
     .line 13
-    new-instance v0, Ljava/lang/String;
+    new-instance v1, Ljava/lang/String;
 
-    invoke-direct {v0}, Ljava/lang/String;-><init>()V
+    invoke-direct {v1}, Ljava/lang/String;-><init>()V
 
-    iput-object v0, p0, Landroid/hardware/radio/V1_0/Call;->number:Ljava/lang/String;
+    iput-object v1, p0, Landroid/hardware/radio/V1_0/Call;->number:Ljava/lang/String;
+
+    .line 14
+    iput v0, p0, Landroid/hardware/radio/V1_0/Call;->numberPresentation:I
 
     .line 15
-    new-instance v0, Ljava/lang/String;
+    new-instance v1, Ljava/lang/String;
 
-    invoke-direct {v0}, Ljava/lang/String;-><init>()V
+    invoke-direct {v1}, Ljava/lang/String;-><init>()V
 
-    iput-object v0, p0, Landroid/hardware/radio/V1_0/Call;->name:Ljava/lang/String;
+    iput-object v1, p0, Landroid/hardware/radio/V1_0/Call;->name:Ljava/lang/String;
+
+    .line 16
+    iput v0, p0, Landroid/hardware/radio/V1_0/Call;->namePresentation:I
 
     .line 17
     new-instance v0, Ljava/util/ArrayList;
@@ -820,7 +852,7 @@
     iput-object v8, v0, Landroid/hardware/radio/V1_0/Call;->number:Ljava/lang/String;
 
     .line 163
-    iget-object v8, v0, Landroid/hardware/radio/V1_0/Call;->number:Ljava/lang/String;
+    nop
 
     .line 164
     invoke-virtual {v8}, Ljava/lang/String;->getBytes()[B
@@ -872,7 +904,7 @@
     iput-object v8, v0, Landroid/hardware/radio/V1_0/Call;->name:Ljava/lang/String;
 
     .line 171
-    iget-object v8, v0, Landroid/hardware/radio/V1_0/Call;->name:Ljava/lang/String;
+    nop
 
     .line 172
     invoke-virtual {v8}, Ljava/lang/String;->getBytes()[B

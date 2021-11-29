@@ -94,36 +94,47 @@
 .method public static getDefaultImpl()Lcom/qualcomm/qcrilhook/IOemHookCallback;
     .locals 1
 
-    .line 151
+    .line 157
     sget-object v0, Lcom/qualcomm/qcrilhook/IOemHookCallback$Stub$Proxy;->sDefaultImpl:Lcom/qualcomm/qcrilhook/IOemHookCallback;
 
     return-object v0
 .end method
 
 .method public static setDefaultImpl(Lcom/qualcomm/qcrilhook/IOemHookCallback;)Z
-    .locals 1
+    .locals 2
     .param p0, "impl"    # Lcom/qualcomm/qcrilhook/IOemHookCallback;
 
-    .line 144
+    .line 147
     sget-object v0, Lcom/qualcomm/qcrilhook/IOemHookCallback$Stub$Proxy;->sDefaultImpl:Lcom/qualcomm/qcrilhook/IOemHookCallback;
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_1
 
+    .line 150
     if-eqz p0, :cond_0
 
-    .line 145
+    .line 151
     sput-object p0, Lcom/qualcomm/qcrilhook/IOemHookCallback$Stub$Proxy;->sDefaultImpl:Lcom/qualcomm/qcrilhook/IOemHookCallback;
 
-    .line 146
+    .line 152
     const/4 v0, 0x1
 
     return v0
 
-    .line 148
+    .line 154
     :cond_0
     const/4 v0, 0x0
 
     return v0
+
+    .line 148
+    :cond_1
+    new-instance v0, Ljava/lang/IllegalStateException;
+
+    const-string v1, "setDefaultImpl() called twice"
+
+    invoke-direct {v0, v1}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
+
+    throw v0
 .end method
 
 

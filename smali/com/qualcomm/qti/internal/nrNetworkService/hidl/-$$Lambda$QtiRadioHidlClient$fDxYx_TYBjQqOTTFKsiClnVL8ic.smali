@@ -7,7 +7,7 @@
 
 
 # instance fields
-.field private final synthetic f$0:Lcom/qualcomm/qti/internal/nrNetworkService/hidl/QtiRadioHidlClient;
+.field public final synthetic f$0:Lcom/qualcomm/qti/internal/nrNetworkService/hidl/QtiRadioHidlClient;
 
 
 # direct methods

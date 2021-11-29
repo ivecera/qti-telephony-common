@@ -16,6 +16,11 @@
     .line 4
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
+    .line 5
+    const/4 v0, 0x0
+
+    iput v0, p0, Landroid/hardware/radio/V1_0/NvWriteItem;->itemId:I
+
     .line 6
     new-instance v0, Ljava/lang/String;
 
@@ -369,7 +374,7 @@
     iput-object v6, v0, Landroid/hardware/radio/V1_0/NvWriteItem;->value:Ljava/lang/String;
 
     .line 79
-    iget-object v6, v0, Landroid/hardware/radio/V1_0/NvWriteItem;->value:Ljava/lang/String;
+    nop
 
     .line 80
     invoke-virtual {v6}, Ljava/lang/String;->getBytes()[B

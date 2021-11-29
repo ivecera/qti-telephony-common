@@ -39,7 +39,7 @@
 .end method
 
 .method public static getPhoneIdForECall(Landroid/content/Context;)I
-    .locals 12
+    .locals 13
     .param p0, "context"    # Landroid/content/Context;
 
     .line 45
@@ -160,85 +160,30 @@
 
     .line 69
     :cond_1
-    const/4 v5, 0x0
+    invoke-virtual {v0}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getDefaultDataSubId()I
 
-    .local v5, "phId":I
-    :goto_1
-    if-ge v5, v4, :cond_3
+    move-result v5
+
+    invoke-virtual {v0, v5}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getPhoneId(I)I
+
+    move-result v5
 
     .line 70
-    invoke-static {v5}, Lcom/android/internal/telephony/PhoneFactory;->getPhone(I)Lcom/android/internal/telephony/Phone;
+    .local v5, "ddsPhoneId":I
+    const/4 v7, 0x0
 
-    move-result-object v7
+    .local v7, "phId":I
+    :goto_1
+    const/4 v8, -0x1
+
+    if-ge v7, v4, :cond_4
 
     .line 71
-    .local v7, "phone":Lcom/android/internal/telephony/Phone;
-    invoke-virtual {v7}, Lcom/android/internal/telephony/Phone;->getServiceState()Landroid/telephony/ServiceState;
-
-    move-result-object v8
-
-    invoke-virtual {v8}, Landroid/telephony/ServiceState;->getState()I
-
-    move-result v8
-
-    .line 72
-    .local v8, "ss":I
-    if-nez v8, :cond_2
-
-    .line 73
-    move v2, v5
-
-    .line 74
-    if-ne v2, v1, :cond_2
-
-    goto :goto_2
-
-    .line 69
-    .end local v7    # "phone":Lcom/android/internal/telephony/Phone;
-    .end local v8    # "ss":I
-    :cond_2
-    add-int/lit8 v5, v5, 0x1
-
-    goto :goto_1
-
-    .line 77
-    .end local v5    # "phId":I
-    :cond_3
-    :goto_2
-    new-instance v5, Ljava/lang/StringBuilder;
-
-    invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v7, "Voice phoneId in service = "
-
-    invoke-virtual {v5, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v5, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v5}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v5
-
-    invoke-static {v6, v5}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 79
-    const/4 v5, -0x1
-
-    if-ne v2, v5, :cond_5
-
-    .line 80
-    const/4 v8, 0x0
-
-    .local v8, "phId":I
-    :goto_3
-    if-ge v8, v4, :cond_5
-
-    .line 81
-    invoke-static {v8}, Lcom/android/internal/telephony/PhoneFactory;->getPhone(I)Lcom/android/internal/telephony/Phone;
+    invoke-static {v7}, Lcom/android/internal/telephony/PhoneFactory;->getPhone(I)Lcom/android/internal/telephony/Phone;
 
     move-result-object v9
 
-    .line 82
+    .line 72
     .restart local v9    # "phone":Lcom/android/internal/telephony/Phone;
     invoke-virtual {v9}, Lcom/android/internal/telephony/Phone;->getServiceState()Landroid/telephony/ServiceState;
 
@@ -248,133 +193,207 @@
 
     move-result v10
 
-    .line 83
+    .line 73
     .local v10, "ss":I
-    invoke-virtual {v9}, Lcom/android/internal/telephony/Phone;->getServiceState()Landroid/telephony/ServiceState;
+    if-nez v10, :cond_3
+
+    .line 74
+    move v2, v7
+
+    .line 77
+    if-eq v1, v8, :cond_2
+
+    .line 78
+    if-ne v2, v1, :cond_3
+
+    goto :goto_2
+
+    .line 80
+    :cond_2
+    if-ne v2, v5, :cond_3
+
+    goto :goto_2
+
+    .line 70
+    .end local v9    # "phone":Lcom/android/internal/telephony/Phone;
+    .end local v10    # "ss":I
+    :cond_3
+    add-int/lit8 v7, v7, 0x1
+
+    goto :goto_1
+
+    .line 84
+    .end local v7    # "phId":I
+    :cond_4
+    :goto_2
+    new-instance v7, Ljava/lang/StringBuilder;
+
+    invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v9, "Voice phoneId in service = "
+
+    invoke-virtual {v7, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v7, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v7}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v7
+
+    invoke-static {v6, v7}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 86
+    if-ne v2, v8, :cond_6
+
+    .line 87
+    const/4 v7, 0x0
+
+    .restart local v7    # "phId":I
+    :goto_3
+    if-ge v7, v4, :cond_6
+
+    .line 88
+    invoke-static {v7}, Lcom/android/internal/telephony/PhoneFactory;->getPhone(I)Lcom/android/internal/telephony/Phone;
+
+    move-result-object v10
+
+    .line 89
+    .local v10, "phone":Lcom/android/internal/telephony/Phone;
+    invoke-virtual {v10}, Lcom/android/internal/telephony/Phone;->getServiceState()Landroid/telephony/ServiceState;
 
     move-result-object v11
 
-    invoke-virtual {v11}, Landroid/telephony/ServiceState;->isEmergencyOnly()Z
+    invoke-virtual {v11}, Landroid/telephony/ServiceState;->getState()I
 
     move-result v11
 
-    if-eqz v11, :cond_4
+    .line 90
+    .local v11, "ss":I
+    invoke-virtual {v10}, Lcom/android/internal/telephony/Phone;->getServiceState()Landroid/telephony/ServiceState;
 
-    .line 84
-    move v2, v8
+    move-result-object v12
 
-    .line 85
-    if-ne v2, v1, :cond_4
+    invoke-virtual {v12}, Landroid/telephony/ServiceState;->isEmergencyOnly()Z
+
+    move-result v12
+
+    if-eqz v12, :cond_5
+
+    .line 91
+    move v2, v7
+
+    .line 92
+    if-ne v2, v1, :cond_5
 
     goto :goto_4
 
-    .line 80
-    .end local v9    # "phone":Lcom/android/internal/telephony/Phone;
-    .end local v10    # "ss":I
-    :cond_4
-    add-int/lit8 v8, v8, 0x1
+    .line 87
+    .end local v10    # "phone":Lcom/android/internal/telephony/Phone;
+    .end local v11    # "ss":I
+    :cond_5
+    add-int/lit8 v7, v7, 0x1
 
     goto :goto_3
 
-    .line 89
-    .end local v8    # "phId":I
-    :cond_5
+    .line 96
+    .end local v7    # "phId":I
+    :cond_6
     :goto_4
-    new-instance v8, Ljava/lang/StringBuilder;
+    new-instance v7, Ljava/lang/StringBuilder;
 
-    invoke-direct {v8}, Ljava/lang/StringBuilder;-><init>()V
+    invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v9, "Voice phoneId in Limited service = "
+    const-string v10, "Voice phoneId in Limited service = "
 
-    invoke-virtual {v8, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v7, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v8, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    invoke-virtual {v7, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v8}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual {v7}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    move-result-object v8
+    move-result-object v7
 
-    invoke-static {v6, v8}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-static {v6, v7}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 91
-    if-ne v2, v5, :cond_7
+    .line 98
+    if-ne v2, v8, :cond_8
 
-    .line 92
+    .line 99
     invoke-static {p0}, Lcom/qualcomm/qti/internal/telephony/QtiEmergencyCallHelper;->getPrimaryStackPhoneId(Landroid/content/Context;)I
 
     move-result v2
 
-    .line 93
-    const/4 v5, 0x0
+    .line 100
+    const/4 v7, 0x0
 
-    .restart local v5    # "phId":I
+    .restart local v7    # "phId":I
     :goto_5
-    if-ge v5, v4, :cond_7
+    if-ge v7, v4, :cond_8
 
-    .line 96
+    .line 103
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;
 
     move-result-object v8
 
-    .line 98
+    .line 105
     .local v8, "uiccProvisioner":Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;
-    invoke-virtual {v3, v5}, Landroid/telephony/TelephonyManager;->getSimState(I)I
+    invoke-virtual {v3, v7}, Landroid/telephony/TelephonyManager;->getSimState(I)I
 
-    move-result v9
+    move-result v10
 
-    const/4 v10, 0x5
+    const/4 v11, 0x5
 
-    if-ne v9, v10, :cond_6
+    if-ne v10, v11, :cond_7
 
-    .line 100
-    invoke-virtual {v8, v5}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->getCurrentUiccCardProvisioningStatus(I)I
+    .line 107
+    invoke-virtual {v8, v7}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->getCurrentUiccCardProvisioningStatus(I)I
 
-    move-result v9
+    move-result v10
 
-    const/4 v10, 0x1
+    const/4 v11, 0x1
 
-    if-ne v9, v10, :cond_6
+    if-ne v10, v11, :cond_7
 
-    .line 102
-    move v2, v5
+    .line 109
+    move v2, v7
 
-    .line 103
-    if-ne v2, v1, :cond_6
+    .line 110
+    if-ne v2, v1, :cond_7
 
     goto :goto_6
 
-    .line 93
+    .line 100
     .end local v8    # "uiccProvisioner":Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;
-    :cond_6
-    add-int/lit8 v5, v5, 0x1
+    :cond_7
+    add-int/lit8 v7, v7, 0x1
 
     goto :goto_5
 
-    .line 107
-    .end local v5    # "phId":I
-    :cond_7
+    .line 114
+    .end local v7    # "phId":I
+    :cond_8
     :goto_6
-    new-instance v5, Ljava/lang/StringBuilder;
+    new-instance v7, Ljava/lang/StringBuilder;
 
-    invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
+    invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
 
-    invoke-virtual {v5, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v7, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v5, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    invoke-virtual {v7, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
-    const-string v7, " preferred phoneId ="
+    const-string v8, " preferred phoneId ="
 
-    invoke-virtual {v5, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v5, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    invoke-virtual {v7, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v5}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual {v7}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    move-result-object v5
+    move-result-object v7
 
-    invoke-static {v6, v5}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-static {v6, v7}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 110
+    .line 117
     return v2
 .end method
 
@@ -382,18 +401,18 @@
     .locals 8
     .param p0, "context"    # Landroid/content/Context;
 
-    .line 114
+    .line 121
     const/4 v0, 0x0
 
-    .line 115
+    .line 122
     .local v0, "modemUuId":Ljava/lang/String;
     const/4 v1, 0x0
 
-    .line 116
+    .line 123
     .local v1, "phone":Lcom/android/internal/telephony/Phone;
     const/4 v2, -0x1
 
-    .line 117
+    .line 124
     .local v2, "primayStackPhoneId":I
     const-string v3, "phone"
 
@@ -403,12 +422,12 @@
 
     check-cast v3, Landroid/telephony/TelephonyManager;
 
-    .line 118
+    .line 125
     invoke-virtual {v3}, Landroid/telephony/TelephonyManager;->getPhoneCount()I
 
     move-result v3
 
-    .line 120
+    .line 127
     .local v3, "phoneCount":I
     const/4 v4, 0x0
 
@@ -418,17 +437,17 @@
 
     if-ge v4, v3, :cond_3
 
-    .line 122
+    .line 129
     invoke-static {v4}, Lcom/android/internal/telephony/PhoneFactory;->getPhone(I)Lcom/android/internal/telephony/Phone;
 
     move-result-object v1
 
-    .line 123
+    .line 130
     if-nez v1, :cond_0
 
     goto :goto_1
 
-    .line 125
+    .line 132
     :cond_0
     new-instance v6, Ljava/lang/StringBuilder;
 
@@ -456,12 +475,12 @@
 
     invoke-static {v5, v6}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 126
+    .line 133
     invoke-virtual {v1}, Lcom/android/internal/telephony/Phone;->getModemUuId()Ljava/lang/String;
 
     move-result-object v0
 
-    .line 127
+    .line 134
     if-eqz v0, :cond_2
 
     invoke-virtual {v0}, Ljava/lang/String;->length()I
@@ -470,17 +489,17 @@
 
     if-lez v6, :cond_2
 
-    .line 128
+    .line 135
     invoke-virtual {v0}, Ljava/lang/String;->isEmpty()Z
 
     move-result v6
 
     if-eqz v6, :cond_1
 
-    .line 129
+    .line 136
     goto :goto_1
 
-    .line 134
+    .line 141
     :cond_1
     invoke-static {v0}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;)I
 
@@ -488,10 +507,10 @@
 
     if-nez v6, :cond_2
 
-    .line 135
+    .line 142
     move v2, v4
 
-    .line 136
+    .line 143
     new-instance v6, Ljava/lang/StringBuilder;
 
     invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
@@ -512,17 +531,17 @@
 
     invoke-static {v5, v6}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 137
+    .line 144
     goto :goto_2
 
-    .line 120
+    .line 127
     :cond_2
     :goto_1
     add-int/lit8 v4, v4, 0x1
 
     goto :goto_0
 
-    .line 142
+    .line 149
     .end local v4    # "i":I
     :cond_3
     :goto_2
@@ -530,15 +549,15 @@
 
     if-ne v2, v4, :cond_4
 
-    .line 143
+    .line 150
     const-string v4, "Returning default phone id"
 
     invoke-static {v5, v4}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 144
+    .line 151
     const/4 v2, 0x0
 
-    .line 147
+    .line 154
     :cond_4
     return v2
 .end method
@@ -547,56 +566,56 @@
     .locals 9
     .param p0, "context"    # Landroid/content/Context;
 
-    .line 151
-    const/4 v0, 0x1
+    .line 158
+    const-string v0, "persist.vendor.radio.enhance_ecall"
 
-    const-string v1, "persist.vendor.radio.enhance_ecall"
+    const/4 v1, 0x1
 
-    invoke-static {v1, v0}, Landroid/os/SystemProperties;->getBoolean(Ljava/lang/String;Z)Z
+    invoke-static {v0, v1}, Landroid/os/SystemProperties;->getBoolean(Ljava/lang/String;Z)Z
 
-    move-result v1
+    move-result v0
 
     const/4 v2, 0x0
 
     const-string v3, "QtiEmergencyCallHelper"
 
-    if-nez v1, :cond_0
+    if-nez v0, :cond_0
 
-    .line 152
+    .line 159
     const-string v0, "persist.vendor.radio.enhance_ecall not enabled"
 
     invoke-static {v3, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 153
+    .line 160
     return v2
 
-    .line 156
+    .line 163
     :cond_0
     nop
 
-    .line 157
-    const-string v1, "phone"
+    .line 164
+    const-string v0, "phone"
 
-    invoke-virtual {p0, v1}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+    invoke-virtual {p0, v0}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
 
-    move-result-object v1
+    move-result-object v0
 
-    check-cast v1, Landroid/telephony/TelephonyManager;
+    check-cast v0, Landroid/telephony/TelephonyManager;
 
-    .line 158
-    .local v1, "tm":Landroid/telephony/TelephonyManager;
-    invoke-virtual {v1}, Landroid/telephony/TelephonyManager;->getPhoneCount()I
+    .line 165
+    .local v0, "tm":Landroid/telephony/TelephonyManager;
+    invoke-virtual {v0}, Landroid/telephony/TelephonyManager;->getPhoneCount()I
 
     move-result v4
 
-    .line 162
+    .line 169
     .local v4, "phoneCnt":I
-    if-ne v4, v0, :cond_1
+    if-ne v4, v1, :cond_1
 
-    .line 163
-    return v0
+    .line 170
+    return v1
 
-    .line 165
+    .line 172
     :cond_1
     const/4 v5, 0x0
 
@@ -604,14 +623,14 @@
     :goto_0
     if-ge v5, v4, :cond_4
 
-    .line 167
+    .line 174
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;
 
     move-result-object v6
 
-    .line 169
+    .line 176
     .local v6, "uiccProvisioner":Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;
-    invoke-virtual {v1, v5}, Landroid/telephony/TelephonyManager;->getSimState(I)I
+    invoke-virtual {v0, v5}, Landroid/telephony/TelephonyManager;->getSimState(I)I
 
     move-result v7
 
@@ -619,23 +638,23 @@
 
     if-ne v7, v8, :cond_3
 
-    .line 170
+    .line 177
     invoke-virtual {v6, v5}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->getCurrentUiccCardProvisioningStatus(I)I
 
     move-result v7
 
-    if-eq v7, v0, :cond_2
+    if-eq v7, v1, :cond_2
 
     goto :goto_1
 
-    .line 165
+    .line 172
     .end local v6    # "uiccProvisioner":Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;
     :cond_2
     add-int/lit8 v5, v5, 0x1
 
     goto :goto_0
 
-    .line 172
+    .line 179
     .restart local v6    # "uiccProvisioner":Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;
     :cond_3
     :goto_1
@@ -643,18 +662,18 @@
 
     invoke-static {v3, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 173
-    return v0
+    .line 180
+    return v1
 
-    .line 177
+    .line 184
     .end local v5    # "phoneId":I
     .end local v6    # "uiccProvisioner":Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;
     :cond_4
-    const-string v0, "modem is in dual standby mode"
+    const-string v1, "modem is in dual standby mode"
 
-    invoke-static {v3, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-static {v3, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 178
+    .line 185
     return v2
 .end method
 
@@ -663,7 +682,7 @@
     .param p0, "subId"    # I
     .param p1, "number"    # Ljava/lang/String;
 
-    .line 261
+    .line 268
     invoke-static {p0, p1}, Landroid/telephony/PhoneNumberUtils;->isEmergencyNumber(ILjava/lang/String;)Z
 
     move-result v0
@@ -676,26 +695,26 @@
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "number"    # Ljava/lang/String;
 
-    .line 182
+    .line 189
     const/4 v0, 0x0
 
-    .line 183
+    .line 190
     .local v0, "isEmergencyNum":Z
     const/4 v1, -0x1
 
-    .line 184
+    .line 191
     .local v1, "subscriptionId":I
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
 
     move-result-object v2
 
-    .line 185
+    .line 192
     .local v2, "scontrol":Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
     invoke-static {}, Lcom/android/internal/telephony/PhoneFactory;->getPhones()[Lcom/android/internal/telephony/Phone;
 
     move-result-object v3
 
-    .line 186
+    .line 193
     .local v3, "phones":[Lcom/android/internal/telephony/Phone;
     invoke-static {p0}, Lcom/qualcomm/qti/internal/telephony/QtiEmergencyCallHelper;->isDeviceInSingleStandby(Landroid/content/Context;)Z
 
@@ -703,7 +722,7 @@
 
     if-eqz v4, :cond_0
 
-    .line 187
+    .line 194
     array-length v4, v3
 
     const/4 v5, 0x0
@@ -713,40 +732,40 @@
 
     aget-object v6, v3, v5
 
-    .line 188
+    .line 195
     .local v6, "phone":Lcom/android/internal/telephony/Phone;
     invoke-virtual {v6}, Lcom/android/internal/telephony/Phone;->getSubId()I
 
     move-result v1
 
-    .line 189
+    .line 196
     invoke-static {v1, p1}, Landroid/telephony/PhoneNumberUtils;->isEmergencyNumber(ILjava/lang/String;)Z
 
     move-result v7
 
     or-int/2addr v0, v7
 
-    .line 187
+    .line 194
     .end local v6    # "phone":Lcom/android/internal/telephony/Phone;
     add-int/lit8 v5, v5, 0x1
 
     goto :goto_0
 
-    .line 192
+    .line 199
     :cond_0
     nop
 
-    .line 193
+    .line 200
     invoke-virtual {v2}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getDefaultVoiceSubId()I
 
     move-result v4
 
-    .line 192
+    .line 199
     invoke-static {v4, p1}, Landroid/telephony/PhoneNumberUtils;->isEmergencyNumber(ILjava/lang/String;)Z
 
     move-result v0
 
-    .line 196
+    .line 203
     :cond_1
     return v0
 .end method
@@ -756,26 +775,26 @@
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "number"    # Ljava/lang/String;
 
-    .line 200
+    .line 207
     const/4 v0, 0x0
 
-    .line 201
+    .line 208
     .local v0, "isLocalEmergencyNum":Z
     const/4 v1, -0x1
 
-    .line 202
+    .line 209
     .local v1, "subscriptionId":I
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
 
     move-result-object v2
 
-    .line 203
+    .line 210
     .local v2, "scontrol":Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
     invoke-static {}, Lcom/android/internal/telephony/PhoneFactory;->getPhones()[Lcom/android/internal/telephony/Phone;
 
     move-result-object v3
 
-    .line 205
+    .line 212
     .local v3, "phones":[Lcom/android/internal/telephony/Phone;
     invoke-static {p0}, Lcom/qualcomm/qti/internal/telephony/QtiEmergencyCallHelper;->isDeviceInSingleStandby(Landroid/content/Context;)Z
 
@@ -783,7 +802,7 @@
 
     if-eqz v4, :cond_0
 
-    .line 206
+    .line 213
     array-length v4, v3
 
     const/4 v5, 0x0
@@ -793,43 +812,43 @@
 
     aget-object v6, v3, v5
 
-    .line 207
+    .line 214
     .local v6, "phone":Lcom/android/internal/telephony/Phone;
     invoke-virtual {v6}, Lcom/android/internal/telephony/Phone;->getSubId()I
 
     move-result v1
 
-    .line 208
+    .line 215
     nop
 
-    .line 209
+    .line 216
     invoke-static {p0, v1, p1}, Landroid/telephony/PhoneNumberUtils;->isLocalEmergencyNumber(Landroid/content/Context;ILjava/lang/String;)Z
 
     move-result v7
 
     or-int/2addr v0, v7
 
-    .line 206
+    .line 213
     .end local v6    # "phone":Lcom/android/internal/telephony/Phone;
     add-int/lit8 v5, v5, 0x1
 
     goto :goto_0
 
-    .line 212
+    .line 219
     :cond_0
     nop
 
-    .line 213
+    .line 220
     invoke-virtual {v2}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getDefaultVoiceSubId()I
 
     move-result v4
 
-    .line 212
+    .line 219
     invoke-static {p0, v4, p1}, Landroid/telephony/PhoneNumberUtils;->isLocalEmergencyNumber(Landroid/content/Context;ILjava/lang/String;)Z
 
     move-result v0
 
-    .line 216
+    .line 223
     :cond_1
     return v0
 .end method
@@ -839,26 +858,26 @@
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "number"    # Ljava/lang/String;
 
-    .line 220
+    .line 227
     const/4 v0, 0x0
 
-    .line 221
+    .line 228
     .local v0, "isPotentialEmergencyNum":Z
     const/4 v1, -0x1
 
-    .line 222
+    .line 229
     .local v1, "subscriptionId":I
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
 
     move-result-object v2
 
-    .line 223
+    .line 230
     .local v2, "scontrol":Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
     invoke-static {}, Lcom/android/internal/telephony/PhoneFactory;->getPhones()[Lcom/android/internal/telephony/Phone;
 
     move-result-object v3
 
-    .line 225
+    .line 232
     .local v3, "phones":[Lcom/android/internal/telephony/Phone;
     invoke-static {p0}, Lcom/qualcomm/qti/internal/telephony/QtiEmergencyCallHelper;->isDeviceInSingleStandby(Landroid/content/Context;)Z
 
@@ -866,7 +885,7 @@
 
     if-eqz v4, :cond_0
 
-    .line 226
+    .line 233
     array-length v4, v3
 
     const/4 v5, 0x0
@@ -876,43 +895,43 @@
 
     aget-object v6, v3, v5
 
-    .line 227
+    .line 234
     .local v6, "phone":Lcom/android/internal/telephony/Phone;
     invoke-virtual {v6}, Lcom/android/internal/telephony/Phone;->getSubId()I
 
     move-result v1
 
-    .line 228
+    .line 235
     nop
 
-    .line 229
+    .line 236
     invoke-static {v1, p1}, Landroid/telephony/PhoneNumberUtils;->isPotentialEmergencyNumber(ILjava/lang/String;)Z
 
     move-result v7
 
     or-int/2addr v0, v7
 
-    .line 226
+    .line 233
     .end local v6    # "phone":Lcom/android/internal/telephony/Phone;
     add-int/lit8 v5, v5, 0x1
 
     goto :goto_0
 
-    .line 232
+    .line 239
     :cond_0
     nop
 
-    .line 233
+    .line 240
     invoke-virtual {v2}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getDefaultVoiceSubId()I
 
     move-result v4
 
-    .line 232
+    .line 239
     invoke-static {v4, p1}, Landroid/telephony/PhoneNumberUtils;->isPotentialEmergencyNumber(ILjava/lang/String;)Z
 
     move-result v0
 
-    .line 236
+    .line 243
     :cond_1
     return v0
 .end method
@@ -922,26 +941,26 @@
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "number"    # Ljava/lang/String;
 
-    .line 240
+    .line 247
     const/4 v0, 0x0
 
-    .line 241
+    .line 248
     .local v0, "isPotentialLocalEmergencyNum":Z
     const/4 v1, -0x1
 
-    .line 242
+    .line 249
     .local v1, "subscriptionId":I
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
 
     move-result-object v2
 
-    .line 243
+    .line 250
     .local v2, "scontrol":Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
     invoke-static {}, Lcom/android/internal/telephony/PhoneFactory;->getPhones()[Lcom/android/internal/telephony/Phone;
 
     move-result-object v3
 
-    .line 245
+    .line 252
     .local v3, "phones":[Lcom/android/internal/telephony/Phone;
     invoke-static {p0}, Lcom/qualcomm/qti/internal/telephony/QtiEmergencyCallHelper;->isDeviceInSingleStandby(Landroid/content/Context;)Z
 
@@ -949,7 +968,7 @@
 
     if-eqz v4, :cond_0
 
-    .line 246
+    .line 253
     array-length v4, v3
 
     const/4 v5, 0x0
@@ -959,43 +978,43 @@
 
     aget-object v6, v3, v5
 
-    .line 247
+    .line 254
     .local v6, "phone":Lcom/android/internal/telephony/Phone;
     invoke-virtual {v6}, Lcom/android/internal/telephony/Phone;->getSubId()I
 
     move-result v1
 
-    .line 248
+    .line 255
     nop
 
-    .line 249
+    .line 256
     invoke-static {p0, v1, p1}, Landroid/telephony/PhoneNumberUtils;->isPotentialLocalEmergencyNumber(Landroid/content/Context;ILjava/lang/String;)Z
 
     move-result v7
 
     or-int/2addr v0, v7
 
-    .line 246
+    .line 253
     .end local v6    # "phone":Lcom/android/internal/telephony/Phone;
     add-int/lit8 v5, v5, 0x1
 
     goto :goto_0
 
-    .line 253
+    .line 260
     :cond_0
     nop
 
-    .line 254
+    .line 261
     invoke-virtual {v2}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getDefaultVoiceSubId()I
 
     move-result v4
 
-    .line 253
+    .line 260
     invoke-static {p0, v4, p1}, Landroid/telephony/PhoneNumberUtils;->isPotentialLocalEmergencyNumber(Landroid/content/Context;ILjava/lang/String;)Z
 
     move-result v0
 
-    .line 257
+    .line 264
     :cond_1
     return v0
 .end method

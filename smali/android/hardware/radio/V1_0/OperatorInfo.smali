@@ -41,6 +41,11 @@
 
     iput-object v0, p0, Landroid/hardware/radio/V1_0/OperatorInfo;->operatorNumeric:Ljava/lang/String;
 
+    .line 8
+    const/4 v0, 0x0
+
+    iput v0, p0, Landroid/hardware/radio/V1_0/OperatorInfo;->status:I
+
     return-void
 .end method
 
@@ -436,7 +441,7 @@
     iput-object v4, v0, Landroid/hardware/radio/V1_0/OperatorInfo;->alphaLong:Ljava/lang/String;
 
     .line 92
-    iget-object v4, v0, Landroid/hardware/radio/V1_0/OperatorInfo;->alphaLong:Ljava/lang/String;
+    nop
 
     .line 93
     invoke-virtual {v4}, Ljava/lang/String;->getBytes()[B
@@ -477,7 +482,7 @@
     iput-object v6, v0, Landroid/hardware/radio/V1_0/OperatorInfo;->alphaShort:Ljava/lang/String;
 
     .line 99
-    iget-object v6, v0, Landroid/hardware/radio/V1_0/OperatorInfo;->alphaShort:Ljava/lang/String;
+    nop
 
     .line 100
     invoke-virtual {v6}, Ljava/lang/String;->getBytes()[B
@@ -518,7 +523,7 @@
     iput-object v6, v0, Landroid/hardware/radio/V1_0/OperatorInfo;->operatorNumeric:Ljava/lang/String;
 
     .line 106
-    iget-object v6, v0, Landroid/hardware/radio/V1_0/OperatorInfo;->operatorNumeric:Ljava/lang/String;
+    nop
 
     .line 107
     invoke-virtual {v6}, Ljava/lang/String;->getBytes()[B

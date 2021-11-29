@@ -41,45 +41,74 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 1
+    .locals 2
 
     .line 4
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
+    .line 5
+    const/4 v0, 0x0
+
+    iput v0, p0, Landroid/hardware/radio/V1_0/DataProfileInfo;->profileId:I
+
     .line 6
-    new-instance v0, Ljava/lang/String;
+    new-instance v1, Ljava/lang/String;
 
-    invoke-direct {v0}, Ljava/lang/String;-><init>()V
+    invoke-direct {v1}, Ljava/lang/String;-><init>()V
 
-    iput-object v0, p0, Landroid/hardware/radio/V1_0/DataProfileInfo;->apn:Ljava/lang/String;
+    iput-object v1, p0, Landroid/hardware/radio/V1_0/DataProfileInfo;->apn:Ljava/lang/String;
 
     .line 7
-    new-instance v0, Ljava/lang/String;
+    new-instance v1, Ljava/lang/String;
 
-    invoke-direct {v0}, Ljava/lang/String;-><init>()V
+    invoke-direct {v1}, Ljava/lang/String;-><init>()V
 
-    iput-object v0, p0, Landroid/hardware/radio/V1_0/DataProfileInfo;->protocol:Ljava/lang/String;
+    iput-object v1, p0, Landroid/hardware/radio/V1_0/DataProfileInfo;->protocol:Ljava/lang/String;
 
     .line 8
-    new-instance v0, Ljava/lang/String;
+    new-instance v1, Ljava/lang/String;
 
-    invoke-direct {v0}, Ljava/lang/String;-><init>()V
+    invoke-direct {v1}, Ljava/lang/String;-><init>()V
 
-    iput-object v0, p0, Landroid/hardware/radio/V1_0/DataProfileInfo;->roamingProtocol:Ljava/lang/String;
+    iput-object v1, p0, Landroid/hardware/radio/V1_0/DataProfileInfo;->roamingProtocol:Ljava/lang/String;
+
+    .line 9
+    iput v0, p0, Landroid/hardware/radio/V1_0/DataProfileInfo;->authType:I
 
     .line 10
-    new-instance v0, Ljava/lang/String;
+    new-instance v1, Ljava/lang/String;
 
-    invoke-direct {v0}, Ljava/lang/String;-><init>()V
+    invoke-direct {v1}, Ljava/lang/String;-><init>()V
 
-    iput-object v0, p0, Landroid/hardware/radio/V1_0/DataProfileInfo;->user:Ljava/lang/String;
+    iput-object v1, p0, Landroid/hardware/radio/V1_0/DataProfileInfo;->user:Ljava/lang/String;
 
     .line 11
-    new-instance v0, Ljava/lang/String;
+    new-instance v1, Ljava/lang/String;
 
-    invoke-direct {v0}, Ljava/lang/String;-><init>()V
+    invoke-direct {v1}, Ljava/lang/String;-><init>()V
 
-    iput-object v0, p0, Landroid/hardware/radio/V1_0/DataProfileInfo;->password:Ljava/lang/String;
+    iput-object v1, p0, Landroid/hardware/radio/V1_0/DataProfileInfo;->password:Ljava/lang/String;
+
+    .line 12
+    iput v0, p0, Landroid/hardware/radio/V1_0/DataProfileInfo;->type:I
+
+    .line 13
+    iput v0, p0, Landroid/hardware/radio/V1_0/DataProfileInfo;->maxConnsTime:I
+
+    .line 14
+    iput v0, p0, Landroid/hardware/radio/V1_0/DataProfileInfo;->maxConns:I
+
+    .line 15
+    iput v0, p0, Landroid/hardware/radio/V1_0/DataProfileInfo;->waitTime:I
+
+    .line 16
+    iput-boolean v0, p0, Landroid/hardware/radio/V1_0/DataProfileInfo;->enabled:Z
+
+    .line 19
+    iput v0, p0, Landroid/hardware/radio/V1_0/DataProfileInfo;->mtu:I
+
+    .line 20
+    iput v0, p0, Landroid/hardware/radio/V1_0/DataProfileInfo;->mvnoType:I
 
     .line 21
     new-instance v0, Ljava/lang/String;
@@ -908,7 +937,7 @@
     iput-object v6, v0, Landroid/hardware/radio/V1_0/DataProfileInfo;->apn:Ljava/lang/String;
 
     .line 184
-    iget-object v6, v0, Landroid/hardware/radio/V1_0/DataProfileInfo;->apn:Ljava/lang/String;
+    nop
 
     .line 185
     invoke-virtual {v6}, Ljava/lang/String;->getBytes()[B
@@ -949,7 +978,7 @@
     iput-object v6, v0, Landroid/hardware/radio/V1_0/DataProfileInfo;->protocol:Ljava/lang/String;
 
     .line 191
-    iget-object v6, v0, Landroid/hardware/radio/V1_0/DataProfileInfo;->protocol:Ljava/lang/String;
+    nop
 
     .line 192
     invoke-virtual {v6}, Ljava/lang/String;->getBytes()[B
@@ -988,7 +1017,7 @@
     iput-object v6, v0, Landroid/hardware/radio/V1_0/DataProfileInfo;->roamingProtocol:Ljava/lang/String;
 
     .line 198
-    iget-object v6, v0, Landroid/hardware/radio/V1_0/DataProfileInfo;->roamingProtocol:Ljava/lang/String;
+    nop
 
     .line 199
     invoke-virtual {v6}, Ljava/lang/String;->getBytes()[B
@@ -1038,7 +1067,7 @@
     iput-object v6, v0, Landroid/hardware/radio/V1_0/DataProfileInfo;->user:Ljava/lang/String;
 
     .line 206
-    iget-object v6, v0, Landroid/hardware/radio/V1_0/DataProfileInfo;->user:Ljava/lang/String;
+    nop
 
     .line 207
     invoke-virtual {v6}, Ljava/lang/String;->getBytes()[B
@@ -1077,7 +1106,7 @@
     iput-object v6, v0, Landroid/hardware/radio/V1_0/DataProfileInfo;->password:Ljava/lang/String;
 
     .line 213
-    iget-object v6, v0, Landroid/hardware/radio/V1_0/DataProfileInfo;->password:Ljava/lang/String;
+    nop
 
     .line 214
     invoke-virtual {v6}, Ljava/lang/String;->getBytes()[B
@@ -1215,7 +1244,7 @@
     iput-object v6, v0, Landroid/hardware/radio/V1_0/DataProfileInfo;->mvnoMatchData:Ljava/lang/String;
 
     .line 229
-    iget-object v6, v0, Landroid/hardware/radio/V1_0/DataProfileInfo;->mvnoMatchData:Ljava/lang/String;
+    nop
 
     .line 230
     invoke-virtual {v6}, Ljava/lang/String;->getBytes()[B

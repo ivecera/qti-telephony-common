@@ -1356,8 +1356,6 @@
     iput-object v2, p0, Lcom/qualcomm/qcrilhook/PresenceMsgParser$PresenceRichNotifyParser;->c:Lcom/qualcomm/qcrilhook/PresenceMsgParser$ContactInfo;
 
     .line 367
-    iget-object v2, p0, Lcom/qualcomm/qcrilhook/PresenceMsgParser$PresenceRichNotifyParser;->c:Lcom/qualcomm/qcrilhook/PresenceMsgParser$ContactInfo;
-
     iget-object v3, p0, Lcom/qualcomm/qcrilhook/PresenceMsgParser$PresenceRichNotifyParser;->listHeaderInfo:Lcom/qualcomm/qcrilhook/PresenceMsgParser$ListHeaderInfo;
 
     iput-object v3, v2, Lcom/qualcomm/qcrilhook/PresenceMsgParser$ContactInfo;->listHeaderInfo:Lcom/qualcomm/qcrilhook/PresenceMsgParser$ListHeaderInfo;

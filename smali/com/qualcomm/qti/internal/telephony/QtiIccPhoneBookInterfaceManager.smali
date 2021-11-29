@@ -69,15 +69,15 @@
     .locals 2
 
     .line 68
-    const/4 v0, 0x0
+    const-string v0, "persist.vendor.radio.sim_contacts_from_iccio"
 
-    const-string v1, "persist.vendor.radio.sim_contacts_from_iccio"
+    const/4 v1, 0x0
 
-    invoke-static {v1, v0}, Landroid/os/SystemProperties;->getBoolean(Ljava/lang/String;Z)Z
+    invoke-static {v0, v1}, Landroid/os/SystemProperties;->getBoolean(Ljava/lang/String;Z)Z
 
-    move-result v1
+    move-result v0
 
-    if-nez v1, :cond_0
+    if-nez v0, :cond_0
 
     .line 70
     const/4 v0, 0x1
@@ -86,7 +86,7 @@
 
     .line 72
     :cond_0
-    return v0
+    return v1
 .end method
 
 

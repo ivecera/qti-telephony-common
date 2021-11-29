@@ -28,6 +28,29 @@
     .line 4
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
+    .line 5
+    const/4 v0, 0x0
+
+    iput v0, p0, Landroid/hardware/radio/V1_0/VoiceRegStateResult;->regState:I
+
+    .line 6
+    iput v0, p0, Landroid/hardware/radio/V1_0/VoiceRegStateResult;->rat:I
+
+    .line 7
+    iput-boolean v0, p0, Landroid/hardware/radio/V1_0/VoiceRegStateResult;->cssSupported:Z
+
+    .line 8
+    iput v0, p0, Landroid/hardware/radio/V1_0/VoiceRegStateResult;->roamingIndicator:I
+
+    .line 9
+    iput v0, p0, Landroid/hardware/radio/V1_0/VoiceRegStateResult;->systemIsInPrl:I
+
+    .line 10
+    iput v0, p0, Landroid/hardware/radio/V1_0/VoiceRegStateResult;->defaultRoamingIndicator:I
+
+    .line 11
+    iput v0, p0, Landroid/hardware/radio/V1_0/VoiceRegStateResult;->reasonForDenial:I
+
     .line 12
     new-instance v0, Landroid/hardware/radio/V1_0/CellIdentity;
 

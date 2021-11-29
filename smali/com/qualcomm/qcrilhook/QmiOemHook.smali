@@ -100,13 +100,11 @@
     iput-object v1, p0, Lcom/qualcomm/qcrilhook/QmiOemHook;->mQcrilHookCb:Lcom/qualcomm/qcrilhook/QcRilHookCallback;
 
     .line 84
-    new-instance v1, Lcom/qualcomm/qcrilhook/QcRilHook;
+    new-instance v2, Lcom/qualcomm/qcrilhook/QcRilHook;
 
-    iget-object v2, p0, Lcom/qualcomm/qcrilhook/QmiOemHook;->mQcrilHookCb:Lcom/qualcomm/qcrilhook/QcRilHookCallback;
+    invoke-direct {v2, p1, v1}, Lcom/qualcomm/qcrilhook/QcRilHook;-><init>(Landroid/content/Context;Lcom/qualcomm/qcrilhook/QcRilHookCallback;)V
 
-    invoke-direct {v1, p1, v2}, Lcom/qualcomm/qcrilhook/QcRilHook;-><init>(Landroid/content/Context;Lcom/qualcomm/qcrilhook/QcRilHookCallback;)V
-
-    iput-object v1, p0, Lcom/qualcomm/qcrilhook/QmiOemHook;->mQcRilOemHook:Lcom/qualcomm/qcrilhook/QcRilHook;
+    iput-object v2, p0, Lcom/qualcomm/qcrilhook/QmiOemHook;->mQcRilOemHook:Lcom/qualcomm/qcrilhook/QcRilHook;
 
     .line 85
     const/4 v1, 0x0
@@ -138,13 +136,11 @@
     iput-object v1, p0, Lcom/qualcomm/qcrilhook/QmiOemHook;->mQcrilHookCb:Lcom/qualcomm/qcrilhook/QcRilHookCallback;
 
     .line 90
-    new-instance v1, Lcom/qualcomm/qcrilhook/QcRilHook;
+    new-instance v2, Lcom/qualcomm/qcrilhook/QcRilHook;
 
-    iget-object v2, p0, Lcom/qualcomm/qcrilhook/QmiOemHook;->mQcrilHookCb:Lcom/qualcomm/qcrilhook/QcRilHookCallback;
+    invoke-direct {v2, p1, v1}, Lcom/qualcomm/qcrilhook/QcRilHook;-><init>(Landroid/content/Context;Lcom/qualcomm/qcrilhook/QcRilHookCallback;)V
 
-    invoke-direct {v1, p1, v2}, Lcom/qualcomm/qcrilhook/QcRilHook;-><init>(Landroid/content/Context;Lcom/qualcomm/qcrilhook/QcRilHookCallback;)V
-
-    iput-object v1, p0, Lcom/qualcomm/qcrilhook/QmiOemHook;->mQcRilOemHook:Lcom/qualcomm/qcrilhook/QcRilHook;
+    iput-object v2, p0, Lcom/qualcomm/qcrilhook/QmiOemHook;->mQcRilOemHook:Lcom/qualcomm/qcrilhook/QcRilHook;
 
     .line 91
     const/4 v1, 0x0
@@ -1262,8 +1258,6 @@
     sput v0, Lcom/qualcomm/qcrilhook/QmiOemHook;->mRefCount:I
 
     .line 133
-    sget v0, Lcom/qualcomm/qcrilhook/QmiOemHook;->mRefCount:I
-
     if-nez v0, :cond_0
 
     .line 134

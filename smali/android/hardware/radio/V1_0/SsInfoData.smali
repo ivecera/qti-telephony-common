@@ -372,17 +372,20 @@
     :goto_0
     if-ge v2, v3, :cond_0
 
-    .line 78
-    mul-int/lit8 v4, v2, 0x4
+    .line 77
+    const/4 v4, 0x0
 
-    int-to-long v6, v4
+    .line 78
+    .local v4, "_hidl_vec_element":I
+    mul-int/lit8 v6, v2, 0x4
+
+    int-to-long v6, v6
 
     invoke-virtual {v1, v6, v7}, Landroid/os/HwBlob;->getInt32(J)I
 
     move-result v4
 
     .line 79
-    .local v4, "_hidl_vec_element":I
     iget-object v6, v0, Landroid/hardware/radio/V1_0/SsInfoData;->ssInfo:Ljava/util/ArrayList;
 
     invoke-static {v4}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;

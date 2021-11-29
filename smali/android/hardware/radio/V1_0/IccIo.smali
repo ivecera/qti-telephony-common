@@ -25,17 +25,34 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 1
+    .locals 2
 
     .line 4
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
+    .line 5
+    const/4 v0, 0x0
+
+    iput v0, p0, Landroid/hardware/radio/V1_0/IccIo;->command:I
+
+    .line 6
+    iput v0, p0, Landroid/hardware/radio/V1_0/IccIo;->fileId:I
+
     .line 7
-    new-instance v0, Ljava/lang/String;
+    new-instance v1, Ljava/lang/String;
 
-    invoke-direct {v0}, Ljava/lang/String;-><init>()V
+    invoke-direct {v1}, Ljava/lang/String;-><init>()V
 
-    iput-object v0, p0, Landroid/hardware/radio/V1_0/IccIo;->path:Ljava/lang/String;
+    iput-object v1, p0, Landroid/hardware/radio/V1_0/IccIo;->path:Ljava/lang/String;
+
+    .line 8
+    iput v0, p0, Landroid/hardware/radio/V1_0/IccIo;->p1:I
+
+    .line 9
+    iput v0, p0, Landroid/hardware/radio/V1_0/IccIo;->p2:I
+
+    .line 10
+    iput v0, p0, Landroid/hardware/radio/V1_0/IccIo;->p3:I
 
     .line 11
     new-instance v0, Ljava/lang/String;
@@ -625,7 +642,7 @@
     iput-object v6, v0, Landroid/hardware/radio/V1_0/IccIo;->path:Ljava/lang/String;
 
     .line 129
-    iget-object v6, v0, Landroid/hardware/radio/V1_0/IccIo;->path:Ljava/lang/String;
+    nop
 
     .line 130
     invoke-virtual {v6}, Ljava/lang/String;->getBytes()[B
@@ -699,7 +716,7 @@
     iput-object v6, v0, Landroid/hardware/radio/V1_0/IccIo;->data:Ljava/lang/String;
 
     .line 139
-    iget-object v6, v0, Landroid/hardware/radio/V1_0/IccIo;->data:Ljava/lang/String;
+    nop
 
     .line 140
     invoke-virtual {v6}, Ljava/lang/String;->getBytes()[B
@@ -738,7 +755,7 @@
     iput-object v6, v0, Landroid/hardware/radio/V1_0/IccIo;->pin2:Ljava/lang/String;
 
     .line 146
-    iget-object v6, v0, Landroid/hardware/radio/V1_0/IccIo;->pin2:Ljava/lang/String;
+    nop
 
     .line 147
     invoke-virtual {v6}, Ljava/lang/String;->getBytes()[B
@@ -777,7 +794,7 @@
     iput-object v6, v0, Landroid/hardware/radio/V1_0/IccIo;->aid:Ljava/lang/String;
 
     .line 153
-    iget-object v6, v0, Landroid/hardware/radio/V1_0/IccIo;->aid:Ljava/lang/String;
+    nop
 
     .line 154
     invoke-virtual {v6}, Ljava/lang/String;->getBytes()[B

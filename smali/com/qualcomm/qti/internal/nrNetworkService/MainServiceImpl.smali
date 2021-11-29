@@ -85,7 +85,7 @@
 .method static constructor <clinit>()V
     .locals 1
 
-    .line 71
+    .line 70
     const/4 v0, 0x0
 
     sput-object v0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->sInstance:Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;
@@ -97,25 +97,25 @@
     .locals 2
     .param p1, "context"    # Landroid/content/Context;
 
-    .line 305
+    .line 304
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 59
+    .line 58
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->SUCCESS:Z
 
-    .line 60
+    .line 59
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->FAILED:Z
 
-    .line 64
+    .line 63
     const/4 v0, -0x1
 
     iput v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mClientIndex:I
 
-    .line 65
+    .line 64
     new-instance v0, Landroid/os/HandlerThread;
 
     const-string v1, "MainServiceImplBgThread"
@@ -124,41 +124,39 @@
 
     iput-object v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mWorkerThread:Landroid/os/HandlerThread;
 
-    .line 68
+    .line 67
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
     iput-object v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mCallbackList:Ljava/util/ArrayList;
 
-    .line 69
+    .line 68
     new-instance v0, Ljava/util/concurrent/ConcurrentHashMap;
 
     invoke-direct {v0}, Ljava/util/concurrent/ConcurrentHashMap;-><init>()V
 
     iput-object v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
-    .line 199
+    .line 198
     new-instance v0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl$1;
 
     invoke-direct {v0, p0}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl$1;-><init>(Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;)V
 
     iput-object v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mHidlConnectionCallback:Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionCallback;
 
-    .line 306
+    .line 305
     const-string v0, "MainServiceImpl"
 
     invoke-static {v0, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 307
+    .line 306
     sput-object p1, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mContext:Landroid/content/Context;
 
-    .line 308
-    sget-object v0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mContext:Landroid/content/Context;
+    .line 307
+    const-string v0, "appops"
 
-    const-string v1, "appops"
-
-    invoke-virtual {v0, v1}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+    invoke-virtual {p1, v0}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
 
     move-result-object v0
 
@@ -166,19 +164,19 @@
 
     iput-object v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mAppOpsManager:Landroid/app/AppOpsManager;
 
-    .line 309
+    .line 308
     new-instance v0, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/QtiRadioHidlClient;
 
     invoke-direct {v0}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/QtiRadioHidlClient;-><init>()V
 
     invoke-virtual {p0, v0}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->setHidlClient(Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;)V
 
-    .line 310
+    .line 309
     iget-object v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mWorkerThread:Landroid/os/HandlerThread;
 
     invoke-virtual {v0}, Landroid/os/HandlerThread;->start()V
 
-    .line 311
+    .line 310
     iget-object v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mWorkerThread:Landroid/os/HandlerThread;
 
     invoke-virtual {v0}, Landroid/os/HandlerThread;->getLooper()Landroid/os/Looper;
@@ -187,7 +185,7 @@
 
     invoke-virtual {p0, v0}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->setLooper(Landroid/os/Looper;)V
 
-    .line 312
+    .line 311
     return-void
 .end method
 
@@ -196,28 +194,26 @@
     .param p1, "context"    # Landroid/content/Context;
     .param p2, "hidlClient"    # Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;
     .param p3, "workerLooper"    # Landroid/os/Looper;
-    .annotation build Lcom/android/internal/annotations/VisibleForTesting;
-    .end annotation
 
-    .line 316
+    .line 315
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 59
+    .line 58
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->SUCCESS:Z
 
-    .line 60
+    .line 59
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->FAILED:Z
 
-    .line 64
+    .line 63
     const/4 v0, -0x1
 
     iput v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mClientIndex:I
 
-    .line 65
+    .line 64
     new-instance v0, Landroid/os/HandlerThread;
 
     const-string v1, "MainServiceImplBgThread"
@@ -226,41 +222,39 @@
 
     iput-object v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mWorkerThread:Landroid/os/HandlerThread;
 
-    .line 68
+    .line 67
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
     iput-object v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mCallbackList:Ljava/util/ArrayList;
 
-    .line 69
+    .line 68
     new-instance v0, Ljava/util/concurrent/ConcurrentHashMap;
 
     invoke-direct {v0}, Ljava/util/concurrent/ConcurrentHashMap;-><init>()V
 
     iput-object v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
-    .line 199
+    .line 198
     new-instance v0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl$1;
 
     invoke-direct {v0, p0}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl$1;-><init>(Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;)V
 
     iput-object v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mHidlConnectionCallback:Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionCallback;
 
-    .line 317
+    .line 316
     const-string v0, "MainServiceImpl"
 
     invoke-static {v0, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 318
+    .line 317
     sput-object p1, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mContext:Landroid/content/Context;
 
-    .line 319
-    sget-object v0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mContext:Landroid/content/Context;
+    .line 318
+    const-string v0, "appops"
 
-    const-string v1, "appops"
-
-    invoke-virtual {v0, v1}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+    invoke-virtual {p1, v0}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
 
     move-result-object v0
 
@@ -268,13 +262,13 @@
 
     iput-object v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mAppOpsManager:Landroid/app/AppOpsManager;
 
-    .line 320
+    .line 319
     invoke-virtual {p0, p2}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->setHidlClient(Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;)V
 
-    .line 321
+    .line 320
     invoke-virtual {p0, p3}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->setLooper(Landroid/os/Looper;)V
 
-    .line 322
+    .line 321
     return-void
 .end method
 
@@ -286,7 +280,7 @@
     .param p3, "x3"    # Lorg/codeaurora/internal/Status;
     .param p4, "x4"    # Lorg/codeaurora/internal/BearerAllocationStatus;
 
-    .line 45
+    .line 44
     invoke-direct {p0, p1, p2, p3, p4}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->onAnyNrBearerAllocation(ILorg/codeaurora/internal/Token;Lorg/codeaurora/internal/Status;Lorg/codeaurora/internal/BearerAllocationStatus;)V
 
     return-void
@@ -300,7 +294,7 @@
     .param p3, "x3"    # Lorg/codeaurora/internal/Status;
     .param p4, "x4"    # Z
 
-    .line 45
+    .line 44
     invoke-direct {p0, p1, p2, p3, p4}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->on5gStatus(ILorg/codeaurora/internal/Token;Lorg/codeaurora/internal/Status;Z)V
 
     return-void
@@ -314,7 +308,7 @@
     .param p3, "x3"    # Lorg/codeaurora/internal/Status;
     .param p4, "x4"    # Lorg/codeaurora/internal/SignalStrength;
 
-    .line 45
+    .line 44
     invoke-direct {p0, p1, p2, p3, p4}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->onSignalStrength(ILorg/codeaurora/internal/Token;Lorg/codeaurora/internal/Status;Lorg/codeaurora/internal/SignalStrength;)V
 
     return-void
@@ -328,7 +322,7 @@
     .param p3, "x3"    # Lorg/codeaurora/internal/Status;
     .param p4, "x4"    # Lorg/codeaurora/internal/DcParam;
 
-    .line 45
+    .line 44
     invoke-direct {p0, p1, p2, p3, p4}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->onNrDcParam(ILorg/codeaurora/internal/Token;Lorg/codeaurora/internal/Status;Lorg/codeaurora/internal/DcParam;)V
 
     return-void
@@ -342,7 +336,7 @@
     .param p3, "x3"    # Lorg/codeaurora/internal/Status;
     .param p4, "x4"    # Lorg/codeaurora/internal/UpperLayerIndInfo;
 
-    .line 45
+    .line 44
     invoke-direct {p0, p1, p2, p3, p4}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->onUpperLayerIndInfo(ILorg/codeaurora/internal/Token;Lorg/codeaurora/internal/Status;Lorg/codeaurora/internal/UpperLayerIndInfo;)V
 
     return-void
@@ -356,7 +350,7 @@
     .param p3, "x3"    # Lorg/codeaurora/internal/Status;
     .param p4, "x4"    # Lorg/codeaurora/internal/NrConfigType;
 
-    .line 45
+    .line 44
     invoke-direct {p0, p1, p2, p3, p4}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->on5gConfigInfo(ILorg/codeaurora/internal/Token;Lorg/codeaurora/internal/Status;Lorg/codeaurora/internal/NrConfigType;)V
 
     return-void
@@ -370,7 +364,7 @@
     .param p3, "x3"    # Lorg/codeaurora/internal/Status;
     .param p4, "x4"    # Lorg/codeaurora/internal/NrIconType;
 
-    .line 45
+    .line 44
     invoke-direct {p0, p1, p2, p3, p4}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->onNrIconType(ILorg/codeaurora/internal/Token;Lorg/codeaurora/internal/Status;Lorg/codeaurora/internal/NrIconType;)V
 
     return-void
@@ -383,7 +377,7 @@
     .param p2, "x2"    # Lorg/codeaurora/internal/Token;
     .param p3, "x3"    # Lorg/codeaurora/internal/Status;
 
-    .line 45
+    .line 44
     invoke-direct {p0, p1, p2, p3}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->onEnableEndc(ILorg/codeaurora/internal/Token;Lorg/codeaurora/internal/Status;)V
 
     return-void
@@ -397,7 +391,7 @@
     .param p3, "x3"    # Lorg/codeaurora/internal/Status;
     .param p4, "x4"    # Z
 
-    .line 45
+    .line 44
     invoke-direct {p0, p1, p2, p3, p4}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->onEndcStatus(ILorg/codeaurora/internal/Token;Lorg/codeaurora/internal/Status;Z)V
 
     return-void
@@ -407,7 +401,7 @@
     .locals 1
     .param p0, "x0"    # Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;
 
-    .line 45
+    .line 44
     iget-object v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mWorkerThreadHandler:Landroid/os/Handler;
 
     return-object v0
@@ -417,18 +411,18 @@
     .locals 5
     .param p1, "callback"    # Lorg/codeaurora/internal/INetworkCallback;
 
-    .line 427
+    .line 449
     invoke-interface {p1}, Lorg/codeaurora/internal/INetworkCallback;->asBinder()Landroid/os/IBinder;
 
     move-result-object v0
 
-    .line 428
+    .line 450
     .local v0, "binder":Landroid/os/IBinder;
     iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mCallbackList:Ljava/util/ArrayList;
 
     monitor-enter v1
 
-    .line 429
+    .line 451
     :try_start_0
     iget-object v2, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mCallbackList:Ljava/util/ArrayList;
 
@@ -449,7 +443,7 @@
 
     check-cast v3, Lorg/codeaurora/internal/INetworkCallback;
 
-    .line 430
+    .line 452
     .local v3, "it":Lorg/codeaurora/internal/INetworkCallback;
     invoke-interface {v3}, Lorg/codeaurora/internal/INetworkCallback;->asBinder()Landroid/os/IBinder;
 
@@ -461,19 +455,19 @@
 
     if-eqz v4, :cond_0
 
-    .line 432
+    .line 454
     iget-boolean v2, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->FAILED:Z
 
     monitor-exit v1
 
     return v2
 
-    .line 434
+    .line 456
     .end local v3    # "it":Lorg/codeaurora/internal/INetworkCallback;
     :cond_0
     goto :goto_0
 
-    .line 435
+    .line 457
     :cond_1
     const-string v2, "MainServiceImpl"
 
@@ -493,22 +487,22 @@
 
     invoke-static {v2, v3}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 436
+    .line 458
     iget-object v2, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mCallbackList:Ljava/util/ArrayList;
 
     invoke-virtual {v2, p1}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 437
+    .line 459
     monitor-exit v1
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 438
+    .line 460
     iget-boolean v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->SUCCESS:Z
 
     return v1
 
-    .line 437
+    .line 459
     :catchall_0
     move-exception v2
 
@@ -524,12 +518,12 @@
     .locals 6
     .param p1, "pw"    # Ljava/io/PrintWriter;
 
-    .line 695
+    .line 738
     iget-object v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mCallbackList:Ljava/util/ArrayList;
 
     monitor-enter v0
 
-    .line 696
+    .line 739
     :try_start_0
     iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mCallbackList:Ljava/util/ArrayList;
 
@@ -550,13 +544,13 @@
 
     check-cast v2, Lorg/codeaurora/internal/INetworkCallback;
 
-    .line 697
+    .line 740
     .local v2, "callback":Lorg/codeaurora/internal/INetworkCallback;
     invoke-interface {v2}, Lorg/codeaurora/internal/INetworkCallback;->asBinder()Landroid/os/IBinder;
 
     move-result-object v3
 
-    .line 698
+    .line 741
     .local v3, "binder":Landroid/os/IBinder;
     new-instance v4, Ljava/lang/StringBuilder;
 
@@ -580,19 +574,19 @@
 
     invoke-virtual {p1, v4}, Ljava/io/PrintWriter;->println(Ljava/lang/String;)V
 
-    .line 699
+    .line 742
     .end local v2    # "callback":Lorg/codeaurora/internal/INetworkCallback;
     .end local v3    # "binder":Landroid/os/IBinder;
     goto :goto_0
 
-    .line 700
+    .line 743
     :cond_0
     monitor-exit v0
 
-    .line 701
+    .line 744
     return-void
 
-    .line 700
+    .line 743
     :catchall_0
     move-exception v1
 
@@ -607,7 +601,7 @@
     .locals 4
     .param p1, "pw"    # Ljava/io/PrintWriter;
 
-    .line 704
+    .line 747
     iget-object v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
     invoke-virtual {v0}, Ljava/util/concurrent/ConcurrentHashMap;->keySet()Ljava/util/Set;
@@ -631,7 +625,7 @@
 
     check-cast v1, Ljava/lang/Integer;
 
-    .line 705
+    .line 748
     .local v1, "key":Ljava/lang/Integer;
     new-instance v2, Ljava/lang/StringBuilder;
 
@@ -661,11 +655,11 @@
 
     invoke-virtual {p1, v2}, Ljava/io/PrintWriter;->println(Ljava/lang/String;)V
 
-    .line 706
+    .line 749
     .end local v1    # "key":Ljava/lang/Integer;
     goto :goto_0
 
-    .line 707
+    .line 750
     :cond_0
     return-void
 .end method
@@ -673,19 +667,19 @@
 .method public static getInstance()Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;
     .locals 2
 
-    .line 299
+    .line 298
     sget-object v0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->sInstance:Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;
 
     if-nez v0, :cond_0
 
-    .line 300
+    .line 299
     const-string v0, "MainServiceImpl"
 
     const-string v1, "getInstance null"
 
     invoke-static {v0, v1}, Landroid/util/Log;->wtf(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 302
+    .line 301
     :cond_0
     sget-object v0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->sInstance:Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;
 
@@ -696,21 +690,21 @@
     .locals 4
     .param p0, "context"    # Landroid/content/Context;
 
-    .line 287
+    .line 286
     const-class v0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;
 
     monitor-enter v0
 
-    .line 288
+    .line 287
     :try_start_0
     sput-object p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mContext:Landroid/content/Context;
 
-    .line 289
+    .line 288
     sget-object v1, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->sInstance:Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;
 
     if-nez v1, :cond_0
 
-    .line 290
+    .line 289
     new-instance v1, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;
 
     invoke-direct {v1, p0}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;-><init>(Landroid/content/Context;)V
@@ -719,7 +713,7 @@
 
     goto :goto_0
 
-    .line 292
+    .line 291
     :cond_0
     const-string v1, "MainServiceImpl"
 
@@ -741,7 +735,7 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->wtf(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 294
+    .line 293
     :goto_0
     sget-object v1, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->sInstance:Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;
 
@@ -749,7 +743,7 @@
 
     return-object v1
 
-    .line 295
+    .line 294
     :catchall_0
     move-exception v1
 
@@ -760,6 +754,134 @@
     throw v1
 .end method
 
+.method private isClientValid(Lorg/codeaurora/internal/Client;)Z
+    .locals 6
+    .param p1, "client"    # Lorg/codeaurora/internal/Client;
+
+    .line 489
+    const/4 v0, 0x0
+
+    if-eqz p1, :cond_3
+
+    invoke-virtual {p1}, Lorg/codeaurora/internal/Client;->getCallback()Lorg/codeaurora/internal/INetworkCallback;
+
+    move-result-object v1
+
+    if-nez v1, :cond_0
+
+    goto :goto_1
+
+    .line 493
+    :cond_0
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mCallbackList:Ljava/util/ArrayList;
+
+    monitor-enter v1
+
+    .line 494
+    :try_start_0
+    iget-object v2, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mCallbackList:Ljava/util/ArrayList;
+
+    invoke-virtual {v2}, Ljava/util/ArrayList;->iterator()Ljava/util/Iterator;
+
+    move-result-object v2
+
+    :goto_0
+    invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v3
+
+    if-eqz v3, :cond_2
+
+    invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v3
+
+    check-cast v3, Lorg/codeaurora/internal/INetworkCallback;
+
+    .line 495
+    .local v3, "it":Lorg/codeaurora/internal/INetworkCallback;
+    invoke-interface {v3}, Lorg/codeaurora/internal/INetworkCallback;->asBinder()Landroid/os/IBinder;
+
+    move-result-object v4
+
+    invoke-virtual {p1}, Lorg/codeaurora/internal/Client;->getCallback()Lorg/codeaurora/internal/INetworkCallback;
+
+    move-result-object v5
+
+    invoke-interface {v5}, Lorg/codeaurora/internal/INetworkCallback;->asBinder()Landroid/os/IBinder;
+
+    move-result-object v5
+
+    invoke-virtual {v4, v5}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
+
+    move-result v4
+
+    if-eqz v4, :cond_1
+
+    .line 496
+    const/4 v0, 0x1
+
+    monitor-exit v1
+
+    return v0
+
+    .line 498
+    .end local v3    # "it":Lorg/codeaurora/internal/INetworkCallback;
+    :cond_1
+    goto :goto_0
+
+    .line 499
+    :cond_2
+    monitor-exit v1
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    .line 500
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "This client is unregistered: "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    const-string v2, "MainServiceImpl"
+
+    invoke-static {v2, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 501
+    return v0
+
+    .line 499
+    :catchall_0
+    move-exception v0
+
+    :try_start_1
+    monitor-exit v1
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+
+    throw v0
+
+    .line 490
+    :cond_3
+    :goto_1
+    const-string v1, "MainServiceImpl"
+
+    const-string v2, "Invalid client"
+
+    invoke-static {v1, v2}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 491
+    return v0
+.end method
+
 .method private on5gConfigInfo(ILorg/codeaurora/internal/Token;Lorg/codeaurora/internal/Status;Lorg/codeaurora/internal/NrConfigType;)V
     .locals 8
     .param p1, "slotId"    # I
@@ -767,13 +889,13 @@
     .param p3, "status"    # Lorg/codeaurora/internal/Status;
     .param p4, "nrConfigType"    # Lorg/codeaurora/internal/NrConfigType;
 
-    .line 587
+    .line 630
     :try_start_0
     invoke-virtual {p2}, Lorg/codeaurora/internal/Token;->get()I
 
     move-result v0
 
-    .line 588
+    .line 631
     .local v0, "tokenKey":I
     iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mCallbackList:Ljava/util/ArrayList;
 
@@ -781,7 +903,7 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 589
+    .line 632
     :try_start_1
     invoke-virtual {p0, v0}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->retrieveCallbacks(I)Ljava/util/ArrayList;
 
@@ -804,7 +926,7 @@
 
     check-cast v3, Lorg/codeaurora/internal/INetworkCallback;
 
-    .line 590
+    .line 633
     .local v3, "callback":Lorg/codeaurora/internal/INetworkCallback;
     const-string v4, "MainServiceImpl"
 
@@ -818,7 +940,7 @@
 
     iget-object v6, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
-    .line 591
+    .line 634
     invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v7
@@ -833,13 +955,13 @@
 
     move-result-object v5
 
-    .line 590
+    .line 633
     invoke-static {v4, v5}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 592
+    .line 635
     invoke-interface {v3, p1, p2, p3, p4}, Lorg/codeaurora/internal/INetworkCallback;->on5gConfigInfo(ILorg/codeaurora/internal/Token;Lorg/codeaurora/internal/Status;Lorg/codeaurora/internal/NrConfigType;)V
 
-    .line 593
+    .line 636
     iget-object v4, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
     invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -848,21 +970,21 @@
 
     invoke-virtual {v4, v5}, Ljava/util/concurrent/ConcurrentHashMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 594
+    .line 637
     nop
 
     .end local v3    # "callback":Lorg/codeaurora/internal/INetworkCallback;
     goto :goto_0
 
-    .line 595
+    .line 638
     :cond_0
     monitor-exit v1
 
-    .line 598
+    .line 641
     .end local v0    # "tokenKey":I
     goto :goto_1
 
-    .line 595
+    .line 638
     .restart local v0    # "tokenKey":I
     :catchall_0
     move-exception v2
@@ -881,7 +1003,7 @@
     :try_end_2
     .catch Landroid/os/RemoteException; {:try_start_2 .. :try_end_2} :catch_0
 
-    .line 596
+    .line 639
     .end local v0    # "tokenKey":I
     .restart local p0    # "this":Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;
     .restart local p1    # "slotId":I
@@ -891,7 +1013,7 @@
     :catch_0
     move-exception v0
 
-    .line 597
+    .line 640
     .local v0, "e":Landroid/os/RemoteException;
     new-instance v1, Ljava/lang/StringBuilder;
 
@@ -911,7 +1033,7 @@
 
     invoke-static {v2, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 599
+    .line 642
     .end local v0    # "e":Landroid/os/RemoteException;
     :goto_1
     return-void
@@ -924,13 +1046,13 @@
     .param p3, "status"    # Lorg/codeaurora/internal/Status;
     .param p4, "enableStatus"    # Z
 
-    .line 537
+    .line 580
     :try_start_0
     invoke-virtual {p2}, Lorg/codeaurora/internal/Token;->get()I
 
     move-result v0
 
-    .line 538
+    .line 581
     .local v0, "tokenKey":I
     iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mCallbackList:Ljava/util/ArrayList;
 
@@ -938,7 +1060,7 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 539
+    .line 582
     :try_start_1
     invoke-virtual {p0, v0}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->retrieveCallbacks(I)Ljava/util/ArrayList;
 
@@ -961,7 +1083,7 @@
 
     check-cast v3, Lorg/codeaurora/internal/INetworkCallback;
 
-    .line 540
+    .line 583
     .local v3, "callback":Lorg/codeaurora/internal/INetworkCallback;
     const-string v4, "MainServiceImpl"
 
@@ -975,7 +1097,7 @@
 
     iget-object v6, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
-    .line 541
+    .line 584
     invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v7
@@ -990,13 +1112,13 @@
 
     move-result-object v5
 
-    .line 540
+    .line 583
     invoke-static {v4, v5}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 542
+    .line 585
     invoke-interface {v3, p1, p2, p3, p4}, Lorg/codeaurora/internal/INetworkCallback;->on5gStatus(ILorg/codeaurora/internal/Token;Lorg/codeaurora/internal/Status;Z)V
 
-    .line 543
+    .line 586
     iget-object v4, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
     invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -1005,21 +1127,21 @@
 
     invoke-virtual {v4, v5}, Ljava/util/concurrent/ConcurrentHashMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 544
+    .line 587
     nop
 
     .end local v3    # "callback":Lorg/codeaurora/internal/INetworkCallback;
     goto :goto_0
 
-    .line 545
+    .line 588
     :cond_0
     monitor-exit v1
 
-    .line 548
+    .line 591
     .end local v0    # "tokenKey":I
     goto :goto_1
 
-    .line 545
+    .line 588
     .restart local v0    # "tokenKey":I
     :catchall_0
     move-exception v2
@@ -1038,7 +1160,7 @@
     :try_end_2
     .catch Landroid/os/RemoteException; {:try_start_2 .. :try_end_2} :catch_0
 
-    .line 546
+    .line 589
     .end local v0    # "tokenKey":I
     .restart local p0    # "this":Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;
     .restart local p1    # "slotId":I
@@ -1048,7 +1170,7 @@
     :catch_0
     move-exception v0
 
-    .line 547
+    .line 590
     .local v0, "e":Landroid/os/RemoteException;
     new-instance v1, Ljava/lang/StringBuilder;
 
@@ -1068,7 +1190,7 @@
 
     invoke-static {v2, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 549
+    .line 592
     .end local v0    # "e":Landroid/os/RemoteException;
     :goto_1
     return-void
@@ -1081,13 +1203,13 @@
     .param p3, "status"    # Lorg/codeaurora/internal/Status;
     .param p4, "bearerStatus"    # Lorg/codeaurora/internal/BearerAllocationStatus;
 
-    .line 604
+    .line 647
     :try_start_0
     invoke-virtual {p2}, Lorg/codeaurora/internal/Token;->get()I
 
     move-result v0
 
-    .line 605
+    .line 648
     .local v0, "tokenKey":I
     iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mCallbackList:Ljava/util/ArrayList;
 
@@ -1095,7 +1217,7 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 606
+    .line 649
     :try_start_1
     invoke-virtual {p0, v0}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->retrieveCallbacks(I)Ljava/util/ArrayList;
 
@@ -1118,7 +1240,7 @@
 
     check-cast v3, Lorg/codeaurora/internal/INetworkCallback;
 
-    .line 607
+    .line 650
     .local v3, "callback":Lorg/codeaurora/internal/INetworkCallback;
     const-string v4, "MainServiceImpl"
 
@@ -1132,7 +1254,7 @@
 
     iget-object v6, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
-    .line 608
+    .line 651
     invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v7
@@ -1147,13 +1269,13 @@
 
     move-result-object v5
 
-    .line 607
+    .line 650
     invoke-static {v4, v5}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 609
+    .line 652
     invoke-interface {v3, p1, p2, p3, p4}, Lorg/codeaurora/internal/INetworkCallback;->onAnyNrBearerAllocation(ILorg/codeaurora/internal/Token;Lorg/codeaurora/internal/Status;Lorg/codeaurora/internal/BearerAllocationStatus;)V
 
-    .line 610
+    .line 653
     iget-object v4, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
     invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -1162,21 +1284,21 @@
 
     invoke-virtual {v4, v5}, Ljava/util/concurrent/ConcurrentHashMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 611
+    .line 654
     nop
 
     .end local v3    # "callback":Lorg/codeaurora/internal/INetworkCallback;
     goto :goto_0
 
-    .line 612
+    .line 655
     :cond_0
     monitor-exit v1
 
-    .line 615
+    .line 658
     .end local v0    # "tokenKey":I
     goto :goto_1
 
-    .line 612
+    .line 655
     .restart local v0    # "tokenKey":I
     :catchall_0
     move-exception v2
@@ -1195,7 +1317,7 @@
     :try_end_2
     .catch Landroid/os/RemoteException; {:try_start_2 .. :try_end_2} :catch_0
 
-    .line 613
+    .line 656
     .end local v0    # "tokenKey":I
     .restart local p0    # "this":Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;
     .restart local p1    # "slotId":I
@@ -1205,7 +1327,7 @@
     :catch_0
     move-exception v0
 
-    .line 614
+    .line 657
     .local v0, "e":Landroid/os/RemoteException;
     new-instance v1, Ljava/lang/StringBuilder;
 
@@ -1225,7 +1347,7 @@
 
     invoke-static {v2, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 616
+    .line 659
     .end local v0    # "e":Landroid/os/RemoteException;
     :goto_1
     return-void
@@ -1237,13 +1359,13 @@
     .param p2, "token"    # Lorg/codeaurora/internal/Token;
     .param p3, "status"    # Lorg/codeaurora/internal/Status;
 
-    .line 654
+    .line 697
     :try_start_0
     invoke-virtual {p2}, Lorg/codeaurora/internal/Token;->get()I
 
     move-result v0
 
-    .line 655
+    .line 698
     .local v0, "tokenKey":I
     iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mCallbackList:Ljava/util/ArrayList;
 
@@ -1251,7 +1373,7 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 656
+    .line 699
     :try_start_1
     invoke-virtual {p0, v0}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->retrieveCallbacks(I)Ljava/util/ArrayList;
 
@@ -1274,7 +1396,7 @@
 
     check-cast v3, Lorg/codeaurora/internal/INetworkCallback;
 
-    .line 657
+    .line 700
     .local v3, "callback":Lorg/codeaurora/internal/INetworkCallback;
     const-string v4, "MainServiceImpl"
 
@@ -1288,7 +1410,7 @@
 
     iget-object v6, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
-    .line 658
+    .line 701
     invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v7
@@ -1303,13 +1425,13 @@
 
     move-result-object v5
 
-    .line 657
+    .line 700
     invoke-static {v4, v5}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 659
+    .line 702
     invoke-interface {v3, p1, p2, p3}, Lorg/codeaurora/internal/INetworkCallback;->onEnableEndc(ILorg/codeaurora/internal/Token;Lorg/codeaurora/internal/Status;)V
 
-    .line 660
+    .line 703
     iget-object v4, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
     invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -1318,21 +1440,21 @@
 
     invoke-virtual {v4, v5}, Ljava/util/concurrent/ConcurrentHashMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 661
+    .line 704
     nop
 
     .end local v3    # "callback":Lorg/codeaurora/internal/INetworkCallback;
     goto :goto_0
 
-    .line 662
+    .line 705
     :cond_0
     monitor-exit v1
 
-    .line 665
+    .line 708
     .end local v0    # "tokenKey":I
     goto :goto_1
 
-    .line 662
+    .line 705
     .restart local v0    # "tokenKey":I
     :catchall_0
     move-exception v2
@@ -1350,7 +1472,7 @@
     :try_end_2
     .catch Landroid/os/RemoteException; {:try_start_2 .. :try_end_2} :catch_0
 
-    .line 663
+    .line 706
     .end local v0    # "tokenKey":I
     .restart local p0    # "this":Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;
     .restart local p1    # "slotId":I
@@ -1359,7 +1481,7 @@
     :catch_0
     move-exception v0
 
-    .line 664
+    .line 707
     .local v0, "e":Landroid/os/RemoteException;
     new-instance v1, Ljava/lang/StringBuilder;
 
@@ -1379,7 +1501,7 @@
 
     invoke-static {v2, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 666
+    .line 709
     .end local v0    # "e":Landroid/os/RemoteException;
     :goto_1
     return-void
@@ -1392,13 +1514,13 @@
     .param p3, "status"    # Lorg/codeaurora/internal/Status;
     .param p4, "enableStatus"    # Z
 
-    .line 670
+    .line 713
     :try_start_0
     invoke-virtual {p2}, Lorg/codeaurora/internal/Token;->get()I
 
     move-result v0
 
-    .line 671
+    .line 714
     .local v0, "tokenKey":I
     iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mCallbackList:Ljava/util/ArrayList;
 
@@ -1406,7 +1528,7 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 672
+    .line 715
     :try_start_1
     invoke-virtual {p0, v0}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->retrieveCallbacks(I)Ljava/util/ArrayList;
 
@@ -1429,7 +1551,7 @@
 
     check-cast v3, Lorg/codeaurora/internal/INetworkCallback;
 
-    .line 673
+    .line 716
     .local v3, "callback":Lorg/codeaurora/internal/INetworkCallback;
     const-string v4, "MainServiceImpl"
 
@@ -1443,7 +1565,7 @@
 
     iget-object v6, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
-    .line 674
+    .line 717
     invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v7
@@ -1458,13 +1580,13 @@
 
     move-result-object v5
 
-    .line 673
+    .line 716
     invoke-static {v4, v5}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 675
+    .line 718
     invoke-interface {v3, p1, p2, p3, p4}, Lorg/codeaurora/internal/INetworkCallback;->onEndcStatus(ILorg/codeaurora/internal/Token;Lorg/codeaurora/internal/Status;Z)V
 
-    .line 676
+    .line 719
     iget-object v4, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
     invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -1473,21 +1595,21 @@
 
     invoke-virtual {v4, v5}, Ljava/util/concurrent/ConcurrentHashMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 677
+    .line 720
     nop
 
     .end local v3    # "callback":Lorg/codeaurora/internal/INetworkCallback;
     goto :goto_0
 
-    .line 678
+    .line 721
     :cond_0
     monitor-exit v1
 
-    .line 681
+    .line 724
     .end local v0    # "tokenKey":I
     goto :goto_1
 
-    .line 678
+    .line 721
     .restart local v0    # "tokenKey":I
     :catchall_0
     move-exception v2
@@ -1506,7 +1628,7 @@
     :try_end_2
     .catch Landroid/os/RemoteException; {:try_start_2 .. :try_end_2} :catch_0
 
-    .line 679
+    .line 722
     .end local v0    # "tokenKey":I
     .restart local p0    # "this":Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;
     .restart local p1    # "slotId":I
@@ -1516,7 +1638,7 @@
     :catch_0
     move-exception v0
 
-    .line 680
+    .line 723
     .local v0, "e":Landroid/os/RemoteException;
     new-instance v1, Ljava/lang/StringBuilder;
 
@@ -1536,7 +1658,7 @@
 
     invoke-static {v2, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 682
+    .line 725
     .end local v0    # "e":Landroid/os/RemoteException;
     :goto_1
     return-void
@@ -1549,13 +1671,13 @@
     .param p3, "status"    # Lorg/codeaurora/internal/Status;
     .param p4, "dcParam"    # Lorg/codeaurora/internal/DcParam;
 
-    .line 553
+    .line 596
     :try_start_0
     invoke-virtual {p2}, Lorg/codeaurora/internal/Token;->get()I
 
     move-result v0
 
-    .line 554
+    .line 597
     .local v0, "tokenKey":I
     iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mCallbackList:Ljava/util/ArrayList;
 
@@ -1563,7 +1685,7 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 555
+    .line 598
     :try_start_1
     invoke-virtual {p0, v0}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->retrieveCallbacks(I)Ljava/util/ArrayList;
 
@@ -1586,7 +1708,7 @@
 
     check-cast v3, Lorg/codeaurora/internal/INetworkCallback;
 
-    .line 556
+    .line 599
     .local v3, "callback":Lorg/codeaurora/internal/INetworkCallback;
     const-string v4, "MainServiceImpl"
 
@@ -1600,7 +1722,7 @@
 
     iget-object v6, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
-    .line 557
+    .line 600
     invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v7
@@ -1615,13 +1737,13 @@
 
     move-result-object v5
 
-    .line 556
+    .line 599
     invoke-static {v4, v5}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 558
+    .line 601
     invoke-interface {v3, p1, p2, p3, p4}, Lorg/codeaurora/internal/INetworkCallback;->onNrDcParam(ILorg/codeaurora/internal/Token;Lorg/codeaurora/internal/Status;Lorg/codeaurora/internal/DcParam;)V
 
-    .line 559
+    .line 602
     iget-object v4, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
     invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -1630,21 +1752,21 @@
 
     invoke-virtual {v4, v5}, Ljava/util/concurrent/ConcurrentHashMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 560
+    .line 603
     nop
 
     .end local v3    # "callback":Lorg/codeaurora/internal/INetworkCallback;
     goto :goto_0
 
-    .line 561
+    .line 604
     :cond_0
     monitor-exit v1
 
-    .line 564
+    .line 607
     .end local v0    # "tokenKey":I
     goto :goto_1
 
-    .line 561
+    .line 604
     .restart local v0    # "tokenKey":I
     :catchall_0
     move-exception v2
@@ -1663,7 +1785,7 @@
     :try_end_2
     .catch Landroid/os/RemoteException; {:try_start_2 .. :try_end_2} :catch_0
 
-    .line 562
+    .line 605
     .end local v0    # "tokenKey":I
     .restart local p0    # "this":Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;
     .restart local p1    # "slotId":I
@@ -1673,7 +1795,7 @@
     :catch_0
     move-exception v0
 
-    .line 563
+    .line 606
     .local v0, "e":Landroid/os/RemoteException;
     new-instance v1, Ljava/lang/StringBuilder;
 
@@ -1693,7 +1815,7 @@
 
     invoke-static {v2, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 565
+    .line 608
     .end local v0    # "e":Landroid/os/RemoteException;
     :goto_1
     return-void
@@ -1706,13 +1828,13 @@
     .param p3, "status"    # Lorg/codeaurora/internal/Status;
     .param p4, "nrIconType"    # Lorg/codeaurora/internal/NrIconType;
 
-    .line 638
+    .line 681
     :try_start_0
     invoke-virtual {p2}, Lorg/codeaurora/internal/Token;->get()I
 
     move-result v0
 
-    .line 639
+    .line 682
     .local v0, "tokenKey":I
     iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mCallbackList:Ljava/util/ArrayList;
 
@@ -1720,7 +1842,7 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 640
+    .line 683
     :try_start_1
     invoke-virtual {p0, v0}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->retrieveCallbacks(I)Ljava/util/ArrayList;
 
@@ -1743,7 +1865,7 @@
 
     check-cast v3, Lorg/codeaurora/internal/INetworkCallback;
 
-    .line 641
+    .line 684
     .local v3, "callback":Lorg/codeaurora/internal/INetworkCallback;
     const-string v4, "MainServiceImpl"
 
@@ -1757,7 +1879,7 @@
 
     iget-object v6, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
-    .line 642
+    .line 685
     invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v7
@@ -1772,13 +1894,13 @@
 
     move-result-object v5
 
-    .line 641
+    .line 684
     invoke-static {v4, v5}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 643
+    .line 686
     invoke-interface {v3, p1, p2, p3, p4}, Lorg/codeaurora/internal/INetworkCallback;->onNrIconType(ILorg/codeaurora/internal/Token;Lorg/codeaurora/internal/Status;Lorg/codeaurora/internal/NrIconType;)V
 
-    .line 644
+    .line 687
     iget-object v4, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
     invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -1787,21 +1909,21 @@
 
     invoke-virtual {v4, v5}, Ljava/util/concurrent/ConcurrentHashMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 645
+    .line 688
     nop
 
     .end local v3    # "callback":Lorg/codeaurora/internal/INetworkCallback;
     goto :goto_0
 
-    .line 646
+    .line 689
     :cond_0
     monitor-exit v1
 
-    .line 649
+    .line 692
     .end local v0    # "tokenKey":I
     goto :goto_1
 
-    .line 646
+    .line 689
     .restart local v0    # "tokenKey":I
     :catchall_0
     move-exception v2
@@ -1820,7 +1942,7 @@
     :try_end_2
     .catch Landroid/os/RemoteException; {:try_start_2 .. :try_end_2} :catch_0
 
-    .line 647
+    .line 690
     .end local v0    # "tokenKey":I
     .restart local p0    # "this":Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;
     .restart local p1    # "slotId":I
@@ -1830,7 +1952,7 @@
     :catch_0
     move-exception v0
 
-    .line 648
+    .line 691
     .local v0, "e":Landroid/os/RemoteException;
     new-instance v1, Ljava/lang/StringBuilder;
 
@@ -1850,7 +1972,7 @@
 
     invoke-static {v2, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 650
+    .line 693
     .end local v0    # "e":Landroid/os/RemoteException;
     :goto_1
     return-void
@@ -1863,13 +1985,13 @@
     .param p3, "status"    # Lorg/codeaurora/internal/Status;
     .param p4, "signalStrength"    # Lorg/codeaurora/internal/SignalStrength;
 
-    .line 621
+    .line 664
     :try_start_0
     invoke-virtual {p2}, Lorg/codeaurora/internal/Token;->get()I
 
     move-result v0
 
-    .line 622
+    .line 665
     .local v0, "tokenKey":I
     iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mCallbackList:Ljava/util/ArrayList;
 
@@ -1877,7 +1999,7 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 623
+    .line 666
     :try_start_1
     invoke-virtual {p0, v0}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->retrieveCallbacks(I)Ljava/util/ArrayList;
 
@@ -1900,7 +2022,7 @@
 
     check-cast v3, Lorg/codeaurora/internal/INetworkCallback;
 
-    .line 624
+    .line 667
     .local v3, "callback":Lorg/codeaurora/internal/INetworkCallback;
     const-string v4, "MainServiceImpl"
 
@@ -1914,7 +2036,7 @@
 
     iget-object v6, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
-    .line 625
+    .line 668
     invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v7
@@ -1929,13 +2051,13 @@
 
     move-result-object v5
 
-    .line 624
+    .line 667
     invoke-static {v4, v5}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 626
+    .line 669
     invoke-interface {v3, p1, p2, p3, p4}, Lorg/codeaurora/internal/INetworkCallback;->onSignalStrength(ILorg/codeaurora/internal/Token;Lorg/codeaurora/internal/Status;Lorg/codeaurora/internal/SignalStrength;)V
 
-    .line 627
+    .line 670
     iget-object v4, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
     invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -1944,21 +2066,21 @@
 
     invoke-virtual {v4, v5}, Ljava/util/concurrent/ConcurrentHashMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 628
+    .line 671
     nop
 
     .end local v3    # "callback":Lorg/codeaurora/internal/INetworkCallback;
     goto :goto_0
 
-    .line 629
+    .line 672
     :cond_0
     monitor-exit v1
 
-    .line 632
+    .line 675
     .end local v0    # "tokenKey":I
     goto :goto_1
 
-    .line 629
+    .line 672
     .restart local v0    # "tokenKey":I
     :catchall_0
     move-exception v2
@@ -1977,7 +2099,7 @@
     :try_end_2
     .catch Landroid/os/RemoteException; {:try_start_2 .. :try_end_2} :catch_0
 
-    .line 630
+    .line 673
     .end local v0    # "tokenKey":I
     .restart local p0    # "this":Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;
     .restart local p1    # "slotId":I
@@ -1987,7 +2109,7 @@
     :catch_0
     move-exception v0
 
-    .line 631
+    .line 674
     .local v0, "e":Landroid/os/RemoteException;
     new-instance v1, Ljava/lang/StringBuilder;
 
@@ -2007,7 +2129,7 @@
 
     invoke-static {v2, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 633
+    .line 676
     .end local v0    # "e":Landroid/os/RemoteException;
     :goto_1
     return-void
@@ -2020,13 +2142,13 @@
     .param p3, "status"    # Lorg/codeaurora/internal/Status;
     .param p4, "ulInfo"    # Lorg/codeaurora/internal/UpperLayerIndInfo;
 
-    .line 570
+    .line 613
     :try_start_0
     invoke-virtual {p2}, Lorg/codeaurora/internal/Token;->get()I
 
     move-result v0
 
-    .line 571
+    .line 614
     .local v0, "tokenKey":I
     iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mCallbackList:Ljava/util/ArrayList;
 
@@ -2034,7 +2156,7 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 572
+    .line 615
     :try_start_1
     invoke-virtual {p0, v0}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->retrieveCallbacks(I)Ljava/util/ArrayList;
 
@@ -2057,7 +2179,7 @@
 
     check-cast v3, Lorg/codeaurora/internal/INetworkCallback;
 
-    .line 573
+    .line 616
     .local v3, "callback":Lorg/codeaurora/internal/INetworkCallback;
     const-string v4, "MainServiceImpl"
 
@@ -2071,7 +2193,7 @@
 
     iget-object v6, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
-    .line 574
+    .line 617
     invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v7
@@ -2086,13 +2208,13 @@
 
     move-result-object v5
 
-    .line 573
+    .line 616
     invoke-static {v4, v5}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 575
+    .line 618
     invoke-interface {v3, p1, p2, p3, p4}, Lorg/codeaurora/internal/INetworkCallback;->onUpperLayerIndInfo(ILorg/codeaurora/internal/Token;Lorg/codeaurora/internal/Status;Lorg/codeaurora/internal/UpperLayerIndInfo;)V
 
-    .line 576
+    .line 619
     iget-object v4, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
     invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -2101,21 +2223,21 @@
 
     invoke-virtual {v4, v5}, Ljava/util/concurrent/ConcurrentHashMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 577
+    .line 620
     nop
 
     .end local v3    # "callback":Lorg/codeaurora/internal/INetworkCallback;
     goto :goto_0
 
-    .line 578
+    .line 621
     :cond_0
     monitor-exit v1
 
-    .line 581
+    .line 624
     .end local v0    # "tokenKey":I
     goto :goto_1
 
-    .line 578
+    .line 621
     .restart local v0    # "tokenKey":I
     :catchall_0
     move-exception v2
@@ -2134,7 +2256,7 @@
     :try_end_2
     .catch Landroid/os/RemoteException; {:try_start_2 .. :try_end_2} :catch_0
 
-    .line 579
+    .line 622
     .end local v0    # "tokenKey":I
     .restart local p0    # "this":Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;
     .restart local p1    # "slotId":I
@@ -2144,7 +2266,7 @@
     :catch_0
     move-exception v0
 
-    .line 580
+    .line 623
     .local v0, "e":Landroid/os/RemoteException;
     new-instance v1, Ljava/lang/StringBuilder;
 
@@ -2164,7 +2286,7 @@
 
     invoke-static {v2, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 582
+    .line 625
     .end local v0    # "e":Landroid/os/RemoteException;
     :goto_1
     return-void
@@ -2174,12 +2296,12 @@
     .locals 6
     .param p1, "callback"    # Lorg/codeaurora/internal/INetworkCallback;
 
-    .line 442
+    .line 464
     invoke-interface {p1}, Lorg/codeaurora/internal/INetworkCallback;->asBinder()Landroid/os/IBinder;
 
     move-result-object v0
 
-    .line 443
+    .line 465
     .local v0, "binder":Landroid/os/IBinder;
     new-instance v1, Ljava/lang/StringBuilder;
 
@@ -2205,12 +2327,12 @@
 
     invoke-static {v2, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 444
+    .line 466
     iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mCallbackList:Ljava/util/ArrayList;
 
     monitor-enter v1
 
-    .line 445
+    .line 467
     :try_start_0
     iget-object v2, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mCallbackList:Ljava/util/ArrayList;
 
@@ -2231,7 +2353,7 @@
 
     check-cast v3, Lorg/codeaurora/internal/INetworkCallback;
 
-    .line 446
+    .line 468
     .local v3, "it":Lorg/codeaurora/internal/INetworkCallback;
     invoke-interface {v3}, Lorg/codeaurora/internal/INetworkCallback;->asBinder()Landroid/os/IBinder;
 
@@ -2243,7 +2365,7 @@
 
     if-eqz v4, :cond_0
 
-    .line 447
+    .line 469
     const-string v2, "MainServiceImpl"
 
     new-instance v4, Ljava/lang/StringBuilder;
@@ -2262,29 +2384,29 @@
 
     invoke-static {v2, v4}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 448
+    .line 470
     iget-object v2, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mCallbackList:Ljava/util/ArrayList;
 
     invoke-virtual {v2, v3}, Ljava/util/ArrayList;->remove(Ljava/lang/Object;)Z
 
-    .line 449
+    .line 471
     monitor-exit v1
 
     return-void
 
-    .line 451
+    .line 473
     .end local v3    # "it":Lorg/codeaurora/internal/INetworkCallback;
     :cond_0
     goto :goto_0
 
-    .line 452
+    .line 474
     :cond_1
     monitor-exit v1
 
-    .line 453
+    .line 475
     return-void
 
-    .line 452
+    .line 474
     :catchall_0
     move-exception v2
 
@@ -2299,7 +2421,7 @@
     .locals 6
     .param p1, "callback"    # Lorg/codeaurora/internal/INetworkCallback;
 
-    .line 456
+    .line 478
     iget-object v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
     invoke-virtual {v0}, Ljava/util/concurrent/ConcurrentHashMap;->keySet()Ljava/util/Set;
@@ -2327,7 +2449,7 @@
 
     move-result v1
 
-    .line 457
+    .line 479
     .local v1, "key":I
     iget-object v2, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
@@ -2341,7 +2463,7 @@
 
     check-cast v2, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl$Transaction;
 
-    .line 458
+    .line 480
     .local v2, "txn":Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl$Transaction;
     iget-object v3, v2, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl$Transaction;->mClient:Lorg/codeaurora/internal/Client;
 
@@ -2359,7 +2481,7 @@
 
     if-ne v3, v4, :cond_0
 
-    .line 459
+    .line 481
     new-instance v3, Ljava/lang/StringBuilder;
 
     invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
@@ -2376,7 +2498,7 @@
 
     iget-object v4, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
-    .line 460
+    .line 482
     invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v5
@@ -2391,12 +2513,12 @@
 
     move-result-object v3
 
-    .line 459
+    .line 481
     const-string v4, "MainServiceImpl"
 
     invoke-static {v4, v3}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 461
+    .line 483
     iget-object v3, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
     invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -2405,13 +2527,13 @@
 
     invoke-virtual {v3, v4}, Ljava/util/concurrent/ConcurrentHashMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 463
+    .line 485
     .end local v1    # "key":I
     .end local v2    # "txn":Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl$Transaction;
     :cond_0
     goto :goto_0
 
-    .line 464
+    .line 486
     :cond_1
     return-void
 .end method
@@ -2428,7 +2550,7 @@
         }
     .end annotation
 
-    .line 345
+    .line 346
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -2447,14 +2569,26 @@
 
     invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 346
+    .line 347
+    invoke-direct {p0, p2}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->isClientValid(Lorg/codeaurora/internal/Client;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    const/4 v0, 0x0
+
+    return-object v0
+
+    .line 348
+    :cond_0
     iget-object v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mHidlConnectionInterface:Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;
 
-    invoke-interface {v0, p1}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;->disable5g(I)Lorg/codeaurora/internal/Token;
+    invoke-interface {v0}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;->generateNextToken()Lorg/codeaurora/internal/Token;
 
     move-result-object v0
 
-    .line 347
+    .line 349
     .local v0, "token":Lorg/codeaurora/internal/Token;
     iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
@@ -2474,7 +2608,12 @@
 
     invoke-virtual {v1, v2, v3}, Ljava/util/concurrent/ConcurrentHashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 348
+    .line 350
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mHidlConnectionInterface:Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;
+
+    invoke-interface {v1, p1, v0}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;->disable5g(ILorg/codeaurora/internal/Token;)V
+
+    .line 351
     return-object v0
 .end method
 
@@ -2484,16 +2623,16 @@
     .param p2, "printwriter"    # Ljava/io/PrintWriter;
     .param p3, "args"    # [Ljava/lang/String;
 
-    .line 711
+    .line 754
     move-object v0, p2
 
-    .line 712
+    .line 755
     .local v0, "pw":Ljava/io/PrintWriter;
     const-string v1, "5G-Middleware:"
 
     invoke-virtual {v0, v1}, Ljava/io/PrintWriter;->println(Ljava/lang/String;)V
 
-    .line 713
+    .line 756
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -2512,29 +2651,29 @@
 
     invoke-virtual {v0, v1}, Ljava/io/PrintWriter;->println(Ljava/lang/String;)V
 
-    .line 714
+    .line 757
     const-string v1, "AIDL clients : "
 
     invoke-virtual {v0, v1}, Ljava/io/PrintWriter;->println(Ljava/lang/String;)V
 
-    .line 715
+    .line 758
     invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->dumpAidlClients(Ljava/io/PrintWriter;)V
 
-    .line 716
+    .line 759
     invoke-virtual {v0}, Ljava/io/PrintWriter;->flush()V
 
-    .line 718
+    .line 761
     const-string v1, "Inflight requests : "
 
     invoke-virtual {v0, v1}, Ljava/io/PrintWriter;->println(Ljava/lang/String;)V
 
-    .line 719
+    .line 762
     invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->dumpInflightRequests(Ljava/io/PrintWriter;)V
 
-    .line 720
+    .line 763
     invoke-virtual {v0}, Ljava/io/PrintWriter;->flush()V
 
-    .line 721
+    .line 764
     return-void
 .end method
 
@@ -2548,12 +2687,12 @@
         }
     .end annotation
 
-    .line 335
+    .line 334
     invoke-static {}, Landroid/os/Binder;->getCallingUid()I
 
     move-result v0
 
-    .line 336
+    .line 335
     .local v0, "uid":I
     sget-object v1, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mContext:Landroid/content/Context;
 
@@ -2565,7 +2704,7 @@
 
     move-result-object v1
 
-    .line 337
+    .line 336
     .local v1, "packageName":Ljava/lang/String;
     new-instance v2, Ljava/lang/StringBuilder;
 
@@ -2597,10 +2736,22 @@
 
     invoke-static {v3, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
+    .line 338
+    invoke-direct {p0, p2}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->isClientValid(Lorg/codeaurora/internal/Client;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_0
+
+    const/4 v2, 0x0
+
+    return-object v2
+
     .line 339
+    :cond_0
     iget-object v2, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mHidlConnectionInterface:Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;
 
-    invoke-interface {v2, p1}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;->enable5g(I)Lorg/codeaurora/internal/Token;
+    invoke-interface {v2}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;->generateNextToken()Lorg/codeaurora/internal/Token;
 
     move-result-object v2
 
@@ -2625,6 +2776,11 @@
     invoke-virtual {v3, v4, v5}, Ljava/util/concurrent/ConcurrentHashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
     .line 341
+    iget-object v3, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mHidlConnectionInterface:Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;
+
+    invoke-interface {v3, p1, v2}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;->enable5g(ILorg/codeaurora/internal/Token;)V
+
+    .line 342
     return-object v2
 .end method
 
@@ -2638,7 +2794,7 @@
         }
     .end annotation
 
-    .line 352
+    .line 355
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -2657,7 +2813,19 @@
 
     invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 353
+    .line 356
+    invoke-direct {p0, p2}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->isClientValid(Lorg/codeaurora/internal/Client;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    const/4 v0, 0x0
+
+    return-object v0
+
+    .line 357
+    :cond_0
     new-instance v0, Landroid/os/RemoteException;
 
     const-string v1, "not implemented"
@@ -2678,7 +2846,7 @@
         }
     .end annotation
 
-    .line 411
+    .line 429
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -2697,14 +2865,26 @@
 
     invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 412
+    .line 430
+    invoke-direct {p0, p3}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->isClientValid(Lorg/codeaurora/internal/Client;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    const/4 v0, 0x0
+
+    return-object v0
+
+    .line 431
+    :cond_0
     iget-object v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mHidlConnectionInterface:Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;
 
-    invoke-interface {v0, p1, p2}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;->enableEndc(IZ)Lorg/codeaurora/internal/Token;
+    invoke-interface {v0}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;->generateNextToken()Lorg/codeaurora/internal/Token;
 
     move-result-object v0
 
-    .line 413
+    .line 432
     .local v0, "token":Lorg/codeaurora/internal/Token;
     iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
@@ -2724,19 +2904,24 @@
 
     invoke-virtual {v1, v2, v3}, Ljava/util/concurrent/ConcurrentHashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 415
+    .line 434
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mHidlConnectionInterface:Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;
+
+    invoke-interface {v1, p1, p2, v0}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;->enableEndc(IZLorg/codeaurora/internal/Token;)V
+
+    .line 435
     return-object v0
 .end method
 
 .method public getAidlClientsCount()I
     .locals 2
 
-    .line 685
+    .line 728
     iget-object v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mCallbackList:Ljava/util/ArrayList;
 
     monitor-enter v0
 
-    .line 686
+    .line 729
     :try_start_0
     iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mCallbackList:Ljava/util/ArrayList;
 
@@ -2748,7 +2933,7 @@
 
     return v1
 
-    .line 687
+    .line 730
     :catchall_0
     move-exception v1
 
@@ -2762,7 +2947,7 @@
 .method public getInflightRequestsCount()I
     .locals 1
 
-    .line 691
+    .line 734
     iget-object v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
     invoke-virtual {v0}, Ljava/util/concurrent/ConcurrentHashMap;->size()I
@@ -2782,7 +2967,7 @@
         }
     .end annotation
 
-    .line 395
+    .line 409
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -2801,14 +2986,26 @@
 
     invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 396
+    .line 410
+    invoke-direct {p0, p2}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->isClientValid(Lorg/codeaurora/internal/Client;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    const/4 v0, 0x0
+
+    return-object v0
+
+    .line 411
+    :cond_0
     iget-object v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mHidlConnectionInterface:Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;
 
-    invoke-interface {v0, p1}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;->query5gConfigInfo(I)Lorg/codeaurora/internal/Token;
+    invoke-interface {v0}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;->generateNextToken()Lorg/codeaurora/internal/Token;
 
     move-result-object v0
 
-    .line 397
+    .line 412
     .local v0, "token":Lorg/codeaurora/internal/Token;
     iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
@@ -2828,7 +3025,12 @@
 
     invoke-virtual {v1, v2, v3}, Ljava/util/concurrent/ConcurrentHashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 399
+    .line 414
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mHidlConnectionInterface:Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;
+
+    invoke-interface {v1, p1, v0}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;->query5gConfigInfo(ILorg/codeaurora/internal/Token;)V
+
+    .line 415
     return-object v0
 .end method
 
@@ -2842,7 +3044,7 @@
         }
     .end annotation
 
-    .line 357
+    .line 361
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -2861,14 +3063,26 @@
 
     invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 358
+    .line 362
+    invoke-direct {p0, p2}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->isClientValid(Lorg/codeaurora/internal/Client;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    const/4 v0, 0x0
+
+    return-object v0
+
+    .line 363
+    :cond_0
     iget-object v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mHidlConnectionInterface:Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;
 
-    invoke-interface {v0, p1}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;->query5gStatus(I)Lorg/codeaurora/internal/Token;
+    invoke-interface {v0}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;->generateNextToken()Lorg/codeaurora/internal/Token;
 
     move-result-object v0
 
-    .line 359
+    .line 364
     .local v0, "token":Lorg/codeaurora/internal/Token;
     iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
@@ -2888,7 +3102,12 @@
 
     invoke-virtual {v1, v2, v3}, Ljava/util/concurrent/ConcurrentHashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 360
+    .line 365
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mHidlConnectionInterface:Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;
+
+    invoke-interface {v1, p1, v0}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;->query5gStatus(ILorg/codeaurora/internal/Token;)V
+
+    .line 366
     return-object v0
 .end method
 
@@ -2902,7 +3121,7 @@
         }
     .end annotation
 
-    .line 419
+    .line 439
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -2921,14 +3140,26 @@
 
     invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 420
+    .line 440
+    invoke-direct {p0, p2}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->isClientValid(Lorg/codeaurora/internal/Client;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    const/4 v0, 0x0
+
+    return-object v0
+
+    .line 441
+    :cond_0
     iget-object v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mHidlConnectionInterface:Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;
 
-    invoke-interface {v0, p1}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;->queryEndcStatus(I)Lorg/codeaurora/internal/Token;
+    invoke-interface {v0}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;->generateNextToken()Lorg/codeaurora/internal/Token;
 
     move-result-object v0
 
-    .line 421
+    .line 442
     .local v0, "token":Lorg/codeaurora/internal/Token;
     iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
@@ -2948,7 +3179,12 @@
 
     invoke-virtual {v1, v2, v3}, Ljava/util/concurrent/ConcurrentHashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 423
+    .line 444
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mHidlConnectionInterface:Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;
+
+    invoke-interface {v1, p1, v0}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;->queryEndcStatus(ILorg/codeaurora/internal/Token;)V
+
+    .line 445
     return-object v0
 .end method
 
@@ -2962,7 +3198,7 @@
         }
     .end annotation
 
-    .line 371
+    .line 379
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -2981,14 +3217,26 @@
 
     invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 372
+    .line 380
+    invoke-direct {p0, p2}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->isClientValid(Lorg/codeaurora/internal/Client;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    const/4 v0, 0x0
+
+    return-object v0
+
+    .line 381
+    :cond_0
     iget-object v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mHidlConnectionInterface:Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;
 
-    invoke-interface {v0, p1}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;->queryNrBearerAllocation(I)Lorg/codeaurora/internal/Token;
+    invoke-interface {v0}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;->generateNextToken()Lorg/codeaurora/internal/Token;
 
     move-result-object v0
 
-    .line 373
+    .line 382
     .local v0, "token":Lorg/codeaurora/internal/Token;
     iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
@@ -3008,7 +3256,12 @@
 
     invoke-virtual {v1, v2, v3}, Ljava/util/concurrent/ConcurrentHashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 375
+    .line 384
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mHidlConnectionInterface:Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;
+
+    invoke-interface {v1, p1, v0}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;->queryNrBearerAllocation(ILorg/codeaurora/internal/Token;)V
+
+    .line 385
     return-object v0
 .end method
 
@@ -3022,7 +3275,7 @@
         }
     .end annotation
 
-    .line 364
+    .line 370
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -3041,14 +3294,26 @@
 
     invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 365
+    .line 371
+    invoke-direct {p0, p2}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->isClientValid(Lorg/codeaurora/internal/Client;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    const/4 v0, 0x0
+
+    return-object v0
+
+    .line 372
+    :cond_0
     iget-object v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mHidlConnectionInterface:Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;
 
-    invoke-interface {v0, p1}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;->queryNrDcParam(I)Lorg/codeaurora/internal/Token;
+    invoke-interface {v0}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;->generateNextToken()Lorg/codeaurora/internal/Token;
 
     move-result-object v0
 
-    .line 366
+    .line 373
     .local v0, "token":Lorg/codeaurora/internal/Token;
     iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
@@ -3068,7 +3333,12 @@
 
     invoke-virtual {v1, v2, v3}, Ljava/util/concurrent/ConcurrentHashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 367
+    .line 374
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mHidlConnectionInterface:Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;
+
+    invoke-interface {v1, p1, v0}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;->queryNrDcParam(ILorg/codeaurora/internal/Token;)V
+
+    .line 375
     return-object v0
 .end method
 
@@ -3082,7 +3352,7 @@
         }
     .end annotation
 
-    .line 403
+    .line 419
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -3101,14 +3371,26 @@
 
     invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 404
+    .line 420
+    invoke-direct {p0, p2}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->isClientValid(Lorg/codeaurora/internal/Client;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    const/4 v0, 0x0
+
+    return-object v0
+
+    .line 421
+    :cond_0
     iget-object v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mHidlConnectionInterface:Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;
 
-    invoke-interface {v0, p1}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;->queryNrIconType(I)Lorg/codeaurora/internal/Token;
+    invoke-interface {v0}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;->generateNextToken()Lorg/codeaurora/internal/Token;
 
     move-result-object v0
 
-    .line 405
+    .line 422
     .local v0, "token":Lorg/codeaurora/internal/Token;
     iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
@@ -3128,7 +3410,12 @@
 
     invoke-virtual {v1, v2, v3}, Ljava/util/concurrent/ConcurrentHashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 407
+    .line 424
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mHidlConnectionInterface:Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;
+
+    invoke-interface {v1, p1, v0}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;->queryNrIconType(ILorg/codeaurora/internal/Token;)V
+
+    .line 425
     return-object v0
 .end method
 
@@ -3142,7 +3429,7 @@
         }
     .end annotation
 
-    .line 379
+    .line 389
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -3161,14 +3448,26 @@
 
     invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 380
+    .line 390
+    invoke-direct {p0, p2}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->isClientValid(Lorg/codeaurora/internal/Client;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    const/4 v0, 0x0
+
+    return-object v0
+
+    .line 391
+    :cond_0
     iget-object v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mHidlConnectionInterface:Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;
 
-    invoke-interface {v0, p1}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;->queryNrSignalStrength(I)Lorg/codeaurora/internal/Token;
+    invoke-interface {v0}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;->generateNextToken()Lorg/codeaurora/internal/Token;
 
     move-result-object v0
 
-    .line 381
+    .line 392
     .local v0, "token":Lorg/codeaurora/internal/Token;
     iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
@@ -3188,7 +3487,12 @@
 
     invoke-virtual {v1, v2, v3}, Ljava/util/concurrent/ConcurrentHashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 383
+    .line 394
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mHidlConnectionInterface:Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;
+
+    invoke-interface {v1, p1, v0}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;->queryNrSignalStrength(ILorg/codeaurora/internal/Token;)V
+
+    .line 395
     return-object v0
 .end method
 
@@ -3202,7 +3506,7 @@
         }
     .end annotation
 
-    .line 387
+    .line 399
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -3221,14 +3525,26 @@
 
     invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 388
+    .line 400
+    invoke-direct {p0, p2}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->isClientValid(Lorg/codeaurora/internal/Client;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    const/4 v0, 0x0
+
+    return-object v0
+
+    .line 401
+    :cond_0
     iget-object v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mHidlConnectionInterface:Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;
 
-    invoke-interface {v0, p1}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;->queryUpperLayerIndInfo(I)Lorg/codeaurora/internal/Token;
+    invoke-interface {v0}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;->generateNextToken()Lorg/codeaurora/internal/Token;
 
     move-result-object v0
 
-    .line 389
+    .line 402
     .local v0, "token":Lorg/codeaurora/internal/Token;
     iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
@@ -3248,7 +3564,12 @@
 
     invoke-virtual {v1, v2, v3}, Ljava/util/concurrent/ConcurrentHashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 391
+    .line 404
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mHidlConnectionInterface:Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;
+
+    invoke-interface {v1, p1, v0}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;->queryUpperLayerIndInfo(ILorg/codeaurora/internal/Token;)V
+
+    .line 405
     return-object v0
 .end method
 
@@ -3262,16 +3583,16 @@
         }
     .end annotation
 
-    .line 468
+    .line 506
     const/4 v0, 0x0
 
-    .line 469
+    .line 507
     .local v0, "client":Lorg/codeaurora/internal/Client;
     invoke-interface {p2}, Lorg/codeaurora/internal/INetworkCallback;->asBinder()Landroid/os/IBinder;
 
     move-result-object v1
 
-    .line 471
+    .line 509
     .local v1, "binder":Landroid/os/IBinder;
     new-instance v2, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl$ClientBinderDeathRecipient;
 
@@ -3281,12 +3602,12 @@
 
     invoke-interface {v1, v2, v3}, Landroid/os/IBinder;->linkToDeath(Landroid/os/IBinder$DeathRecipient;I)V
 
-    .line 473
+    .line 511
     invoke-static {}, Landroid/os/Binder;->getCallingUid()I
 
     move-result v2
 
-    .line 474
+    .line 512
     .local v2, "uid":I
     sget-object v3, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mContext:Landroid/content/Context;
 
@@ -3298,7 +3619,7 @@
 
     move-result-object v3
 
-    .line 475
+    .line 513
     .local v3, "callerPackageName":Ljava/lang/String;
     new-instance v4, Ljava/lang/StringBuilder;
 
@@ -3336,7 +3657,7 @@
 
     invoke-static {v5, v4}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 477
+    .line 515
     iget-object v4, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mAppOpsManager:Landroid/app/AppOpsManager;
 
     invoke-static {}, Landroid/os/Binder;->getCallingUid()I
@@ -3345,7 +3666,7 @@
 
     invoke-virtual {v4, v6, p1}, Landroid/app/AppOpsManager;->checkPackage(ILjava/lang/String;)V
 
-    .line 479
+    .line 517
     invoke-direct {p0, p2}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->addCallback(Lorg/codeaurora/internal/INetworkCallback;)Z
 
     move-result v4
@@ -3354,7 +3675,7 @@
 
     if-ne v4, v6, :cond_0
 
-    .line 480
+    .line 518
     new-instance v4, Lorg/codeaurora/internal/Client;
 
     iget v6, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mClientIndex:I
@@ -3367,7 +3688,7 @@
 
     move-object v0, v4
 
-    .line 481
+    .line 519
     new-instance v4, Ljava/lang/StringBuilder;
 
     invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
@@ -3386,19 +3707,19 @@
 
     goto :goto_0
 
-    .line 484
+    .line 522
     :cond_0
     const-string v4, "registerCallback: callback could not be added."
 
     invoke-static {v5, v4}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 486
+    .line 524
     :goto_0
     return-object v0
 .end method
 
 .method retrieveCallbacks(I)Ljava/util/ArrayList;
-    .locals 4
+    .locals 5
     .param p1, "tokenKey"    # I
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -3409,18 +3730,18 @@
         }
     .end annotation
 
-    .line 521
+    .line 559
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
-    .line 522
+    .line 560
     .local v0, "list":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Lorg/codeaurora/internal/INetworkCallback;>;"
     const/4 v1, -0x1
 
-    if-eq p1, v1, :cond_0
+    if-eq p1, v1, :cond_1
 
-    .line 523
+    .line 561
     iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
     invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -3431,9 +3752,9 @@
 
     move-result v1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_2
 
-    .line 524
+    .line 562
     iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mInflightRequests:Ljava/util/concurrent/ConcurrentHashMap;
 
     invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -3446,48 +3767,76 @@
 
     check-cast v1, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl$Transaction;
 
-    .line 525
+    .line 563
     .local v1, "txn":Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl$Transaction;
     iget-object v2, v1, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl$Transaction;->mClient:Lorg/codeaurora/internal/Client;
 
-    .line 526
+    .line 564
     .local v2, "client":Lorg/codeaurora/internal/Client;
+    invoke-direct {p0, v2}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->isClientValid(Lorg/codeaurora/internal/Client;)Z
+
+    move-result v3
+
+    if-eqz v3, :cond_0
+
+    .line 565
     invoke-virtual {v2}, Lorg/codeaurora/internal/Client;->getCallback()Lorg/codeaurora/internal/INetworkCallback;
 
     move-result-object v3
 
     invoke-virtual {v0, v3}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 527
-    .end local v1    # "txn":Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl$Transaction;
-    .end local v2    # "client":Lorg/codeaurora/internal/Client;
     goto :goto_0
 
-    .line 529
+    .line 567
     :cond_0
+    new-instance v3, Ljava/lang/StringBuilder;
+
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v4, "This client is invalid now: "
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    const-string v4, "MainServiceImpl"
+
+    invoke-static {v4, v3}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 569
+    .end local v1    # "txn":Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl$Transaction;
+    .end local v2    # "client":Lorg/codeaurora/internal/Client;
+    :goto_0
+    goto :goto_1
+
+    .line 571
+    :cond_1
     iget-object v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mCallbackList:Ljava/util/ArrayList;
 
-    .line 532
-    :cond_1
-    :goto_0
+    .line 574
+    :cond_2
+    :goto_1
     return-object v0
 .end method
 
 .method public setHidlClient(Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;)V
-    .locals 2
+    .locals 1
     .param p1, "hidlClient"    # Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;
 
-    .line 329
+    .line 328
     iput-object p1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mHidlConnectionInterface:Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;
 
+    .line 329
+    iget-object v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mHidlConnectionCallback:Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionCallback;
+
+    invoke-interface {p1, v0}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;->registerCallback(Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionCallback;)V
+
     .line 330
-    iget-object v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mHidlConnectionInterface:Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;
-
-    iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mHidlConnectionCallback:Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionCallback;
-
-    invoke-interface {v0, v1}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionInterface;->registerCallback(Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionCallback;)V
-
-    .line 331
     return-void
 .end method
 
@@ -3495,14 +3844,14 @@
     .locals 1
     .param p1, "workerLooper"    # Landroid/os/Looper;
 
-    .line 325
+    .line 324
     new-instance v0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl$WorkerHandler;
 
     invoke-direct {v0, p0, p1}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl$WorkerHandler;-><init>(Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;Landroid/os/Looper;)V
 
     iput-object v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->mWorkerThreadHandler:Landroid/os/Handler;
 
-    .line 326
+    .line 325
     return-void
 .end method
 
@@ -3515,12 +3864,12 @@
         }
     .end annotation
 
-    .line 490
+    .line 528
     invoke-direct {p0, p1}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->removeCallback(Lorg/codeaurora/internal/INetworkCallback;)V
 
-    .line 491
+    .line 529
     invoke-direct {p0, p1}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->removeClientFromInflightRequests(Lorg/codeaurora/internal/INetworkCallback;)V
 
-    .line 492
+    .line 530
     return-void
 .end method

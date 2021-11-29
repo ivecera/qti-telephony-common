@@ -18,6 +18,11 @@
     .line 4
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
+    .line 5
+    const/4 v0, 0x0
+
+    iput v0, p0, Landroid/hardware/radio/V1_0/SmsWriteArgs;->status:I
+
     .line 6
     new-instance v0, Ljava/lang/String;
 
@@ -408,7 +413,7 @@
     iput-object v6, v0, Landroid/hardware/radio/V1_0/SmsWriteArgs;->pdu:Ljava/lang/String;
 
     .line 86
-    iget-object v6, v0, Landroid/hardware/radio/V1_0/SmsWriteArgs;->pdu:Ljava/lang/String;
+    nop
 
     .line 87
     invoke-virtual {v6}, Ljava/lang/String;->getBytes()[B
@@ -449,7 +454,7 @@
     iput-object v6, v0, Landroid/hardware/radio/V1_0/SmsWriteArgs;->smsc:Ljava/lang/String;
 
     .line 93
-    iget-object v6, v0, Landroid/hardware/radio/V1_0/SmsWriteArgs;->smsc:Ljava/lang/String;
+    nop
 
     .line 94
     invoke-virtual {v6}, Ljava/lang/String;->getBytes()[B

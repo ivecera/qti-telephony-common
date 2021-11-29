@@ -33,17 +33,25 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 1
+    .locals 2
 
     .line 4
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
+    .line 5
+    const/4 v0, 0x0
+
+    iput v0, p0, Landroid/hardware/radio/V1_0/HardwareConfig;->type:I
+
     .line 6
-    new-instance v0, Ljava/lang/String;
+    new-instance v1, Ljava/lang/String;
 
-    invoke-direct {v0}, Ljava/lang/String;-><init>()V
+    invoke-direct {v1}, Ljava/lang/String;-><init>()V
 
-    iput-object v0, p0, Landroid/hardware/radio/V1_0/HardwareConfig;->uuid:Ljava/lang/String;
+    iput-object v1, p0, Landroid/hardware/radio/V1_0/HardwareConfig;->uuid:Ljava/lang/String;
+
+    .line 7
+    iput v0, p0, Landroid/hardware/radio/V1_0/HardwareConfig;->state:I
 
     .line 8
     new-instance v0, Ljava/util/ArrayList;
@@ -497,7 +505,7 @@
     iput-object v1, v0, Landroid/hardware/radio/V1_0/HardwareConfig;->uuid:Ljava/lang/String;
 
     .line 100
-    iget-object v1, v0, Landroid/hardware/radio/V1_0/HardwareConfig;->uuid:Ljava/lang/String;
+    nop
 
     .line 101
     invoke-virtual {v1}, Ljava/lang/String;->getBytes()[B

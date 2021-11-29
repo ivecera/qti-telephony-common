@@ -209,11 +209,9 @@
     iput-object p1, p0, Lcom/qualcomm/qti/internal/telephony/WifiSarController;->mContext:Landroid/content/Context;
 
     .line 58
-    iget-object v6, p0, Lcom/qualcomm/qti/internal/telephony/WifiSarController;->mContext:Landroid/content/Context;
+    const-string v6, "wifi"
 
-    const-string v7, "wifi"
-
-    invoke-virtual {v6, v7}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+    invoke-virtual {p1, v6}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
 
     move-result-object v6
 
@@ -399,7 +397,7 @@
 .end method
 
 .method private calculateSarSetPatern2()I
-    .locals 5
+    .locals 6
 
     .line 168
     const/4 v0, 0x5
@@ -444,11 +442,13 @@
     .local v1, "staFreq":I
     iget-object v3, p0, Lcom/qualcomm/qti/internal/telephony/WifiSarController;->mWifiManager:Landroid/net/wifi/WifiManager;
 
-    invoke-virtual {v3}, Landroid/net/wifi/WifiManager;->getWifiApConfiguration()Landroid/net/wifi/WifiConfiguration;
+    invoke-virtual {v3}, Landroid/net/wifi/WifiManager;->getSoftApConfiguration()Landroid/net/wifi/SoftApConfiguration;
 
     move-result-object v3
 
-    iget v3, v3, Landroid/net/wifi/WifiConfiguration;->apBand:I
+    invoke-virtual {v3}, Landroid/net/wifi/SoftApConfiguration;->getBand()I
+
+    move-result v3
 
     .line 179
     .local v3, "sapBand":I
@@ -456,12 +456,14 @@
 
     if-ge v1, v4, :cond_1
 
-    if-eq v3, v2, :cond_2
+    const/4 v5, 0x2
+
+    if-eq v3, v5, :cond_2
 
     :cond_1
     if-le v1, v4, :cond_3
 
-    if-nez v3, :cond_3
+    if-ne v3, v2, :cond_3
 
     .line 181
     :cond_2

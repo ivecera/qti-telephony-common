@@ -23,24 +23,44 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 1
+    .locals 2
 
     .line 4
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
+    .line 5
+    const/4 v0, 0x0
+
+    iput v0, p0, Landroid/hardware/radio/V1_0/AppStatus;->appType:I
+
+    .line 6
+    iput v0, p0, Landroid/hardware/radio/V1_0/AppStatus;->appState:I
+
+    .line 7
+    iput v0, p0, Landroid/hardware/radio/V1_0/AppStatus;->persoSubstate:I
+
     .line 8
-    new-instance v0, Ljava/lang/String;
+    new-instance v1, Ljava/lang/String;
 
-    invoke-direct {v0}, Ljava/lang/String;-><init>()V
+    invoke-direct {v1}, Ljava/lang/String;-><init>()V
 
-    iput-object v0, p0, Landroid/hardware/radio/V1_0/AppStatus;->aidPtr:Ljava/lang/String;
+    iput-object v1, p0, Landroid/hardware/radio/V1_0/AppStatus;->aidPtr:Ljava/lang/String;
 
     .line 9
-    new-instance v0, Ljava/lang/String;
+    new-instance v1, Ljava/lang/String;
 
-    invoke-direct {v0}, Ljava/lang/String;-><init>()V
+    invoke-direct {v1}, Ljava/lang/String;-><init>()V
 
-    iput-object v0, p0, Landroid/hardware/radio/V1_0/AppStatus;->appLabelPtr:Ljava/lang/String;
+    iput-object v1, p0, Landroid/hardware/radio/V1_0/AppStatus;->appLabelPtr:Ljava/lang/String;
+
+    .line 10
+    iput v0, p0, Landroid/hardware/radio/V1_0/AppStatus;->pin1Replaced:I
+
+    .line 11
+    iput v0, p0, Landroid/hardware/radio/V1_0/AppStatus;->pin1:I
+
+    .line 12
+    iput v0, p0, Landroid/hardware/radio/V1_0/AppStatus;->pin2:I
 
     return-void
 .end method
@@ -590,7 +610,7 @@
     iput-object v6, v0, Landroid/hardware/radio/V1_0/AppStatus;->aidPtr:Ljava/lang/String;
 
     .line 123
-    iget-object v6, v0, Landroid/hardware/radio/V1_0/AppStatus;->aidPtr:Ljava/lang/String;
+    nop
 
     .line 124
     invoke-virtual {v6}, Ljava/lang/String;->getBytes()[B
@@ -631,7 +651,7 @@
     iput-object v6, v0, Landroid/hardware/radio/V1_0/AppStatus;->appLabelPtr:Ljava/lang/String;
 
     .line 130
-    iget-object v6, v0, Landroid/hardware/radio/V1_0/AppStatus;->appLabelPtr:Ljava/lang/String;
+    nop
 
     .line 131
     invoke-virtual {v6}, Ljava/lang/String;->getBytes()[B

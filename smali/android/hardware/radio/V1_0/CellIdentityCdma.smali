@@ -17,10 +17,27 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .locals 1
 
     .line 4
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 5
+    const/4 v0, 0x0
+
+    iput v0, p0, Landroid/hardware/radio/V1_0/CellIdentityCdma;->networkId:I
+
+    .line 6
+    iput v0, p0, Landroid/hardware/radio/V1_0/CellIdentityCdma;->systemId:I
+
+    .line 7
+    iput v0, p0, Landroid/hardware/radio/V1_0/CellIdentityCdma;->baseStationId:I
+
+    .line 8
+    iput v0, p0, Landroid/hardware/radio/V1_0/CellIdentityCdma;->longitude:I
+
+    .line 9
+    iput v0, p0, Landroid/hardware/radio/V1_0/CellIdentityCdma;->latitude:I
 
     return-void
 .end method

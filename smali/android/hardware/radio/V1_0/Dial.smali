@@ -33,6 +33,11 @@
 
     iput-object v0, p0, Landroid/hardware/radio/V1_0/Dial;->address:Ljava/lang/String;
 
+    .line 6
+    const/4 v0, 0x0
+
+    iput v0, p0, Landroid/hardware/radio/V1_0/Dial;->clir:I
+
     .line 7
     new-instance v0, Ljava/util/ArrayList;
 
@@ -405,7 +410,7 @@
     iput-object v4, v0, Landroid/hardware/radio/V1_0/Dial;->address:Ljava/lang/String;
 
     .line 85
-    iget-object v4, v0, Landroid/hardware/radio/V1_0/Dial;->address:Ljava/lang/String;
+    nop
 
     .line 86
     invoke-virtual {v4}, Ljava/lang/String;->getBytes()[B

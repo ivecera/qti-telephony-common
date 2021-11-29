@@ -18,6 +18,14 @@
     .line 4
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
+    .line 5
+    const/4 v0, 0x0
+
+    iput v0, p0, Landroid/hardware/radio/V1_0/UusInfo;->uusType:I
+
+    .line 6
+    iput v0, p0, Landroid/hardware/radio/V1_0/UusInfo;->uusDcs:I
+
     .line 7
     new-instance v0, Ljava/lang/String;
 
@@ -412,7 +420,7 @@
     iput-object v6, v0, Landroid/hardware/radio/V1_0/UusInfo;->uusData:Ljava/lang/String;
 
     .line 87
-    iget-object v6, v0, Landroid/hardware/radio/V1_0/UusInfo;->uusData:Ljava/lang/String;
+    nop
 
     .line 88
     invoke-virtual {v6}, Ljava/lang/String;->getBytes()[B

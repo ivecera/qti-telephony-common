@@ -23,17 +23,25 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 1
+    .locals 2
 
     .line 4
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
+    .line 5
+    const/4 v0, 0x0
+
+    iput v0, p0, Landroid/hardware/radio/V1_0/PcoDataInfo;->cid:I
+
     .line 6
-    new-instance v0, Ljava/lang/String;
+    new-instance v1, Ljava/lang/String;
 
-    invoke-direct {v0}, Ljava/lang/String;-><init>()V
+    invoke-direct {v1}, Ljava/lang/String;-><init>()V
 
-    iput-object v0, p0, Landroid/hardware/radio/V1_0/PcoDataInfo;->bearerProto:Ljava/lang/String;
+    iput-object v1, p0, Landroid/hardware/radio/V1_0/PcoDataInfo;->bearerProto:Ljava/lang/String;
+
+    .line 7
+    iput v0, p0, Landroid/hardware/radio/V1_0/PcoDataInfo;->pcoId:I
 
     .line 8
     new-instance v0, Ljava/util/ArrayList;
@@ -448,7 +456,7 @@
     iput-object v6, v0, Landroid/hardware/radio/V1_0/PcoDataInfo;->bearerProto:Ljava/lang/String;
 
     .line 93
-    iget-object v6, v0, Landroid/hardware/radio/V1_0/PcoDataInfo;->bearerProto:Ljava/lang/String;
+    nop
 
     .line 94
     invoke-virtual {v6}, Ljava/lang/String;->getBytes()[B
@@ -536,17 +544,20 @@
     :goto_0
     if-ge v3, v4, :cond_0
 
+    .line 107
+    const/4 v5, 0x0
+
     .line 108
-    mul-int/lit8 v5, v3, 0x1
+    .local v5, "_hidl_vec_element":B
+    mul-int/lit8 v6, v3, 0x1
 
-    int-to-long v5, v5
+    int-to-long v6, v6
 
-    invoke-virtual {v2, v5, v6}, Landroid/os/HwBlob;->getInt8(J)B
+    invoke-virtual {v2, v6, v7}, Landroid/os/HwBlob;->getInt8(J)B
 
     move-result v5
 
     .line 109
-    .local v5, "_hidl_vec_element":B
     iget-object v6, v0, Landroid/hardware/radio/V1_0/PcoDataInfo;->contents:Ljava/util/ArrayList;
 
     invoke-static {v5}, Ljava/lang/Byte;->valueOf(B)Ljava/lang/Byte;

@@ -263,10 +263,12 @@
     .local p0, "map":Ljava/util/HashMap;, "Ljava/util/HashMap<Ljava/lang/Integer;Ljava/lang/Object;>;"
     const/4 v0, -0x1
 
+    .line 509
     invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v1
 
+    .line 352
     if-nez p0, :cond_0
 
     .line 353
@@ -1247,8 +1249,6 @@
     sput v0, Lcom/qualcomm/qcrilhook/PresenceOemHook;->mRefCount:I
 
     .line 123
-    sget v0, Lcom/qualcomm/qcrilhook/PresenceOemHook;->mRefCount:I
-
     if-nez v0, :cond_0
 
     .line 124

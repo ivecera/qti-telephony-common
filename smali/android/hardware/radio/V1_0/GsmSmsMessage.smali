@@ -365,7 +365,7 @@
     iput-object v4, v0, Landroid/hardware/radio/V1_0/GsmSmsMessage;->smscPdu:Ljava/lang/String;
 
     .line 78
-    iget-object v4, v0, Landroid/hardware/radio/V1_0/GsmSmsMessage;->smscPdu:Ljava/lang/String;
+    nop
 
     .line 79
     invoke-virtual {v4}, Ljava/lang/String;->getBytes()[B
@@ -406,7 +406,7 @@
     iput-object v6, v0, Landroid/hardware/radio/V1_0/GsmSmsMessage;->pdu:Ljava/lang/String;
 
     .line 85
-    iget-object v6, v0, Landroid/hardware/radio/V1_0/GsmSmsMessage;->pdu:Ljava/lang/String;
+    nop
 
     .line 86
     invoke-virtual {v6}, Ljava/lang/String;->getBytes()[B

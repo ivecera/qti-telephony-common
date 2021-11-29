@@ -26,6 +26,14 @@
     .line 4
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
+    .line 5
+    const/4 v0, 0x0
+
+    iput v0, p0, Landroid/hardware/radio/V1_0/CdmaSmsSubaddress;->subaddressType:I
+
+    .line 6
+    iput-boolean v0, p0, Landroid/hardware/radio/V1_0/CdmaSmsSubaddress;->odd:Z
+
     .line 7
     new-instance v0, Ljava/util/ArrayList;
 
@@ -456,17 +464,20 @@
     :goto_0
     if-ge v3, v6, :cond_0
 
+    .line 93
+    const/4 v4, 0x0
+
     .line 94
-    mul-int/lit8 v4, v3, 0x1
+    .local v4, "_hidl_vec_element":B
+    mul-int/lit8 v5, v3, 0x1
 
-    int-to-long v4, v4
+    int-to-long v7, v5
 
-    invoke-virtual {v2, v4, v5}, Landroid/os/HwBlob;->getInt8(J)B
+    invoke-virtual {v2, v7, v8}, Landroid/os/HwBlob;->getInt8(J)B
 
     move-result v4
 
     .line 95
-    .local v4, "_hidl_vec_element":B
     iget-object v5, v0, Landroid/hardware/radio/V1_0/CdmaSmsSubaddress;->digits:Ljava/util/ArrayList;
 
     invoke-static {v4}, Ljava/lang/Byte;->valueOf(B)Ljava/lang/Byte;

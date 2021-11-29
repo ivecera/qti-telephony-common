@@ -79,19 +79,19 @@
 .method static constructor <clinit>()V
     .locals 2
 
-    .line 91
+    .line 93
     const/4 v0, 0x0
 
     sput-object v0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mUiccController:Lcom/android/internal/telephony/uicc/UiccController;
 
-    .line 93
+    .line 95
     new-instance v0, Ljava/lang/Object;
 
     invoke-direct {v0}, Ljava/lang/Object;-><init>()V
 
     sput-object v0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->sManualProvLock:Ljava/lang/Object;
 
-    .line 94
+    .line 96
     new-instance v0, Ljava/util/concurrent/atomic/AtomicBoolean;
 
     const/4 v1, 0x0
@@ -108,38 +108,36 @@
     .param p1, "context"    # Landroid/content/Context;
     .param p2, "cis"    # [Lcom/android/internal/telephony/CommandsInterface;
 
-    .line 189
+    .line 191
     invoke-direct {p0}, Landroid/os/Handler;-><init>()V
 
-    .line 75
+    .line 77
     new-instance v0, Landroid/os/RegistrantList;
 
     invoke-direct {v0}, Landroid/os/RegistrantList;-><init>()V
 
     iput-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mManualProvisionChangedRegistrants:Landroid/os/RegistrantList;
 
-    .line 190
+    .line 192
     iput-object p1, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mContext:Landroid/content/Context;
 
-    .line 192
-    iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mContext:Landroid/content/Context;
+    .line 194
+    const-string v0, "phone"
 
-    const-string v1, "phone"
-
-    invoke-virtual {v0, v1}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+    invoke-virtual {p1, v0}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
 
     move-result-object v0
 
     check-cast v0, Landroid/telephony/TelephonyManager;
 
-    .line 193
+    .line 195
     invoke-virtual {v0}, Landroid/telephony/TelephonyManager;->getPhoneCount()I
 
     move-result v0
 
     sput v0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mNumPhones:I
 
-    .line 194
+    .line 196
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -158,42 +156,42 @@
 
     invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->logd(Ljava/lang/String;)V
 
-    .line 196
+    .line 198
     iput-object p2, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mCis:[Lcom/android/internal/telephony/CommandsInterface;
 
-    .line 197
+    .line 199
     sget v0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mNumPhones:I
 
     new-array v1, v0, [Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;
 
     iput-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mProvisionStatus:[Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;
 
-    .line 198
+    .line 200
     new-array v1, v0, [Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;
 
     iput-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mOldProvisionStatus:[Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;
 
-    .line 199
+    .line 201
     new-array v1, v0, [Ljava/lang/String;
 
     iput-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mSimIccId:[Ljava/lang/String;
 
-    .line 200
+    .line 202
     new-array v1, v0, [Ljava/lang/String;
 
     iput-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mSimFullIccId:[Ljava/lang/String;
 
-    .line 201
+    .line 203
     new-array v1, v0, [Lcom/android/internal/telephony/uicc/IccCardStatus$CardState;
 
     iput-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mCardState:[Lcom/android/internal/telephony/uicc/IccCardStatus$CardState;
 
-    .line 202
+    .line 204
     new-array v0, v0, [Z
 
     iput-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mIsIccIdQueryPending:[Z
 
-    .line 203
+    .line 205
     const/4 v0, 0x0
 
     .local v0, "index":I
@@ -204,17 +202,17 @@
 
     if-ge v0, v1, :cond_0
 
-    .line 204
+    .line 206
     iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mSimIccId:[Ljava/lang/String;
 
     aput-object v2, v1, v0
 
-    .line 205
+    .line 207
     iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mSimFullIccId:[Ljava/lang/String;
 
     aput-object v2, v1, v0
 
-    .line 206
+    .line 208
     iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mProvisionStatus:[Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;
 
     new-instance v2, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;
@@ -223,21 +221,21 @@
 
     aput-object v2, v1, v0
 
-    .line 207
+    .line 209
     iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mCardState:[Lcom/android/internal/telephony/uicc/IccCardStatus$CardState;
 
     sget-object v2, Lcom/android/internal/telephony/uicc/IccCardStatus$CardState;->CARDSTATE_ABSENT:Lcom/android/internal/telephony/uicc/IccCardStatus$CardState;
 
     aput-object v2, v1, v0
 
-    .line 208
+    .line 210
     iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mIsIccIdQueryPending:[Z
 
     const/4 v2, 0x0
 
     aput-boolean v2, v1, v0
 
-    .line 209
+    .line 211
     iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mOldProvisionStatus:[Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;
 
     new-instance v2, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;
@@ -246,7 +244,7 @@
 
     aput-object v2, v1, v0
 
-    .line 211
+    .line 213
     iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mCis:[Lcom/android/internal/telephony/CommandsInterface;
 
     aget-object v1, v1, v0
@@ -259,7 +257,7 @@
 
     invoke-interface {v1, p0, v2, v3}, Lcom/android/internal/telephony/CommandsInterface;->registerForAvailable(Landroid/os/Handler;ILjava/lang/Object;)V
 
-    .line 212
+    .line 214
     iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mCis:[Lcom/android/internal/telephony/CommandsInterface;
 
     aget-object v1, v1, v0
@@ -272,12 +270,12 @@
 
     invoke-interface {v1, p0, v2, v3}, Lcom/android/internal/telephony/CommandsInterface;->registerForIccRefresh(Landroid/os/Handler;ILjava/lang/Object;)V
 
-    .line 203
+    .line 205
     add-int/lit8 v0, v0, 0x1
 
     goto :goto_0
 
-    .line 214
+    .line 216
     .end local v0    # "index":I
     :cond_0
     invoke-static {}, Lcom/android/internal/telephony/uicc/UiccController;->getInstance()Lcom/android/internal/telephony/uicc/UiccController;
@@ -286,35 +284,31 @@
 
     sput-object v0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mUiccController:Lcom/android/internal/telephony/uicc/UiccController;
 
-    .line 215
-    sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mUiccController:Lcom/android/internal/telephony/uicc/UiccController;
-
+    .line 217
     const/4 v1, 0x1
 
     invoke-virtual {v0, p0, v1, v2}, Lcom/android/internal/telephony/uicc/UiccController;->registerForIccChanged(Landroid/os/Handler;ILjava/lang/Object;)V
 
-    .line 217
+    .line 219
     invoke-static {p1}, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->getInstance(Landroid/content/Context;)Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mQtiRilInterface:Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;
 
-    .line 218
-    iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mQtiRilInterface:Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;
-
+    .line 220
     const/4 v1, 0x3
 
     invoke-virtual {v0, p0, v1, v2}, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->registerForServiceReadyEvent(Landroid/os/Handler;ILjava/lang/Object;)V
 
-    .line 219
+    .line 221
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mQtiRilInterface:Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;
 
     const/4 v1, 0x2
 
     invoke-virtual {v0, p0, v1, v2}, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->registerForUnsol(Landroid/os/Handler;ILjava/lang/Object;)V
 
-    .line 221
+    .line 223
     return-void
 .end method
 
@@ -323,30 +317,30 @@
     .param p1, "phoneId"    # I
     .param p2, "newProvisionState"    # I
 
-    .line 561
+    .line 595
     new-instance v0, Landroid/content/Intent;
 
     const-string v1, "org.codeaurora.intent.action.ACTION_UICC_MANUAL_PROVISION_STATUS_CHANGED"
 
     invoke-direct {v0, v1}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
 
-    .line 562
+    .line 596
     .local v0, "intent":Landroid/content/Intent;
     const-string v1, "phone"
 
     invoke-virtual {v0, v1, p1}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
 
-    .line 563
+    .line 597
     const-string v1, "newProvisionState"
 
     invoke-virtual {v0, v1, p2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
 
-    .line 564
+    .line 598
     iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mContext:Landroid/content/Context;
 
     invoke-virtual {v1, v0}, Landroid/content/Context;->sendBroadcast(Landroid/content/Intent;)V
 
-    .line 565
+    .line 599
     iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mManualProvisionChangedRegistrants:Landroid/os/RegistrantList;
 
     new-instance v2, Landroid/os/AsyncResult;
@@ -361,7 +355,7 @@
 
     invoke-virtual {v1, v2}, Landroid/os/RegistrantList;->notifyRegistrants(Landroid/os/AsyncResult;)V
 
-    .line 566
+    .line 600
     return-void
 .end method
 
@@ -369,29 +363,23 @@
     .locals 3
     .param p1, "slotId"    # I
 
-    .line 684
+    .line 745
     const/4 v0, 0x0
 
-    .line 686
+    .line 747
     .local v0, "retVal":Z
-    sget v1, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mNumPhones:I
-
-    const/4 v2, 0x1
-
-    if-le v1, v2, :cond_0
-
     invoke-direct {p0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->isValidSlotId(I)Z
 
     move-result v1
 
     if-eqz v1, :cond_0
 
-    .line 687
+    .line 748
     const/4 v0, 0x1
 
     goto :goto_0
 
-    .line 689
+    .line 750
     :cond_0
     new-instance v1, Ljava/lang/StringBuilder;
 
@@ -417,7 +405,7 @@
 
     invoke-direct {p0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->loge(Ljava/lang/String;)V
 
-    .line 691
+    .line 752
     :goto_0
     return v0
 .end method
@@ -426,14 +414,14 @@
     .locals 2
     .param p1, "message"    # Ljava/lang/String;
 
-    .line 678
+    .line 739
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mContext:Landroid/content/Context;
 
     const-string v1, "android.permission.MODIFY_PHONE_STATE"
 
     invoke-virtual {v0, v1, p1}, Landroid/content/Context;->enforceCallingOrSelfPermission(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 680
+    .line 741
     return-void
 .end method
 
@@ -441,12 +429,12 @@
     .locals 2
     .param p1, "slotId"    # I
 
-    .line 570
+    .line 604
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->sManualProvLock:Ljava/lang/Object;
 
     monitor-enter v0
 
-    .line 571
+    .line 605
     :try_start_0
     iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mProvisionStatus:[Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;
 
@@ -460,7 +448,7 @@
 
     return v1
 
-    .line 572
+    .line 606
     :catchall_0
     move-exception v1
 
@@ -471,22 +459,113 @@
     throw v1
 .end method
 
+.method private getFullIccIdFromUicc(I)Ljava/lang/String;
+    .locals 6
+    .param p1, "phoneId"    # I
+
+    .line 512
+    const/4 v0, 0x0
+
+    .line 513
+    .local v0, "fullIccId":Ljava/lang/String;
+    sget-object v1, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mUiccController:Lcom/android/internal/telephony/uicc/UiccController;
+
+    invoke-virtual {v1, p1}, Lcom/android/internal/telephony/uicc/UiccController;->getUiccCard(I)Lcom/android/internal/telephony/uicc/UiccCard;
+
+    move-result-object v1
+
+    .line 514
+    .local v1, "uiccCard":Lcom/android/internal/telephony/uicc/UiccCard;
+    sget-object v2, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mUiccController:Lcom/android/internal/telephony/uicc/UiccController;
+
+    invoke-virtual {v2, p1}, Lcom/android/internal/telephony/uicc/UiccController;->getUiccSlotForPhone(I)Lcom/android/internal/telephony/uicc/UiccSlot;
+
+    move-result-object v2
+
+    .line 515
+    .local v2, "uiccSlot":Lcom/android/internal/telephony/uicc/UiccSlot;
+    if-eqz v1, :cond_0
+
+    .line 516
+    invoke-virtual {v1}, Lcom/android/internal/telephony/uicc/UiccCard;->getIccId()Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_0
+
+    .line 517
+    :cond_0
+    const-string v3, "] object is null"
+
+    if-eqz v2, :cond_1
+
+    .line 518
+    new-instance v4, Ljava/lang/StringBuilder;
+
+    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v5, " queryUiccProvisionInfo, uiccCard["
+
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v4, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v4, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-direct {p0, v3}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->logi(Ljava/lang/String;)V
+
+    .line 519
+    invoke-virtual {v2}, Lcom/android/internal/telephony/uicc/UiccSlot;->getIccId()Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_0
+
+    .line 521
+    :cond_1
+    new-instance v4, Ljava/lang/StringBuilder;
+
+    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v5, " queryUiccProvisionInfo, uiccSlot["
+
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v4, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v4, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-direct {p0, v3}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->logi(Ljava/lang/String;)V
+
+    .line 525
+    :goto_0
+    return-object v0
+.end method
+
 .method public static getInstance()Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;
     .locals 2
 
-    .line 183
+    .line 185
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->sInstance:Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;
 
     if-nez v0, :cond_0
 
-    .line 184
+    .line 186
     const-string v0, "QtiUiccCardProvisioner"
 
     const-string v1, "QtiUiccCardProvisioner.getInstance called before make"
 
     invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 186
+    .line 188
     :cond_0
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->sInstance:Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;
 
@@ -497,7 +576,7 @@
     .locals 8
     .param p1, "msg"    # Landroid/os/Message;
 
-    .line 370
+    .line 372
     if-eqz p1, :cond_2
 
     iget-object v0, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
@@ -506,7 +585,7 @@
 
     goto :goto_0
 
-    .line 374
+    .line 376
     :cond_0
     iget-object v0, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
@@ -516,7 +595,7 @@
 
     move-result-object v0
 
-    .line 375
+    .line 377
     .local v0, "payload":Ljava/nio/ByteBuffer;
     invoke-static {}, Ljava/nio/ByteOrder;->nativeOrder()Ljava/nio/ByteOrder;
 
@@ -524,16 +603,16 @@
 
     invoke-virtual {v0, v1}, Ljava/nio/ByteBuffer;->order(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;
 
-    .line 377
+    .line 379
     invoke-virtual {v0}, Ljava/nio/ByteBuffer;->getInt()I
 
     move-result v1
 
-    .line 378
+    .line 380
     .local v1, "rspId":I
     iget v2, p1, Landroid/os/Message;->arg1:I
 
-    .line 380
+    .line 382
     .local v2, "slotId":I
     invoke-direct {p0, v2}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->isValidSlotId(I)Z
 
@@ -545,7 +624,7 @@
 
     if-ne v1, v3, :cond_1
 
-    .line 382
+    .line 384
     new-instance v3, Ljava/lang/StringBuilder;
 
     invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
@@ -570,27 +649,27 @@
 
     invoke-direct {p0, v3}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->logi(Ljava/lang/String;)V
 
-    .line 383
+    .line 385
     const/4 v3, 0x0
 
     invoke-direct {p0, v2, v3}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->queryUiccProvisionInfo(IZ)V
 
-    .line 384
+    .line 386
     invoke-static {}, Landroid/telephony/SubscriptionManager;->getDefaultDataSubscriptionId()I
 
     move-result v4
 
-    .line 385
+    .line 387
     .local v4, "dataSubId":I
     invoke-static {v4}, Landroid/telephony/SubscriptionManager;->getSlotIndex(I)I
 
     move-result v5
 
-    .line 386
+    .line 388
     .local v5, "dataSlotId":I
     if-ne v2, v5, :cond_1
 
-    .line 387
+    .line 389
     invoke-direct {p0, v5}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->getCurrentProvisioningStatus(I)I
 
     move-result v6
@@ -599,25 +678,25 @@
 
     if-ne v6, v7, :cond_1
 
-    .line 388
+    .line 390
     const-string v6, "Set dds after SSR"
 
     invoke-direct {p0, v6}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->logd(Ljava/lang/String;)V
 
-    .line 389
+    .line 391
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;
 
     move-result-object v6
 
     invoke-virtual {v6, v3}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->setDdsIfRequired(Z)V
 
-    .line 392
+    .line 394
     .end local v4    # "dataSubId":I
     .end local v5    # "dataSlotId":I
     :cond_1
     return-void
 
-    .line 371
+    .line 373
     .end local v0    # "payload":Ljava/nio/ByteBuffer;
     .end local v1    # "rspId":I
     .end local v2    # "slotId":I
@@ -627,18 +706,89 @@
 
     invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->loge(Ljava/lang/String;)V
 
-    .line 372
+    .line 374
     return-void
+.end method
+
+.method private isEuiccHasEmptyProfiles(I)Z
+    .locals 7
+    .param p1, "phoneId"    # I
+
+    .line 807
+    const/4 v0, 0x0
+
+    .line 808
+    .local v0, "retVal":Z
+    sget-object v1, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mUiccController:Lcom/android/internal/telephony/uicc/UiccController;
+
+    invoke-virtual {v1, p1}, Lcom/android/internal/telephony/uicc/UiccController;->getUiccCard(I)Lcom/android/internal/telephony/uicc/UiccCard;
+
+    move-result-object v1
+
+    .line 809
+    .local v1, "uiccCard":Lcom/android/internal/telephony/uicc/UiccCard;
+    sget-object v2, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mUiccController:Lcom/android/internal/telephony/uicc/UiccController;
+
+    invoke-virtual {v2, p1}, Lcom/android/internal/telephony/uicc/UiccController;->getUiccSlotForPhone(I)Lcom/android/internal/telephony/uicc/UiccSlot;
+
+    move-result-object v2
+
+    .line 810
+    .local v2, "uiccSlot":Lcom/android/internal/telephony/uicc/UiccSlot;
+    if-eqz v1, :cond_0
+
+    if-eqz v2, :cond_0
+
+    .line 811
+    invoke-virtual {v1}, Lcom/android/internal/telephony/uicc/UiccCard;->getUiccProfile()Lcom/android/internal/telephony/uicc/UiccProfile;
+
+    move-result-object v3
+
+    .line 812
+    .local v3, "uiccProfile":Lcom/android/internal/telephony/uicc/UiccProfile;
+    if-eqz v3, :cond_0
+
+    .line 813
+    invoke-virtual {v2}, Lcom/android/internal/telephony/uicc/UiccSlot;->isEuicc()Z
+
+    move-result v4
+
+    .line 814
+    .local v4, "eUiccSupported":Z
+    invoke-virtual {v3}, Lcom/android/internal/telephony/uicc/UiccProfile;->getNumApplications()I
+
+    move-result v5
+
+    .line 815
+    .local v5, "numOfApps":I
+    if-nez v5, :cond_0
+
+    if-eqz v4, :cond_0
+
+    .line 816
+    const-string v6, "eUICC don\'t have active profiles"
+
+    invoke-direct {p0, v6}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->logd(Ljava/lang/String;)V
+
+    .line 817
+    const/4 v0, 0x1
+
+    .line 821
+    .end local v3    # "uiccProfile":Lcom/android/internal/telephony/uicc/UiccProfile;
+    .end local v4    # "eUiccSupported":Z
+    .end local v5    # "numOfApps":I
+    :cond_0
+    return v0
 .end method
 
 .method private isValidSlotId(I)Z
     .locals 2
     .param p1, "slotId"    # I
 
-    .line 695
+    .line 756
     const/4 v0, 0x0
 
-    .line 697
+    .line 758
     .local v0, "retVal":Z
     if-ltz p1, :cond_0
 
@@ -646,10 +796,10 @@
 
     if-ge p1, v1, :cond_0
 
-    .line 698
+    .line 759
     const/4 v0, 0x1
 
-    .line 700
+    .line 761
     :cond_0
     return v0
 .end method
@@ -658,27 +808,27 @@
     .locals 7
     .param p1, "phoneId"    # I
 
-    .line 495
+    .line 529
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mUiccController:Lcom/android/internal/telephony/uicc/UiccController;
 
     invoke-virtual {v0, p1}, Lcom/android/internal/telephony/uicc/UiccController;->getUiccCard(I)Lcom/android/internal/telephony/uicc/UiccCard;
 
     move-result-object v0
 
-    .line 496
+    .line 530
     .local v0, "uiccCard":Lcom/android/internal/telephony/uicc/UiccCard;
     if-eqz v0, :cond_2
 
-    .line 497
+    .line 531
     const/4 v1, 0x0
 
-    .line 498
+    .line 532
     .local v1, "validApp":Lcom/android/internal/telephony/uicc/UiccCardApplication;
     invoke-virtual {v0}, Lcom/android/internal/telephony/uicc/UiccCard;->getNumApplications()I
 
     move-result v2
 
-    .line 499
+    .line 533
     .local v2, "numApps":I
     const/4 v3, 0x0
 
@@ -686,12 +836,12 @@
     :goto_0
     if-ge v3, v2, :cond_1
 
-    .line 500
+    .line 534
     invoke-virtual {v0, v3}, Lcom/android/internal/telephony/uicc/UiccCard;->getApplicationIndex(I)Lcom/android/internal/telephony/uicc/UiccCardApplication;
 
     move-result-object v4
 
-    .line 501
+    .line 535
     .local v4, "app":Lcom/android/internal/telephony/uicc/UiccCardApplication;
     if-eqz v4, :cond_0
 
@@ -703,47 +853,47 @@
 
     if-eq v5, v6, :cond_0
 
-    .line 502
+    .line 536
     move-object v1, v4
 
-    .line 503
+    .line 537
     goto :goto_1
 
-    .line 499
+    .line 533
     .end local v4    # "app":Lcom/android/internal/telephony/uicc/UiccCardApplication;
     :cond_0
     add-int/lit8 v3, v3, 0x1
 
     goto :goto_0
 
-    .line 506
+    .line 540
     .end local v3    # "i":I
     :cond_1
     :goto_1
     if-eqz v1, :cond_2
 
-    .line 507
+    .line 541
     invoke-virtual {v1}, Lcom/android/internal/telephony/uicc/UiccCardApplication;->getIccFileHandler()Lcom/android/internal/telephony/uicc/IccFileHandler;
 
     move-result-object v3
 
-    .line 508
+    .line 542
     .local v3, "fileHandler":Lcom/android/internal/telephony/uicc/IccFileHandler;
     if-eqz v3, :cond_2
 
-    .line 509
+    .line 543
     iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mIsIccIdQueryPending:[Z
 
     const/4 v5, 0x1
 
     aput-boolean v5, v4, p1
 
-    .line 510
+    .line 544
     const/16 v4, 0x2fe2
 
     const/4 v5, 0x4
 
-    .line 511
+    .line 545
     invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v6
@@ -752,10 +902,10 @@
 
     move-result-object v5
 
-    .line 510
+    .line 544
     invoke-virtual {v3, v4, v5}, Lcom/android/internal/telephony/uicc/IccFileHandler;->loadEFTransparent(ILandroid/os/Message;)V
 
-    .line 515
+    .line 549
     .end local v1    # "validApp":Lcom/android/internal/telephony/uicc/UiccCardApplication;
     .end local v2    # "numApps":I
     .end local v3    # "fileHandler":Lcom/android/internal/telephony/uicc/IccFileHandler;
@@ -767,12 +917,12 @@
     .locals 1
     .param p1, "string"    # Ljava/lang/String;
 
-    .line 737
+    .line 825
     const-string v0, "QtiUiccCardProvisioner"
 
     invoke-static {v0, p1}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 738
+    .line 826
     return-void
 .end method
 
@@ -780,12 +930,12 @@
     .locals 1
     .param p1, "string"    # Ljava/lang/String;
 
-    .line 745
+    .line 833
     const-string v0, "QtiUiccCardProvisioner"
 
     invoke-static {v0, p1}, Landroid/telephony/Rlog;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 746
+    .line 834
     return-void
 .end method
 
@@ -793,12 +943,12 @@
     .locals 1
     .param p1, "string"    # Ljava/lang/String;
 
-    .line 741
+    .line 829
     const-string v0, "QtiUiccCardProvisioner"
 
     invoke-static {v0, p1}, Landroid/telephony/Rlog;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 742
+    .line 830
     return-void
 .end method
 
@@ -806,12 +956,12 @@
     .locals 2
     .param p0, "context"    # Landroid/content/Context;
 
-    .line 161
+    .line 163
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->sInstance:Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;
 
     if-nez v0, :cond_0
 
-    .line 162
+    .line 164
     new-instance v0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;
 
     const/4 v1, 0x0
@@ -822,7 +972,7 @@
 
     goto :goto_0
 
-    .line 164
+    .line 166
     :cond_0
     const-string v0, "QtiUiccCardProvisioner"
 
@@ -830,7 +980,7 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->wtf(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 166
+    .line 168
     :goto_0
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->sInstance:Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;
 
@@ -842,12 +992,12 @@
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "cis"    # [Lcom/android/internal/telephony/CommandsInterface;
 
-    .line 152
+    .line 154
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->sInstance:Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;
 
     if-nez v0, :cond_0
 
-    .line 153
+    .line 155
     new-instance v0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;
 
     invoke-direct {v0, p0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;-><init>(Landroid/content/Context;[Lcom/android/internal/telephony/CommandsInterface;)V
@@ -856,7 +1006,7 @@
 
     goto :goto_0
 
-    .line 155
+    .line 157
     :cond_0
     const-string v0, "QtiUiccCardProvisioner"
 
@@ -864,7 +1014,7 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->wtf(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 157
+    .line 159
     :goto_0
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->sInstance:Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;
 
@@ -874,7 +1024,7 @@
 .method private queryAllUiccProvisionInfo()V
     .locals 3
 
-    .line 395
+    .line 397
     const/4 v0, 0x0
 
     .local v0, "index":I
@@ -883,7 +1033,7 @@
 
     if-ge v0, v1, :cond_1
 
-    .line 396
+    .line 398
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -910,7 +1060,7 @@
 
     invoke-direct {p0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->logd(Ljava/lang/String;)V
 
-    .line 397
+    .line 399
     iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mCardState:[Lcom/android/internal/telephony/uicc/IccCardStatus$CardState;
 
     aget-object v1, v1, v0
@@ -927,34 +1077,34 @@
 
     if-eq v1, v2, :cond_0
 
-    .line 399
+    .line 401
     invoke-direct {p0, v0, v2}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->queryUiccProvisionInfo(IZ)V
 
-    .line 395
+    .line 397
     :cond_0
     add-int/lit8 v0, v0, 0x1
 
     goto :goto_0
 
-    .line 402
+    .line 404
     .end local v0    # "index":I
     :cond_1
     return-void
 .end method
 
 .method private queryUiccProvisionInfo(IZ)V
-    .locals 7
+    .locals 11
     .param p1, "phoneId"    # I
     .param p2, "useSimIORequest"    # Z
 
-    .line 413
+    .line 415
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mQtiRilInterface:Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;
 
     invoke-virtual {v0}, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->isServiceReady()Z
 
     move-result v0
 
-    if-eqz v0, :cond_a
+    if-eqz v0, :cond_d
 
     invoke-direct {p0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->isValidSlotId(I)Z
 
@@ -964,13 +1114,13 @@
 
     goto/16 :goto_3
 
-    .line 417
+    .line 419
     :cond_0
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mProvisionStatus:[Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;
 
     aget-object v0, v0, p1
 
-    .line 419
+    .line 421
     .local v0, "oldStatus":Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;
     iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mQtiRilInterface:Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;
 
@@ -978,7 +1128,7 @@
 
     move-result-object v1
 
-    .line 420
+    .line 422
     .local v1, "subStatus":Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;
     invoke-virtual {v1}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;->getCurrentState()I
 
@@ -988,25 +1138,25 @@
 
     if-eq v2, v3, :cond_1
 
-    .line 421
+    .line 423
     invoke-virtual {v1}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;->getUserPreference()I
 
     move-result v2
 
     if-eq v2, v3, :cond_1
 
-    .line 422
+    .line 424
     sget-object v2, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->sManualProvLock:Ljava/lang/Object;
 
     monitor-enter v2
 
-    .line 423
+    .line 425
     :try_start_0
     iget-object v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mProvisionStatus:[Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;
 
     aput-object v1, v3, p1
 
-    .line 424
+    .line 426
     monitor-exit v2
 
     goto :goto_0
@@ -1020,340 +1170,400 @@
 
     throw v3
 
-    .line 429
+    .line 431
     :cond_1
     :goto_0
-    iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mSimIccId:[Ljava/lang/String;
-
-    aget-object v2, v2, p1
-
-    if-nez v2, :cond_6
-
-    .line 430
-    sget-object v2, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mUiccController:Lcom/android/internal/telephony/uicc/UiccController;
-
-    invoke-virtual {v2, p1}, Lcom/android/internal/telephony/uicc/UiccController;->getUiccCard(I)Lcom/android/internal/telephony/uicc/UiccCard;
+    invoke-direct {p0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->getFullIccIdFromUicc(I)Ljava/lang/String;
 
     move-result-object v2
 
     .line 432
-    .local v2, "uiccCard":Lcom/android/internal/telephony/uicc/UiccCard;
-    if-eqz v2, :cond_5
-
-    .line 433
-    invoke-virtual {v2}, Lcom/android/internal/telephony/uicc/UiccCard;->getIccId()Ljava/lang/String;
+    .local v2, "fullIccId":Ljava/lang/String;
+    invoke-static {v2}, Lcom/android/internal/telephony/uicc/IccUtils;->stripTrailingFs(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v3
 
-    .line 434
-    .local v3, "fullIccId":Ljava/lang/String;
-    invoke-static {v3}, Lcom/android/internal/telephony/uicc/IccUtils;->stripTrailingFs(Ljava/lang/String;)Ljava/lang/String;
+    .line 433
+    .local v3, "iccId":Ljava/lang/String;
+    sget-object v4, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mUiccController:Lcom/android/internal/telephony/uicc/UiccController;
+
+    invoke-virtual {v4, p1}, Lcom/android/internal/telephony/uicc/UiccController;->getUiccCard(I)Lcom/android/internal/telephony/uicc/UiccCard;
 
     move-result-object v4
 
-    .line 436
-    .local v4, "iccId":Ljava/lang/String;
-    invoke-static {v4}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+    .line 434
+    .local v4, "uiccCard":Lcom/android/internal/telephony/uicc/UiccCard;
+    sget-object v5, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mUiccController:Lcom/android/internal/telephony/uicc/UiccController;
 
-    move-result v5
-
-    if-nez v5, :cond_2
-
-    .line 437
-    iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mSimFullIccId:[Ljava/lang/String;
-
-    aput-object v3, v5, p1
-
-    .line 438
-    invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionInfoUpdater;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionInfoUpdater;
+    invoke-virtual {v5, p1}, Lcom/android/internal/telephony/uicc/UiccController;->getUiccSlotForPhone(I)Lcom/android/internal/telephony/uicc/UiccSlot;
 
     move-result-object v5
 
-    invoke-virtual {v5, p1, v4}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionInfoUpdater;->addSubInfoRecord(ILjava/lang/String;)V
+    .line 436
+    .local v5, "uiccSlot":Lcom/android/internal/telephony/uicc/UiccSlot;
+    iget-object v6, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mSimIccId:[Ljava/lang/String;
+
+    aget-object v7, v6, p1
+
+    if-eqz v7, :cond_2
+
+    aget-object v6, v6, p1
+
+    invoke-virtual {v6, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v6
+
+    if-nez v6, :cond_9
+
+    .line 437
+    :cond_2
+    if-eqz v4, :cond_8
+
+    .line 438
+    invoke-virtual {v4}, Lcom/android/internal/telephony/uicc/UiccCard;->getUiccProfile()Lcom/android/internal/telephony/uicc/UiccProfile;
+
+    move-result-object v6
 
     .line 439
-    iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mSimIccId:[Ljava/lang/String;
+    .local v6, "uiccProfile":Lcom/android/internal/telephony/uicc/UiccProfile;
+    if-eqz v5, :cond_7
 
-    aput-object v4, v5, p1
+    .line 440
+    invoke-virtual {v5}, Lcom/android/internal/telephony/uicc/UiccSlot;->isEuicc()Z
+
+    move-result v7
+
+    .line 441
+    .local v7, "eUiccSupported":Z
+    if-eqz v6, :cond_7
+
+    .line 442
+    invoke-virtual {v6}, Lcom/android/internal/telephony/uicc/UiccProfile;->getNumApplications()I
+
+    move-result v8
+
+    .line 443
+    .local v8, "numOfApps":I
+    if-nez v8, :cond_3
+
+    if-eqz v7, :cond_3
+
+    .line 444
+    const-string v9, "Can\'t addsubinforecord as num_apps 0 and slot is Euicc"
+
+    invoke-direct {p0, v9}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->logd(Ljava/lang/String;)V
 
     goto :goto_1
 
-    .line 441
-    :cond_2
-    new-instance v5, Ljava/lang/StringBuilder;
+    .line 446
+    :cond_3
+    invoke-static {v3}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
-    invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
+    move-result v9
 
-    const-string v6, " queryUiccProvisionInfo: useSimIORequest=  "
+    if-nez v9, :cond_4
 
-    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    .line 447
+    iget-object v9, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mSimFullIccId:[Ljava/lang/String;
 
-    invoke-virtual {v5, p2}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+    aput-object v2, v9, p1
 
-    invoke-virtual {v5}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    .line 448
+    invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionInfoUpdater;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionInfoUpdater;
 
-    move-result-object v5
+    move-result-object v9
 
-    invoke-direct {p0, v5}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->logd(Ljava/lang/String;)V
+    .line 449
+    invoke-virtual {v9, p1, v3}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionInfoUpdater;->addSubInfoRecord(ILjava/lang/String;)V
 
-    .line 442
-    if-eqz p2, :cond_3
+    .line 450
+    iget-object v9, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mSimIccId:[Ljava/lang/String;
 
-    .line 443
+    aput-object v3, v9, p1
+
+    goto :goto_1
+
+    .line 452
+    :cond_4
+    new-instance v9, Ljava/lang/StringBuilder;
+
+    invoke-direct {v9}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v10, " queryUiccProvisionInfo: useSimIORequest=  "
+
+    invoke-virtual {v9, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v9, p2}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v9}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v9
+
+    invoke-direct {p0, v9}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->logd(Ljava/lang/String;)V
+
+    .line 454
+    if-eqz p2, :cond_5
+
+    .line 455
     invoke-direct {p0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->loadIccId(I)V
 
     goto :goto_1
 
-    .line 445
-    :cond_3
-    iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mQtiRilInterface:Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;
+    .line 457
+    :cond_5
+    iget-object v9, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mQtiRilInterface:Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;
 
-    invoke-virtual {v5, p1}, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->getUiccIccId(I)Ljava/lang/String;
+    invoke-virtual {v9, p1}, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->getUiccIccId(I)Ljava/lang/String;
+
+    move-result-object v2
+
+    .line 458
+    invoke-static {v2}, Lcom/android/internal/telephony/uicc/IccUtils;->stripTrailingFs(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v3
 
-    .line 446
-    invoke-static {v3}, Lcom/android/internal/telephony/uicc/IccUtils;->stripTrailingFs(Ljava/lang/String;)Ljava/lang/String;
+    .line 460
+    invoke-static {v3}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
-    move-result-object v4
+    move-result v9
 
-    .line 448
-    invoke-static {v4}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+    if-nez v9, :cond_6
 
-    move-result v5
+    .line 464
+    iget-object v9, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mSimFullIccId:[Ljava/lang/String;
 
-    if-nez v5, :cond_4
+    aput-object v2, v9, p1
 
-    .line 451
-    iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mSimFullIccId:[Ljava/lang/String;
-
-    aput-object v3, v5, p1
-
-    .line 452
+    .line 465
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionInfoUpdater;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionInfoUpdater;
 
-    move-result-object v5
+    move-result-object v9
 
-    .line 453
-    invoke-virtual {v5, p1, v4}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionInfoUpdater;->addSubInfoRecord(ILjava/lang/String;)V
+    .line 466
+    invoke-virtual {v9, p1, v3}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionInfoUpdater;->addSubInfoRecord(ILjava/lang/String;)V
 
-    .line 454
-    iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mSimIccId:[Ljava/lang/String;
+    .line 467
+    iget-object v9, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mSimIccId:[Ljava/lang/String;
 
-    aput-object v4, v5, p1
+    aput-object v3, v9, p1
 
     goto :goto_1
 
-    .line 456
-    :cond_4
-    new-instance v5, Ljava/lang/StringBuilder;
+    .line 469
+    :cond_6
+    new-instance v9, Ljava/lang/StringBuilder;
 
-    invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
+    invoke-direct {v9}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v6, " queryUiccProvisionInfo, ICCID["
+    const-string v10, " queryUiccProvisionInfo, ICCID["
 
-    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v9, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v5, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    invoke-virtual {v9, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
-    const-string v6, "] is null"
+    const-string v10, "] is null"
 
-    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v9, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v5}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual {v9}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    move-result-object v5
+    move-result-object v9
 
-    invoke-direct {p0, v5}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->logi(Ljava/lang/String;)V
+    invoke-direct {p0, v9}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->logi(Ljava/lang/String;)V
 
-    .line 460
-    .end local v3    # "fullIccId":Ljava/lang/String;
-    .end local v4    # "iccId":Ljava/lang/String;
+    .line 477
+    .end local v6    # "uiccProfile":Lcom/android/internal/telephony/uicc/UiccProfile;
+    .end local v7    # "eUiccSupported":Z
+    .end local v8    # "numOfApps":I
+    :cond_7
     :goto_1
     goto :goto_2
 
-    .line 461
-    :cond_5
-    new-instance v3, Ljava/lang/StringBuilder;
+    .line 478
+    :cond_8
+    new-instance v6, Ljava/lang/StringBuilder;
 
-    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+    invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v4, " queryUiccProvisionInfo, uiccCard["
+    const-string v7, " queryUiccProvisionInfo, uiccCard["
 
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v3, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    invoke-virtual {v6, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
-    const-string v4, "] object is null"
+    const-string v7, "] object is null"
 
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual {v6}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    move-result-object v3
+    move-result-object v6
 
-    invoke-direct {p0, v3}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->logi(Ljava/lang/String;)V
+    invoke-direct {p0, v6}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->logi(Ljava/lang/String;)V
 
-    .line 467
-    .end local v2    # "uiccCard":Lcom/android/internal/telephony/uicc/UiccCard;
-    :cond_6
+    .line 484
+    :cond_9
     :goto_2
-    new-instance v2, Ljava/lang/StringBuilder;
+    new-instance v6, Ljava/lang/StringBuilder;
 
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+    invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v3, " queryUiccProvisionInfo, provisionStatus["
+    const-string v7, " queryUiccProvisionInfo, provisionStatus["
 
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v2, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    invoke-virtual {v6, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
-    const-string v3, "] = "
+    const-string v7, "] = "
 
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    iget-object v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mProvisionStatus:[Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;
+    iget-object v7, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mProvisionStatus:[Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;
 
-    aget-object v3, v3, p1
+    aget-object v7, v7, p1
 
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual {v6}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    move-result-object v2
+    move-result-object v6
 
-    invoke-direct {p0, v2}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->logd(Ljava/lang/String;)V
+    invoke-direct {p0, v6}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->logd(Ljava/lang/String;)V
 
-    .line 470
-    iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mProvisionStatus:[Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;
+    .line 487
+    iget-object v6, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mProvisionStatus:[Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;
 
-    aget-object v2, v2, p1
+    aget-object v6, v6, p1
 
-    invoke-virtual {v0, v2}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;->equals(Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;)Z
+    invoke-virtual {v0, v6}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;->equals(Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;)Z
 
-    move-result v2
+    move-result v6
 
-    if-nez v2, :cond_9
+    if-nez v6, :cond_c
 
-    .line 471
-    iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mSimIccId:[Ljava/lang/String;
+    .line 488
+    iget-object v6, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mSimIccId:[Ljava/lang/String;
 
-    aget-object v2, v2, p1
+    aget-object v6, v6, p1
 
-    if-eqz v2, :cond_7
+    if-eqz v6, :cond_a
 
     invoke-virtual {p0}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->isAllCardProvisionInfoReceived()Z
 
-    move-result v2
+    move-result v6
 
-    if-eqz v2, :cond_7
-
-    .line 472
-    invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
-
-    move-result-object v2
-
-    invoke-virtual {v2, p1}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getSubId(I)[I
-
-    move-result-object v2
-
-    .line 473
-    .local v2, "subIds":[I
-    iget-object v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mContext:Landroid/content/Context;
-
-    .line 474
-    const-string v4, "telephony_subscription_service"
-
-    invoke-virtual {v3, v4}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
-
-    move-result-object v3
-
-    check-cast v3, Landroid/telephony/SubscriptionManager;
-
-    .line 480
-    .local v3, "subscriptionManager":Landroid/telephony/SubscriptionManager;
-    if-eqz v2, :cond_7
-
-    array-length v4, v2
-
-    if-eqz v4, :cond_7
-
-    const/4 v4, 0x0
-
-    aget v4, v2, v4
-
-    .line 481
-    invoke-virtual {v3, v4}, Landroid/telephony/SubscriptionManager;->isActiveSubscriptionId(I)Z
-
-    move-result v4
-
-    if-eqz v4, :cond_7
-
-    .line 482
-    invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionInfoUpdater;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionInfoUpdater;
-
-    move-result-object v4
-
-    invoke-virtual {v4}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionInfoUpdater;->updateUserPreferences()V
-
-    .line 485
-    .end local v2    # "subIds":[I
-    .end local v3    # "subscriptionManager":Landroid/telephony/SubscriptionManager;
-    :cond_7
-    if-eqz p2, :cond_8
-
-    iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mSimIccId:[Ljava/lang/String;
-
-    aget-object v2, v2, p1
-
-    if-eqz v2, :cond_9
-
-    .line 486
-    :cond_8
-    new-instance v2, Ljava/lang/StringBuilder;
-
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v3, " broadcasting ProvisionInfo, phoneId = "
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v2, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v2
-
-    invoke-direct {p0, v2}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->logd(Ljava/lang/String;)V
-
-    .line 487
-    nop
-
-    .line 488
-    invoke-direct {p0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->getCurrentProvisioningStatus(I)I
-
-    move-result v2
-
-    .line 487
-    invoke-direct {p0, p1, v2}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->broadcastManualProvisionStatusChanged(II)V
+    if-eqz v6, :cond_a
 
     .line 489
-    iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mOldProvisionStatus:[Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;
+    invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
 
-    iget-object v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mProvisionStatus:[Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;
+    move-result-object v6
 
-    aget-object v3, v3, p1
+    invoke-virtual {v6, p1}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getSubId(I)[I
 
-    aput-object v3, v2, p1
+    move-result-object v6
 
-    .line 492
-    :cond_9
+    .line 490
+    .local v6, "subIds":[I
+    iget-object v7, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mContext:Landroid/content/Context;
+
+    .line 491
+    const-string v8, "telephony_subscription_service"
+
+    invoke-virtual {v7, v8}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+
+    move-result-object v7
+
+    check-cast v7, Landroid/telephony/SubscriptionManager;
+
+    .line 497
+    .local v7, "subscriptionManager":Landroid/telephony/SubscriptionManager;
+    if-eqz v6, :cond_a
+
+    array-length v8, v6
+
+    if-eqz v8, :cond_a
+
+    const/4 v8, 0x0
+
+    aget v8, v6, v8
+
+    .line 498
+    invoke-virtual {v7, v8}, Landroid/telephony/SubscriptionManager;->isActiveSubscriptionId(I)Z
+
+    move-result v8
+
+    if-eqz v8, :cond_a
+
+    .line 499
+    invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionInfoUpdater;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionInfoUpdater;
+
+    move-result-object v8
+
+    invoke-virtual {v8}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionInfoUpdater;->updateUserPreferences()V
+
+    .line 502
+    .end local v6    # "subIds":[I
+    .end local v7    # "subscriptionManager":Landroid/telephony/SubscriptionManager;
+    :cond_a
+    if-eqz p2, :cond_b
+
+    iget-object v6, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mSimIccId:[Ljava/lang/String;
+
+    aget-object v6, v6, p1
+
+    if-eqz v6, :cond_c
+
+    .line 503
+    :cond_b
+    new-instance v6, Ljava/lang/StringBuilder;
+
+    invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v7, " broadcasting ProvisionInfo, phoneId = "
+
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v6, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v6}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v6
+
+    invoke-direct {p0, v6}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->logd(Ljava/lang/String;)V
+
+    .line 504
+    nop
+
+    .line 505
+    invoke-direct {p0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->getCurrentProvisioningStatus(I)I
+
+    move-result v6
+
+    .line 504
+    invoke-direct {p0, p1, v6}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->broadcastManualProvisionStatusChanged(II)V
+
+    .line 506
+    iget-object v6, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mOldProvisionStatus:[Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;
+
+    iget-object v7, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mProvisionStatus:[Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;
+
+    aget-object v7, v7, p1
+
+    aput-object v7, v6, p1
+
+    .line 509
+    :cond_c
     return-void
 
-    .line 414
+    .line 416
     .end local v0    # "oldStatus":Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;
     .end local v1    # "subStatus":Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;
-    :cond_a
+    .end local v2    # "fullIccId":Ljava/lang/String;
+    .end local v3    # "iccId":Ljava/lang/String;
+    .end local v4    # "uiccCard":Lcom/android/internal/telephony/uicc/UiccCard;
+    .end local v5    # "uiccSlot":Lcom/android/internal/telephony/uicc/UiccSlot;
+    :cond_d
     :goto_3
     new-instance v0, Ljava/lang/StringBuilder;
 
@@ -1371,7 +1581,7 @@
 
     invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->logi(Ljava/lang/String;)V
 
-    .line 415
+    .line 417
     return-void
 .end method
 
@@ -1379,14 +1589,14 @@
     .locals 8
     .param p1, "phoneId"    # I
 
-    .line 518
+    .line 552
     invoke-direct {p0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->isValidSlotId(I)Z
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 519
+    .line 553
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -1403,14 +1613,14 @@
 
     invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->loge(Ljava/lang/String;)V
 
-    .line 520
+    .line 554
     return-void
 
-    .line 522
+    .line 556
     :cond_0
     sget-object v0, Lcom/android/internal/telephony/uicc/IccCardStatus$CardState;->CARDSTATE_ABSENT:Lcom/android/internal/telephony/uicc/IccCardStatus$CardState;
 
-    .line 523
+    .line 557
     .local v0, "newState":Lcom/android/internal/telephony/uicc/IccCardStatus$CardState;
     sget-object v1, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mUiccController:Lcom/android/internal/telephony/uicc/UiccController;
 
@@ -1418,16 +1628,16 @@
 
     move-result-object v1
 
-    .line 524
+    .line 558
     .local v1, "newSlot":Lcom/android/internal/telephony/uicc/UiccSlot;
     if-eqz v1, :cond_6
 
-    .line 525
+    .line 559
     invoke-virtual {v1}, Lcom/android/internal/telephony/uicc/UiccSlot;->getCardState()Lcom/android/internal/telephony/uicc/IccCardStatus$CardState;
 
     move-result-object v0
 
-    .line 530
+    .line 564
     new-instance v2, Ljava/lang/StringBuilder;
 
     invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
@@ -1450,17 +1660,17 @@
 
     invoke-direct {p0, v2}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->logd(Ljava/lang/String;)V
 
-    .line 532
+    .line 566
     iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mCardState:[Lcom/android/internal/telephony/uicc/IccCardStatus$CardState;
 
     aput-object v0, v2, p1
 
-    .line 533
+    .line 567
     invoke-direct {p0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->getCurrentProvisioningStatus(I)I
 
     move-result v2
 
-    .line 534
+    .line 568
     .local v2, "currentState":I
     iget-object v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mCardState:[Lcom/android/internal/telephony/uicc/IccCardStatus$CardState;
 
@@ -1493,12 +1703,12 @@
 
     if-eq v3, v4, :cond_2
 
-    .line 539
+    .line 573
     invoke-direct {p0, p1, v4}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->queryUiccProvisionInfo(IZ)V
 
     goto :goto_0
 
-    .line 540
+    .line 574
     :cond_2
     iget-object v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mCardState:[Lcom/android/internal/telephony/uicc/IccCardStatus$CardState;
 
@@ -1508,7 +1718,7 @@
 
     if-ne v3, v4, :cond_3
 
-    .line 541
+    .line 575
     invoke-virtual {v1}, Lcom/android/internal/telephony/uicc/UiccSlot;->isStateUnknown()Z
 
     move-result v3
@@ -1524,13 +1734,13 @@
 
     if-ne v3, v4, :cond_5
 
-    .line 543
+    .line 577
     :cond_4
     sget-object v3, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->sManualProvLock:Ljava/lang/Object;
 
     monitor-enter v3
 
-    .line 544
+    .line 578
     :try_start_0
     iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mProvisionStatus:[Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;
 
@@ -1538,67 +1748,67 @@
 
     invoke-virtual {v4, v5}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;->setUserPreference(I)V
 
-    .line 545
+    .line 579
     iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mProvisionStatus:[Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;
 
     aget-object v4, v4, p1
 
     invoke-virtual {v4, v5}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;->setCurrentState(I)V
 
-    .line 546
+    .line 580
     iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mOldProvisionStatus:[Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;
 
     aget-object v4, v4, p1
 
     invoke-virtual {v4, v5}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;->setUserPreference(I)V
 
-    .line 548
+    .line 582
     iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mOldProvisionStatus:[Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;
 
     aget-object v4, v4, p1
 
     invoke-virtual {v4, v5}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;->setCurrentState(I)V
 
-    .line 549
+    .line 583
     iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mSimIccId:[Ljava/lang/String;
 
     const/4 v5, 0x0
 
     aput-object v5, v4, p1
 
-    .line 550
+    .line 584
     iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mSimFullIccId:[Ljava/lang/String;
 
     aput-object v5, v4, p1
 
-    .line 551
+    .line 585
     iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mManualProvisionChangedRegistrants:Landroid/os/RegistrantList;
 
     new-instance v6, Landroid/os/AsyncResult;
 
-    .line 552
+    .line 586
     invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v7
 
     invoke-direct {v6, v5, v7, v5}, Landroid/os/AsyncResult;-><init>(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Throwable;)V
 
-    .line 551
+    .line 585
     invoke-virtual {v4, v6}, Landroid/os/RegistrantList;->notifyRegistrants(Landroid/os/AsyncResult;)V
 
-    .line 553
+    .line 587
     monitor-exit v3
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 554
+    .line 588
     invoke-virtual {p0}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->isAllCardProvisionInfoReceived()Z
 
     move-result v3
 
     if-eqz v3, :cond_5
 
-    .line 555
+    .line 589
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionInfoUpdater;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionInfoUpdater;
 
     move-result-object v3
@@ -1607,7 +1817,7 @@
 
     goto :goto_0
 
-    .line 553
+    .line 587
     :catchall_0
     move-exception v4
 
@@ -1618,12 +1828,12 @@
 
     throw v4
 
-    .line 558
+    .line 592
     :cond_5
     :goto_0
     return-void
 
-    .line 527
+    .line 561
     .end local v2    # "currentState":I
     :cond_6
     new-instance v2, Ljava/lang/StringBuilder;
@@ -1642,7 +1852,7 @@
 
     invoke-direct {p0, v2}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->logd(Ljava/lang/String;)V
 
-    .line 528
+    .line 562
     return-void
 .end method
 
@@ -1652,7 +1862,7 @@
     .locals 6
     .param p1, "slotId"    # I
 
-    .line 605
+    .line 652
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -1669,7 +1879,7 @@
 
     invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->logd(Ljava/lang/String;)V
 
-    .line 607
+    .line 654
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mQtiRilInterface:Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;
 
     invoke-virtual {v0}, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->isServiceReady()Z
@@ -1678,7 +1888,7 @@
 
     if-nez v0, :cond_0
 
-    .line 608
+    .line 655
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -1695,21 +1905,21 @@
 
     invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->logi(Ljava/lang/String;)V
 
-    .line 609
+    .line 656
     const/4 v0, -0x1
 
     return v0
 
-    .line 612
+    .line 659
     :cond_0
     const-string v0, "activateUiccCard"
 
     invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->enforceModifyPhoneState(Ljava/lang/String;)V
 
-    .line 614
+    .line 661
     const/4 v0, 0x0
 
-    .line 616
+    .line 663
     .local v0, "activateStatus":I
     invoke-direct {p0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->canProcessRequest(I)Z
 
@@ -1717,22 +1927,60 @@
 
     if-nez v1, :cond_1
 
-    .line 617
+    .line 664
     const/4 v0, -0x2
+
+    goto/16 :goto_1
+
+    .line 665
+    :cond_1
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mCis:[Lcom/android/internal/telephony/CommandsInterface;
+
+    aget-object v1, v1, p1
+
+    invoke-interface {v1}, Lcom/android/internal/telephony/CommandsInterface;->canToggleUiccApplicationsEnablement()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_2
+
+    .line 666
+    const-string v1, "activateUiccCard is not appropriate to use. For 1.5 HAL use enableUiccApplications"
+
+    invoke-direct {p0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->loge(Ljava/lang/String;)V
+
+    .line 668
+    const/4 v0, -0x1
+
+    goto/16 :goto_1
+
+    .line 669
+    :cond_2
+    sget v1, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mNumPhones:I
+
+    const/4 v2, 0x1
+
+    if-ne v1, v2, :cond_3
+
+    .line 670
+    const-string v1, "activateUiccCard is not supported for Single SIM with 1.4 HAL"
+
+    invoke-direct {p0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->loge(Ljava/lang/String;)V
+
+    .line 671
+    const/4 v0, -0x1
 
     goto :goto_1
 
-    .line 618
-    :cond_1
+    .line 672
+    :cond_3
     invoke-direct {p0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->getCurrentProvisioningStatus(I)I
 
     move-result v1
 
-    const/4 v2, 0x1
+    if-ne v1, v2, :cond_4
 
-    if-ne v1, v2, :cond_2
-
-    .line 619
+    .line 673
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -1755,13 +2003,13 @@
 
     goto :goto_1
 
-    .line 620
-    :cond_2
+    .line 674
+    :cond_4
     invoke-virtual {p0}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->isFlexMapInProgress()Z
 
     move-result v1
 
-    if-nez v1, :cond_4
+    if-nez v1, :cond_6
 
     sget-object v1, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mRequestInProgress:Ljava/util/concurrent/atomic/AtomicBoolean;
 
@@ -1771,12 +2019,12 @@
 
     move-result v1
 
-    if-eqz v1, :cond_4
+    if-eqz v1, :cond_6
 
-    .line 621
+    .line 675
     const/4 v1, 0x0
 
-    .line 623
+    .line 677
     .local v1, "retVal":Z
     iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mQtiRilInterface:Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;
 
@@ -1784,21 +2032,21 @@
 
     move-result v1
 
-    .line 625
-    if-nez v1, :cond_3
+    .line 679
+    if-nez v1, :cond_5
 
-    .line 626
+    .line 680
     const/4 v0, -0x1
 
     goto :goto_0
 
-    .line 628
-    :cond_3
+    .line 682
+    :cond_5
     sget-object v4, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->sManualProvLock:Ljava/lang/Object;
 
     monitor-enter v4
 
-    .line 629
+    .line 683
     :try_start_0
     iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mProvisionStatus:[Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;
 
@@ -1806,12 +2054,12 @@
 
     invoke-virtual {v5, v2}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;->setCurrentState(I)V
 
-    .line 630
+    .line 684
     monitor-exit v4
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 632
+    .line 686
     :goto_0
     new-instance v2, Ljava/lang/StringBuilder;
 
@@ -1835,16 +2083,16 @@
 
     invoke-direct {p0, v2}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->logi(Ljava/lang/String;)V
 
-    .line 633
+    .line 687
     sget-object v2, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mRequestInProgress:Ljava/util/concurrent/atomic/AtomicBoolean;
 
     invoke-virtual {v2, v3}, Ljava/util/concurrent/atomic/AtomicBoolean;->set(Z)V
 
-    .line 634
+    .line 688
     .end local v1    # "retVal":Z
     goto :goto_1
 
-    .line 630
+    .line 684
     .restart local v1    # "retVal":Z
     :catchall_0
     move-exception v2
@@ -1856,12 +2104,12 @@
 
     throw v2
 
-    .line 635
+    .line 689
     .end local v1    # "retVal":Z
-    :cond_4
+    :cond_6
     const/4 v0, -0x3
 
-    .line 638
+    .line 692
     :goto_1
     return v0
 .end method
@@ -1870,7 +2118,7 @@
     .locals 5
     .param p1, "slotId"    # I
 
-    .line 642
+    .line 696
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -1887,7 +2135,7 @@
 
     invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->logd(Ljava/lang/String;)V
 
-    .line 644
+    .line 698
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mQtiRilInterface:Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;
 
     invoke-virtual {v0}, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->isServiceReady()Z
@@ -1896,7 +2144,7 @@
 
     if-nez v0, :cond_0
 
-    .line 645
+    .line 699
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -1913,21 +2161,21 @@
 
     invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->logi(Ljava/lang/String;)V
 
-    .line 646
+    .line 700
     const/4 v0, -0x1
 
     return v0
 
-    .line 649
+    .line 703
     :cond_0
     const-string v0, "deactivateUiccCard"
 
     invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->enforceModifyPhoneState(Ljava/lang/String;)V
 
-    .line 651
+    .line 705
     const/4 v0, 0x0
 
-    .line 652
+    .line 706
     .local v0, "deactivateState":I
     invoke-direct {p0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->canProcessRequest(I)Z
 
@@ -1935,20 +2183,60 @@
 
     if-nez v1, :cond_1
 
-    .line 653
+    .line 707
     const/4 v0, -0x2
+
+    goto/16 :goto_1
+
+    .line 708
+    :cond_1
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mCis:[Lcom/android/internal/telephony/CommandsInterface;
+
+    aget-object v1, v1, p1
+
+    invoke-interface {v1}, Lcom/android/internal/telephony/CommandsInterface;->canToggleUiccApplicationsEnablement()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_2
+
+    .line 709
+    const-string v1, "deactivateUiccCard is not appropriate to use. For 1.5 HAL use enableUiccApplications"
+
+    invoke-direct {p0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->loge(Ljava/lang/String;)V
+
+    .line 711
+    const/4 v0, -0x1
+
+    goto/16 :goto_1
+
+    .line 712
+    :cond_2
+    sget v1, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mNumPhones:I
+
+    const/4 v2, 0x1
+
+    if-ne v1, v2, :cond_3
+
+    .line 713
+    const-string v1, "deactivateUiccCard is not supported for Single SIM with 1.4 HAL"
+
+    invoke-direct {p0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->loge(Ljava/lang/String;)V
+
+    .line 714
+    const/4 v0, -0x1
 
     goto :goto_1
 
-    .line 654
-    :cond_1
+    .line 715
+    :cond_3
     invoke-direct {p0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->getCurrentProvisioningStatus(I)I
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_4
 
-    .line 655
+    .line 716
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -1971,17 +2259,15 @@
 
     goto :goto_1
 
-    .line 656
-    :cond_2
+    .line 717
+    :cond_4
     invoke-virtual {p0}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->isFlexMapInProgress()Z
 
     move-result v1
 
-    if-nez v1, :cond_4
+    if-nez v1, :cond_6
 
     sget-object v1, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mRequestInProgress:Ljava/util/concurrent/atomic/AtomicBoolean;
-
-    const/4 v2, 0x1
 
     const/4 v3, 0x0
 
@@ -1989,12 +2275,12 @@
 
     move-result v1
 
-    if-eqz v1, :cond_4
+    if-eqz v1, :cond_6
 
-    .line 657
+    .line 718
     const/4 v1, 0x0
 
-    .line 659
+    .line 720
     .local v1, "retVal":Z
     iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mQtiRilInterface:Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;
 
@@ -2002,21 +2288,21 @@
 
     move-result v1
 
-    .line 661
-    if-nez v1, :cond_3
+    .line 722
+    if-nez v1, :cond_5
 
-    .line 662
+    .line 723
     const/4 v0, -0x1
 
     goto :goto_0
 
-    .line 664
-    :cond_3
+    .line 725
+    :cond_5
     sget-object v2, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->sManualProvLock:Ljava/lang/Object;
 
     monitor-enter v2
 
-    .line 665
+    .line 726
     :try_start_0
     iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mProvisionStatus:[Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;
 
@@ -2024,12 +2310,12 @@
 
     invoke-virtual {v4, v3}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;->setCurrentState(I)V
 
-    .line 666
+    .line 727
     monitor-exit v2
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 668
+    .line 729
     :goto_0
     new-instance v2, Ljava/lang/StringBuilder;
 
@@ -2053,16 +2339,16 @@
 
     invoke-direct {p0, v2}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->logi(Ljava/lang/String;)V
 
-    .line 669
+    .line 730
     sget-object v2, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mRequestInProgress:Ljava/util/concurrent/atomic/AtomicBoolean;
 
     invoke-virtual {v2, v3}, Ljava/util/concurrent/atomic/AtomicBoolean;->set(Z)V
 
-    .line 670
+    .line 731
     .end local v1    # "retVal":Z
     goto :goto_1
 
-    .line 666
+    .line 727
     .restart local v1    # "retVal":Z
     :catchall_0
     move-exception v3
@@ -2074,95 +2360,192 @@
 
     throw v3
 
-    .line 671
+    .line 732
     .end local v1    # "retVal":Z
-    :cond_4
+    :cond_6
     const/4 v0, -0x3
 
-    .line 674
+    .line 735
     :goto_1
     return v0
 .end method
 
 .method public dispose()V
     .locals 2
-    .annotation build Lcom/android/internal/annotations/VisibleForTesting;
-    .end annotation
 
-    .line 172
+    .line 174
     const-string v0, " disposing... "
 
     invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->logd(Ljava/lang/String;)V
 
-    .line 174
+    .line 176
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mUiccController:Lcom/android/internal/telephony/uicc/UiccController;
 
     invoke-virtual {v0, p0}, Lcom/android/internal/telephony/uicc/UiccController;->unregisterForIccChanged(Landroid/os/Handler;)V
 
-    .line 175
+    .line 177
     const/4 v0, 0x0
 
     sput-object v0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mUiccController:Lcom/android/internal/telephony/uicc/UiccController;
 
-    .line 177
+    .line 179
     iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mQtiRilInterface:Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;
 
     invoke-virtual {v1, p0}, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->unRegisterForServiceReadyEvent(Landroid/os/Handler;)V
 
-    .line 178
+    .line 180
     iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mQtiRilInterface:Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;
 
     invoke-virtual {v1, p0}, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->unRegisterForUnsol(Landroid/os/Handler;)V
 
-    .line 179
+    .line 181
     iput-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mQtiRilInterface:Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;
 
-    .line 180
+    .line 182
     return-void
 .end method
 
 .method public getCurrentUiccCardProvisioningStatus(I)I
-    .locals 3
+    .locals 7
     .param p1, "slotId"    # I
 
-    .line 576
+    .line 610
     const/4 v0, -0x1
 
-    .line 579
+    .line 612
     .local v0, "currentStatus":I
-    sget v1, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mNumPhones:I
-
-    const/4 v2, 0x1
-
-    if-ne v1, v2, :cond_0
-
-    invoke-direct {p0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->isValidSlotId(I)Z
-
-    move-result v1
-
-    if-eqz v1, :cond_0
-
-    .line 580
-    const/4 v0, 0x1
-
-    goto :goto_0
-
-    .line 581
-    :cond_0
     invoke-direct {p0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->canProcessRequest(I)Z
 
     move-result v1
 
+    if-eqz v1, :cond_4
+
+    .line 613
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mCis:[Lcom/android/internal/telephony/CommandsInterface;
+
+    aget-object v1, v1, p1
+
+    invoke-interface {v1}, Lcom/android/internal/telephony/CommandsInterface;->canToggleUiccApplicationsEnablement()Z
+
+    move-result v1
+
+    const/4 v2, 0x1
+
+    if-eqz v1, :cond_2
+
+    .line 614
+    invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
+
+    move-result-object v1
+
+    invoke-virtual {v1, p1}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getSubId(I)[I
+
+    move-result-object v1
+
+    .line 615
+    .local v1, "subIds":[I
     if-eqz v1, :cond_1
 
-    .line 582
+    array-length v3, v1
+
+    if-eqz v3, :cond_1
+
+    .line 616
+    iget-object v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mContext:Landroid/content/Context;
+
+    .line 617
+    const-string v4, "telephony_subscription_service"
+
+    invoke-virtual {v3, v4}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+
+    move-result-object v3
+
+    check-cast v3, Landroid/telephony/SubscriptionManager;
+
+    .line 618
+    .local v3, "subscriptionManager":Landroid/telephony/SubscriptionManager;
+    const/4 v4, 0x0
+
+    aget v5, v1, v4
+
+    invoke-virtual {v3, v5}, Landroid/telephony/SubscriptionManager;->getActiveSubscriptionInfo(I)Landroid/telephony/SubscriptionInfo;
+
+    move-result-object v5
+
+    .line 619
+    .local v5, "si":Landroid/telephony/SubscriptionInfo;
+    invoke-virtual {v5}, Landroid/telephony/SubscriptionInfo;->areUiccApplicationsEnabled()Z
+
+    move-result v6
+
+    if-eqz v6, :cond_0
+
+    .line 620
+    goto :goto_0
+
+    :cond_0
+    move v2, v4
+
+    :goto_0
+    move v0, v2
+
+    .line 621
+    .end local v3    # "subscriptionManager":Landroid/telephony/SubscriptionManager;
+    .end local v5    # "si":Landroid/telephony/SubscriptionInfo;
+    goto :goto_1
+
+    .line 622
+    :cond_1
+    const/4 v0, -0x2
+
+    .line 624
+    .end local v1    # "subIds":[I
+    :goto_1
+    goto :goto_2
+
+    .line 625
+    :cond_2
+    sget v1, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mNumPhones:I
+
+    if-ne v1, v2, :cond_3
+
+    .line 628
+    const/4 v0, 0x1
+
+    goto :goto_2
+
+    .line 630
+    :cond_3
     invoke-direct {p0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->getCurrentProvisioningStatus(I)I
 
     move-result v0
 
-    .line 586
-    :cond_1
-    :goto_0
+    .line 634
+    :cond_4
+    :goto_2
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, " getCurrentUiccCardProvisioningStatus, state["
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    const-string v2, "] = "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1, v0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-direct {p0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->logd(Ljava/lang/String;)V
+
+    .line 636
     return v0
 .end method
 
@@ -2170,42 +2553,23 @@
     .locals 3
     .param p1, "slotId"    # I
 
-    .line 590
+    .line 640
     const/4 v0, -0x1
 
-    .line 593
+    .line 642
     .local v0, "userPref":I
-    sget v1, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mNumPhones:I
-
-    const/4 v2, 0x1
-
-    if-ne v1, v2, :cond_0
-
-    invoke-direct {p0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->isValidSlotId(I)Z
+    invoke-direct {p0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->canProcessRequest(I)Z
 
     move-result v1
 
     if-eqz v1, :cond_0
 
-    .line 594
-    const/4 v0, 0x1
-
-    goto :goto_0
-
-    .line 595
-    :cond_0
-    invoke-direct {p0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->canProcessRequest(I)Z
-
-    move-result v1
-
-    if-eqz v1, :cond_1
-
-    .line 596
+    .line 643
     sget-object v1, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->sManualProvLock:Ljava/lang/Object;
 
     monitor-enter v1
 
-    .line 597
+    .line 644
     :try_start_0
     iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mProvisionStatus:[Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;
 
@@ -2217,7 +2581,7 @@
 
     move v0, v2
 
-    .line 598
+    .line 645
     monitor-exit v1
 
     goto :goto_0
@@ -2231,8 +2595,8 @@
 
     throw v2
 
-    .line 601
-    :cond_1
+    .line 648
+    :cond_0
     :goto_0
     return v0
 .end method
@@ -2241,7 +2605,7 @@
     .locals 1
     .param p1, "slotId"    # I
 
-    .line 409
+    .line 411
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mSimFullIccId:[Ljava/lang/String;
 
     aget-object v0, v0, p1
@@ -2253,7 +2617,7 @@
     .locals 1
     .param p1, "slotId"    # I
 
-    .line 405
+    .line 407
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mSimIccId:[Ljava/lang/String;
 
     aget-object v0, v0, p1
@@ -2265,10 +2629,10 @@
     .locals 8
     .param p1, "msg"    # Landroid/os/Message;
 
-    .line 241
+    .line 243
     const/4 v0, -0x1
 
-    .line 243
+    .line 245
     .local v0, "phoneId":I
     iget v1, p1, Landroid/os/Message;->what:I
 
@@ -2276,7 +2640,7 @@
 
     packed-switch v1, :pswitch_data_0
 
-    .line 364
+    .line 366
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -2297,17 +2661,17 @@
 
     goto/16 :goto_1
 
-    .line 342
+    .line 344
     :pswitch_0
     iget-object v1, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
     check-cast v1, Landroid/os/AsyncResult;
 
-    .line 344
+    .line 346
     .local v1, "ar":Landroid/os/AsyncResult;
     if-eqz v1, :cond_d
 
-    .line 345
+    .line 347
     iget-object v2, v1, Landroid/os/AsyncResult;->userObj:Ljava/lang/Object;
 
     check-cast v2, Ljava/lang/Integer;
@@ -2316,7 +2680,7 @@
 
     move-result v0
 
-    .line 346
+    .line 348
     new-instance v2, Ljava/lang/StringBuilder;
 
     invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
@@ -2333,17 +2697,17 @@
 
     invoke-direct {p0, v2}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->logd(Ljava/lang/String;)V
 
-    .line 347
+    .line 349
     iget-object v2, v1, Landroid/os/AsyncResult;->result:Ljava/lang/Object;
 
     if-eqz v2, :cond_1
 
-    .line 348
+    .line 350
     iget-object v2, v1, Landroid/os/AsyncResult;->result:Ljava/lang/Object;
 
     check-cast v2, Lcom/android/internal/telephony/uicc/IccRefreshResponse;
 
-    .line 352
+    .line 354
     .local v2, "refreshRsp":Lcom/android/internal/telephony/uicc/IccRefreshResponse;
     iget v3, v2, Lcom/android/internal/telephony/uicc/IccRefreshResponse;->refreshResult:I
 
@@ -2351,24 +2715,24 @@
 
     if-ne v3, v4, :cond_0
 
-    .line 353
+    .line 355
     iget-object v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mSimIccId:[Ljava/lang/String;
 
     const/4 v4, 0x0
 
     aput-object v4, v3, v0
 
-    .line 354
+    .line 356
     iget-object v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mSimFullIccId:[Ljava/lang/String;
 
     aput-object v4, v3, v0
 
-    .line 356
+    .line 358
     .end local v2    # "refreshRsp":Lcom/android/internal/telephony/uicc/IccRefreshResponse;
     :cond_0
     goto/16 :goto_1
 
-    .line 357
+    .line 359
     :cond_1
     new-instance v2, Ljava/lang/StringBuilder;
 
@@ -2396,18 +2760,18 @@
 
     goto/16 :goto_1
 
-    .line 245
+    .line 247
     .end local v1    # "ar":Landroid/os/AsyncResult;
     :pswitch_1
     iget-object v1, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
     check-cast v1, Landroid/os/AsyncResult;
 
-    .line 246
+    .line 248
     .restart local v1    # "ar":Landroid/os/AsyncResult;
     if-eqz v1, :cond_d
 
-    .line 247
+    .line 249
     iget-object v3, v1, Landroid/os/AsyncResult;->userObj:Ljava/lang/Object;
 
     check-cast v3, Ljava/lang/Integer;
@@ -2416,7 +2780,7 @@
 
     move-result v0
 
-    .line 248
+    .line 250
     new-instance v3, Ljava/lang/StringBuilder;
 
     invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
@@ -2433,14 +2797,14 @@
 
     invoke-direct {p0, v3}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->logd(Ljava/lang/String;)V
 
-    .line 250
+    .line 252
     invoke-virtual {p0}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->isAllCardProvisionInfoReceived()Z
 
     move-result v3
 
     if-eqz v3, :cond_d
 
-    .line 251
+    .line 253
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
 
     move-result-object v3
@@ -2449,7 +2813,7 @@
 
     move-result-object v3
 
-    .line 252
+    .line 254
     .local v3, "subIds":[I
     if-eqz v3, :cond_2
 
@@ -2457,14 +2821,14 @@
 
     if-eqz v4, :cond_2
 
-    .line 253
+    .line 255
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
 
     move-result-object v4
 
     aget v2, v3, v2
 
-    .line 254
+    .line 256
     invoke-virtual {v4, v2}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->isActiveSubId(I)Z
 
     move-result v2
@@ -2478,7 +2842,7 @@
 
     if-nez v2, :cond_4
 
-    .line 256
+    .line 258
     invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->getCurrentProvisioningStatus(I)I
 
     move-result v2
@@ -2487,7 +2851,7 @@
 
     if-ne v2, v4, :cond_4
 
-    .line 258
+    .line 260
     :cond_3
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
 
@@ -2495,7 +2859,7 @@
 
     invoke-virtual {v2}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->updateUserPreferences()V
 
-    .line 261
+    .line 263
     :cond_4
     iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mCis:[Lcom/android/internal/telephony/CommandsInterface;
 
@@ -2503,30 +2867,30 @@
 
     invoke-interface {v2, p0}, Lcom/android/internal/telephony/CommandsInterface;->unregisterForAvailable(Landroid/os/Handler;)V
 
-    .line 262
+    .line 264
     .end local v3    # "subIds":[I
     goto/16 :goto_1
 
-    .line 295
+    .line 297
     .end local v1    # "ar":Landroid/os/AsyncResult;
     :pswitch_2
     iget-object v1, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
     check-cast v1, Landroid/os/AsyncResult;
 
-    .line 296
+    .line 298
     .restart local v1    # "ar":Landroid/os/AsyncResult;
     const/4 v3, 0x0
 
-    .line 297
+    .line 299
     .local v3, "iccId":Ljava/lang/String;
     const/4 v4, 0x0
 
-    .line 298
+    .line 300
     .local v4, "fullIccId":Ljava/lang/String;
     if-eqz v1, :cond_6
 
-    .line 299
+    .line 301
     iget-object v5, v1, Landroid/os/AsyncResult;->userObj:Ljava/lang/Object;
 
     check-cast v5, Ljava/lang/Integer;
@@ -2535,17 +2899,17 @@
 
     move-result v0
 
-    .line 300
+    .line 302
     iget-object v5, v1, Landroid/os/AsyncResult;->result:Ljava/lang/Object;
 
     if-eqz v5, :cond_5
 
-    .line 301
+    .line 303
     iget-object v5, v1, Landroid/os/AsyncResult;->result:Ljava/lang/Object;
 
     check-cast v5, [B
 
-    .line 302
+    .line 304
     .local v5, "data":[B
     array-length v6, v5
 
@@ -2553,16 +2917,16 @@
 
     move-result-object v4
 
-    .line 303
+    .line 305
     invoke-static {v4}, Lcom/android/internal/telephony/uicc/IccUtils;->stripTrailingFs(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v3
 
-    .line 304
+    .line 306
     .end local v5    # "data":[B
     goto :goto_0
 
-    .line 305
+    .line 307
     :cond_5
     new-instance v5, Ljava/lang/StringBuilder;
 
@@ -2588,7 +2952,7 @@
 
     invoke-direct {p0, v5}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->logd(Ljava/lang/String;)V
 
-    .line 308
+    .line 310
     :cond_6
     :goto_0
     if-ltz v0, :cond_d
@@ -2597,36 +2961,36 @@
 
     if-ge v0, v5, :cond_d
 
-    .line 309
+    .line 311
     iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mIsIccIdQueryPending:[Z
 
     aput-boolean v2, v5, v0
 
-    .line 311
+    .line 313
     invoke-static {v3}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
     move-result v5
 
     if-nez v5, :cond_8
 
-    .line 314
+    .line 316
     iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mSimFullIccId:[Ljava/lang/String;
 
     aput-object v4, v5, v0
 
-    .line 315
+    .line 317
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionInfoUpdater;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionInfoUpdater;
 
     move-result-object v5
 
     invoke-virtual {v5, v0, v3}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionInfoUpdater;->addSubInfoRecord(ILjava/lang/String;)V
 
-    .line 316
+    .line 318
     iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mSimIccId:[Ljava/lang/String;
 
     aput-object v3, v5, v0
 
-    .line 317
+    .line 319
     aget-object v5, v5, v0
 
     if-eqz v5, :cond_7
@@ -2637,10 +3001,10 @@
 
     if-eqz v5, :cond_7
 
-    .line 318
+    .line 320
     iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mContext:Landroid/content/Context;
 
-    .line 319
+    .line 321
     const-string v6, "telephony_subscription_service"
 
     invoke-virtual {v5, v6}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
@@ -2649,7 +3013,7 @@
 
     check-cast v5, Landroid/telephony/SubscriptionManager;
 
-    .line 321
+    .line 323
     .local v5, "subscriptionManager":Landroid/telephony/SubscriptionManager;
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
 
@@ -2659,7 +3023,7 @@
 
     move-result-object v6
 
-    .line 323
+    .line 325
     .local v6, "subIds":[I
     if-eqz v6, :cond_7
 
@@ -2669,21 +3033,21 @@
 
     aget v2, v6, v2
 
-    .line 324
+    .line 326
     invoke-virtual {v5, v2}, Landroid/telephony/SubscriptionManager;->isActiveSubscriptionId(I)Z
 
     move-result v2
 
     if-eqz v2, :cond_7
 
-    .line 325
+    .line 327
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionInfoUpdater;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionInfoUpdater;
 
     move-result-object v2
 
     invoke-virtual {v2}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionInfoUpdater;->updateUserPreferences()V
 
-    .line 328
+    .line 330
     .end local v5    # "subscriptionManager":Landroid/telephony/SubscriptionManager;
     .end local v6    # "subIds":[I
     :cond_7
@@ -2697,14 +3061,14 @@
 
     aget-object v5, v5, v0
 
-    .line 329
+    .line 331
     invoke-virtual {v2, v5}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;->equals(Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;)Z
 
     move-result v2
 
     if-nez v2, :cond_d
 
-    .line 330
+    .line 332
     new-instance v2, Ljava/lang/StringBuilder;
 
     invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
@@ -2721,18 +3085,18 @@
 
     invoke-direct {p0, v2}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->logd(Ljava/lang/String;)V
 
-    .line 331
+    .line 333
     nop
 
-    .line 332
+    .line 334
     invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->getCurrentProvisioningStatus(I)I
 
     move-result v2
 
-    .line 331
+    .line 333
     invoke-direct {p0, v0, v2}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->broadcastManualProvisionStatusChanged(II)V
 
-    .line 333
+    .line 335
     iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mOldProvisionStatus:[Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;
 
     iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mProvisionStatus:[Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;
@@ -2743,7 +3107,7 @@
 
     goto :goto_1
 
-    .line 336
+    .line 338
     :cond_8
     new-instance v2, Ljava/lang/StringBuilder;
 
@@ -2763,7 +3127,7 @@
 
     goto :goto_1
 
-    .line 274
+    .line 276
     .end local v1    # "ar":Landroid/os/AsyncResult;
     .end local v3    # "iccId":Ljava/lang/String;
     .end local v4    # "fullIccId":Ljava/lang/String;
@@ -2772,7 +3136,7 @@
 
     check-cast v1, Landroid/os/AsyncResult;
 
-    .line 275
+    .line 277
     .restart local v1    # "ar":Landroid/os/AsyncResult;
     if-eqz v1, :cond_a
 
@@ -2780,7 +3144,7 @@
 
     if-eqz v2, :cond_a
 
-    .line 276
+    .line 278
     iget-object v2, v1, Landroid/os/AsyncResult;->result:Ljava/lang/Object;
 
     check-cast v2, Ljava/lang/Boolean;
@@ -2789,35 +3153,35 @@
 
     move-result v2
 
-    .line 277
+    .line 279
     .local v2, "isServiceReady":Z
     if-eqz v2, :cond_9
 
-    .line 278
+    .line 280
     invoke-direct {p0}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->queryAllUiccProvisionInfo()V
 
-    .line 280
+    .line 282
     .end local v2    # "isServiceReady":Z
     :cond_9
     goto :goto_1
 
-    .line 281
+    .line 283
     :cond_a
     const-string v2, "Error: empty result, EVENT_OEM_HOOK_SERVICE_READY"
 
     invoke-direct {p0, v2}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->loge(Ljava/lang/String;)V
 
-    .line 283
+    .line 285
     goto :goto_1
 
-    .line 286
+    .line 288
     .end local v1    # "ar":Landroid/os/AsyncResult;
     :pswitch_4
     iget-object v1, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
     check-cast v1, Lorg/codeaurora/telephony/utils/AsyncResult;
 
-    .line 288
+    .line 290
     .local v1, "asyncresult":Lorg/codeaurora/telephony/utils/AsyncResult;
     if-eqz v1, :cond_b
 
@@ -2825,7 +3189,7 @@
 
     if-eqz v2, :cond_b
 
-    .line 289
+    .line 291
     iget-object v2, v1, Lorg/codeaurora/telephony/utils/AsyncResult;->result:Ljava/lang/Object;
 
     check-cast v2, Landroid/os/Message;
@@ -2834,23 +3198,23 @@
 
     goto :goto_1
 
-    .line 291
+    .line 293
     :cond_b
     const-string v2, "Error: empty result, UNSOL_MANUAL_PROVISION_STATUS_CHANGED"
 
     invoke-direct {p0, v2}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->loge(Ljava/lang/String;)V
 
-    .line 293
+    .line 295
     goto :goto_1
 
-    .line 266
+    .line 268
     .end local v1    # "asyncresult":Lorg/codeaurora/telephony/utils/AsyncResult;
     :pswitch_5
     iget-object v1, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
     check-cast v1, Landroid/os/AsyncResult;
 
-    .line 267
+    .line 269
     .local v1, "ar":Landroid/os/AsyncResult;
     if-eqz v1, :cond_c
 
@@ -2858,7 +3222,7 @@
 
     if-eqz v2, :cond_c
 
-    .line 268
+    .line 270
     iget-object v2, v1, Landroid/os/AsyncResult;->result:Ljava/lang/Object;
 
     check-cast v2, Ljava/lang/Integer;
@@ -2871,16 +3235,16 @@
 
     goto :goto_1
 
-    .line 270
+    .line 272
     :cond_c
     const-string v2, "Error: Invalid card index EVENT_ICC_CHANGED "
 
     invoke-direct {p0, v2}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->loge(Ljava/lang/String;)V
 
-    .line 272
+    .line 274
     nop
 
-    .line 367
+    .line 369
     .end local v1    # "ar":Landroid/os/AsyncResult;
     :cond_d
     :goto_1
@@ -2902,10 +3266,10 @@
 .method public isAllCardProvisionInfoReceived()Z
     .locals 5
 
-    .line 722
+    .line 783
     const/4 v0, 0x1
 
-    .line 723
+    .line 784
     .local v0, "received":Z
     const/4 v1, 0x0
 
@@ -2913,42 +3277,56 @@
     :goto_0
     sget v2, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mNumPhones:I
 
-    if-ge v1, v2, :cond_2
+    if-ge v1, v2, :cond_3
 
-    .line 724
+    .line 785
+    invoke-direct {p0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->isEuiccHasEmptyProfiles(I)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    .line 786
+    const/4 v0, 0x1
+
+    goto :goto_1
+
+    .line 788
+    :cond_0
     invoke-direct {p0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->getCurrentProvisioningStatus(I)I
 
     move-result v2
 
-    .line 725
+    .line 789
     .local v2, "provPref":I
     const/4 v3, -0x1
 
-    if-eq v2, v3, :cond_1
+    if-eq v2, v3, :cond_2
 
     iget-object v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mSimIccId:[Ljava/lang/String;
 
     aget-object v3, v3, v1
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_1
 
     const/4 v3, -0x2
 
-    if-ne v2, v3, :cond_0
+    if-ne v2, v3, :cond_1
 
-    goto :goto_1
+    goto :goto_2
 
-    .line 723
+    .line 784
     .end local v2    # "provPref":I
-    :cond_0
+    :cond_1
+    :goto_1
     add-int/lit8 v1, v1, 0x1
 
     goto :goto_0
 
-    .line 728
+    .line 792
     .restart local v2    # "provPref":I
-    :cond_1
-    :goto_1
+    :cond_2
+    :goto_2
     new-instance v3, Ljava/lang/StringBuilder;
 
     invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
@@ -2971,20 +3349,20 @@
 
     invoke-direct {p0, v3}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->logd(Ljava/lang/String;)V
 
-    .line 729
+    .line 794
     const/4 v0, 0x0
 
-    .line 733
+    .line 799
     .end local v1    # "index":I
     .end local v2    # "provPref":I
-    :cond_2
+    :cond_3
     return v0
 .end method
 
 .method public isAnyProvisionRequestInProgress()Z
     .locals 1
 
-    .line 716
+    .line 777
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mRequestInProgress:Ljava/util/concurrent/atomic/AtomicBoolean;
 
     invoke-virtual {v0}, Ljava/util/concurrent/atomic/AtomicBoolean;->get()Z
@@ -2997,25 +3375,25 @@
 .method public isFlexMapInProgress()Z
     .locals 4
 
-    .line 704
+    .line 765
     const/4 v0, 0x0
 
-    .line 705
+    .line 766
     .local v0, "retVal":Z
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;
 
     move-result-object v1
 
-    .line 707
+    .line 768
     .local v1, "rcController":Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;
     if-eqz v1, :cond_0
 
-    .line 708
+    .line 769
     invoke-virtual {v1}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->isSetNWModeInProgress()Z
 
     move-result v0
 
-    .line 709
+    .line 770
     new-instance v2, Ljava/lang/StringBuilder;
 
     invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
@@ -3032,7 +3410,7 @@
 
     invoke-direct {p0, v2}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->logd(Ljava/lang/String;)V
 
-    .line 712
+    .line 773
     :cond_0
     return v0
 .end method
@@ -3043,33 +3421,33 @@
     .param p2, "what"    # I
     .param p3, "obj"    # Ljava/lang/Object;
 
-    .line 225
+    .line 227
     new-instance v0, Landroid/os/Registrant;
 
     invoke-direct {v0, p1, p2, p3}, Landroid/os/Registrant;-><init>(Landroid/os/Handler;ILjava/lang/Object;)V
 
-    .line 226
+    .line 228
     .local v0, "r":Landroid/os/Registrant;
     iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mManualProvisionChangedRegistrants:Landroid/os/RegistrantList;
 
     monitor-enter v1
 
-    .line 227
+    .line 229
     :try_start_0
     iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mManualProvisionChangedRegistrants:Landroid/os/RegistrantList;
 
     invoke-virtual {v2, v0}, Landroid/os/RegistrantList;->add(Landroid/os/Registrant;)V
 
-    .line 228
+    .line 230
     invoke-virtual {v0}, Landroid/os/Registrant;->notifyRegistrant()V
 
-    .line 229
+    .line 231
     monitor-exit v1
 
-    .line 230
+    .line 232
     return-void
 
-    .line 229
+    .line 231
     :catchall_0
     move-exception v2
 
@@ -3084,24 +3462,24 @@
     .locals 2
     .param p1, "handler"    # Landroid/os/Handler;
 
-    .line 233
+    .line 235
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mManualProvisionChangedRegistrants:Landroid/os/RegistrantList;
 
     monitor-enter v0
 
-    .line 234
+    .line 236
     :try_start_0
     iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->mManualProvisionChangedRegistrants:Landroid/os/RegistrantList;
 
     invoke-virtual {v1, p1}, Landroid/os/RegistrantList;->remove(Landroid/os/Handler;)V
 
-    .line 235
+    .line 237
     monitor-exit v0
 
-    .line 236
+    .line 238
     return-void
 
-    .line 235
+    .line 237
     :catchall_0
     move-exception v1
 

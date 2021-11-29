@@ -26,6 +26,26 @@
     .line 4
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
+    .line 5
+    const/4 v0, 0x0
+
+    iput v0, p0, Landroid/hardware/radio/V1_0/SimApdu;->sessionId:I
+
+    .line 6
+    iput v0, p0, Landroid/hardware/radio/V1_0/SimApdu;->cla:I
+
+    .line 7
+    iput v0, p0, Landroid/hardware/radio/V1_0/SimApdu;->instruction:I
+
+    .line 8
+    iput v0, p0, Landroid/hardware/radio/V1_0/SimApdu;->p1:I
+
+    .line 9
+    iput v0, p0, Landroid/hardware/radio/V1_0/SimApdu;->p2:I
+
+    .line 10
+    iput v0, p0, Landroid/hardware/radio/V1_0/SimApdu;->p3:I
+
     .line 11
     new-instance v0, Ljava/lang/String;
 
@@ -584,7 +604,7 @@
     iput-object v6, v0, Landroid/hardware/radio/V1_0/SimApdu;->data:Ljava/lang/String;
 
     .line 119
-    iget-object v6, v0, Landroid/hardware/radio/V1_0/SimApdu;->data:Ljava/lang/String;
+    nop
 
     .line 120
     invoke-virtual {v6}, Ljava/lang/String;->getBytes()[B

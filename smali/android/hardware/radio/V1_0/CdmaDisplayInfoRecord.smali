@@ -322,7 +322,7 @@
     iput-object v2, p0, Landroid/hardware/radio/V1_0/CdmaDisplayInfoRecord;->alphaBuf:Ljava/lang/String;
 
     .line 71
-    iget-object v2, p0, Landroid/hardware/radio/V1_0/CdmaDisplayInfoRecord;->alphaBuf:Ljava/lang/String;
+    nop
 
     .line 72
     invoke-virtual {v2}, Ljava/lang/String;->getBytes()[B

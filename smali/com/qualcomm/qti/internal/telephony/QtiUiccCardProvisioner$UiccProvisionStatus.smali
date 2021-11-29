@@ -4,9 +4,6 @@
 
 
 # annotations
-.annotation build Lcom/android/internal/annotations/VisibleForTesting;
-.end annotation
-
 .annotation system Ldalvik/annotation/EnclosingClass;
     value = Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;
 .end annotation
@@ -37,18 +34,18 @@
 .method constructor <init>()V
     .locals 1
 
-    .line 114
+    .line 116
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 115
+    .line 117
     const/4 v0, -0x1
 
     iput v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;->userPreference:I
 
-    .line 116
+    .line 118
     iput v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;->currentState:I
 
-    .line 117
+    .line 119
     return-void
 .end method
 
@@ -58,10 +55,10 @@
     .locals 3
     .param p1, "provisionStatus"    # Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;
 
-    .line 120
+    .line 122
     const/4 v0, 0x1
 
-    .line 122
+    .line 124
     .local v0, "result":Z
     invoke-virtual {p1}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;->getUserPreference()I
 
@@ -73,7 +70,7 @@
 
     if-ne v1, v2, :cond_0
 
-    .line 123
+    .line 125
     invoke-virtual {p1}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;->getCurrentState()I
 
     move-result v1
@@ -84,11 +81,11 @@
 
     if-eq v1, v2, :cond_1
 
-    .line 124
+    .line 126
     :cond_0
     const/4 v0, 0x0
 
-    .line 126
+    .line 128
     :cond_1
     return v0
 .end method
@@ -96,7 +93,7 @@
 .method getCurrentState()I
     .locals 1
 
-    .line 138
+    .line 140
     iget v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;->currentState:I
 
     return v0
@@ -105,7 +102,7 @@
 .method getUserPreference()I
     .locals 1
 
-    .line 130
+    .line 132
     iget v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;->userPreference:I
 
     return v0
@@ -115,10 +112,10 @@
     .locals 0
     .param p1, "state"    # I
 
-    .line 142
+    .line 144
     iput p1, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;->currentState:I
 
-    .line 143
+    .line 145
     return-void
 .end method
 
@@ -126,17 +123,17 @@
     .locals 0
     .param p1, "pref"    # I
 
-    .line 134
+    .line 136
     iput p1, p0, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner$UiccProvisionStatus;->userPreference:I
 
-    .line 135
+    .line 137
     return-void
 .end method
 
 .method public toString()Ljava/lang/String;
     .locals 2
 
-    .line 147
+    .line 149
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V

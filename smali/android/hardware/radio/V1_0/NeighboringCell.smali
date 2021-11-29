@@ -23,6 +23,11 @@
 
     iput-object v0, p0, Landroid/hardware/radio/V1_0/NeighboringCell;->cid:Ljava/lang/String;
 
+    .line 6
+    const/4 v0, 0x0
+
+    iput v0, p0, Landroid/hardware/radio/V1_0/NeighboringCell;->rssi:I
+
     return-void
 .end method
 
@@ -354,7 +359,7 @@
     iput-object v2, p0, Landroid/hardware/radio/V1_0/NeighboringCell;->cid:Ljava/lang/String;
 
     .line 78
-    iget-object v2, p0, Landroid/hardware/radio/V1_0/NeighboringCell;->cid:Ljava/lang/String;
+    nop
 
     .line 79
     invoke-virtual {v2}, Ljava/lang/String;->getBytes()[B

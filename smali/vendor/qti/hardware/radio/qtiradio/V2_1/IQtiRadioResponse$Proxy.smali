@@ -26,19 +26,19 @@
     .locals 1
     .param p1, "remote"    # Landroid/os/IHwBinder;
 
-    .line 124
+    .line 225
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 125
+    .line 226
     invoke-static {p1}, Ljava/util/Objects;->requireNonNull(Ljava/lang/Object;)Ljava/lang/Object;
 
-    move-result-object v0
+    move-object v0, p1
 
     check-cast v0, Landroid/os/IHwBinder;
 
     iput-object v0, p0, Lvendor/qti/hardware/radio/qtiradio/V2_1/IQtiRadioResponse$Proxy;->mRemote:Landroid/os/IHwBinder;
 
-    .line 126
+    .line 227
     return-void
 .end method
 
@@ -47,7 +47,7 @@
 .method public asBinder()Landroid/os/IHwBinder;
     .locals 1
 
-    .line 130
+    .line 231
     iget-object v0, p0, Lvendor/qti/hardware/radio/qtiradio/V2_1/IQtiRadioResponse$Proxy;->mRemote:Landroid/os/IHwBinder;
 
     return-object v0
@@ -72,30 +72,30 @@
         }
     .end annotation
 
-    .line 393
+    .line 494
     .local p2, "options":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Ljava/lang/String;>;"
     new-instance v0, Landroid/os/HwParcel;
 
     invoke-direct {v0}, Landroid/os/HwParcel;-><init>()V
 
-    .line 394
+    .line 495
     .local v0, "_hidl_request":Landroid/os/HwParcel;
     const-string v1, "android.hidl.base@1.0::IBase"
 
     invoke-virtual {v0, v1}, Landroid/os/HwParcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 395
+    .line 496
     invoke-virtual {v0, p1}, Landroid/os/HwParcel;->writeNativeHandle(Landroid/os/NativeHandle;)V
 
-    .line 396
+    .line 497
     invoke-virtual {v0, p2}, Landroid/os/HwParcel;->writeStringVector(Ljava/util/ArrayList;)V
 
-    .line 398
+    .line 499
     new-instance v1, Landroid/os/HwParcel;
 
     invoke-direct {v1}, Landroid/os/HwParcel;-><init>()V
 
-    .line 400
+    .line 501
     .local v1, "_hidl_reply":Landroid/os/HwParcel;
     :try_start_0
     iget-object v2, p0, Lvendor/qti/hardware/radio/qtiradio/V2_1/IQtiRadioResponse$Proxy;->mRemote:Landroid/os/IHwBinder;
@@ -106,29 +106,30 @@
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IHwBinder;->transact(ILandroid/os/HwParcel;Landroid/os/HwParcel;I)V
 
-    .line 401
+    .line 502
     invoke-virtual {v1}, Landroid/os/HwParcel;->verifySuccess()V
 
-    .line 402
+    .line 503
     invoke-virtual {v0}, Landroid/os/HwParcel;->releaseTemporaryStorage()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 404
+    .line 505
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
-    .line 405
+    .line 506
     nop
 
-    .line 406
+    .line 507
     return-void
 
-    .line 404
+    .line 505
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
+    .line 506
     throw v2
 .end method
 
@@ -136,7 +137,7 @@
     .locals 1
     .param p1, "other"    # Ljava/lang/Object;
 
-    .line 145
+    .line 246
     invoke-static {p0, p1}, Landroid/os/HidlSupport;->interfacesEqual(Landroid/os/IHwInterface;Ljava/lang/Object;)Z
 
     move-result v0
@@ -154,29 +155,29 @@
         }
     .end annotation
 
-    .line 157
+    .line 258
     new-instance v0, Landroid/os/HwParcel;
 
     invoke-direct {v0}, Landroid/os/HwParcel;-><init>()V
 
-    .line 158
+    .line 259
     .local v0, "_hidl_request":Landroid/os/HwParcel;
     const-string v1, "vendor.qti.hardware.radio.qtiradio@1.0::IQtiRadioResponse"
 
     invoke-virtual {v0, v1}, Landroid/os/HwParcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 159
+    .line 260
     invoke-virtual {p1, v0}, Lvendor/qti/hardware/radio/qtiradio/V1_0/QtiRadioResponseInfo;->writeToParcel(Landroid/os/HwParcel;)V
 
-    .line 160
+    .line 261
     invoke-virtual {v0, p2}, Landroid/os/HwParcel;->writeString(Ljava/lang/String;)V
 
-    .line 162
+    .line 263
     new-instance v1, Landroid/os/HwParcel;
 
     invoke-direct {v1}, Landroid/os/HwParcel;-><init>()V
 
-    .line 164
+    .line 265
     .local v1, "_hidl_reply":Landroid/os/HwParcel;
     :try_start_0
     iget-object v2, p0, Lvendor/qti/hardware/radio/qtiradio/V2_1/IQtiRadioResponse$Proxy;->mRemote:Landroid/os/IHwBinder;
@@ -185,26 +186,27 @@
 
     invoke-interface {v2, v3, v0, v1, v3}, Landroid/os/IHwBinder;->transact(ILandroid/os/HwParcel;Landroid/os/HwParcel;I)V
 
-    .line 165
+    .line 266
     invoke-virtual {v0}, Landroid/os/HwParcel;->releaseTemporaryStorage()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 167
+    .line 268
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
-    .line 168
+    .line 269
     nop
 
-    .line 169
+    .line 270
     return-void
 
-    .line 167
+    .line 268
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
+    .line 269
     throw v2
 .end method
 
@@ -216,23 +218,23 @@
         }
     .end annotation
 
-    .line 505
+    .line 606
     new-instance v0, Landroid/os/HwParcel;
 
     invoke-direct {v0}, Landroid/os/HwParcel;-><init>()V
 
-    .line 506
+    .line 607
     .local v0, "_hidl_request":Landroid/os/HwParcel;
     const-string v1, "android.hidl.base@1.0::IBase"
 
     invoke-virtual {v0, v1}, Landroid/os/HwParcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 508
+    .line 609
     new-instance v1, Landroid/os/HwParcel;
 
     invoke-direct {v1}, Landroid/os/HwParcel;-><init>()V
 
-    .line 510
+    .line 611
     .local v1, "_hidl_reply":Landroid/os/HwParcel;
     :try_start_0
     iget-object v2, p0, Lvendor/qti/hardware/radio/qtiradio/V2_1/IQtiRadioResponse$Proxy;->mRemote:Landroid/os/IHwBinder;
@@ -243,39 +245,40 @@
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IHwBinder;->transact(ILandroid/os/HwParcel;Landroid/os/HwParcel;I)V
 
-    .line 511
+    .line 612
     invoke-virtual {v1}, Landroid/os/HwParcel;->verifySuccess()V
 
-    .line 512
+    .line 613
     invoke-virtual {v0}, Landroid/os/HwParcel;->releaseTemporaryStorage()V
 
-    .line 514
+    .line 615
     new-instance v2, Landroid/hidl/base/V1_0/DebugInfo;
 
     invoke-direct {v2}, Landroid/hidl/base/V1_0/DebugInfo;-><init>()V
 
-    .line 515
+    .line 616
     .local v2, "_hidl_out_info":Landroid/hidl/base/V1_0/DebugInfo;
     invoke-virtual {v2, v1}, Landroid/hidl/base/V1_0/DebugInfo;->readFromParcel(Landroid/os/HwParcel;)V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 516
+    .line 617
     nop
 
-    .line 518
+    .line 619
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
-    .line 516
+    .line 617
     return-object v2
 
-    .line 518
+    .line 619
     .end local v2    # "_hidl_out_info":Landroid/hidl/base/V1_0/DebugInfo;
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
+    .line 620
     throw v2
 .end method
 
@@ -295,23 +298,23 @@
         }
     .end annotation
 
-    .line 430
+    .line 531
     new-instance v0, Landroid/os/HwParcel;
 
     invoke-direct {v0}, Landroid/os/HwParcel;-><init>()V
 
-    .line 431
+    .line 532
     .local v0, "_hidl_request":Landroid/os/HwParcel;
     const-string v1, "android.hidl.base@1.0::IBase"
 
     invoke-virtual {v0, v1}, Landroid/os/HwParcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 433
+    .line 534
     new-instance v1, Landroid/os/HwParcel;
 
     invoke-direct {v1}, Landroid/os/HwParcel;-><init>()V
 
-    .line 435
+    .line 536
     .local v1, "_hidl_reply":Landroid/os/HwParcel;
     :try_start_0
     iget-object v2, p0, Lvendor/qti/hardware/radio/qtiradio/V2_1/IQtiRadioResponse$Proxy;->mRemote:Landroid/os/IHwBinder;
@@ -322,20 +325,20 @@
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IHwBinder;->transact(ILandroid/os/HwParcel;Landroid/os/HwParcel;I)V
 
-    .line 436
+    .line 537
     invoke-virtual {v1}, Landroid/os/HwParcel;->verifySuccess()V
 
-    .line 437
+    .line 538
     invoke-virtual {v0}, Landroid/os/HwParcel;->releaseTemporaryStorage()V
 
-    .line 439
+    .line 540
     new-instance v2, Ljava/util/ArrayList;
 
     invoke-direct {v2}, Ljava/util/ArrayList;-><init>()V
 
     move-object v10, v2
 
-    .line 441
+    .line 542
     .local v10, "_hidl_out_hashchain":Ljava/util/ArrayList;, "Ljava/util/ArrayList<[B>;"
     const-wide/16 v2, 0x10
 
@@ -345,7 +348,7 @@
 
     move-object v11, v2
 
-    .line 443
+    .line 544
     .local v11, "_hidl_blob":Landroid/os/HwBlob;
     const-wide/16 v2, 0x8
 
@@ -355,13 +358,13 @@
 
     move v12, v2
 
-    .line 444
+    .line 545
     .local v12, "_hidl_vec_size":I
     mul-int/lit8 v2, v12, 0x20
 
     int-to-long v3, v2
 
-    .line 445
+    .line 546
     invoke-virtual {v11}, Landroid/os/HwBlob;->handle()J
 
     move-result-wide v5
@@ -370,49 +373,49 @@
 
     const/4 v9, 0x1
 
-    .line 444
+    .line 545
     move-object v2, v1
 
     invoke-virtual/range {v2 .. v9}, Landroid/os/HwParcel;->readEmbeddedBuffer(JJJZ)Landroid/os/HwBlob;
 
     move-result-object v2
 
-    .line 448
+    .line 549
     .local v2, "childBlob":Landroid/os/HwBlob;
     invoke-virtual {v10}, Ljava/util/ArrayList;->clear()V
 
-    .line 449
+    .line 550
     const/4 v3, 0x0
 
     .local v3, "_hidl_index_0":I
     :goto_0
     if-ge v3, v12, :cond_0
 
-    .line 450
+    .line 551
     const/16 v4, 0x20
 
     new-array v5, v4, [B
 
-    .line 452
+    .line 553
     .local v5, "_hidl_vec_element":[B
     mul-int/lit8 v6, v3, 0x20
 
     int-to-long v6, v6
 
-    .line 453
+    .line 554
     .local v6, "_hidl_array_offset_1":J
     invoke-virtual {v2, v6, v7, v5, v4}, Landroid/os/HwBlob;->copyToInt8Array(J[BI)V
 
-    .line 454
+    .line 555
     nop
 
-    .line 456
+    .line 557
     .end local v6    # "_hidl_array_offset_1":J
     invoke-virtual {v10, v5}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 449
+    .line 550
     nop
 
     .end local v5    # "_hidl_vec_element":[B
@@ -420,7 +423,7 @@
 
     goto :goto_0
 
-    .line 460
+    .line 561
     .end local v2    # "childBlob":Landroid/os/HwBlob;
     .end local v3    # "_hidl_index_0":I
     .end local v11    # "_hidl_blob":Landroid/os/HwBlob;
@@ -428,26 +431,27 @@
     :cond_0
     nop
 
-    .line 462
+    .line 563
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
-    .line 460
+    .line 561
     return-object v10
 
-    .line 462
+    .line 563
     .end local v10    # "_hidl_out_hashchain":Ljava/util/ArrayList;, "Ljava/util/ArrayList<[B>;"
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
+    .line 564
     throw v2
 .end method
 
 .method public final hashCode()I
     .locals 1
 
-    .line 150
+    .line 251
     invoke-virtual {p0}, Lvendor/qti/hardware/radio/qtiradio/V2_1/IQtiRadioResponse$Proxy;->asBinder()Landroid/os/IHwBinder;
 
     move-result-object v0
@@ -476,23 +480,23 @@
         }
     .end annotation
 
-    .line 374
+    .line 475
     new-instance v0, Landroid/os/HwParcel;
 
     invoke-direct {v0}, Landroid/os/HwParcel;-><init>()V
 
-    .line 375
+    .line 476
     .local v0, "_hidl_request":Landroid/os/HwParcel;
     const-string v1, "android.hidl.base@1.0::IBase"
 
     invoke-virtual {v0, v1}, Landroid/os/HwParcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 377
+    .line 478
     new-instance v1, Landroid/os/HwParcel;
 
     invoke-direct {v1}, Landroid/os/HwParcel;-><init>()V
 
-    .line 379
+    .line 480
     .local v1, "_hidl_reply":Landroid/os/HwParcel;
     :try_start_0
     iget-object v2, p0, Lvendor/qti/hardware/radio/qtiradio/V2_1/IQtiRadioResponse$Proxy;->mRemote:Landroid/os/IHwBinder;
@@ -503,36 +507,37 @@
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IHwBinder;->transact(ILandroid/os/HwParcel;Landroid/os/HwParcel;I)V
 
-    .line 380
+    .line 481
     invoke-virtual {v1}, Landroid/os/HwParcel;->verifySuccess()V
 
-    .line 381
+    .line 482
     invoke-virtual {v0}, Landroid/os/HwParcel;->releaseTemporaryStorage()V
 
-    .line 383
+    .line 484
     invoke-virtual {v1}, Landroid/os/HwParcel;->readStringVector()Ljava/util/ArrayList;
 
     move-result-object v2
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 384
+    .line 485
     .local v2, "_hidl_out_descriptors":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Ljava/lang/String;>;"
     nop
 
-    .line 386
+    .line 487
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
-    .line 384
+    .line 485
     return-object v2
 
-    .line 386
+    .line 487
     .end local v2    # "_hidl_out_descriptors":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Ljava/lang/String;>;"
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
+    .line 488
     throw v2
 .end method
 
@@ -544,23 +549,23 @@
         }
     .end annotation
 
-    .line 411
+    .line 512
     new-instance v0, Landroid/os/HwParcel;
 
     invoke-direct {v0}, Landroid/os/HwParcel;-><init>()V
 
-    .line 412
+    .line 513
     .local v0, "_hidl_request":Landroid/os/HwParcel;
     const-string v1, "android.hidl.base@1.0::IBase"
 
     invoke-virtual {v0, v1}, Landroid/os/HwParcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 414
+    .line 515
     new-instance v1, Landroid/os/HwParcel;
 
     invoke-direct {v1}, Landroid/os/HwParcel;-><init>()V
 
-    .line 416
+    .line 517
     .local v1, "_hidl_reply":Landroid/os/HwParcel;
     :try_start_0
     iget-object v2, p0, Lvendor/qti/hardware/radio/qtiradio/V2_1/IQtiRadioResponse$Proxy;->mRemote:Landroid/os/IHwBinder;
@@ -571,36 +576,37 @@
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IHwBinder;->transact(ILandroid/os/HwParcel;Landroid/os/HwParcel;I)V
 
-    .line 417
+    .line 518
     invoke-virtual {v1}, Landroid/os/HwParcel;->verifySuccess()V
 
-    .line 418
+    .line 519
     invoke-virtual {v0}, Landroid/os/HwParcel;->releaseTemporaryStorage()V
 
-    .line 420
+    .line 521
     invoke-virtual {v1}, Landroid/os/HwParcel;->readString()Ljava/lang/String;
 
     move-result-object v2
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 421
+    .line 522
     .local v2, "_hidl_out_descriptor":Ljava/lang/String;
     nop
 
-    .line 423
+    .line 524
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
-    .line 421
+    .line 522
     return-object v2
 
-    .line 423
+    .line 524
     .end local v2    # "_hidl_out_descriptor":Ljava/lang/String;
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
+    .line 525
     throw v2
 .end method
 
@@ -614,7 +620,7 @@
         }
     .end annotation
 
-    .line 484
+    .line 585
     iget-object v0, p0, Lvendor/qti/hardware/radio/qtiradio/V2_1/IQtiRadioResponse$Proxy;->mRemote:Landroid/os/IHwBinder;
 
     invoke-interface {v0, p1, p2, p3}, Landroid/os/IHwBinder;->linkToDeath(Landroid/os/IHwBinder$DeathRecipient;J)Z
@@ -632,23 +638,23 @@
         }
     .end annotation
 
-    .line 525
+    .line 626
     new-instance v0, Landroid/os/HwParcel;
 
     invoke-direct {v0}, Landroid/os/HwParcel;-><init>()V
 
-    .line 526
+    .line 627
     .local v0, "_hidl_request":Landroid/os/HwParcel;
     const-string v1, "android.hidl.base@1.0::IBase"
 
     invoke-virtual {v0, v1}, Landroid/os/HwParcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 528
+    .line 629
     new-instance v1, Landroid/os/HwParcel;
 
     invoke-direct {v1}, Landroid/os/HwParcel;-><init>()V
 
-    .line 530
+    .line 631
     .local v1, "_hidl_reply":Landroid/os/HwParcel;
     :try_start_0
     iget-object v2, p0, Lvendor/qti/hardware/radio/qtiradio/V2_1/IQtiRadioResponse$Proxy;->mRemote:Landroid/os/IHwBinder;
@@ -659,26 +665,27 @@
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IHwBinder;->transact(ILandroid/os/HwParcel;Landroid/os/HwParcel;I)V
 
-    .line 531
+    .line 632
     invoke-virtual {v0}, Landroid/os/HwParcel;->releaseTemporaryStorage()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 533
+    .line 634
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
-    .line 534
+    .line 635
     nop
 
-    .line 535
+    .line 636
     return-void
 
-    .line 533
+    .line 634
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
+    .line 635
     throw v2
 .end method
 
@@ -693,32 +700,32 @@
         }
     .end annotation
 
-    .line 355
+    .line 456
     new-instance v0, Landroid/os/HwParcel;
 
     invoke-direct {v0}, Landroid/os/HwParcel;-><init>()V
 
-    .line 356
+    .line 457
     .local v0, "_hidl_request":Landroid/os/HwParcel;
     const-string v1, "vendor.qti.hardware.radio.qtiradio@2.1::IQtiRadioResponse"
 
     invoke-virtual {v0, v1}, Landroid/os/HwParcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 357
+    .line 458
     invoke-virtual {v0, p1}, Landroid/os/HwParcel;->writeInt32(I)V
 
-    .line 358
+    .line 459
     invoke-virtual {v0, p2}, Landroid/os/HwParcel;->writeInt32(I)V
 
-    .line 359
+    .line 460
     invoke-virtual {v0, p3}, Landroid/os/HwParcel;->writeInt32(I)V
 
-    .line 361
+    .line 462
     new-instance v1, Landroid/os/HwParcel;
 
     invoke-direct {v1}, Landroid/os/HwParcel;-><init>()V
 
-    .line 363
+    .line 464
     .local v1, "_hidl_reply":Landroid/os/HwParcel;
     :try_start_0
     iget-object v2, p0, Lvendor/qti/hardware/radio/qtiradio/V2_1/IQtiRadioResponse$Proxy;->mRemote:Landroid/os/IHwBinder;
@@ -729,26 +736,27 @@
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IHwBinder;->transact(ILandroid/os/HwParcel;Landroid/os/HwParcel;I)V
 
-    .line 364
+    .line 465
     invoke-virtual {v0}, Landroid/os/HwParcel;->releaseTemporaryStorage()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 366
+    .line 467
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
-    .line 367
+    .line 468
     nop
 
-    .line 368
+    .line 469
     return-void
 
-    .line 366
+    .line 467
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
+    .line 468
     throw v2
 .end method
 
@@ -763,32 +771,32 @@
         }
     .end annotation
 
-    .line 229
+    .line 330
     new-instance v0, Landroid/os/HwParcel;
 
     invoke-direct {v0}, Landroid/os/HwParcel;-><init>()V
 
-    .line 230
+    .line 331
     .local v0, "_hidl_request":Landroid/os/HwParcel;
     const-string v1, "vendor.qti.hardware.radio.qtiradio@2.0::IQtiRadioResponse"
 
     invoke-virtual {v0, v1}, Landroid/os/HwParcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 231
+    .line 332
     invoke-virtual {v0, p1}, Landroid/os/HwParcel;->writeInt32(I)V
 
-    .line 232
+    .line 333
     invoke-virtual {v0, p2}, Landroid/os/HwParcel;->writeInt32(I)V
 
-    .line 233
+    .line 334
     invoke-virtual {v0, p3}, Landroid/os/HwParcel;->writeInt32(I)V
 
-    .line 235
+    .line 336
     new-instance v1, Landroid/os/HwParcel;
 
     invoke-direct {v1}, Landroid/os/HwParcel;-><init>()V
 
-    .line 237
+    .line 338
     .local v1, "_hidl_reply":Landroid/os/HwParcel;
     :try_start_0
     iget-object v2, p0, Lvendor/qti/hardware/radio/qtiradio/V2_1/IQtiRadioResponse$Proxy;->mRemote:Landroid/os/IHwBinder;
@@ -799,26 +807,27 @@
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IHwBinder;->transact(ILandroid/os/HwParcel;Landroid/os/HwParcel;I)V
 
-    .line 238
+    .line 339
     invoke-virtual {v0}, Landroid/os/HwParcel;->releaseTemporaryStorage()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 240
+    .line 341
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
-    .line 241
+    .line 342
     nop
 
-    .line 242
+    .line 343
     return-void
 
-    .line 240
+    .line 341
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
+    .line 342
     throw v2
 .end method
 
@@ -833,32 +842,32 @@
         }
     .end annotation
 
-    .line 193
+    .line 294
     new-instance v0, Landroid/os/HwParcel;
 
     invoke-direct {v0}, Landroid/os/HwParcel;-><init>()V
 
-    .line 194
+    .line 295
     .local v0, "_hidl_request":Landroid/os/HwParcel;
     const-string v1, "vendor.qti.hardware.radio.qtiradio@2.0::IQtiRadioResponse"
 
     invoke-virtual {v0, v1}, Landroid/os/HwParcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 195
+    .line 296
     invoke-virtual {v0, p1}, Landroid/os/HwParcel;->writeInt32(I)V
 
-    .line 196
+    .line 297
     invoke-virtual {v0, p2}, Landroid/os/HwParcel;->writeInt32(I)V
 
-    .line 197
+    .line 298
     invoke-virtual {v0, p3}, Landroid/os/HwParcel;->writeInt32(I)V
 
-    .line 199
+    .line 300
     new-instance v1, Landroid/os/HwParcel;
 
     invoke-direct {v1}, Landroid/os/HwParcel;-><init>()V
 
-    .line 201
+    .line 302
     .local v1, "_hidl_reply":Landroid/os/HwParcel;
     :try_start_0
     iget-object v2, p0, Lvendor/qti/hardware/radio/qtiradio/V2_1/IQtiRadioResponse$Proxy;->mRemote:Landroid/os/IHwBinder;
@@ -869,26 +878,27 @@
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IHwBinder;->transact(ILandroid/os/HwParcel;Landroid/os/HwParcel;I)V
 
-    .line 202
+    .line 303
     invoke-virtual {v0}, Landroid/os/HwParcel;->releaseTemporaryStorage()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 204
+    .line 305
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
-    .line 205
+    .line 306
     nop
 
-    .line 206
+    .line 307
     return-void
 
-    .line 204
+    .line 305
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
+    .line 306
     throw v2
 .end method
 
@@ -903,32 +913,32 @@
         }
     .end annotation
 
-    .line 211
+    .line 312
     new-instance v0, Landroid/os/HwParcel;
 
     invoke-direct {v0}, Landroid/os/HwParcel;-><init>()V
 
-    .line 212
+    .line 313
     .local v0, "_hidl_request":Landroid/os/HwParcel;
     const-string v1, "vendor.qti.hardware.radio.qtiradio@2.0::IQtiRadioResponse"
 
     invoke-virtual {v0, v1}, Landroid/os/HwParcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 213
+    .line 314
     invoke-virtual {v0, p1}, Landroid/os/HwParcel;->writeInt32(I)V
 
-    .line 214
+    .line 315
     invoke-virtual {v0, p2}, Landroid/os/HwParcel;->writeInt32(I)V
 
-    .line 215
+    .line 316
     invoke-virtual {v0, p3}, Landroid/os/HwParcel;->writeInt32(I)V
 
-    .line 217
+    .line 318
     new-instance v1, Landroid/os/HwParcel;
 
     invoke-direct {v1}, Landroid/os/HwParcel;-><init>()V
 
-    .line 219
+    .line 320
     .local v1, "_hidl_reply":Landroid/os/HwParcel;
     :try_start_0
     iget-object v2, p0, Lvendor/qti/hardware/radio/qtiradio/V2_1/IQtiRadioResponse$Proxy;->mRemote:Landroid/os/IHwBinder;
@@ -939,26 +949,27 @@
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IHwBinder;->transact(ILandroid/os/HwParcel;Landroid/os/HwParcel;I)V
 
-    .line 220
+    .line 321
     invoke-virtual {v0}, Landroid/os/HwParcel;->releaseTemporaryStorage()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 222
+    .line 323
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
-    .line 223
+    .line 324
     nop
 
-    .line 224
+    .line 325
     return-void
 
-    .line 222
+    .line 323
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
+    .line 324
     throw v2
 .end method
 
@@ -973,32 +984,32 @@
         }
     .end annotation
 
-    .line 175
+    .line 276
     new-instance v0, Landroid/os/HwParcel;
 
     invoke-direct {v0}, Landroid/os/HwParcel;-><init>()V
 
-    .line 176
+    .line 277
     .local v0, "_hidl_request":Landroid/os/HwParcel;
     const-string v1, "vendor.qti.hardware.radio.qtiradio@2.0::IQtiRadioResponse"
 
     invoke-virtual {v0, v1}, Landroid/os/HwParcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 177
+    .line 278
     invoke-virtual {v0, p1}, Landroid/os/HwParcel;->writeInt32(I)V
 
-    .line 178
+    .line 279
     invoke-virtual {v0, p2}, Landroid/os/HwParcel;->writeInt32(I)V
 
-    .line 179
+    .line 280
     invoke-virtual {v0, p3}, Landroid/os/HwParcel;->writeInt32(I)V
 
-    .line 181
+    .line 282
     new-instance v1, Landroid/os/HwParcel;
 
     invoke-direct {v1}, Landroid/os/HwParcel;-><init>()V
 
-    .line 183
+    .line 284
     .local v1, "_hidl_reply":Landroid/os/HwParcel;
     :try_start_0
     iget-object v2, p0, Lvendor/qti/hardware/radio/qtiradio/V2_1/IQtiRadioResponse$Proxy;->mRemote:Landroid/os/IHwBinder;
@@ -1009,26 +1020,27 @@
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IHwBinder;->transact(ILandroid/os/HwParcel;Landroid/os/HwParcel;I)V
 
-    .line 184
+    .line 285
     invoke-virtual {v0}, Landroid/os/HwParcel;->releaseTemporaryStorage()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 186
+    .line 287
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
-    .line 187
+    .line 288
     nop
 
-    .line 188
+    .line 289
     return-void
 
-    .line 186
+    .line 287
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
+    .line 288
     throw v2
 .end method
 
@@ -1043,32 +1055,32 @@
         }
     .end annotation
 
-    .line 265
+    .line 366
     new-instance v0, Landroid/os/HwParcel;
 
     invoke-direct {v0}, Landroid/os/HwParcel;-><init>()V
 
-    .line 266
+    .line 367
     .local v0, "_hidl_request":Landroid/os/HwParcel;
     const-string v1, "vendor.qti.hardware.radio.qtiradio@2.0::IQtiRadioResponse"
 
     invoke-virtual {v0, v1}, Landroid/os/HwParcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 267
+    .line 368
     invoke-virtual {v0, p1}, Landroid/os/HwParcel;->writeInt32(I)V
 
-    .line 268
+    .line 369
     invoke-virtual {v0, p2}, Landroid/os/HwParcel;->writeInt32(I)V
 
-    .line 269
+    .line 370
     invoke-virtual {v0, p3}, Landroid/os/HwParcel;->writeInt32(I)V
 
-    .line 271
+    .line 372
     new-instance v1, Landroid/os/HwParcel;
 
     invoke-direct {v1}, Landroid/os/HwParcel;-><init>()V
 
-    .line 273
+    .line 374
     .local v1, "_hidl_reply":Landroid/os/HwParcel;
     :try_start_0
     iget-object v2, p0, Lvendor/qti/hardware/radio/qtiradio/V2_1/IQtiRadioResponse$Proxy;->mRemote:Landroid/os/IHwBinder;
@@ -1079,26 +1091,27 @@
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IHwBinder;->transact(ILandroid/os/HwParcel;Landroid/os/HwParcel;I)V
 
-    .line 274
+    .line 375
     invoke-virtual {v0}, Landroid/os/HwParcel;->releaseTemporaryStorage()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 276
+    .line 377
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
-    .line 277
+    .line 378
     nop
 
-    .line 278
+    .line 379
     return-void
 
-    .line 276
+    .line 377
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
+    .line 378
     throw v2
 .end method
 
@@ -1113,32 +1126,32 @@
         }
     .end annotation
 
-    .line 337
+    .line 438
     new-instance v0, Landroid/os/HwParcel;
 
     invoke-direct {v0}, Landroid/os/HwParcel;-><init>()V
 
-    .line 338
+    .line 439
     .local v0, "_hidl_request":Landroid/os/HwParcel;
     const-string v1, "vendor.qti.hardware.radio.qtiradio@2.1::IQtiRadioResponse"
 
     invoke-virtual {v0, v1}, Landroid/os/HwParcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 339
+    .line 440
     invoke-virtual {v0, p1}, Landroid/os/HwParcel;->writeInt32(I)V
 
-    .line 340
+    .line 441
     invoke-virtual {v0, p2}, Landroid/os/HwParcel;->writeInt32(I)V
 
-    .line 341
+    .line 442
     invoke-virtual {v0, p3}, Landroid/os/HwParcel;->writeInt32(I)V
 
-    .line 343
+    .line 444
     new-instance v1, Landroid/os/HwParcel;
 
     invoke-direct {v1}, Landroid/os/HwParcel;-><init>()V
 
-    .line 345
+    .line 446
     .local v1, "_hidl_reply":Landroid/os/HwParcel;
     :try_start_0
     iget-object v2, p0, Lvendor/qti/hardware/radio/qtiradio/V2_1/IQtiRadioResponse$Proxy;->mRemote:Landroid/os/IHwBinder;
@@ -1149,26 +1162,27 @@
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IHwBinder;->transact(ILandroid/os/HwParcel;Landroid/os/HwParcel;I)V
 
-    .line 346
+    .line 447
     invoke-virtual {v0}, Landroid/os/HwParcel;->releaseTemporaryStorage()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 348
+    .line 449
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
-    .line 349
+    .line 450
     nop
 
-    .line 350
+    .line 451
     return-void
 
-    .line 348
+    .line 449
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
+    .line 450
     throw v2
 .end method
 
@@ -1183,32 +1197,32 @@
         }
     .end annotation
 
-    .line 247
+    .line 348
     new-instance v0, Landroid/os/HwParcel;
 
     invoke-direct {v0}, Landroid/os/HwParcel;-><init>()V
 
-    .line 248
+    .line 349
     .local v0, "_hidl_request":Landroid/os/HwParcel;
     const-string v1, "vendor.qti.hardware.radio.qtiradio@2.0::IQtiRadioResponse"
 
     invoke-virtual {v0, v1}, Landroid/os/HwParcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 249
+    .line 350
     invoke-virtual {v0, p1}, Landroid/os/HwParcel;->writeInt32(I)V
 
-    .line 250
+    .line 351
     invoke-virtual {v0, p2}, Landroid/os/HwParcel;->writeInt32(I)V
 
-    .line 251
+    .line 352
     invoke-virtual {p3, v0}, Lvendor/qti/hardware/radio/qtiradio/V2_0/DcParam;->writeToParcel(Landroid/os/HwParcel;)V
 
-    .line 253
+    .line 354
     new-instance v1, Landroid/os/HwParcel;
 
     invoke-direct {v1}, Landroid/os/HwParcel;-><init>()V
 
-    .line 255
+    .line 356
     .local v1, "_hidl_reply":Landroid/os/HwParcel;
     :try_start_0
     iget-object v2, p0, Lvendor/qti/hardware/radio/qtiradio/V2_1/IQtiRadioResponse$Proxy;->mRemote:Landroid/os/IHwBinder;
@@ -1219,26 +1233,27 @@
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IHwBinder;->transact(ILandroid/os/HwParcel;Landroid/os/HwParcel;I)V
 
-    .line 256
+    .line 357
     invoke-virtual {v0}, Landroid/os/HwParcel;->releaseTemporaryStorage()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 258
+    .line 359
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
-    .line 259
+    .line 360
     nop
 
-    .line 260
+    .line 361
     return-void
 
-    .line 258
+    .line 359
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
+    .line 360
     throw v2
 .end method
 
@@ -1253,32 +1268,32 @@
         }
     .end annotation
 
-    .line 283
+    .line 384
     new-instance v0, Landroid/os/HwParcel;
 
     invoke-direct {v0}, Landroid/os/HwParcel;-><init>()V
 
-    .line 284
+    .line 385
     .local v0, "_hidl_request":Landroid/os/HwParcel;
     const-string v1, "vendor.qti.hardware.radio.qtiradio@2.0::IQtiRadioResponse"
 
     invoke-virtual {v0, v1}, Landroid/os/HwParcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 285
+    .line 386
     invoke-virtual {v0, p1}, Landroid/os/HwParcel;->writeInt32(I)V
 
-    .line 286
+    .line 387
     invoke-virtual {v0, p2}, Landroid/os/HwParcel;->writeInt32(I)V
 
-    .line 287
+    .line 388
     invoke-virtual {p3, v0}, Lvendor/qti/hardware/radio/qtiradio/V2_0/SignalStrength;->writeToParcel(Landroid/os/HwParcel;)V
 
-    .line 289
+    .line 390
     new-instance v1, Landroid/os/HwParcel;
 
     invoke-direct {v1}, Landroid/os/HwParcel;-><init>()V
 
-    .line 291
+    .line 392
     .local v1, "_hidl_reply":Landroid/os/HwParcel;
     :try_start_0
     iget-object v2, p0, Lvendor/qti/hardware/radio/qtiradio/V2_1/IQtiRadioResponse$Proxy;->mRemote:Landroid/os/IHwBinder;
@@ -1289,26 +1304,27 @@
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IHwBinder;->transact(ILandroid/os/HwParcel;Landroid/os/HwParcel;I)V
 
-    .line 292
+    .line 393
     invoke-virtual {v0}, Landroid/os/HwParcel;->releaseTemporaryStorage()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 294
+    .line 395
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
-    .line 295
+    .line 396
     nop
 
-    .line 296
+    .line 397
     return-void
 
-    .line 294
+    .line 395
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
+    .line 396
     throw v2
 .end method
 
@@ -1323,32 +1339,32 @@
         }
     .end annotation
 
-    .line 319
+    .line 420
     new-instance v0, Landroid/os/HwParcel;
 
     invoke-direct {v0}, Landroid/os/HwParcel;-><init>()V
 
-    .line 320
+    .line 421
     .local v0, "_hidl_request":Landroid/os/HwParcel;
     const-string v1, "vendor.qti.hardware.radio.qtiradio@2.1::IQtiRadioResponse"
 
     invoke-virtual {v0, v1}, Landroid/os/HwParcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 321
+    .line 422
     invoke-virtual {v0, p1}, Landroid/os/HwParcel;->writeInt32(I)V
 
-    .line 322
+    .line 423
     invoke-virtual {v0, p2}, Landroid/os/HwParcel;->writeInt32(I)V
 
-    .line 323
+    .line 424
     invoke-virtual {p3, v0}, Lvendor/qti/hardware/radio/qtiradio/V2_1/UpperLayerIndInfo;->writeToParcel(Landroid/os/HwParcel;)V
 
-    .line 325
+    .line 426
     new-instance v1, Landroid/os/HwParcel;
 
     invoke-direct {v1}, Landroid/os/HwParcel;-><init>()V
 
-    .line 327
+    .line 428
     .local v1, "_hidl_reply":Landroid/os/HwParcel;
     :try_start_0
     iget-object v2, p0, Lvendor/qti/hardware/radio/qtiradio/V2_1/IQtiRadioResponse$Proxy;->mRemote:Landroid/os/IHwBinder;
@@ -1359,26 +1375,27 @@
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IHwBinder;->transact(ILandroid/os/HwParcel;Landroid/os/HwParcel;I)V
 
-    .line 328
+    .line 429
     invoke-virtual {v0}, Landroid/os/HwParcel;->releaseTemporaryStorage()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 330
+    .line 431
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
-    .line 331
+    .line 432
     nop
 
-    .line 332
+    .line 433
     return-void
 
-    .line 330
+    .line 431
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
+    .line 432
     throw v2
 .end method
 
@@ -1390,23 +1407,23 @@
         }
     .end annotation
 
-    .line 489
+    .line 590
     new-instance v0, Landroid/os/HwParcel;
 
     invoke-direct {v0}, Landroid/os/HwParcel;-><init>()V
 
-    .line 490
+    .line 591
     .local v0, "_hidl_request":Landroid/os/HwParcel;
     const-string v1, "android.hidl.base@1.0::IBase"
 
     invoke-virtual {v0, v1}, Landroid/os/HwParcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 492
+    .line 593
     new-instance v1, Landroid/os/HwParcel;
 
     invoke-direct {v1}, Landroid/os/HwParcel;-><init>()V
 
-    .line 494
+    .line 595
     .local v1, "_hidl_reply":Landroid/os/HwParcel;
     :try_start_0
     iget-object v2, p0, Lvendor/qti/hardware/radio/qtiradio/V2_1/IQtiRadioResponse$Proxy;->mRemote:Landroid/os/IHwBinder;
@@ -1417,29 +1434,30 @@
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IHwBinder;->transact(ILandroid/os/HwParcel;Landroid/os/HwParcel;I)V
 
-    .line 495
+    .line 596
     invoke-virtual {v1}, Landroid/os/HwParcel;->verifySuccess()V
 
-    .line 496
+    .line 597
     invoke-virtual {v0}, Landroid/os/HwParcel;->releaseTemporaryStorage()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 498
+    .line 599
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
-    .line 499
+    .line 600
     nop
 
-    .line 500
+    .line 601
     return-void
 
-    .line 498
+    .line 599
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
+    .line 600
     throw v2
 .end method
 
@@ -1453,29 +1471,29 @@
         }
     .end annotation
 
-    .line 301
+    .line 402
     new-instance v0, Landroid/os/HwParcel;
 
     invoke-direct {v0}, Landroid/os/HwParcel;-><init>()V
 
-    .line 302
+    .line 403
     .local v0, "_hidl_request":Landroid/os/HwParcel;
     const-string v1, "vendor.qti.hardware.radio.qtiradio@2.0::IQtiRadioResponse"
 
     invoke-virtual {v0, v1}, Landroid/os/HwParcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 303
+    .line 404
     invoke-virtual {p1, v0}, Lvendor/qti/hardware/radio/qtiradio/V1_0/QtiRadioResponseInfo;->writeToParcel(Landroid/os/HwParcel;)V
 
-    .line 304
+    .line 405
     invoke-virtual {p2, v0}, Landroid/hardware/radio/V1_0/SendSmsResult;->writeToParcel(Landroid/os/HwParcel;)V
 
-    .line 306
+    .line 407
     new-instance v1, Landroid/os/HwParcel;
 
     invoke-direct {v1}, Landroid/os/HwParcel;-><init>()V
 
-    .line 308
+    .line 409
     .local v1, "_hidl_reply":Landroid/os/HwParcel;
     :try_start_0
     iget-object v2, p0, Lvendor/qti/hardware/radio/qtiradio/V2_1/IQtiRadioResponse$Proxy;->mRemote:Landroid/os/IHwBinder;
@@ -1486,26 +1504,27 @@
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IHwBinder;->transact(ILandroid/os/HwParcel;Landroid/os/HwParcel;I)V
 
-    .line 309
+    .line 410
     invoke-virtual {v0}, Landroid/os/HwParcel;->releaseTemporaryStorage()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 311
+    .line 412
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
-    .line 312
+    .line 413
     nop
 
-    .line 313
+    .line 414
     return-void
 
-    .line 311
+    .line 412
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
+    .line 413
     throw v2
 .end method
 
@@ -1517,23 +1536,23 @@
         }
     .end annotation
 
-    .line 469
+    .line 570
     new-instance v0, Landroid/os/HwParcel;
 
     invoke-direct {v0}, Landroid/os/HwParcel;-><init>()V
 
-    .line 470
+    .line 571
     .local v0, "_hidl_request":Landroid/os/HwParcel;
     const-string v1, "android.hidl.base@1.0::IBase"
 
     invoke-virtual {v0, v1}, Landroid/os/HwParcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 472
+    .line 573
     new-instance v1, Landroid/os/HwParcel;
 
     invoke-direct {v1}, Landroid/os/HwParcel;-><init>()V
 
-    .line 474
+    .line 575
     .local v1, "_hidl_reply":Landroid/os/HwParcel;
     :try_start_0
     iget-object v2, p0, Lvendor/qti/hardware/radio/qtiradio/V2_1/IQtiRadioResponse$Proxy;->mRemote:Landroid/os/IHwBinder;
@@ -1544,33 +1563,34 @@
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IHwBinder;->transact(ILandroid/os/HwParcel;Landroid/os/HwParcel;I)V
 
-    .line 475
+    .line 576
     invoke-virtual {v0}, Landroid/os/HwParcel;->releaseTemporaryStorage()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 477
+    .line 578
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
-    .line 478
+    .line 579
     nop
 
-    .line 479
+    .line 580
     return-void
 
-    .line 477
+    .line 578
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
 
+    .line 579
     throw v2
 .end method
 
 .method public toString()Ljava/lang/String;
     .locals 2
 
-    .line 136
+    .line 237
     :try_start_0
     new-instance v0, Ljava/lang/StringBuilder;
 
@@ -1594,11 +1614,11 @@
 
     return-object v0
 
-    .line 137
+    .line 238
     :catch_0
     move-exception v0
 
-    .line 140
+    .line 241
     const-string v0, "[class or subclass of vendor.qti.hardware.radio.qtiradio@2.1::IQtiRadioResponse]@Proxy"
 
     return-object v0
@@ -1613,7 +1633,7 @@
         }
     .end annotation
 
-    .line 540
+    .line 641
     iget-object v0, p0, Lvendor/qti/hardware/radio/qtiradio/V2_1/IQtiRadioResponse$Proxy;->mRemote:Landroid/os/IHwBinder;
 
     invoke-interface {v0, p1}, Landroid/os/IHwBinder;->unlinkToDeath(Landroid/os/IHwBinder$DeathRecipient;)Z

@@ -32,7 +32,7 @@
 .method public constructor <init>()V
     .locals 0
 
-    .line 83
+    .line 84
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -42,7 +42,7 @@
     .locals 1
     .param p0, "x0"    # Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;
 
-    .line 83
+    .line 84
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;->mCardType:Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardType;
 
     return-object v0
@@ -53,7 +53,7 @@
     .param p0, "x0"    # Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;
     .param p1, "x1"    # Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardType;
 
-    .line 83
+    .line 84
     iput-object p1, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;->mCardType:Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardType;
 
     return-object p1
@@ -63,7 +63,7 @@
     .locals 1
     .param p0, "x0"    # Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;
 
-    .line 83
+    .line 84
     iget-boolean v0, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;->mMCCMNCLoaded:Z
 
     return v0
@@ -74,7 +74,7 @@
     .param p0, "x0"    # Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;
     .param p1, "x1"    # Z
 
-    .line 83
+    .line 84
     iput-boolean p1, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;->mMCCMNCLoaded:Z
 
     return p1
@@ -84,7 +84,7 @@
     .locals 0
     .param p0, "x0"    # Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;
 
-    .line 83
+    .line 84
     invoke-direct {p0}, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;->reset()V
 
     return-void
@@ -94,7 +94,7 @@
     .locals 1
     .param p0, "x0"    # Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;
 
-    .line 83
+    .line 84
     iget v0, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;->mProvisionState:I
 
     return v0
@@ -105,7 +105,7 @@
     .param p0, "x0"    # Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;
     .param p1, "x1"    # I
 
-    .line 83
+    .line 84
     iput p1, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;->mProvisionState:I
 
     return p1
@@ -115,7 +115,7 @@
     .locals 1
     .param p0, "x0"    # Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;
 
-    .line 83
+    .line 84
     iget v0, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;->mUpdateCardTypeState:I
 
     return v0
@@ -126,7 +126,7 @@
     .param p0, "x0"    # Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;
     .param p1, "x1"    # I
 
-    .line 83
+    .line 84
     iput p1, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;->mUpdateCardTypeState:I
 
     return p1
@@ -136,7 +136,7 @@
     .locals 1
     .param p0, "x0"    # Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;
 
-    .line 83
+    .line 84
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;->mIccId:Ljava/lang/String;
 
     return-object v0
@@ -147,7 +147,7 @@
     .param p0, "x0"    # Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;
     .param p1, "x1"    # Ljava/lang/String;
 
-    .line 83
+    .line 84
     iput-object p1, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;->mIccId:Ljava/lang/String;
 
     return-object p1
@@ -157,7 +157,7 @@
     .locals 1
     .param p0, "x0"    # Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;
 
-    .line 83
+    .line 84
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;->mMccMnc:Ljava/lang/String;
 
     return-object v0
@@ -168,7 +168,7 @@
     .param p0, "x0"    # Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;
     .param p1, "x1"    # Ljava/lang/String;
 
-    .line 83
+    .line 84
     iput-object p1, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;->mMccMnc:Ljava/lang/String;
 
     return-object p1
@@ -177,30 +177,30 @@
 .method private reset()V
     .locals 1
 
-    .line 92
+    .line 93
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardType;->UNKNOWN:Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardType;
 
     iput-object v0, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;->mCardType:Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardType;
 
-    .line 93
+    .line 94
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;->mIccId:Ljava/lang/String;
 
-    .line 94
+    .line 95
     iput-object v0, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;->mMccMnc:Ljava/lang/String;
 
-    .line 95
+    .line 96
     const/4 v0, 0x0
 
     iput v0, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;->mUpdateCardTypeState:I
 
-    .line 96
+    .line 97
     const/4 v0, -0x1
 
     iput v0, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;->mProvisionState:I
 
-    .line 97
+    .line 98
     return-void
 .end method
 
@@ -209,7 +209,7 @@
 .method public getIccId()Ljava/lang/String;
     .locals 1
 
-    .line 100
+    .line 101
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiPrimaryCardUtils;->setPrimaryCardOnDeAct()Z
 
     move-result v0
@@ -220,12 +220,12 @@
 
     if-nez v0, :cond_0
 
-    .line 102
+    .line 103
     const/4 v0, 0x0
 
     return-object v0
 
-    .line 104
+    .line 105
     :cond_0
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;->mIccId:Ljava/lang/String;
 
@@ -235,7 +235,7 @@
 .method public getMccMnc()Ljava/lang/String;
     .locals 1
 
-    .line 109
+    .line 110
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiPrimaryCardUtils;->setPrimaryCardOnDeAct()Z
 
     move-result v0
@@ -246,12 +246,12 @@
 
     if-nez v0, :cond_0
 
-    .line 111
+    .line 112
     const/4 v0, 0x0
 
     return-object v0
 
-    .line 113
+    .line 114
     :cond_0
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;->mMccMnc:Ljava/lang/String;
 
@@ -261,7 +261,7 @@
 .method public getProvisionState()I
     .locals 1
 
-    .line 118
+    .line 119
     iget v0, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;->mProvisionState:I
 
     return v0
@@ -271,7 +271,7 @@
     .locals 4
     .param p1, "slotId"    # I
 
-    .line 135
+    .line 136
     iget v0, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;->mUpdateCardTypeState:I
 
     const/4 v1, 0x1
@@ -287,7 +287,7 @@
     :cond_0
     const/4 v0, 0x0
 
-    .line 138
+    .line 139
     .local v0, "isAvailable":Z
     :goto_0
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/primarycard/SubsidyLockSettingsObserver;->isSubsidyLockFeatureEnabled()Z
@@ -296,7 +296,7 @@
 
     if-eqz v2, :cond_2
 
-    .line 139
+    .line 140
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager;->access$000()Landroid/content/Context;
 
     move-result-object v2
@@ -307,7 +307,7 @@
 
     if-nez v2, :cond_2
 
-    .line 140
+    .line 141
     invoke-static {}, Lcom/android/internal/telephony/uicc/UiccController;->getInstance()Lcom/android/internal/telephony/uicc/UiccController;
 
     move-result-object v2
@@ -316,7 +316,7 @@
 
     move-result-object v2
 
-    .line 142
+    .line 143
     .local v2, "uiccCard":Lcom/android/internal/telephony/uicc/UiccCard;
     iget v3, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;->mProvisionState:I
 
@@ -324,45 +324,49 @@
 
     if-eqz v2, :cond_2
 
-    .line 144
+    .line 145
     invoke-virtual {v2, v1}, Lcom/android/internal/telephony/uicc/UiccCard;->getApplication(I)Lcom/android/internal/telephony/uicc/UiccCardApplication;
 
     move-result-object v3
 
     if-eqz v3, :cond_2
 
-    .line 146
+    .line 147
     invoke-virtual {v2, v1}, Lcom/android/internal/telephony/uicc/UiccCard;->getApplication(I)Lcom/android/internal/telephony/uicc/UiccCardApplication;
 
     move-result-object v1
 
-    .line 148
+    .line 149
     .local v1, "app":Lcom/android/internal/telephony/uicc/UiccCardApplication;
     if-eqz v1, :cond_1
 
-    invoke-virtual {v1}, Lcom/android/internal/telephony/uicc/UiccCardApplication;->isPersoLocked()Z
+    invoke-virtual {v1}, Lcom/android/internal/telephony/uicc/UiccCardApplication;->getPersoSubState()Lcom/android/internal/telephony/uicc/IccCardApplicationStatus$PersoSubState;
+
+    move-result-object v3
+
+    invoke-static {v3}, Lcom/android/internal/telephony/uicc/IccCardApplicationStatus$PersoSubState;->isPersoLocked(Lcom/android/internal/telephony/uicc/IccCardApplicationStatus$PersoSubState;)Z
 
     move-result v3
 
     if-nez v3, :cond_1
 
-    .line 149
+    .line 150
     iget-boolean v3, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;->mMCCMNCLoaded:Z
 
     and-int/2addr v0, v3
 
-    .line 152
+    .line 153
     :cond_1
     iget-boolean v3, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;->mMCCMNCLoaded:Z
 
     if-nez v3, :cond_2
 
-    .line 153
+    .line 154
     const/4 v3, 0x0
 
     iput-object v3, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;->mMccMnc:Ljava/lang/String;
 
-    .line 157
+    .line 158
     .end local v1    # "app":Lcom/android/internal/telephony/uicc/UiccCardApplication;
     .end local v2    # "uiccCard":Lcom/android/internal/telephony/uicc/UiccCard;
     :cond_2
@@ -373,7 +377,7 @@
     .locals 2
     .param p1, "cardType"    # Ljava/lang/String;
 
-    .line 126
+    .line 127
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiPrimaryCardUtils;->setPrimaryCardOnDeAct()Z
 
     move-result v0
@@ -384,12 +388,12 @@
 
     if-nez v0, :cond_0
 
-    .line 128
+    .line 129
     const/4 v0, 0x0
 
     return v0
 
-    .line 130
+    .line 131
     :cond_0
     invoke-static {p1}, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardType;->valueOf(Ljava/lang/String;)Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardType;
 
@@ -407,7 +411,7 @@
 .method public isMccMncLoaded()Z
     .locals 1
 
-    .line 122
+    .line 123
     iget-boolean v0, p0, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiCardInfoManager$CardInfo;->mMCCMNCLoaded:Z
 
     return v0

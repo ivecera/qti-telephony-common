@@ -4,7 +4,7 @@
 
 
 # static fields
-.field static final ALLOW_FLEX_MAPPING_ON_INACTIVE_SUB_PROPERTY:Ljava/lang/String; = "persist.radio.flex_map_inactive"
+.field private static final ALLOW_FLEX_MAPPING_ON_INACTIVE_SUB_PROPERTY:Ljava/lang/String; = "persist.radio.flex_map_inactive"
 
 .field private static final DBG:Z = true
 
@@ -15,6 +15,8 @@
 .field private static final EVENT_UPDATE_BINDING_DONE:I = 0x3
 
 .field private static final FAILURE:I = 0x0
+
+.field private static final FLEX_MAPPING_TYPE:Ljava/lang/String; = "persist.vendor.radio.flexmap_type"
 
 .field private static final LOG_TAG:Ljava/lang/String; = "QtiRadioCapabilityController"
 
@@ -72,7 +74,7 @@
 .method static constructor <clinit>()V
     .locals 1
 
-    .line 70
+    .line 77
     new-instance v0, Ljava/lang/Object;
 
     invoke-direct {v0}, Ljava/lang/Object;-><init>()V
@@ -88,95 +90,91 @@
     .param p2, "phone"    # [Lcom/android/internal/telephony/Phone;
     .param p3, "ci"    # [Lcom/android/internal/telephony/CommandsInterface;
 
-    .line 113
+    .line 118
     invoke-direct {p0}, Landroid/os/Handler;-><init>()V
 
-    .line 75
+    .line 80
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mIsSetPrefNwModeInProgress:Z
 
-    .line 79
+    .line 84
     new-instance v1, Ljava/util/HashMap;
 
     invoke-direct {v1}, Ljava/util/HashMap;-><init>()V
 
     iput-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mStoredResponse:Ljava/util/HashMap;
 
-    .line 80
+    .line 85
     const/4 v1, 0x0
 
     iput-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mQtiSubscriptionController:Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
 
-    .line 81
+    .line 86
     iput-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mSubscriptionManager:Landroid/telephony/SubscriptionManager;
 
-    .line 82
+    .line 87
     iput-boolean v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->bothPhonesMappedToSameStack:Z
 
-    .line 91
+    .line 96
     iput-boolean v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mNeedSetDds:Z
 
-    .line 140
+    .line 145
     new-instance v0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController$1;
 
     invoke-direct {v0, p0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController$1;-><init>(Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;)V
 
     iput-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mReceiver:Landroid/content/BroadcastReceiver;
 
-    .line 114
+    .line 119
     iput-object p3, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mCi:[Lcom/android/internal/telephony/CommandsInterface;
 
-    .line 115
+    .line 120
     iput-object p1, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mContext:Landroid/content/Context;
 
-    .line 116
+    .line 121
     iput-object p2, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mPhone:[Lcom/android/internal/telephony/Phone;
 
-    .line 117
-    iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mContext:Landroid/content/Context;
+    .line 122
+    const-string v0, "phone"
 
-    const-string v2, "phone"
-
-    invoke-virtual {v0, v2}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+    invoke-virtual {p1, v0}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
 
     move-result-object v0
 
     check-cast v0, Landroid/telephony/TelephonyManager;
 
-    .line 118
+    .line 123
     invoke-virtual {v0}, Landroid/telephony/TelephonyManager;->getPhoneCount()I
 
     move-result v0
 
     sput v0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mNumPhones:I
 
-    .line 119
-    sget v0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mNumPhones:I
-
+    .line 124
     new-array v2, v0, [I
 
     iput-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mPreferredStackId:[I
 
-    .line 120
+    .line 125
     new-array v2, v0, [I
 
     iput-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mCurrentStackId:[I
 
-    .line 121
+    .line 126
     new-array v2, v0, [I
 
     iput-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mPrefNwMode:[I
 
-    .line 122
+    .line 127
     new-array v0, v0, [I
 
     iput-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mRadioAccessFamily:[I
 
-    .line 124
+    .line 129
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mContext:Landroid/content/Context;
 
-    .line 125
+    .line 130
     const-string v2, "telephony_subscription_service"
 
     invoke-virtual {v0, v2}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
@@ -187,14 +185,14 @@
 
     iput-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mSubscriptionManager:Landroid/telephony/SubscriptionManager;
 
-    .line 126
+    .line 131
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mQtiSubscriptionController:Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
 
-    .line 128
+    .line 133
     const/4 v0, 0x0
 
     .local v0, "i":I
@@ -205,7 +203,7 @@
 
     if-ge v0, v3, :cond_0
 
-    .line 129
+    .line 134
     aget-object v2, v2, v0
 
     new-instance v3, Ljava/lang/Integer;
@@ -216,7 +214,7 @@
 
     invoke-interface {v2, p0, v4, v3}, Lcom/android/internal/telephony/CommandsInterface;->registerForNotAvailable(Landroid/os/Handler;ILjava/lang/Object;)V
 
-    .line 130
+    .line 135
     iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mStoredResponse:Ljava/util/HashMap;
 
     invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -225,12 +223,12 @@
 
     invoke-virtual {v2, v3, v1}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 128
+    .line 133
     add-int/lit8 v0, v0, 0x1
 
     goto :goto_0
 
-    .line 133
+    .line 138
     .end local v0    # "i":I
     :cond_0
     new-instance v0, Landroid/content/IntentFilter;
@@ -239,30 +237,30 @@
 
     invoke-direct {v0, v1}, Landroid/content/IntentFilter;-><init>(Ljava/lang/String;)V
 
-    .line 134
+    .line 139
     .local v0, "filter":Landroid/content/IntentFilter;
     const-string v1, "android.intent.action.ACTION_SET_RADIO_CAPABILITY_FAILED"
 
     invoke-virtual {v0, v1}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
 
-    .line 135
+    .line 140
     iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mReceiver:Landroid/content/BroadcastReceiver;
 
     invoke-virtual {p1, v1, v0}, Landroid/content/Context;->registerReceiver(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;
 
-    .line 137
+    .line 142
     const-string v1, "Constructor - Exit"
 
     invoke-direct {p0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->logd(Ljava/lang/String;)V
 
-    .line 138
+    .line 143
     return-void
 .end method
 
 .method private areAllModemCapInfoReceived()Z
     .locals 2
 
-    .line 189
+    .line 194
     const/4 v0, 0x0
 
     .local v0, "i":I
@@ -271,7 +269,7 @@
 
     if-ge v0, v1, :cond_1
 
-    .line 190
+    .line 195
     iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mPhone:[Lcom/android/internal/telephony/Phone;
 
     aget-object v1, v1, v0
@@ -286,13 +284,13 @@
 
     return v1
 
-    .line 189
+    .line 194
     :cond_0
     add-int/lit8 v0, v0, 0x1
 
     goto :goto_0
 
-    .line 192
+    .line 197
     .end local v0    # "i":I
     :cond_1
     const/4 v0, 0x1
@@ -303,19 +301,19 @@
 .method public static getInstance()Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;
     .locals 2
 
-    .line 106
+    .line 111
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->sInstance:Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;
 
     if-nez v0, :cond_0
 
-    .line 107
+    .line 112
     const-string v0, "QtiRadioCapabilityController"
 
     const-string v1, "QtiRadioCapabilityController.getInstance called before make"
 
     invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 109
+    .line 114
     :cond_0
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->sInstance:Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;
 
@@ -326,7 +324,7 @@
     .locals 7
     .param p1, "phoneId"    # I
 
-    .line 463
+    .line 471
     const-string v0, "preferred_network_mode"
 
     iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mQtiSubscriptionController:Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
@@ -335,7 +333,7 @@
 
     move-result-object v1
 
-    .line 468
+    .line 476
     .local v1, "subId":[I
     :try_start_0
     iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mContext:Landroid/content/Context;
@@ -350,16 +348,16 @@
     :try_end_0
     .catch Landroid/provider/Settings$SettingNotFoundException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 473
+    .line 481
     .local v2, "networkMode":I
     goto :goto_0
 
-    .line 470
+    .line 478
     .end local v2    # "networkMode":I
     :catch_0
     move-exception v2
 
-    .line 471
+    .line 479
     .local v2, "snfe":Landroid/provider/Settings$SettingNotFoundException;
     new-instance v3, Ljava/lang/StringBuilder;
 
@@ -381,10 +379,12 @@
 
     invoke-direct {p0, v3}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->loge(Ljava/lang/String;)V
 
-    .line 472
-    sget v2, Lcom/android/internal/telephony/Phone;->PREFERRED_NT_MODE:I
+    .line 480
+    sget v3, Lcom/android/internal/telephony/Phone;->PREFERRED_NT_MODE:I
 
-    .line 475
+    move v2, v3
+
+    .line 483
     .local v2, "networkMode":I
     :goto_0
     const-string v3, "] = "
@@ -401,14 +401,14 @@
 
     aget v6, v1, v5
 
-    .line 476
+    .line 484
     invoke-virtual {v4, v6}, Landroid/telephony/SubscriptionManager;->isActiveSubscriptionId(I)Z
 
     move-result v4
 
     if-eqz v4, :cond_0
 
-    .line 477
+    .line 485
     iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mContext:Landroid/content/Context;
 
     invoke-virtual {v4}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
@@ -433,7 +433,7 @@
 
     move-result v2
 
-    .line 480
+    .line 488
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -456,7 +456,7 @@
 
     goto :goto_1
 
-    .line 482
+    .line 490
     :cond_0
     new-instance v0, Ljava/lang/StringBuilder;
 
@@ -478,7 +478,7 @@
 
     invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->logi(Ljava/lang/String;)V
 
-    .line 484
+    .line 492
     :goto_1
     return v2
 .end method
@@ -488,14 +488,14 @@
     .param p1, "nwMode"    # I
     .param p2, "radioAccessFamily"    # I
 
-    .line 557
+    .line 551
     const/4 v0, 0x0
 
-    .line 558
+    .line 552
     .local v0, "supportedRafMaskForNwMode":I
     if-nez p2, :cond_0
 
-    .line 559
+    .line 553
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -512,20 +512,20 @@
 
     invoke-direct {p0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->loge(Ljava/lang/String;)V
 
-    .line 560
+    .line 554
     return v0
 
-    .line 563
+    .line 557
     :cond_0
     invoke-static {p1}, Landroid/telephony/RadioAccessFamily;->getRafFromNetworkType(I)I
 
     move-result v1
 
-    .line 565
+    .line 559
     .local v1, "nwModeRaf":I
     and-int v0, p2, v1
 
-    .line 567
+    .line 561
     new-instance v2, Ljava/lang/StringBuilder;
 
     invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
@@ -560,7 +560,7 @@
 
     invoke-direct {p0, v2}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->logv(Ljava/lang/String;)V
 
-    .line 570
+    .line 564
     invoke-static {v0}, Ljava/lang/Integer;->bitCount(I)I
 
     move-result v2
@@ -571,12 +571,12 @@
 .method private handleRadioCapsAvailable()V
     .locals 2
 
-    .line 265
+    .line 273
     const-string v0, "handleRadioCapsAvailable... "
 
     invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->logd(Ljava/lang/String;)V
 
-    .line 266
+    .line 274
     const/4 v0, 0x0
 
     invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->updateStackBindingIfRequired(Z)Z
@@ -585,18 +585,18 @@
 
     if-eqz v1, :cond_0
 
-    .line 267
+    .line 275
     const/4 v0, 0x1
 
     invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->setNWModeInProgressFlag(Z)V
 
     goto :goto_0
 
-    .line 269
+    .line 277
     :cond_0
     invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->notifyRadioCapsUpdated(Z)V
 
-    .line 271
+    .line 279
     :goto_0
     return-void
 .end method
@@ -605,7 +605,7 @@
     .locals 7
     .param p1, "result"    # I
 
-    .line 202
+    .line 207
     iget-boolean v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->bothPhonesMappedToSameStack:Z
 
     const/4 v1, 0x0
@@ -616,50 +616,48 @@
 
     if-ne p1, v2, :cond_2
 
-    .line 203
+    .line 208
     iput-boolean v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->bothPhonesMappedToSameStack:Z
 
-    .line 205
+    .line 210
     nop
 
-    .line 206
+    .line 211
     const-string v0, "persist.vendor.radio.flexmap_type"
 
-    const-string v3, "nw_mode"
+    const-string v3, "dds"
 
     invoke-static {v0, v3}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
 
-    .line 208
+    .line 213
     .local v0, "flexMapSupportType":Ljava/lang/String;
-    const-string v3, "dds"
-
     invoke-virtual {v0, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v3
 
     if-eqz v3, :cond_0
 
-    .line 209
+    .line 214
     const-string v3, "handleUpdateBindingDone: set dds "
 
     invoke-direct {p0, v3}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->logd(Ljava/lang/String;)V
 
-    .line 212
+    .line 217
     iget-object v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mQtiSubscriptionController:Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
 
-    .line 213
+    .line 218
     invoke-virtual {v3}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getDefaultDataSubId()I
 
     move-result v4
 
-    .line 212
+    .line 217
     invoke-virtual {v3, v4}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->setDefaultDataSubId(I)V
 
     goto :goto_1
 
-    .line 215
+    .line 220
     :cond_0
     const/4 v3, 0x0
 
@@ -669,7 +667,7 @@
 
     if-ge v3, v4, :cond_2
 
-    .line 216
+    .line 221
     iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mStoredResponse:Ljava/util/HashMap;
 
     invoke-static {v3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -682,52 +680,63 @@
 
     check-cast v4, Landroid/os/Message;
 
-    .line 217
+    .line 222
     .local v4, "resp":Landroid/os/Message;
     if-eqz v4, :cond_1
 
-    .line 218
+    .line 223
     const-string v5, "handleUpdateBindingDone: try initiate pending flex map req "
 
     invoke-direct {p0, v5}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->logd(Ljava/lang/String;)V
 
-    .line 219
+    .line 224
     invoke-direct {p0, v2}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->updateStackBindingIfRequired(Z)Z
 
     move-result v5
 
     if-eqz v5, :cond_1
 
-    .line 220
+    .line 225
     return-void
 
-    .line 215
+    .line 220
     .end local v4    # "resp":Landroid/os/Message;
     :cond_1
     add-int/lit8 v3, v3, 0x1
 
     goto :goto_0
 
-    .line 227
+    .line 232
     .end local v0    # "flexMapSupportType":Ljava/lang/String;
     .end local v3    # "i":I
     :cond_2
     :goto_1
-    if-ne p1, v2, :cond_3
+    if-ne p1, v2, :cond_4
 
-    .line 232
-    invoke-direct {p0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->updateNewNwModeToDB()V
-
-    .line 233
+    .line 237
     const/4 v0, 0x0
 
     .local v0, "i":I
     :goto_2
     sget v3, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mNumPhones:I
 
-    if-ge v0, v3, :cond_3
+    if-ge v0, v3, :cond_4
 
-    .line 234
+    .line 238
+    invoke-virtual {p0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->isSetNWModeInProgress()Z
+
+    move-result v3
+
+    if-eqz v3, :cond_3
+
+    iget-object v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mPrefNwMode:[I
+
+    aget v3, v3, v0
+
+    invoke-direct {p0, v0, v3}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->updateNewNwModeToDB(II)V
+
+    .line 239
+    :cond_3
     iget-object v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mPhone:[Lcom/android/internal/telephony/Phone;
 
     aget-object v3, v3, v0
@@ -736,59 +745,78 @@
 
     invoke-virtual {v3}, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;->fetchIMEI()V
 
-    .line 233
+    .line 237
     add-int/lit8 v0, v0, 0x1
 
     goto :goto_2
 
-    .line 238
+    .line 243
     .end local v0    # "i":I
-    :cond_3
+    :cond_4
     const/4 v0, 0x0
 
     .restart local v0    # "i":I
     :goto_3
     sget v3, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mNumPhones:I
 
-    if-ge v0, v3, :cond_4
+    if-ge v0, v3, :cond_5
 
-    .line 239
+    .line 244
     invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->sendSubscriptionSettings(I)V
 
-    .line 238
+    .line 243
     add-int/lit8 v0, v0, 0x1
 
     goto :goto_3
 
-    .line 242
+    .line 247
     .end local v0    # "i":I
-    :cond_4
+    :cond_5
     invoke-virtual {p0, v2}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->setDdsIfRequired(Z)V
 
-    .line 245
+    .line 250
+    if-ne p1, v2, :cond_6
+
+    move v0, v2
+
+    goto :goto_4
+
+    :cond_6
+    move v0, v1
+
+    :goto_4
+    invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->notifyRadioCapsUpdated(Z)V
+
+    .line 252
+    invoke-virtual {p0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->isSetNWModeInProgress()Z
+
+    move-result v0
+
+    if-nez v0, :cond_7
+
+    .line 253
+    invoke-direct {p0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->syncPreferredNwModeFromDB()V
+
+    .line 254
+    return-void
+
+    .line 257
+    :cond_7
     invoke-direct {p0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->setNWModeInProgressFlag(Z)V
 
-    .line 248
-    if-ne p1, v2, :cond_5
-
-    move v1, v2
-
-    :cond_5
-    invoke-direct {p0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->notifyRadioCapsUpdated(Z)V
-
-    .line 251
+    .line 259
     const/4 v0, 0x0
 
     .restart local v0    # "i":I
-    :goto_4
+    :goto_5
     sget v1, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mNumPhones:I
 
-    if-ge v0, v1, :cond_8
+    if-ge v0, v1, :cond_a
 
-    .line 252
+    .line 260
     const/4 v1, 0x0
 
-    .line 253
+    .line 261
     .local v1, "errorCode":I
     iget-object v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mStoredResponse:Ljava/util/HashMap;
 
@@ -802,21 +830,21 @@
 
     check-cast v3, Landroid/os/Message;
 
-    .line 254
+    .line 262
     .local v3, "resp":Landroid/os/Message;
-    if-eqz v3, :cond_7
+    if-eqz v3, :cond_9
 
-    .line 255
-    if-eq p1, v2, :cond_6
+    .line 263
+    if-eq p1, v2, :cond_8
 
-    .line 256
+    .line 264
     const/4 v1, 0x2
 
-    .line 258
-    :cond_6
+    .line 266
+    :cond_8
     invoke-direct {p0, v3, v1}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->sendResponseToTarget(Landroid/os/Message;I)V
 
-    .line 259
+    .line 267
     iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mStoredResponse:Ljava/util/HashMap;
 
     invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -827,27 +855,171 @@
 
     invoke-virtual {v4, v5, v6}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 251
+    .line 259
     .end local v1    # "errorCode":I
     .end local v3    # "resp":Landroid/os/Message;
-    :cond_7
+    :cond_9
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_4
+    goto :goto_5
 
-    .line 262
+    .line 270
     .end local v0    # "i":I
-    :cond_8
+    :cond_a
+    return-void
+.end method
+
+.method private internalSetNetworkMode(IILandroid/os/Message;)V
+    .locals 7
+    .param p1, "phoneId"    # I
+    .param p2, "networkType"    # I
+    .param p3, "response"    # Landroid/os/Message;
+
+    .line 783
+    iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mPhone:[Lcom/android/internal/telephony/Phone;
+
+    aget-object v0, v0, p1
+
+    invoke-virtual {v0}, Lcom/android/internal/telephony/Phone;->getRadioAccessFamily()I
+
+    move-result v0
+
+    .line 784
+    .local v0, "modemRaf":I
+    if-nez v0, :cond_0
+
+    .line 785
+    const-string v1, "internalSetNetworkMode: modem rat is unknown"
+
+    invoke-direct {p0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->logi(Ljava/lang/String;)V
+
+    .line 786
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mCi:[Lcom/android/internal/telephony/CommandsInterface;
+
+    aget-object v1, v1, p1
+
+    invoke-interface {v1, p2, p3}, Lcom/android/internal/telephony/CommandsInterface;->setPreferredNetworkType(ILandroid/os/Message;)V
+
+    .line 787
+    invoke-direct {p0, p1, p2}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->updateNewNwModeToDB(II)V
+
+    .line 788
+    invoke-direct {p0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->notifyNetworkTypeChanged(I)V
+
+    .line 789
+    return-void
+
+    .line 791
+    :cond_0
+    invoke-static {p2}, Landroid/telephony/RadioAccessFamily;->getRafFromNetworkType(I)I
+
+    move-result v1
+
+    .line 792
+    .local v1, "rafFromType":I
+    and-int v2, v1, v0
+
+    int-to-long v2, v2
+
+    iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mPhone:[Lcom/android/internal/telephony/Phone;
+
+    aget-object v4, v4, p1
+
+    .line 793
+    invoke-virtual {v4}, Lcom/android/internal/telephony/Phone;->getEffectiveAllowedNetworkTypes()J
+
+    move-result-wide v4
+
+    and-long/2addr v2, v4
+
+    long-to-int v2, v2
+
+    .line 794
+    .local v2, "filteredRaf":I
+    invoke-static {v2}, Landroid/telephony/RadioAccessFamily;->getNetworkTypeFromRaf(I)I
+
+    move-result v3
+
+    .line 796
+    .local v3, "filteredType":I
+    iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mQtiSubscriptionController:Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
+
+    invoke-virtual {v4, p1}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getSubId(I)[I
+
+    move-result-object v4
+
+    .line 798
+    .local v4, "subId":[I
+    new-instance v5, Ljava/lang/StringBuilder;
+
+    invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v6, "internalSetNetworkMode: subId["
+
+    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v5, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    const-string v6, "] = "
+
+    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v5, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    const-string v6, " new n/w mode = "
+
+    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v5, v3}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    const-string v6, " old n/w mode = "
+
+    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    .line 799
+    invoke-direct {p0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->getNetworkModeFromDB(I)I
+
+    move-result v6
+
+    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    const-string v6, " requested n/w mode = "
+
+    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v5, p2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v5}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v5
+
+    .line 798
+    invoke-direct {p0, v5}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->logi(Ljava/lang/String;)V
+
+    .line 801
+    invoke-direct {p0, p1, p2}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->updateNewNwModeToDB(II)V
+
+    .line 802
+    iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mCi:[Lcom/android/internal/telephony/CommandsInterface;
+
+    aget-object v5, v5, p1
+
+    invoke-interface {v5, v3, p3}, Lcom/android/internal/telephony/CommandsInterface;->setPreferredNetworkType(ILandroid/os/Message;)V
+
+    .line 803
+    invoke-direct {p0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->notifyNetworkTypeChanged(I)V
+
+    .line 804
     return-void
 .end method
 
 .method private isAnyCallsInProgress()Z
     .locals 4
 
-    .line 611
+    .line 605
     const/4 v0, 0x0
 
-    .line 612
+    .line 606
     .local v0, "isCallInProgress":Z
     const/4 v1, 0x0
 
@@ -857,7 +1029,7 @@
 
     if-ge v1, v2, :cond_1
 
-    .line 613
+    .line 607
     iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mPhone:[Lcom/android/internal/telephony/Phone;
 
     aget-object v2, v2, v1
@@ -870,19 +1042,19 @@
 
     if-eq v2, v3, :cond_0
 
-    .line 614
+    .line 608
     const/4 v0, 0x1
 
-    .line 615
+    .line 609
     goto :goto_1
 
-    .line 612
+    .line 606
     :cond_0
     add-int/lit8 v1, v1, 0x1
 
     goto :goto_0
 
-    .line 618
+    .line 612
     .end local v1    # "i":I
     :cond_1
     :goto_1
@@ -892,10 +1064,10 @@
 .method private isAnyPhoneInEcmState()Z
     .locals 3
 
-    .line 622
+    .line 616
     const/4 v0, 0x0
 
-    .line 623
+    .line 617
     .local v0, "isInEcmState":Z
     const/4 v1, 0x0
 
@@ -905,7 +1077,7 @@
 
     if-ge v1, v2, :cond_1
 
-    .line 624
+    .line 618
     iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mPhone:[Lcom/android/internal/telephony/Phone;
 
     aget-object v2, v2, v1
@@ -916,19 +1088,19 @@
 
     if-eqz v2, :cond_0
 
-    .line 625
+    .line 619
     const/4 v0, 0x1
 
-    .line 626
+    .line 620
     goto :goto_1
 
-    .line 623
+    .line 617
     :cond_0
     add-int/lit8 v1, v1, 0x1
 
     goto :goto_0
 
-    .line 629
+    .line 623
     .end local v1    # "i":I
     :cond_1
     :goto_1
@@ -939,25 +1111,25 @@
     .locals 4
     .param p1, "phoneId"    # I
 
-    .line 644
+    .line 638
     const/4 v0, -0x1
 
-    .line 646
+    .line 640
     .local v0, "provisionStatus":I
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;
 
     move-result-object v1
 
-    .line 648
+    .line 642
     .local v1, "uiccProvisioner":Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;
     if-eqz v1, :cond_0
 
-    .line 649
+    .line 643
     invoke-virtual {v1, p1}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->getCurrentUiccCardProvisioningStatus(I)I
 
     move-result v0
 
-    .line 650
+    .line 644
     new-instance v2, Ljava/lang/StringBuilder;
 
     invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
@@ -980,7 +1152,7 @@
 
     invoke-direct {p0, v2}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->logd(Ljava/lang/String;)V
 
-    .line 652
+    .line 646
     :cond_0
     const/4 v2, -0x2
 
@@ -1000,7 +1172,7 @@
 .method private isFlexMappingAllowedOnInactiveSub()Z
     .locals 2
 
-    .line 198
+    .line 203
     const-string v0, "persist.radio.flex_map_inactive"
 
     const/4 v1, 0x0
@@ -1017,20 +1189,20 @@
     .param p1, "nwMode"    # I
     .param p2, "stackId"    # I
 
-    .line 436
+    .line 444
     sget v0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mNumPhones:I
 
     new-array v0, v0, [I
 
-    .line 437
+    .line 445
     .local v0, "numRafSupported":[I
     const/4 v1, 0x0
 
-    .line 438
+    .line 446
     .local v1, "maxNumRafSupported":I
     const/4 v2, 0x0
 
-    .line 441
+    .line 449
     .local v2, "isSupported":Z
     const/4 v3, 0x0
 
@@ -1040,7 +1212,7 @@
 
     if-ge v3, v4, :cond_1
 
-    .line 442
+    .line 450
     iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mRadioAccessFamily:[I
 
     aget v4, v4, v3
@@ -1051,20 +1223,20 @@
 
     aput v4, v0, v3
 
-    .line 443
+    .line 451
     aget v4, v0, v3
 
     if-ge v1, v4, :cond_0
 
     aget v1, v0, v3
 
-    .line 441
+    .line 449
     :cond_0
     add-int/lit8 v3, v3, 0x1
 
     goto :goto_0
 
-    .line 447
+    .line 455
     .end local v3    # "i":I
     :cond_1
     aget v3, v0, p2
@@ -1073,7 +1245,7 @@
 
     const/4 v2, 0x1
 
-    .line 449
+    .line 457
     :cond_2
     new-instance v3, Ljava/lang/StringBuilder;
 
@@ -1095,7 +1267,7 @@
 
     invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 450
+    .line 458
     if-eqz v2, :cond_3
 
     const-string v4, "Supported"
@@ -1112,35 +1284,35 @@
 
     move-result-object v3
 
-    .line 449
+    .line 457
     invoke-direct {p0, v3}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->logd(Ljava/lang/String;)V
 
-    .line 452
+    .line 460
     return v2
 .end method
 
 .method private isUiccProvisionInProgress()Z
     .locals 4
 
-    .line 633
+    .line 627
     const/4 v0, 0x0
 
-    .line 634
+    .line 628
     .local v0, "retVal":Z
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;
 
     move-result-object v1
 
-    .line 636
+    .line 630
     .local v1, "uiccProvisioner":Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;
     if-eqz v1, :cond_0
 
-    .line 637
+    .line 631
     invoke-virtual {v1}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->isAnyProvisionRequestInProgress()Z
 
     move-result v0
 
-    .line 638
+    .line 632
     new-instance v2, Ljava/lang/StringBuilder;
 
     invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
@@ -1157,7 +1329,7 @@
 
     invoke-direct {p0, v2}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->logd(Ljava/lang/String;)V
 
-    .line 640
+    .line 634
     :cond_0
     return v0
 .end method
@@ -1166,12 +1338,12 @@
     .locals 1
     .param p1, "string"    # Ljava/lang/String;
 
-    .line 771
+    .line 807
     const-string v0, "QtiRadioCapabilityController"
 
     invoke-static {v0, p1}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 772
+    .line 808
     return-void
 .end method
 
@@ -1179,12 +1351,12 @@
     .locals 1
     .param p1, "string"    # Ljava/lang/String;
 
-    .line 779
+    .line 815
     const-string v0, "QtiRadioCapabilityController"
 
     invoke-static {v0, p1}, Landroid/telephony/Rlog;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 780
+    .line 816
     return-void
 .end method
 
@@ -1192,12 +1364,12 @@
     .locals 1
     .param p1, "string"    # Ljava/lang/String;
 
-    .line 775
+    .line 811
     const-string v0, "QtiRadioCapabilityController"
 
     invoke-static {v0, p1}, Landroid/telephony/Rlog;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 776
+    .line 812
     return-void
 .end method
 
@@ -1205,7 +1377,7 @@
     .locals 0
     .param p1, "string"    # Ljava/lang/String;
 
-    .line 784
+    .line 820
     return-void
 .end method
 
@@ -1215,19 +1387,19 @@
     .param p1, "phone"    # [Lcom/android/internal/telephony/Phone;
     .param p2, "ci"    # [Lcom/android/internal/telephony/CommandsInterface;
 
-    .line 96
+    .line 101
     const-string v0, "QtiRadioCapabilityController"
 
     const-string v1, "getInstance"
 
     invoke-static {v0, v1}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 97
+    .line 102
     sget-object v1, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->sInstance:Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;
 
     if-nez v1, :cond_0
 
-    .line 98
+    .line 103
     new-instance v0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;
 
     invoke-direct {v0, p0, p1, p2}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;-><init>(Landroid/content/Context;[Lcom/android/internal/telephony/Phone;[Lcom/android/internal/telephony/CommandsInterface;)V
@@ -1236,24 +1408,82 @@
 
     goto :goto_0
 
-    .line 100
+    .line 105
     :cond_0
     const-string v1, "QtiRadioCapabilityController.make() should be called once"
 
     invoke-static {v0, v1}, Landroid/util/Log;->wtf(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 102
+    .line 107
     :goto_0
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->sInstance:Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;
 
     return-object v0
 .end method
 
+.method private notifyNetworkTypeChanged(I)V
+    .locals 2
+    .param p1, "phoneId"    # I
+
+    .line 773
+    :try_start_0
+    const-class v0, Lcom/android/internal/telephony/Phone;
+
+    const-string v1, "mPreferredNetworkTypeRegistrants"
+
+    invoke-virtual {v0, v1}, Ljava/lang/Class;->getDeclaredField(Ljava/lang/String;)Ljava/lang/reflect/Field;
+
+    move-result-object v0
+
+    .line 774
+    .local v0, "f":Ljava/lang/reflect/Field;
+    const/4 v1, 0x1
+
+    invoke-virtual {v0, v1}, Ljava/lang/reflect/Field;->setAccessible(Z)V
+
+    .line 775
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mPhone:[Lcom/android/internal/telephony/Phone;
+
+    aget-object v1, v1, p1
+
+    invoke-virtual {v0, v1}, Ljava/lang/reflect/Field;->get(Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v1
+
+    check-cast v1, Lcom/android/internal/telephony/RegistrantList;
+
+    .line 776
+    .local v1, "registrants":Lcom/android/internal/telephony/RegistrantList;
+    invoke-virtual {v1}, Lcom/android/internal/telephony/RegistrantList;->notifyRegistrants()V
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+
+    .line 779
+    .end local v0    # "f":Ljava/lang/reflect/Field;
+    .end local v1    # "registrants":Lcom/android/internal/telephony/RegistrantList;
+    goto :goto_0
+
+    .line 777
+    :catch_0
+    move-exception v0
+
+    .line 778
+    .local v0, "e":Ljava/lang/Exception;
+    const-string v1, "notifyNetworkTypeChanged failed"
+
+    invoke-direct {p0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->loge(Ljava/lang/String;)V
+
+    .line 780
+    .end local v0    # "e":Ljava/lang/Exception;
+    :goto_0
+    return-void
+.end method
+
 .method private notifyRadioCapsUpdated(Z)V
     .locals 3
     .param p1, "isCrossMapDone"    # Z
 
-    .line 590
+    .line 584
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -1270,10 +1500,10 @@
 
     invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->logd(Ljava/lang/String;)V
 
-    .line 592
+    .line 586
     if-eqz p1, :cond_0
 
-    .line 593
+    .line 587
     const/4 v0, 0x0
 
     .local v0, "i":I
@@ -1282,7 +1512,7 @@
 
     if-ge v0, v1, :cond_0
 
-    .line 595
+    .line 589
     iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mCurrentStackId:[I
 
     iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mPreferredStackId:[I
@@ -1291,12 +1521,12 @@
 
     aput v2, v1, v0
 
-    .line 593
+    .line 587
     add-int/lit8 v0, v0, 0x1
 
     goto :goto_0
 
-    .line 598
+    .line 592
     .end local v0    # "i":I
     :cond_0
     new-instance v0, Landroid/content/Intent;
@@ -1305,7 +1535,7 @@
 
     invoke-direct {v0, v1}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
 
-    .line 599
+    .line 593
     .local v0, "intent":Landroid/content/Intent;
     iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mContext:Landroid/content/Context;
 
@@ -1313,7 +1543,7 @@
 
     invoke-virtual {v1, v0, v2}, Landroid/content/Context;->sendStickyBroadcastAsUser(Landroid/content/Intent;Landroid/os/UserHandle;)V
 
-    .line 600
+    .line 594
     return-void
 .end method
 
@@ -1322,7 +1552,7 @@
     .param p1, "ar"    # Landroid/os/AsyncResult;
     .param p2, "phoneId"    # I
 
-    .line 274
+    .line 282
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -1339,12 +1569,12 @@
 
     invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->logd(Ljava/lang/String;)V
 
-    .line 276
+    .line 284
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mNeedSetDds:Z
 
-    .line 277
+    .line 285
     return-void
 .end method
 
@@ -1353,24 +1583,24 @@
     .param p1, "response"    # Landroid/os/Message;
     .param p2, "responseCode"    # I
 
-    .line 603
+    .line 597
     if-eqz p1, :cond_0
 
-    .line 604
+    .line 598
     invoke-static {p2}, Lcom/android/internal/telephony/CommandException;->fromRilErrno(I)Lcom/android/internal/telephony/CommandException;
 
     move-result-object v0
 
-    .line 605
+    .line 599
     .local v0, "e":Ljava/lang/Exception;
     const/4 v1, 0x0
 
     invoke-static {p1, v1, v0}, Landroid/os/AsyncResult;->forMessage(Landroid/os/Message;Ljava/lang/Object;Ljava/lang/Throwable;)Landroid/os/AsyncResult;
 
-    .line 606
+    .line 600
     invoke-virtual {p1}, Landroid/os/Message;->sendToTarget()V
 
-    .line 608
+    .line 602
     .end local v0    # "e":Ljava/lang/Exception;
     :cond_0
     return-void
@@ -1380,35 +1610,31 @@
     .locals 5
     .param p1, "phoneId"    # I
 
-    .line 574
+    .line 568
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mPhone:[Lcom/android/internal/telephony/Phone;
 
     aget-object v0, v0, p1
 
-    .line 575
+    .line 569
     .local v0, "phone":Lcom/android/internal/telephony/Phone;
     invoke-direct {p0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->getNetworkModeFromDB(I)I
 
     move-result v1
 
-    .line 576
+    .line 570
     .local v1, "type":I
-    iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mCi:[Lcom/android/internal/telephony/CommandsInterface;
+    const/4 v2, 0x0
 
-    aget-object v2, v2, p1
+    invoke-direct {p0, p1, v1, v2}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->internalSetNetworkMode(IILandroid/os/Message;)V
 
-    const/4 v3, 0x0
-
-    invoke-interface {v2, v1, v3}, Lcom/android/internal/telephony/CommandsInterface;->setPreferredNetworkType(ILandroid/os/Message;)V
-
-    .line 578
+    .line 572
     iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mQtiSubscriptionController:Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
 
     invoke-virtual {v2, p1}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getSubId(I)[I
 
     move-result-object v2
 
-    .line 579
+    .line 573
     .local v2, "subId":[I
     if-eqz v2, :cond_0
 
@@ -1422,31 +1648,31 @@
 
     aget v4, v2, v4
 
-    .line 580
+    .line 574
     invoke-virtual {v3, v4}, Landroid/telephony/SubscriptionManager;->isActiveSubscriptionId(I)Z
 
     move-result v3
 
     if-eqz v3, :cond_0
 
-    .line 583
+    .line 577
     invoke-virtual {v0}, Lcom/android/internal/telephony/Phone;->getDataEnabledSettings()Lcom/android/internal/telephony/dataconnection/DataEnabledSettings;
 
     move-result-object v3
 
-    .line 584
+    .line 578
     .local v3, "dataEnabledSettings":Lcom/android/internal/telephony/dataconnection/DataEnabledSettings;
     nop
 
-    .line 585
+    .line 579
     invoke-virtual {v3}, Lcom/android/internal/telephony/dataconnection/DataEnabledSettings;->isUserDataEnabled()Z
 
     move-result v4
 
-    .line 584
+    .line 578
     invoke-virtual {v3, v4}, Lcom/android/internal/telephony/dataconnection/DataEnabledSettings;->setUserDataEnabled(Z)V
 
-    .line 587
+    .line 581
     .end local v3    # "dataEnabledSettings":Lcom/android/internal/telephony/dataconnection/DataEnabledSettings;
     :cond_0
     return-void
@@ -1456,22 +1682,22 @@
     .locals 2
     .param p1, "newStatus"    # Z
 
-    .line 656
+    .line 650
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->sSetNwModeLock:Ljava/lang/Object;
 
     monitor-enter v0
 
-    .line 657
+    .line 651
     :try_start_0
     iput-boolean p1, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mIsSetPrefNwModeInProgress:Z
 
-    .line 658
+    .line 652
     monitor-exit v0
 
-    .line 659
+    .line 653
     return-void
 
-    .line 658
+    .line 652
     :catchall_0
     move-exception v1
 
@@ -1485,7 +1711,7 @@
 .method private syncCurrentStackInfo()V
     .locals 4
 
-    .line 281
+    .line 289
     const/4 v0, 0x0
 
     .local v0, "i":I
@@ -1494,7 +1720,7 @@
 
     if-ge v0, v1, :cond_1
 
-    .line 282
+    .line 290
     iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mCurrentStackId:[I
 
     iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mPhone:[Lcom/android/internal/telephony/Phone;
@@ -1515,7 +1741,7 @@
 
     aput v2, v1, v0
 
-    .line 283
+    .line 291
     iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mRadioAccessFamily:[I
 
     iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mCurrentStackId:[I
@@ -1532,7 +1758,7 @@
 
     aput v3, v1, v2
 
-    .line 286
+    .line 294
     iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mPreferredStackId:[I
 
     iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mCurrentStackId:[I
@@ -1551,7 +1777,7 @@
     :goto_1
     aput v2, v1, v0
 
-    .line 287
+    .line 295
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -1592,12 +1818,12 @@
 
     invoke-direct {p0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->logv(Ljava/lang/String;)V
 
-    .line 281
+    .line 289
     add-int/lit8 v0, v0, 0x1
 
     goto :goto_0
 
-    .line 290
+    .line 298
     .end local v0    # "i":I
     :cond_1
     return-void
@@ -1606,7 +1832,7 @@
 .method private syncPreferredNwModeFromDB()V
     .locals 3
 
-    .line 456
+    .line 464
     const/4 v0, 0x0
 
     .local v0, "i":I
@@ -1615,7 +1841,7 @@
 
     if-ge v0, v1, :cond_0
 
-    .line 457
+    .line 465
     iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mPrefNwMode:[I
 
     invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->getNetworkModeFromDB(I)I
@@ -1624,158 +1850,110 @@
 
     aput v2, v1, v0
 
-    .line 456
+    .line 464
     add-int/lit8 v0, v0, 0x1
 
     goto :goto_0
 
-    .line 459
+    .line 467
     .end local v0    # "i":I
     :cond_0
     return-void
 .end method
 
-.method private updateNewNwModeToDB()V
-    .locals 7
-
-    .line 490
-    const/4 v0, -0x1
-
-    .line 491
-    .local v0, "nwModeFromDB":I
-    const/4 v1, 0x0
-
-    .local v1, "i":I
-    :goto_0
-    sget v2, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mNumPhones:I
-
-    if-ge v1, v2, :cond_2
-
-    .line 492
-    invoke-direct {p0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->getNetworkModeFromDB(I)I
-
-    move-result v0
+.method private updateNewNwModeToDB(II)V
+    .locals 5
+    .param p1, "phoneId"    # I
+    .param p2, "nwMode"    # I
 
     .line 496
-    iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mPrefNwMode:[I
+    iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mQtiSubscriptionController:Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
 
-    aget v2, v2, v1
+    invoke-virtual {v0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getSubId(I)[I
 
-    if-eq v2, v0, :cond_1
+    move-result-object v0
 
-    .line 497
-    iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mQtiSubscriptionController:Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
+    .line 498
+    .local v0, "subId":[I
+    new-instance v1, Ljava/lang/StringBuilder;
 
-    invoke-virtual {v2, v1}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getSubId(I)[I
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "updateNewNwModeToDB: subId["
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    const-string v2, "] = "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    const/4 v2, 0x0
+
+    aget v3, v0, v2
+
+    invoke-virtual {v1, v3}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    const-string v3, " n/w mode = "
+
+    invoke-virtual {v1, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1, p2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-direct {p0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->logi(Ljava/lang/String;)V
+
+    .line 499
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mSubscriptionManager:Landroid/telephony/SubscriptionManager;
+
+    aget v3, v0, v2
+
+    invoke-virtual {v1, v3}, Landroid/telephony/SubscriptionManager;->isActiveSubscriptionId(I)Z
+
+    move-result v1
+
+    const-string v3, "preferred_network_mode"
+
+    if-eqz v1, :cond_0
+
+    .line 500
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mContext:Landroid/content/Context;
+
+    invoke-virtual {v1}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
+
+    move-result-object v1
+
+    new-instance v4, Ljava/lang/StringBuilder;
+
+    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {v4, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    aget v2, v0, v2
+
+    invoke-virtual {v4, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v2
 
-    .line 499
-    .local v2, "subId":[I
-    new-instance v3, Ljava/lang/StringBuilder;
+    invoke-static {v1, v2, p2}, Landroid/provider/Settings$Global;->putInt(Landroid/content/ContentResolver;Ljava/lang/String;I)Z
 
-    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v4, "updateNewNwModeToDB: subId["
-
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v3, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    const-string v4, "] = "
-
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v3, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    const-string v4, " new Nw mode = "
-
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mPrefNwMode:[I
-
-    aget v4, v4, v1
-
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    const-string v4, " old n/w mode = "
-
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v3, v0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v3
-
-    invoke-direct {p0, v3}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->logi(Ljava/lang/String;)V
-
-    .line 501
-    iget-object v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mSubscriptionManager:Landroid/telephony/SubscriptionManager;
-
-    const/4 v4, 0x0
-
-    aget v5, v2, v4
-
-    invoke-virtual {v3, v5}, Landroid/telephony/SubscriptionManager;->isActiveSubscriptionId(I)Z
-
-    move-result v3
-
-    const-string v5, "preferred_network_mode"
-
-    if-eqz v3, :cond_0
-
-    .line 502
-    iget-object v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mContext:Landroid/content/Context;
-
-    invoke-virtual {v3}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
-
-    move-result-object v3
-
-    new-instance v6, Ljava/lang/StringBuilder;
-
-    invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
-
-    invoke-virtual {v6, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    aget v4, v2, v4
-
-    invoke-virtual {v6, v4}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v6}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v4
-
-    iget-object v6, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mPrefNwMode:[I
-
-    aget v6, v6, v1
-
-    invoke-static {v3, v4, v6}, Landroid/provider/Settings$Global;->putInt(Landroid/content/ContentResolver;Ljava/lang/String;I)Z
-
-    .line 506
+    .line 503
     :cond_0
-    iget-object v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mContext:Landroid/content/Context;
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mContext:Landroid/content/Context;
 
-    invoke-virtual {v3}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
+    invoke-virtual {v1}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
-    move-result-object v3
+    move-result-object v1
 
-    iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mPrefNwMode:[I
+    invoke-static {v1, v3, p1, p2}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneUtils;->putIntAtIndex(Landroid/content/ContentResolver;Ljava/lang/String;II)Z
 
-    aget v4, v4, v1
-
-    invoke-static {v3, v5, v1, v4}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneUtils;->putIntAtIndex(Landroid/content/ContentResolver;Ljava/lang/String;II)Z
-
-    .line 491
-    .end local v2    # "subId":[I
-    :cond_1
-    add-int/lit8 v1, v1, 0x1
-
-    goto :goto_0
-
-    .line 511
-    .end local v1    # "i":I
-    :cond_2
+    .line 505
     return-void
 .end method
 
@@ -1783,14 +1961,14 @@
     .locals 8
     .param p1, "isNwModeRequest"    # Z
 
-    .line 382
+    .line 390
     invoke-direct {p0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->areAllModemCapInfoReceived()Z
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 383
+    .line 391
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -1807,21 +1985,21 @@
 
     invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->loge(Ljava/lang/String;)V
 
-    .line 384
+    .line 392
     return-void
 
-    .line 387
+    .line 395
     :cond_0
     if-nez p1, :cond_1
 
-    .line 389
+    .line 397
     invoke-direct {p0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->syncPreferredNwModeFromDB()V
 
-    .line 391
+    .line 399
     :cond_1
     invoke-direct {p0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->syncCurrentStackInfo()V
 
-    .line 393
+    .line 401
     const/4 v0, 0x0
 
     .local v0, "curPhoneId":I
@@ -1830,7 +2008,7 @@
 
     if-ge v0, v1, :cond_8
 
-    .line 395
+    .line 403
     iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mPrefNwMode:[I
 
     aget v1, v1, v0
@@ -1849,7 +2027,7 @@
 
     if-eqz v1, :cond_2
 
-    .line 396
+    .line 404
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -1886,10 +2064,10 @@
 
     invoke-direct {p0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->logd(Ljava/lang/String;)V
 
-    .line 399
+    .line 407
     goto/16 :goto_3
 
-    .line 401
+    .line 409
     :cond_2
     new-instance v1, Ljava/lang/StringBuilder;
 
@@ -1927,7 +2105,7 @@
 
     invoke-direct {p0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->logd(Ljava/lang/String;)V
 
-    .line 407
+    .line 415
     const/4 v1, 0x0
 
     .local v1, "otherPhoneId":I
@@ -1936,12 +2114,12 @@
 
     if-ge v1, v5, :cond_7
 
-    .line 409
+    .line 417
     if-ne v1, v0, :cond_3
 
     goto/16 :goto_2
 
-    .line 410
+    .line 418
     :cond_3
     new-instance v5, Ljava/lang/StringBuilder;
 
@@ -1977,7 +2155,7 @@
 
     invoke-direct {p0, v5}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->logd(Ljava/lang/String;)V
 
-    .line 414
+    .line 422
     iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mPrefNwMode:[I
 
     aget v5, v5, v0
@@ -1992,7 +2170,7 @@
 
     if-eqz v5, :cond_6
 
-    .line 420
+    .line 428
     invoke-direct {p0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->isCardAbsent(I)Z
 
     move-result v5
@@ -2014,14 +2192,14 @@
 
     aget v6, v6, v0
 
-    .line 421
+    .line 429
     invoke-direct {p0, v5, v6}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->isNwModeSupportedOnStack(II)Z
 
     move-result v5
 
     if-eqz v5, :cond_6
 
-    .line 423
+    .line 431
     :cond_5
     new-instance v5, Ljava/lang/StringBuilder;
 
@@ -2047,7 +2225,7 @@
 
     invoke-direct {p0, v5}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->logd(Ljava/lang/String;)V
 
-    .line 427
+    .line 435
     iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mPreferredStackId:[I
 
     iget-object v6, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mCurrentStackId:[I
@@ -2056,19 +2234,19 @@
 
     aput v7, v5, v0
 
-    .line 428
+    .line 436
     aget v6, v6, v0
 
     aput v6, v5, v1
 
-    .line 407
+    .line 415
     :cond_6
     :goto_2
     add-int/lit8 v1, v1, 0x1
 
     goto/16 :goto_1
 
-    .line 393
+    .line 401
     .end local v1    # "otherPhoneId":I
     :cond_7
     :goto_3
@@ -2076,7 +2254,7 @@
 
     goto/16 :goto_0
 
-    .line 433
+    .line 441
     .end local v0    # "curPhoneId":I
     :cond_8
     return-void
@@ -2088,44 +2266,44 @@
 
     monitor-enter p0
 
-    .line 300
+    .line 308
     const/4 v0, 0x0
 
-    .line 301
+    .line 309
     .local v0, "isUpdateStackBindingRequired":Z
     const/4 v1, 0x0
 
-    .line 302
+    .line 310
     .local v1, "response":Z
     :try_start_0
     invoke-direct {p0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->isAnyCallsInProgress()Z
 
     move-result v2
 
-    .line 303
+    .line 311
     .local v2, "callInProgress":Z
     invoke-direct {p0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->isAnyPhoneInEcmState()Z
 
     move-result v3
 
-    .line 304
+    .line 312
     .local v3, "isInEcmState":Z
     const-string v4, "persist.vendor.radio.flexmap_type"
 
-    const-string v5, "nw_mode"
+    const-string v5, "dds"
 
-    .line 305
+    .line 313
     invoke-static {v4, v5}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v4
 
-    .line 307
+    .line 315
     .local v4, "flexMapSupportType":Ljava/lang/String;
     const-string v5, "updateStackBindingIfRequired"
 
     invoke-direct {p0, v5}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->logd(Ljava/lang/String;)V
 
-    .line 308
+    .line 316
     sget v5, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mNumPhones:I
 
     const/4 v6, 0x1
@@ -2142,7 +2320,7 @@
 
     goto/16 :goto_6
 
-    .line 314
+    .line 322
     :cond_0
     if-nez v2, :cond_b
 
@@ -2156,264 +2334,264 @@
 
     goto/16 :goto_5
 
-    .line 319
+    .line 327
     :cond_1
-    const/4 v5, 0x0
-
     if-nez p1, :cond_4
 
-    .line 320
-    move v6, v5
-
-    .local v6, "i":I
-    :goto_0
-    sget v7, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mNumPhones:I
-
-    if-ge v6, v7, :cond_4
-
-    .line 321
-    iget-object v7, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mQtiSubscriptionController:Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
-
-    invoke-virtual {v7, v6}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getSubId(I)[I
-
-    move-result-object v7
-
-    .line 325
-    .local v7, "subId":[I
-    invoke-direct {p0, v6}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->isCardAbsent(I)Z
-
-    move-result v8
-
-    if-nez v8, :cond_3
-
-    if-eqz v7, :cond_2
-
-    array-length v8, v7
-
-    if-lez v8, :cond_2
-
-    iget-object v8, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mSubscriptionManager:Landroid/telephony/SubscriptionManager;
-
-    aget v9, v7, v5
-
-    .line 326
-    invoke-virtual {v8, v9}, Landroid/telephony/SubscriptionManager;->isActiveSubscriptionId(I)Z
-
-    move-result v8
-
-    if-nez v8, :cond_3
-
-    .line 327
-    .end local p0    # "this":Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;
-    :cond_2
-    new-instance v5, Ljava/lang/StringBuilder;
-
-    invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v8, "Error: subId not generated yet "
-
-    invoke-virtual {v5, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v5}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v5
-
-    invoke-direct {p0, v5}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->loge(Ljava/lang/String;)V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
-
     .line 328
-    monitor-exit p0
+    const/4 v5, 0x0
 
-    return v1
+    .local v5, "i":I
+    :goto_0
+    sget v6, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mNumPhones:I
 
-    .line 320
-    .end local v7    # "subId":[I
-    :cond_3
-    add-int/lit8 v6, v6, 0x1
+    if-ge v5, v6, :cond_4
 
-    goto :goto_0
+    .line 329
+    iget-object v6, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mQtiSubscriptionController:Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
+
+    invoke-virtual {v6, v5}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getSubId(I)[I
+
+    move-result-object v6
 
     .line 333
-    .end local v6    # "i":I
-    :cond_4
-    :try_start_1
-    invoke-virtual {p0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->isBothPhonesMappedToSameStack()Z
+    .local v6, "subId":[I
+    invoke-direct {p0, v5}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->isCardAbsent(I)Z
 
-    move-result v6
+    move-result v7
 
-    if-nez v6, :cond_a
+    if-nez v7, :cond_3
 
-    invoke-virtual {p0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->is7Plus7DeviceFlexMapped()Z
+    if-eqz v6, :cond_2
 
-    move-result v6
+    array-length v7, v6
 
-    if-eqz v6, :cond_5
+    if-lez v7, :cond_2
 
-    goto/16 :goto_4
+    iget-object v7, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mSubscriptionManager:Landroid/telephony/SubscriptionManager;
 
-    .line 337
-    :cond_5
-    invoke-direct {p0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->updatePreferredStackIds(Z)V
+    const/4 v8, 0x0
 
-    .line 338
-    move v6, v5
+    aget v8, v6, v8
 
-    .restart local v6    # "i":I
-    :goto_1
-    sget v7, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mNumPhones:I
+    .line 334
+    invoke-virtual {v7, v8}, Landroid/telephony/SubscriptionManager;->isActiveSubscriptionId(I)Z
 
-    if-ge v6, v7, :cond_7
+    move-result v7
 
-    .line 339
+    if-nez v7, :cond_3
+
+    .line 335
+    .end local p0    # "this":Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;
+    :cond_2
     new-instance v7, Ljava/lang/StringBuilder;
 
     invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v8, " pref stack["
+    const-string v8, "Error: subId not generated yet "
 
     invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v7, v6}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    const-string v8, "] = "
-
-    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    iget-object v8, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mPreferredStackId:[I
-
-    aget v8, v8, v6
-
-    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    const-string v8, " current stack["
-
-    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v7, v6}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    const-string v8, "] = "
-
-    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    iget-object v8, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mCurrentStackId:[I
-
-    aget v8, v8, v6
-
-    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    invoke-virtual {v7, v5}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
     invoke-virtual {v7}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v7
 
-    invoke-direct {p0, v7}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->logv(Ljava/lang/String;)V
+    invoke-direct {p0, v7}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->loge(Ljava/lang/String;)V
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    .line 336
+    monitor-exit p0
+
+    return v1
+
+    .line 328
+    .end local v6    # "subId":[I
+    :cond_3
+    add-int/lit8 v5, v5, 0x1
+
+    goto :goto_0
 
     .line 341
-    iget-object v7, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mPreferredStackId:[I
+    .end local v5    # "i":I
+    :cond_4
+    :try_start_1
+    invoke-virtual {p0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->isBothPhonesMappedToSameStack()Z
 
-    aget v7, v7, v6
+    move-result v5
 
-    iget-object v8, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mCurrentStackId:[I
+    if-nez v5, :cond_a
 
-    aget v8, v8, v6
+    invoke-virtual {p0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->is7Plus7DeviceFlexMapped()Z
 
-    if-eq v7, v8, :cond_6
+    move-result v5
 
-    .line 343
-    const/4 v0, 0x1
+    if-eqz v5, :cond_5
 
-    .line 344
-    goto :goto_2
+    goto/16 :goto_4
 
-    .line 338
-    :cond_6
-    add-int/lit8 v6, v6, 0x1
+    .line 345
+    :cond_5
+    invoke-direct {p0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->updatePreferredStackIds(Z)V
 
-    goto :goto_1
+    .line 346
+    const/4 v5, 0x0
 
-    .line 348
-    .end local v6    # "i":I
-    :cond_7
-    :goto_2
+    .restart local v5    # "i":I
+    :goto_1
+    sget v6, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mNumPhones:I
+
+    if-ge v5, v6, :cond_7
+
+    .line 347
     new-instance v6, Ljava/lang/StringBuilder;
 
     invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v7, " updateStackBindingIfRequired, required =  "
+    const-string v7, " pref stack["
 
     invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v6, v0}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+    invoke-virtual {v6, v5}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    const-string v7, "] = "
+
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    iget-object v7, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mPreferredStackId:[I
+
+    aget v7, v7, v5
+
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    const-string v7, " current stack["
+
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v6, v5}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    const-string v7, "] = "
+
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    iget-object v7, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mCurrentStackId:[I
+
+    aget v7, v7, v5
+
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
     invoke-virtual {v6}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v6
 
-    invoke-direct {p0, v6}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->logd(Ljava/lang/String;)V
+    invoke-direct {p0, v6}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->logv(Ljava/lang/String;)V
 
     .line 349
-    if-eqz v0, :cond_9
+    iget-object v6, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mPreferredStackId:[I
 
-    .line 350
-    sget v6, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mNumPhones:I
+    aget v6, v6, v5
 
-    new-array v6, v6, [Landroid/telephony/RadioAccessFamily;
+    iget-object v7, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mCurrentStackId:[I
+
+    aget v7, v7, v5
+
+    if-eq v6, v7, :cond_6
 
     .line 351
-    .local v6, "rafs":[Landroid/telephony/RadioAccessFamily;
-    nop
+    const/4 v0, 0x1
 
-    .local v5, "i":I
+    .line 352
+    goto :goto_2
+
+    .line 346
+    :cond_6
+    add-int/lit8 v5, v5, 0x1
+
+    goto :goto_1
+
+    .line 356
+    .end local v5    # "i":I
+    :cond_7
+    :goto_2
+    new-instance v5, Ljava/lang/StringBuilder;
+
+    invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v6, " updateStackBindingIfRequired, required =  "
+
+    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v5, v0}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v5}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v5
+
+    invoke-direct {p0, v5}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->logd(Ljava/lang/String;)V
+
+    .line 357
+    if-eqz v0, :cond_9
+
+    .line 358
+    sget v5, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mNumPhones:I
+
+    new-array v5, v5, [Landroid/telephony/RadioAccessFamily;
+
+    .line 359
+    .local v5, "rafs":[Landroid/telephony/RadioAccessFamily;
+    const/4 v6, 0x0
+
+    .local v6, "i":I
     :goto_3
     sget v7, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mNumPhones:I
 
-    if-ge v5, v7, :cond_8
+    if-ge v6, v7, :cond_8
 
-    .line 352
+    .line 360
     new-instance v7, Landroid/telephony/RadioAccessFamily;
 
     iget-object v8, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mRadioAccessFamily:[I
 
     iget-object v9, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mPreferredStackId:[I
 
-    aget v9, v9, v5
+    aget v9, v9, v6
 
     aget v8, v8, v9
 
-    invoke-direct {v7, v5, v8}, Landroid/telephony/RadioAccessFamily;-><init>(II)V
+    invoke-direct {v7, v6, v8}, Landroid/telephony/RadioAccessFamily;-><init>(II)V
 
-    aput-object v7, v6, v5
+    aput-object v7, v5, v6
 
-    .line 351
-    add-int/lit8 v5, v5, 0x1
+    .line 359
+    add-int/lit8 v6, v6, 0x1
 
     goto :goto_3
 
-    .line 354
-    .end local v5    # "i":I
+    .line 362
+    .end local v6    # "i":I
     :cond_8
     invoke-static {}, Lcom/android/internal/telephony/ProxyController;->getInstance()Lcom/android/internal/telephony/ProxyController;
 
-    move-result-object v5
+    move-result-object v6
 
-    invoke-virtual {v5, v6}, Lcom/android/internal/telephony/ProxyController;->setRadioCapability([Landroid/telephony/RadioAccessFamily;)Z
+    invoke-virtual {v6, v5}, Lcom/android/internal/telephony/ProxyController;->setRadioCapability([Landroid/telephony/RadioAccessFamily;)Z
 
-    move-result v5
+    move-result v6
     :try_end_1
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
-    move v1, v5
+    move v1, v6
 
-    .line 356
-    .end local v6    # "rafs":[Landroid/telephony/RadioAccessFamily;
+    .line 364
+    .end local v5    # "rafs":[Landroid/telephony/RadioAccessFamily;
     :cond_9
     monitor-exit p0
 
     return v1
 
-    .line 334
+    .line 342
     :cond_a
     :goto_4
     :try_start_2
@@ -2427,7 +2605,7 @@
 
     return v5
 
-    .line 315
+    .line 323
     :cond_b
     :goto_5
     :try_start_3
@@ -2455,12 +2633,12 @@
     :try_end_3
     .catchall {:try_start_3 .. :try_end_3} :catchall_0
 
-    .line 316
+    .line 324
     monitor-exit p0
 
     return v1
 
-    .line 309
+    .line 317
     :cond_c
     :goto_6
     :try_start_4
@@ -2490,12 +2668,12 @@
     :try_end_4
     .catchall {:try_start_4 .. :try_end_4} :catchall_0
 
-    .line 311
+    .line 319
     monitor-exit p0
 
     return v1
 
-    .line 299
+    .line 307
     .end local v0    # "isUpdateStackBindingRequired":Z
     .end local v1    # "response":Z
     .end local v2    # "callInProgress":Z
@@ -2516,7 +2694,7 @@
     .locals 4
     .param p1, "msg"    # Landroid/os/Message;
 
-    .line 158
+    .line 163
     iget v0, p1, Landroid/os/Message;->what:I
 
     const/4 v1, 0x1
@@ -2533,50 +2711,50 @@
 
     goto :goto_0
 
-    .line 164
+    .line 169
     :cond_0
     const-string v0, " EVENT_UPDATE_BINDING_DONE "
 
     invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->logv(Ljava/lang/String;)V
 
-    .line 165
+    .line 170
     iget v0, p1, Landroid/os/Message;->arg1:I
 
     invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->handleUpdateBindingDone(I)V
 
-    .line 166
+    .line 171
     goto :goto_0
 
-    .line 160
+    .line 165
     :cond_1
     invoke-direct {p0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->handleRadioCapsAvailable()V
 
-    .line 161
+    .line 166
     goto :goto_0
 
-    .line 169
+    .line 174
     :cond_2
     iget-object v0, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
     if-eqz v0, :cond_4
 
-    .line 170
+    .line 175
     iget-object v0, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
     check-cast v0, Landroid/os/AsyncResult;
 
-    .line 171
+    .line 176
     .local v0, "ar":Landroid/os/AsyncResult;
     iget-object v1, v0, Landroid/os/AsyncResult;->userObj:Ljava/lang/Object;
 
     if-eqz v1, :cond_3
 
-    .line 172
+    .line 177
     iget-object v1, v0, Landroid/os/AsyncResult;->userObj:Ljava/lang/Object;
 
     check-cast v1, Ljava/lang/Integer;
 
-    .line 173
+    .line 178
     .local v1, "phoneId":Ljava/lang/Integer;
     new-instance v2, Ljava/lang/StringBuilder;
 
@@ -2594,7 +2772,7 @@
 
     invoke-direct {p0, v2}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->logd(Ljava/lang/String;)V
 
-    .line 174
+    .line 179
     invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
 
     move-result v2
@@ -2603,7 +2781,7 @@
 
     goto :goto_0
 
-    .line 176
+    .line 181
     .end local v1    # "phoneId":Ljava/lang/Integer;
     :cond_3
     const-string v1, "Invalid user obj"
@@ -2612,17 +2790,17 @@
 
     goto :goto_0
 
-    .line 179
+    .line 184
     .end local v0    # "ar":Landroid/os/AsyncResult;
     :cond_4
     const-string v0, "Invalid msg obj"
 
     invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->loge(Ljava/lang/String;)V
 
-    .line 181
+    .line 186
     nop
 
-    .line 186
+    .line 191
     :goto_0
     return-void
 .end method
@@ -2630,12 +2808,12 @@
 .method initNormalMappingRequest()Z
     .locals 13
 
-    .line 732
+    .line 726
     sget v0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mNumPhones:I
 
     new-array v0, v0, [Lcom/android/internal/telephony/RadioCapability;
 
-    .line 733
+    .line 727
     .local v0, "oldRadioCapability":[Lcom/android/internal/telephony/RadioCapability;
     const/16 v1, 0x16
 
@@ -2643,7 +2821,7 @@
 
     move-result v1
 
-    .line 735
+    .line 729
     .local v1, "maxRaf":I
     const/4 v2, 0x1
 
@@ -2651,16 +2829,16 @@
 
     move-result v3
 
-    .line 737
+    .line 731
     .local v3, "minRaf":I
     const-string v4, " initNormalMappingRequest  "
 
     invoke-direct {p0, v4}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->logd(Ljava/lang/String;)V
 
-    .line 738
+    .line 732
     invoke-direct {p0, v2}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->setNWModeInProgressFlag(Z)V
 
-    .line 744
+    .line 738
     const/4 v4, 0x0
 
     .local v4, "i":I
@@ -2669,7 +2847,7 @@
 
     if-ge v4, v5, :cond_2
 
-    .line 745
+    .line 739
     iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mPhone:[Lcom/android/internal/telephony/Phone;
 
     aget-object v5, v5, v4
@@ -2680,7 +2858,7 @@
 
     aput-object v5, v0, v4
 
-    .line 746
+    .line 740
     new-instance v12, Lcom/android/internal/telephony/RadioCapability;
 
     const/4 v7, 0x0
@@ -2696,7 +2874,7 @@
     :cond_0
     move v9, v1
 
-    .line 747
+    .line 741
     :goto_1
     if-nez v4, :cond_1
 
@@ -2718,7 +2896,7 @@
 
     invoke-direct/range {v5 .. v11}, Lcom/android/internal/telephony/RadioCapability;-><init>(IIIILjava/lang/String;I)V
 
-    .line 748
+    .line 742
     .local v5, "rc":Lcom/android/internal/telephony/RadioCapability;
     iget-object v6, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mPhone:[Lcom/android/internal/telephony/Phone;
 
@@ -2726,18 +2904,18 @@
 
     invoke-virtual {v6, v5}, Lcom/android/internal/telephony/Phone;->radioCapabilityUpdated(Lcom/android/internal/telephony/RadioCapability;)V
 
-    .line 744
+    .line 738
     .end local v5    # "rc":Lcom/android/internal/telephony/RadioCapability;
     add-int/lit8 v4, v4, 0x1
 
     goto :goto_0
 
-    .line 751
+    .line 745
     .end local v4    # "i":I
     :cond_2
     new-array v4, v5, [Landroid/telephony/RadioAccessFamily;
 
-    .line 752
+    .line 746
     .local v4, "rafs":[Landroid/telephony/RadioAccessFamily;
     const/4 v5, 0x0
 
@@ -2747,7 +2925,7 @@
 
     if-ge v5, v6, :cond_4
 
-    .line 753
+    .line 747
     new-instance v6, Landroid/telephony/RadioAccessFamily;
 
     if-nez v5, :cond_3
@@ -2764,12 +2942,12 @@
 
     aput-object v6, v4, v5
 
-    .line 752
+    .line 746
     add-int/lit8 v5, v5, 0x1
 
     goto :goto_3
 
-    .line 758
+    .line 752
     .end local v5    # "i":I
     :cond_4
     invoke-static {}, Lcom/android/internal/telephony/ProxyController;->getInstance()Lcom/android/internal/telephony/ProxyController;
@@ -2782,7 +2960,7 @@
 
     if-nez v5, :cond_6
 
-    .line 760
+    .line 754
     const/4 v2, 0x0
 
     .local v2, "i":I
@@ -2791,7 +2969,7 @@
 
     if-ge v2, v5, :cond_5
 
-    .line 761
+    .line 755
     iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mPhone:[Lcom/android/internal/telephony/Phone;
 
     aget-object v5, v5, v2
@@ -2800,27 +2978,27 @@
 
     invoke-virtual {v5, v6}, Lcom/android/internal/telephony/Phone;->radioCapabilityUpdated(Lcom/android/internal/telephony/RadioCapability;)V
 
-    .line 760
+    .line 754
     add-int/lit8 v2, v2, 0x1
 
     goto :goto_5
 
-    .line 763
+    .line 757
     .end local v2    # "i":I
     :cond_5
     const-string v2, " initNormalMappingRequest:  Fail, request in progress "
 
     invoke-direct {p0, v2}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->logd(Ljava/lang/String;)V
 
-    .line 764
+    .line 758
     const/4 v2, 0x0
 
     invoke-direct {p0, v2}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->setNWModeInProgressFlag(Z)V
 
-    .line 765
+    .line 759
     return v2
 
-    .line 767
+    .line 761
     :cond_6
     return v2
 .end method
@@ -2828,10 +3006,10 @@
 .method is7Plus7DeviceFlexMapped()Z
     .locals 5
 
-    .line 696
+    .line 690
     const/4 v0, 0x0
 
-    .line 698
+    .line 692
     .local v0, "retVal":Z
     sget v1, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mNumPhones:I
 
@@ -2845,7 +3023,7 @@
 
     if-eqz v1, :cond_0
 
-    .line 699
+    .line 693
     iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mPhone:[Lcom/android/internal/telephony/Phone;
 
     const/4 v3, 0x0
@@ -2870,7 +3048,7 @@
 
     aget-object v1, v1, v3
 
-    .line 700
+    .line 694
     invoke-virtual {v1}, Lcom/android/internal/telephony/Phone;->getRadioAccessFamily()I
 
     move-result v1
@@ -2889,14 +3067,14 @@
 
     aget-object v1, v1, v3
 
-    .line 701
+    .line 695
     invoke-virtual {v1}, Lcom/android/internal/telephony/Phone;->getRadioAccessFamily()I
 
     move-result v1
 
     if-eqz v1, :cond_0
 
-    .line 702
+    .line 696
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -2923,7 +3101,7 @@
 
     aget-object v2, v2, v3
 
-    .line 703
+    .line 697
     invoke-virtual {v2}, Lcom/android/internal/telephony/Phone;->getRadioAccessFamily()I
 
     move-result v2
@@ -2934,13 +3112,13 @@
 
     move-result-object v1
 
-    .line 702
+    .line 696
     invoke-direct {p0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->logi(Ljava/lang/String;)V
 
-    .line 704
+    .line 698
     const/4 v0, 0x1
 
-    .line 707
+    .line 701
     :cond_0
     return v0
 .end method
@@ -2948,10 +3126,10 @@
 .method isBothPhonesMappedToSameStack()Z
     .locals 5
 
-    .line 711
+    .line 705
     const/4 v0, 0x0
 
-    .line 713
+    .line 707
     .local v0, "retVal":Z
     sget v1, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mNumPhones:I
 
@@ -2965,7 +3143,7 @@
 
     if-eqz v1, :cond_0
 
-    .line 715
+    .line 709
     iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mPhone:[Lcom/android/internal/telephony/Phone;
 
     const/4 v3, 0x0
@@ -2984,7 +3162,7 @@
 
     aget-object v4, v4, v2
 
-    .line 716
+    .line 710
     invoke-virtual {v4}, Lcom/android/internal/telephony/Phone;->getModemUuId()Ljava/lang/String;
 
     move-result-object v4
@@ -2995,7 +3173,7 @@
 
     if-ne v1, v4, :cond_0
 
-    .line 717
+    .line 711
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -3022,7 +3200,7 @@
 
     aget-object v3, v4, v3
 
-    .line 718
+    .line 712
     invoke-virtual {v3}, Lcom/android/internal/telephony/Phone;->getRadioAccessFamily()I
 
     move-result v3
@@ -3033,45 +3211,80 @@
 
     move-result-object v1
 
-    .line 717
+    .line 711
     invoke-direct {p0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->loge(Ljava/lang/String;)V
 
-    .line 719
+    .line 713
     const/4 v0, 0x1
 
-    .line 720
+    .line 714
     iput-boolean v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->bothPhonesMappedToSameStack:Z
 
-    .line 723
+    .line 717
     :cond_0
     return v0
+.end method
+
+.method public isFlexMappingRequired(I)Z
+    .locals 2
+    .param p1, "phoneId"    # I
+
+    .line 765
+    nop
+
+    .line 766
+    const-string v0, "persist.vendor.radio.flexmap_type"
+
+    const-string v1, "dds"
+
+    invoke-static {v0, v1}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 767
+    .local v0, "flexMapSupportType":Ljava/lang/String;
+    invoke-virtual {v0, v1}, Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
+
+    move-result v1
+
+    if-nez v1, :cond_0
+
+    const/4 v1, 0x1
+
+    return v1
+
+    .line 768
+    :cond_0
+    const/4 v1, 0x0
+
+    return v1
 .end method
 
 .method public isSetNWModeInProgress()Z
     .locals 3
 
-    .line 662
+    .line 656
     const/4 v0, 0x0
 
-    .line 664
+    .line 658
     .local v0, "retVal":Z
     sget-object v1, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->sSetNwModeLock:Ljava/lang/Object;
 
     monitor-enter v1
 
-    .line 665
+    .line 659
     :try_start_0
     iget-boolean v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mIsSetPrefNwModeInProgress:Z
 
     move v0, v2
 
-    .line 666
+    .line 660
     monitor-exit v1
 
-    .line 667
+    .line 661
     return v0
 
-    .line 666
+    .line 660
     :catchall_0
     move-exception v2
 
@@ -3087,7 +3300,7 @@
     .param p1, "phoneId"    # I
     .param p2, "rc"    # Lcom/android/internal/telephony/RadioCapability;
 
-    .line 671
+    .line 665
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneUtils;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiPhoneUtils;
 
     move-result-object v0
@@ -3104,7 +3317,7 @@
 
     if-nez v0, :cond_0
 
-    .line 672
+    .line 666
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -3127,14 +3340,14 @@
 
     invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->logd(Ljava/lang/String;)V
 
-    .line 675
+    .line 669
     invoke-direct {p0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->areAllModemCapInfoReceived()Z
 
     move-result v0
 
     if-eqz v0, :cond_1
 
-    .line 676
+    .line 670
     const/4 v0, 0x2
 
     invoke-virtual {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->obtainMessage(I)Landroid/os/Message;
@@ -3145,7 +3358,7 @@
 
     goto :goto_0
 
-    .line 679
+    .line 673
     :cond_0
     new-instance v0, Ljava/lang/StringBuilder;
 
@@ -3167,24 +3380,24 @@
 
     invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->loge(Ljava/lang/String;)V
 
-    .line 681
+    .line 675
     :cond_1
     :goto_0
     return-void
 .end method
 
 .method public setDdsIfRequired(Z)V
-    .locals 5
+    .locals 4
     .param p1, "forceSetDds"    # Z
 
-    .line 684
+    .line 678
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mQtiSubscriptionController:Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
 
     invoke-virtual {v0}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getDefaultDataSubId()I
 
     move-result v0
 
-    .line 685
+    .line 679
     .local v0, "ddsSubId":I
     iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mQtiSubscriptionController:Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
 
@@ -3192,7 +3405,7 @@
 
     move-result v1
 
-    .line 686
+    .line 680
     .local v1, "ddsPhoneId":I
     new-instance v2, Ljava/lang/StringBuilder;
 
@@ -3230,7 +3443,7 @@
 
     invoke-direct {p0, v2}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->logd(Ljava/lang/String;)V
 
-    .line 688
+    .line 682
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneUtils;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiPhoneUtils;
 
     move-result-object v2
@@ -3247,19 +3460,15 @@
 
     if-eqz v2, :cond_1
 
-    .line 690
+    .line 684
     :cond_0
-    iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mCi:[Lcom/android/internal/telephony/CommandsInterface;
+    invoke-static {}, Lcom/android/internal/telephony/PhoneSwitcher;->getInstance()Lcom/android/internal/telephony/PhoneSwitcher;
 
-    aget-object v2, v2, v1
+    move-result-object v2
 
-    const/4 v3, 0x1
+    invoke-virtual {v2, v1}, Lcom/android/internal/telephony/PhoneSwitcher;->onRadioCapChanged(I)V
 
-    const/4 v4, 0x0
-
-    invoke-interface {v2, v3, v4}, Lcom/android/internal/telephony/CommandsInterface;->setDataAllowed(ZLandroid/os/Message;)V
-
-    .line 691
+    .line 685
     iget-boolean v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mNeedSetDds:Z
 
     if-eqz v2, :cond_1
@@ -3268,7 +3477,7 @@
 
     iput-boolean v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mNeedSetDds:Z
 
-    .line 693
+    .line 687
     :cond_1
     return-void
 .end method
@@ -3281,7 +3490,7 @@
 
     monitor-enter p0
 
-    .line 518
+    .line 512
     :try_start_0
     invoke-virtual {p0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->isSetNWModeInProgress()Z
 
@@ -3297,7 +3506,7 @@
 
     goto/16 :goto_1
 
-    .line 523
+    .line 517
     :cond_0
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mQtiSubscriptionController:Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
 
@@ -3305,11 +3514,11 @@
 
     move-result-object v0
 
-    .line 524
+    .line 518
     .local v0, "subId":[I
     const/4 v1, 0x0
 
-    .line 526
+    .line 520
     .local v1, "isSubActive":Z
     const/4 v2, 0x0
 
@@ -3319,7 +3528,7 @@
 
     if-lez v3, :cond_1
 
-    .line 527
+    .line 521
     iget-object v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mSubscriptionManager:Landroid/telephony/SubscriptionManager;
 
     aget v4, v0, v2
@@ -3330,7 +3539,7 @@
 
     move v1, v3
 
-    .line 530
+    .line 524
     .end local p0    # "this":Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;
     :cond_1
     new-instance v3, Ljava/lang/StringBuilder;
@@ -3361,20 +3570,20 @@
 
     invoke-direct {p0, v3}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->logd(Ljava/lang/String;)V
 
-    .line 533
+    .line 527
     const/4 v3, 0x1
 
     invoke-direct {p0, v3}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->setNWModeInProgressFlag(Z)V
 
-    .line 534
+    .line 528
     invoke-direct {p0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->syncPreferredNwModeFromDB()V
 
-    .line 537
+    .line 531
     iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mPrefNwMode:[I
 
     aput p2, v4, p1
 
-    .line 545
+    .line 539
     invoke-direct {p0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->isFlexMappingAllowedOnInactiveSub()Z
 
     move-result v4
@@ -3383,7 +3592,7 @@
 
     if-eqz v1, :cond_3
 
-    .line 546
+    .line 540
     :cond_2
     invoke-direct {p0, v3}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->updateStackBindingIfRequired(Z)Z
 
@@ -3391,7 +3600,7 @@
 
     if-eqz v3, :cond_3
 
-    .line 547
+    .line 541
     new-instance v2, Ljava/lang/StringBuilder;
 
     invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
@@ -3414,7 +3623,7 @@
 
     invoke-direct {p0, v2}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->logv(Ljava/lang/String;)V
 
-    .line 548
+    .line 542
     iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mStoredResponse:Ljava/util/HashMap;
 
     invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -3425,7 +3634,7 @@
 
     goto :goto_0
 
-    .line 550
+    .line 544
     :cond_3
     new-instance v3, Ljava/lang/StringBuilder;
 
@@ -3449,25 +3658,21 @@
 
     invoke-direct {p0, v3}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->logv(Ljava/lang/String;)V
 
-    .line 551
-    iget-object v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mCi:[Lcom/android/internal/telephony/CommandsInterface;
+    .line 545
+    invoke-direct {p0, p1, p2, p3}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->internalSetNetworkMode(IILandroid/os/Message;)V
 
-    aget-object v3, v3, p1
-
-    invoke-interface {v3, p2, p3}, Lcom/android/internal/telephony/CommandsInterface;->setPreferredNetworkType(ILandroid/os/Message;)V
-
-    .line 552
+    .line 546
     invoke-direct {p0, v2}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->setNWModeInProgressFlag(Z)V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 554
+    .line 548
     :goto_0
     monitor-exit p0
 
     return-void
 
-    .line 519
+    .line 513
     .end local v0    # "subId":[I
     .end local v1    # "isSubActive":Z
     :cond_4
@@ -3495,19 +3700,19 @@
 
     invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->loge(Ljava/lang/String;)V
 
-    .line 520
+    .line 514
     const/4 v0, 0x2
 
     invoke-direct {p0, p3, v0}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->sendResponseToTarget(Landroid/os/Message;I)V
     :try_end_1
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
-    .line 521
+    .line 515
     monitor-exit p0
 
     return-void
 
-    .line 517
+    .line 511
     .end local p1    # "phoneId":I
     .end local p2    # "networkType":I
     .end local p3    # "response":Landroid/os/Message;

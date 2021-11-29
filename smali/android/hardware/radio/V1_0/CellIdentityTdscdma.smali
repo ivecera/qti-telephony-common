@@ -36,6 +36,17 @@
 
     iput-object v0, p0, Landroid/hardware/radio/V1_0/CellIdentityTdscdma;->mnc:Ljava/lang/String;
 
+    .line 7
+    const/4 v0, 0x0
+
+    iput v0, p0, Landroid/hardware/radio/V1_0/CellIdentityTdscdma;->lac:I
+
+    .line 8
+    iput v0, p0, Landroid/hardware/radio/V1_0/CellIdentityTdscdma;->cid:I
+
+    .line 9
+    iput v0, p0, Landroid/hardware/radio/V1_0/CellIdentityTdscdma;->cpid:I
+
     return-void
 .end method
 
@@ -461,7 +472,7 @@
     iput-object v4, v0, Landroid/hardware/radio/V1_0/CellIdentityTdscdma;->mcc:Ljava/lang/String;
 
     .line 99
-    iget-object v4, v0, Landroid/hardware/radio/V1_0/CellIdentityTdscdma;->mcc:Ljava/lang/String;
+    nop
 
     .line 100
     invoke-virtual {v4}, Ljava/lang/String;->getBytes()[B
@@ -502,7 +513,7 @@
     iput-object v6, v0, Landroid/hardware/radio/V1_0/CellIdentityTdscdma;->mnc:Ljava/lang/String;
 
     .line 106
-    iget-object v6, v0, Landroid/hardware/radio/V1_0/CellIdentityTdscdma;->mnc:Ljava/lang/String;
+    nop
 
     .line 107
     invoke-virtual {v6}, Ljava/lang/String;->getBytes()[B

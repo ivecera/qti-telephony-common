@@ -17,7 +17,7 @@
 .method static constructor <clinit>()V
     .locals 1
 
-    .line 42
+    .line 43
     const-string v0, "QtiTelephonyComponentFactory"
 
     sput-object v0, Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;->LOG_TAG:Ljava/lang/String;
@@ -28,10 +28,10 @@
 .method public constructor <init>()V
     .locals 3
 
-    .line 47
+    .line 48
     invoke-direct {p0}, Lcom/android/internal/telephony/TelephonyComponentFactory;-><init>()V
 
-    .line 45
+    .line 46
     const/4 v0, 0x2
 
     new-array v0, v0, [Lcom/qualcomm/qti/internal/telephony/QtiRIL;
@@ -40,25 +40,25 @@
 
     const/4 v2, 0x0
 
-    aput-object v1, v0, v2
+    aput-object v2, v0, v1
 
-    const/4 v2, 0x1
+    const/4 v1, 0x1
 
-    aput-object v1, v0, v2
+    aput-object v2, v0, v1
 
     iput-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;->mRil:[Lcom/qualcomm/qti/internal/telephony/QtiRIL;
 
-    .line 48
+    .line 49
     sput-object p0, Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;->sInstance:Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;
 
-    .line 49
+    .line 50
     return-void
 .end method
 
 .method public static getInstance()Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;
     .locals 1
 
-    .line 52
+    .line 53
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;->sInstance:Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;
 
     return-object v0
@@ -74,33 +74,15 @@
     .param p4, "what"    # I
     .param p5, "obj"    # Ljava/lang/Object;
 
-    .line 142
+    .line 143
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;->LOG_TAG:Ljava/lang/String;
 
     const-string v1, "getCdmaSubscriptionSourceManagerInstance"
 
     invoke-static {v0, v1}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 143
+    .line 144
     invoke-super/range {p0 .. p5}, Lcom/android/internal/telephony/TelephonyComponentFactory;->getCdmaSubscriptionSourceManagerInstance(Landroid/content/Context;Lcom/android/internal/telephony/CommandsInterface;Landroid/os/Handler;ILjava/lang/Object;)Lcom/android/internal/telephony/cdma/CdmaSubscriptionSourceManager;
-
-    move-result-object v0
-
-    return-object v0
-.end method
-
-.method public getIDeviceIdleController()Landroid/os/IDeviceIdleController;
-    .locals 2
-
-    .line 148
-    sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;->LOG_TAG:Ljava/lang/String;
-
-    const-string v1, "getIDeviceIdleController"
-
-    invoke-static {v0, v1}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 149
-    invoke-super {p0}, Lcom/android/internal/telephony/TelephonyComponentFactory;->getIDeviceIdleController()Landroid/os/IDeviceIdleController;
 
     move-result-object v0
 
@@ -111,19 +93,19 @@
     .locals 2
     .param p1, "slotId"    # I
 
-    .line 242
+    .line 240
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;->mRil:[Lcom/qualcomm/qti/internal/telephony/QtiRIL;
 
     array-length v1, v0
 
     if-ge p1, v1, :cond_0
 
-    .line 243
+    .line 241
     aget-object v0, v0, p1
 
     return-object v0
 
-    .line 245
+    .line 243
     :cond_0
     const/4 v0, 0x0
 
@@ -135,37 +117,55 @@
     .param p1, "c"    # Landroid/content/Context;
     .param p2, "sc"    # Lcom/android/internal/telephony/SubscriptionController;
 
-    .line 224
+    .line 216
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;->LOG_TAG:Ljava/lang/String;
 
-    const-string v1, "initMultiSimSettingController"
+    const-string v1, "initVendorMultiSimSettingController"
 
     invoke-static {v0, v1}, Landroid/telephony/Rlog;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 225
-    invoke-static {p1, p2}, Lcom/qualcomm/qti/internal/telephony/QtiMultiSimSettingController;->init(Landroid/content/Context;Lcom/android/internal/telephony/SubscriptionController;)Lcom/android/internal/telephony/MultiSimSettingController;
+    .line 217
+    invoke-static {p1, p2}, Lcom/android/internal/telephony/vendor/VendorMultiSimSettingController;->init(Landroid/content/Context;Lcom/android/internal/telephony/SubscriptionController;)Lcom/android/internal/telephony/MultiSimSettingController;
 
     move-result-object v0
 
     return-object v0
 .end method
 
-.method public initSubscriptionController(Landroid/content/Context;[Lcom/android/internal/telephony/CommandsInterface;)Lcom/android/internal/telephony/SubscriptionController;
+.method public initSubscriptionController(Landroid/content/Context;)Lcom/android/internal/telephony/SubscriptionController;
     .locals 2
     .param p1, "c"    # Landroid/content/Context;
-    .param p2, "ci"    # [Lcom/android/internal/telephony/CommandsInterface;
 
-    .line 163
+    .line 158
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;->LOG_TAG:Ljava/lang/String;
 
     const-string v1, "initSubscriptionController"
 
     invoke-static {v0, v1}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 164
-    invoke-static {p1, p2}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->init(Landroid/content/Context;[Lcom/android/internal/telephony/CommandsInterface;)Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
+    .line 159
+    invoke-static {p1}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->init(Landroid/content/Context;)Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
 
     move-result-object v0
+
+    return-object v0
+.end method
+
+.method public makeCarrierInfoManager(Lcom/android/internal/telephony/Phone;)Lcom/android/internal/telephony/CarrierInfoManager;
+    .locals 2
+    .param p1, "phone"    # Lcom/android/internal/telephony/Phone;
+
+    .line 235
+    sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;->LOG_TAG:Ljava/lang/String;
+
+    const-string v1, "makeCarrierInfoManager"
+
+    invoke-static {v0, v1}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 236
+    new-instance v0, Lcom/qualcomm/qti/internal/telephony/QtiCarrierInfoManager;
+
+    invoke-direct {v0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiCarrierInfoManager;-><init>(Lcom/android/internal/telephony/Phone;)V
 
     return-object v0
 .end method
@@ -175,14 +175,14 @@
     .param p1, "phone"    # Lcom/android/internal/telephony/Phone;
     .param p2, "transportType"    # I
 
-    .line 84
+    .line 85
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;->LOG_TAG:Ljava/lang/String;
 
     const-string v1, "makeQtiDcTracker"
 
     invoke-static {v0, v1}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 85
+    .line 86
     new-instance v0, Lcom/qualcomm/qti/internal/telephony/dataconnection/QtiDcTracker;
 
     invoke-direct {v0, p1, p2}, Lcom/qualcomm/qti/internal/telephony/dataconnection/QtiDcTracker;-><init>(Lcom/android/internal/telephony/Phone;I)V
@@ -195,14 +195,14 @@
     .param p1, "phone"    # Lcom/android/internal/telephony/Phone;
     .param p2, "eriFileSource"    # I
 
-    .line 102
+    .line 103
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;->LOG_TAG:Ljava/lang/String;
 
     const-string v1, "makeEriManager"
 
     invoke-static {v0, v1}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 103
+    .line 104
     invoke-super {p0, p1, p2}, Lcom/android/internal/telephony/TelephonyComponentFactory;->makeEriManager(Lcom/android/internal/telephony/Phone;I)Lcom/android/internal/telephony/cdma/EriManager;
 
     move-result-object v0
@@ -216,14 +216,14 @@
     .param p2, "phones"    # [Lcom/android/internal/telephony/Phone;
     .param p3, "commandsInterfaces"    # [Lcom/android/internal/telephony/CommandsInterface;
 
-    .line 177
+    .line 172
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;->LOG_TAG:Ljava/lang/String;
 
     const-string v1, " makeExtTelephonyClasses "
 
     invoke-static {v0, v1}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 185
+    .line 180
     invoke-virtual {p1}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
@@ -234,7 +234,7 @@
 
     move-result-object v0
 
-    .line 187
+    .line 182
     .local v0, "value":Ljava/lang/String;
     const-string v2, "false"
 
@@ -246,7 +246,7 @@
 
     if-nez v3, :cond_1
 
-    .line 188
+    .line 183
     :cond_0
     invoke-virtual {p1}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
@@ -254,53 +254,50 @@
 
     invoke-static {v3, v1, v2}, Landroid/provider/Settings$Global;->putString(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;)Z
 
-    .line 192
+    .line 187
     :cond_1
     invoke-static {p1}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneUtils;->init(Landroid/content/Context;)Lcom/qualcomm/qti/internal/telephony/QtiPhoneUtils;
 
-    .line 193
+    .line 188
     invoke-static {p1, p3}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->make(Landroid/content/Context;[Lcom/android/internal/telephony/CommandsInterface;)Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;
 
-    .line 194
+    .line 189
     invoke-static {p1}, Lcom/qualcomm/qti/internal/telephony/QtiDepersoSupplier;->make(Landroid/content/Context;)Lcom/qualcomm/qti/internal/telephony/QtiDepersoSupplier;
 
-    .line 195
+    .line 190
     invoke-static {p1, p2, p3}, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->make(Landroid/content/Context;[Lcom/android/internal/telephony/Phone;[Lcom/android/internal/telephony/CommandsInterface;)Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;
 
-    .line 196
+    .line 191
     invoke-static {p1, p2, p3}, Lcom/qualcomm/qti/internal/telephony/primarycard/QtiPrimaryCardController;->init(Landroid/content/Context;[Lcom/android/internal/telephony/Phone;[Lcom/android/internal/telephony/CommandsInterface;)V
 
-    .line 197
-    invoke-static {p2}, Lcom/qualcomm/qti/internal/telephony/QtiCallStateNotifier;->init([Lcom/android/internal/telephony/Phone;)V
-
-    .line 200
+    .line 194
     :try_start_0
     invoke-static {p1}, Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;->init(Landroid/content/Context;)Lcom/qualcomm/qti/internal/nrNetworkService/MainServiceImpl;
 
-    .line 201
+    .line 195
     invoke-static {p1}, Lcom/qualcomm/qti/internal/telephony/ExtTelephonyServiceImpl;->init(Landroid/content/Context;)Lcom/qualcomm/qti/internal/telephony/ExtTelephonyServiceImpl;
     :try_end_0
     .catch Ljava/lang/NoClassDefFoundError; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 205
+    .line 199
     goto :goto_0
 
-    .line 202
+    .line 196
     :catch_0
     move-exception v1
 
-    .line 203
+    .line 197
     .local v1, "e":Ljava/lang/NoClassDefFoundError;
     invoke-virtual {v1}, Ljava/lang/NoClassDefFoundError;->printStackTrace()V
 
-    .line 204
+    .line 198
     sget-object v2, Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;->LOG_TAG:Ljava/lang/String;
 
     const-string v3, "Error creating ExtTelephonyServiceImpl"
 
     invoke-static {v2, v3}, Landroid/telephony/Rlog;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 206
+    .line 200
     .end local v1    # "e":Ljava/lang/NoClassDefFoundError;
     :goto_0
     return-void
@@ -310,14 +307,14 @@
     .locals 2
     .param p1, "phone"    # Lcom/android/internal/telephony/GsmCdmaPhone;
 
-    .line 58
+    .line 59
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;->LOG_TAG:Ljava/lang/String;
 
     const-string v1, "makeGsmCdmaCallTracker"
 
     invoke-static {v0, v1}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 59
+    .line 60
     invoke-super {p0, p1}, Lcom/android/internal/telephony/TelephonyComponentFactory;->makeGsmCdmaCallTracker(Lcom/android/internal/telephony/GsmCdmaPhone;)Lcom/android/internal/telephony/GsmCdmaCallTracker;
 
     move-result-object v0
@@ -329,14 +326,14 @@
     .locals 2
     .param p1, "phone"    # Lcom/android/internal/telephony/Phone;
 
-    .line 90
+    .line 91
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;->LOG_TAG:Ljava/lang/String;
 
     const-string v1, "makeQtiIccPhoneBookInterfaceManager"
 
     invoke-static {v0, v1}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 91
+    .line 92
     new-instance v0, Lcom/qualcomm/qti/internal/telephony/QtiIccPhoneBookInterfaceManager;
 
     invoke-direct {v0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiIccPhoneBookInterfaceManager;-><init>(Lcom/android/internal/telephony/Phone;)V
@@ -348,14 +345,14 @@
     .locals 2
     .param p1, "phone"    # Lcom/android/internal/telephony/Phone;
 
-    .line 96
+    .line 97
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;->LOG_TAG:Ljava/lang/String;
 
     const-string v1, "makeIccSmsInterfaceManager"
 
     invoke-static {v0, v1}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 97
+    .line 98
     invoke-super {p0, p1}, Lcom/android/internal/telephony/TelephonyComponentFactory;->makeIccSmsInterfaceManager(Lcom/android/internal/telephony/Phone;)Lcom/android/internal/telephony/IccSmsInterfaceManager;
 
     move-result-object v0
@@ -367,14 +364,14 @@
     .locals 2
     .param p1, "imsPhone"    # Lcom/android/internal/telephony/imsphone/ImsPhone;
 
-    .line 134
+    .line 135
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;->LOG_TAG:Ljava/lang/String;
 
     const-string v1, "makeImsPhoneCallTracker"
 
     invoke-static {v0, v1}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 135
+    .line 136
     invoke-super {p0, p1}, Lcom/android/internal/telephony/TelephonyComponentFactory;->makeImsPhoneCallTracker(Lcom/android/internal/telephony/imsphone/ImsPhone;)Lcom/android/internal/telephony/imsphone/ImsPhoneCallTracker;
 
     move-result-object v0
@@ -382,57 +379,61 @@
     return-object v0
 .end method
 
-.method public makeInboundSmsTracker([BJIZLjava/lang/String;Ljava/lang/String;IIIZLjava/lang/String;Z)Lcom/android/internal/telephony/InboundSmsTracker;
+.method public makeInboundSmsTracker(Landroid/content/Context;[BJIZLjava/lang/String;Ljava/lang/String;IIIZLjava/lang/String;ZI)Lcom/android/internal/telephony/InboundSmsTracker;
     .locals 2
-    .param p1, "pdu"    # [B
-    .param p2, "timestamp"    # J
-    .param p4, "destPort"    # I
-    .param p5, "is3gpp2"    # Z
-    .param p6, "address"    # Ljava/lang/String;
-    .param p7, "displayAddr"    # Ljava/lang/String;
-    .param p8, "referenceNumber"    # I
-    .param p9, "sequenceNumber"    # I
-    .param p10, "messageCount"    # I
-    .param p11, "is3gpp2WapPdu"    # Z
-    .param p12, "msgBody"    # Ljava/lang/String;
-    .param p13, "isClass0"    # Z
+    .param p1, "context"    # Landroid/content/Context;
+    .param p2, "pdu"    # [B
+    .param p3, "timestamp"    # J
+    .param p5, "destPort"    # I
+    .param p6, "is3gpp2"    # Z
+    .param p7, "address"    # Ljava/lang/String;
+    .param p8, "displayAddr"    # Ljava/lang/String;
+    .param p9, "referenceNumber"    # I
+    .param p10, "sequenceNumber"    # I
+    .param p11, "messageCount"    # I
+    .param p12, "is3gpp2WapPdu"    # Z
+    .param p13, "msgBody"    # Ljava/lang/String;
+    .param p14, "isClass0"    # Z
+    .param p15, "subId"    # I
 
-    .line 126
+    .line 127
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;->LOG_TAG:Ljava/lang/String;
 
     const-string v1, "makeInboundSmsTracker"
 
     invoke-static {v0, v1}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 127
-    invoke-super/range {p0 .. p13}, Lcom/android/internal/telephony/TelephonyComponentFactory;->makeInboundSmsTracker([BJIZLjava/lang/String;Ljava/lang/String;IIIZLjava/lang/String;Z)Lcom/android/internal/telephony/InboundSmsTracker;
+    .line 128
+    invoke-super/range {p0 .. p15}, Lcom/android/internal/telephony/TelephonyComponentFactory;->makeInboundSmsTracker(Landroid/content/Context;[BJIZLjava/lang/String;Ljava/lang/String;IIIZLjava/lang/String;ZI)Lcom/android/internal/telephony/InboundSmsTracker;
 
     move-result-object v0
 
     return-object v0
 .end method
 
-.method public makeInboundSmsTracker([BJIZZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)Lcom/android/internal/telephony/InboundSmsTracker;
+.method public makeInboundSmsTracker(Landroid/content/Context;[BJIZZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;ZI)Lcom/android/internal/telephony/InboundSmsTracker;
     .locals 2
-    .param p1, "pdu"    # [B
-    .param p2, "timestamp"    # J
-    .param p4, "destPort"    # I
-    .param p5, "is3gpp2"    # Z
-    .param p6, "is3gpp2WapPdu"    # Z
-    .param p7, "address"    # Ljava/lang/String;
-    .param p8, "displayAddr"    # Ljava/lang/String;
-    .param p9, "msgBody"    # Ljava/lang/String;
-    .param p10, "isClass0"    # Z
+    .param p1, "context"    # Landroid/content/Context;
+    .param p2, "pdu"    # [B
+    .param p3, "timestamp"    # J
+    .param p5, "destPort"    # I
+    .param p6, "is3gpp2"    # Z
+    .param p7, "is3gpp2WapPdu"    # Z
+    .param p8, "address"    # Ljava/lang/String;
+    .param p9, "displayAddr"    # Ljava/lang/String;
+    .param p10, "msgBody"    # Ljava/lang/String;
+    .param p11, "isClass0"    # Z
+    .param p12, "subId"    # I
 
-    .line 116
+    .line 117
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;->LOG_TAG:Ljava/lang/String;
 
     const-string v1, "makeInboundSmsTracker"
 
     invoke-static {v0, v1}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 117
-    invoke-super/range {p0 .. p10}, Lcom/android/internal/telephony/TelephonyComponentFactory;->makeInboundSmsTracker([BJIZZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)Lcom/android/internal/telephony/InboundSmsTracker;
+    .line 118
+    invoke-super/range {p0 .. p12}, Lcom/android/internal/telephony/TelephonyComponentFactory;->makeInboundSmsTracker(Landroid/content/Context;[BJIZZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;ZI)Lcom/android/internal/telephony/InboundSmsTracker;
 
     move-result-object v0
 
@@ -448,14 +449,14 @@
     .param p5, "precisePhoneType"    # I
     .param p6, "telephonyComponentFactory"    # Lcom/android/internal/telephony/TelephonyComponentFactory;
 
-    .line 156
+    .line 151
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;->LOG_TAG:Ljava/lang/String;
 
     const-string v1, "makePhone"
 
     invoke-static {v0, v1}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 157
+    .line 152
     new-instance v0, Lcom/qualcomm/qti/internal/telephony/QtiGsmCdmaPhone;
 
     move-object v2, v0
@@ -477,42 +478,37 @@
     return-object v0
 .end method
 
-.method public makePhoneSwitcher(IILandroid/content/Context;Lcom/android/internal/telephony/SubscriptionController;Landroid/os/Looper;Lcom/android/internal/telephony/ITelephonyRegistry;[Lcom/android/internal/telephony/CommandsInterface;[Lcom/android/internal/telephony/Phone;)Lcom/android/internal/telephony/PhoneSwitcher;
+.method public makePhoneSwitcher(ILandroid/content/Context;Landroid/os/Looper;)Lcom/android/internal/telephony/PhoneSwitcher;
     .locals 2
-    .param p1, "maxActivePhones"    # I
-    .param p2, "numPhones"    # I
-    .param p3, "context"    # Landroid/content/Context;
-    .param p4, "sc"    # Lcom/android/internal/telephony/SubscriptionController;
-    .param p5, "looper"    # Landroid/os/Looper;
-    .param p6, "tr"    # Lcom/android/internal/telephony/ITelephonyRegistry;
-    .param p7, "cis"    # [Lcom/android/internal/telephony/CommandsInterface;
-    .param p8, "phones"    # [Lcom/android/internal/telephony/Phone;
+    .param p1, "maxDataAttachModemCount"    # I
+    .param p2, "context"    # Landroid/content/Context;
+    .param p3, "looper"    # Landroid/os/Looper;
 
-    .line 212
+    .line 205
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;->LOG_TAG:Ljava/lang/String;
 
     const-string v1, "makeQtiPhoneSwitcher"
 
     invoke-static {v0, v1}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 213
-    invoke-static {p3}, Lcom/qualcomm/qti/internal/telephony/ModemSarController;->make(Landroid/content/Context;)V
+    .line 206
+    invoke-static {p2}, Lcom/qualcomm/qti/internal/telephony/ModemSarController;->make(Landroid/content/Context;)V
 
-    .line 214
+    .line 207
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/WifiSarController;->isNeeded()Z
 
     move-result v0
 
     if-eqz v0, :cond_0
 
-    .line 215
+    .line 208
     new-instance v0, Lcom/qualcomm/qti/internal/telephony/WifiSarController;
 
-    invoke-direct {v0, p3}, Lcom/qualcomm/qti/internal/telephony/WifiSarController;-><init>(Landroid/content/Context;)V
+    invoke-direct {v0, p2}, Lcom/qualcomm/qti/internal/telephony/WifiSarController;-><init>(Landroid/content/Context;)V
 
-    .line 217
+    .line 210
     :cond_0
-    invoke-static/range {p1 .. p8}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->make(IILandroid/content/Context;Lcom/android/internal/telephony/SubscriptionController;Landroid/os/Looper;Lcom/android/internal/telephony/ITelephonyRegistry;[Lcom/android/internal/telephony/CommandsInterface;[Lcom/android/internal/telephony/Phone;)Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;
+    invoke-static {p1, p2, p3}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->make(ILandroid/content/Context;Landroid/os/Looper;)Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;
 
     move-result-object v0
 
@@ -526,14 +522,14 @@
     .param p3, "cdmaSubscription"    # I
     .param p4, "instanceId"    # Ljava/lang/Integer;
 
-    .line 231
+    .line 223
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;->LOG_TAG:Ljava/lang/String;
 
     const-string v1, "makeQtiRIL"
 
     invoke-static {v0, v1}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 232
+    .line 224
     invoke-virtual {p4}, Ljava/lang/Integer;->intValue()I
 
     move-result v0
@@ -544,7 +540,7 @@
 
     if-ge v0, v2, :cond_0
 
-    .line 233
+    .line 225
     invoke-virtual {p4}, Ljava/lang/Integer;->intValue()I
 
     move-result v0
@@ -555,7 +551,7 @@
 
     aput-object v2, v1, v0
 
-    .line 238
+    .line 230
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;->mRil:[Lcom/qualcomm/qti/internal/telephony/QtiRIL;
 
     invoke-virtual {p4}, Ljava/lang/Integer;->intValue()I
@@ -566,7 +562,7 @@
 
     return-object v0
 
-    .line 235
+    .line 227
     :cond_0
     new-instance v0, Ljava/lang/RuntimeException;
 
@@ -598,14 +594,14 @@
     .param p1, "phone"    # Lcom/android/internal/telephony/GsmCdmaPhone;
     .param p2, "ci"    # Lcom/android/internal/telephony/CommandsInterface;
 
-    .line 78
+    .line 79
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;->LOG_TAG:Ljava/lang/String;
 
     const-string v1, "makeQtiServiceStateTracker"
 
     invoke-static {v0, v1}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 79
+    .line 80
     new-instance v0, Lcom/qualcomm/qti/internal/telephony/QtiServiceStateTracker;
 
     invoke-direct {v0, p1, p2}, Lcom/qualcomm/qti/internal/telephony/QtiServiceStateTracker;-><init>(Lcom/android/internal/telephony/GsmCdmaPhone;Lcom/android/internal/telephony/CommandsInterface;)V
@@ -617,14 +613,14 @@
     .locals 2
     .param p1, "phone"    # Lcom/android/internal/telephony/Phone;
 
-    .line 64
+    .line 65
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;->LOG_TAG:Ljava/lang/String;
 
     const-string v1, "makeSmsStorageMonitor"
 
     invoke-static {v0, v1}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 65
+    .line 66
     invoke-super {p0, p1}, Lcom/android/internal/telephony/TelephonyComponentFactory;->makeSmsStorageMonitor(Lcom/android/internal/telephony/Phone;)Lcom/android/internal/telephony/SmsStorageMonitor;
 
     move-result-object v0
@@ -636,14 +632,14 @@
     .locals 2
     .param p1, "context"    # Landroid/content/Context;
 
-    .line 70
+    .line 71
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;->LOG_TAG:Ljava/lang/String;
 
     const-string v1, "makeSmsUsageMonitor"
 
     invoke-static {v0, v1}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 73
+    .line 74
     invoke-super {p0, p1}, Lcom/android/internal/telephony/TelephonyComponentFactory;->makeSmsUsageMonitor(Landroid/content/Context;)Lcom/android/internal/telephony/SmsUsageMonitor;
 
     move-result-object v0
@@ -651,22 +647,21 @@
     return-object v0
 .end method
 
-.method public makeSubscriptionInfoUpdater(Landroid/os/Looper;Landroid/content/Context;[Lcom/android/internal/telephony/Phone;[Lcom/android/internal/telephony/CommandsInterface;)Lcom/android/internal/telephony/SubscriptionInfoUpdater;
+.method public makeSubscriptionInfoUpdater(Landroid/os/Looper;Landroid/content/Context;[Lcom/android/internal/telephony/CommandsInterface;)Lcom/android/internal/telephony/SubscriptionInfoUpdater;
     .locals 2
     .param p1, "looper"    # Landroid/os/Looper;
     .param p2, "context"    # Landroid/content/Context;
-    .param p3, "phones"    # [Lcom/android/internal/telephony/Phone;
-    .param p4, "ci"    # [Lcom/android/internal/telephony/CommandsInterface;
+    .param p3, "ci"    # [Lcom/android/internal/telephony/CommandsInterface;
 
-    .line 170
+    .line 165
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;->LOG_TAG:Ljava/lang/String;
 
     const-string v1, "makeSubscriptionInfoUpdater"
 
     invoke-static {v0, v1}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 171
-    invoke-static {p1, p2, p3, p4}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionInfoUpdater;->init(Landroid/os/Looper;Landroid/content/Context;[Lcom/android/internal/telephony/Phone;[Lcom/android/internal/telephony/CommandsInterface;)Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionInfoUpdater;
+    .line 166
+    invoke-static {p1, p2, p3}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionInfoUpdater;->init(Landroid/os/Looper;Landroid/content/Context;[Lcom/android/internal/telephony/CommandsInterface;)Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionInfoUpdater;
 
     move-result-object v0
 
@@ -677,14 +672,14 @@
     .locals 2
     .param p1, "pdu"    # [B
 
-    .line 108
+    .line 109
     sget-object v0, Lcom/qualcomm/qti/internal/telephony/QtiTelephonyComponentFactory;->LOG_TAG:Ljava/lang/String;
 
     const-string v1, "makeWspTypeDecoder"
 
     invoke-static {v0, v1}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 109
+    .line 110
     invoke-super {p0, p1}, Lcom/android/internal/telephony/TelephonyComponentFactory;->makeWspTypeDecoder([B)Lcom/android/internal/telephony/WspTypeDecoder;
 
     move-result-object v0

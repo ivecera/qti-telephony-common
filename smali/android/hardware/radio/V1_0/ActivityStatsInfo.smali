@@ -15,17 +15,28 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 1
+    .locals 2
 
     .line 4
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
+    .line 5
+    const/4 v0, 0x0
+
+    iput v0, p0, Landroid/hardware/radio/V1_0/ActivityStatsInfo;->sleepModeTimeMs:I
+
+    .line 6
+    iput v0, p0, Landroid/hardware/radio/V1_0/ActivityStatsInfo;->idleModeTimeMs:I
+
     .line 7
-    const/4 v0, 0x5
+    const/4 v1, 0x5
 
-    new-array v0, v0, [I
+    new-array v1, v1, [I
 
-    iput-object v0, p0, Landroid/hardware/radio/V1_0/ActivityStatsInfo;->txmModetimeMs:[I
+    iput-object v1, p0, Landroid/hardware/radio/V1_0/ActivityStatsInfo;->txmModetimeMs:[I
+
+    .line 8
+    iput v0, p0, Landroid/hardware/radio/V1_0/ActivityStatsInfo;->rxModeTimeMs:I
 
     return-void
 .end method

@@ -29,52 +29,69 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 1
+    .locals 2
 
     .line 4
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
+    .line 5
+    const/4 v0, 0x0
+
+    iput v0, p0, Landroid/hardware/radio/V1_0/SetupDataCallResult;->status:I
+
+    .line 6
+    iput v0, p0, Landroid/hardware/radio/V1_0/SetupDataCallResult;->suggestedRetryTime:I
+
+    .line 7
+    iput v0, p0, Landroid/hardware/radio/V1_0/SetupDataCallResult;->cid:I
+
+    .line 8
+    iput v0, p0, Landroid/hardware/radio/V1_0/SetupDataCallResult;->active:I
+
     .line 9
-    new-instance v0, Ljava/lang/String;
+    new-instance v1, Ljava/lang/String;
 
-    invoke-direct {v0}, Ljava/lang/String;-><init>()V
+    invoke-direct {v1}, Ljava/lang/String;-><init>()V
 
-    iput-object v0, p0, Landroid/hardware/radio/V1_0/SetupDataCallResult;->type:Ljava/lang/String;
+    iput-object v1, p0, Landroid/hardware/radio/V1_0/SetupDataCallResult;->type:Ljava/lang/String;
 
     .line 10
-    new-instance v0, Ljava/lang/String;
+    new-instance v1, Ljava/lang/String;
 
-    invoke-direct {v0}, Ljava/lang/String;-><init>()V
+    invoke-direct {v1}, Ljava/lang/String;-><init>()V
 
-    iput-object v0, p0, Landroid/hardware/radio/V1_0/SetupDataCallResult;->ifname:Ljava/lang/String;
+    iput-object v1, p0, Landroid/hardware/radio/V1_0/SetupDataCallResult;->ifname:Ljava/lang/String;
 
     .line 11
-    new-instance v0, Ljava/lang/String;
+    new-instance v1, Ljava/lang/String;
 
-    invoke-direct {v0}, Ljava/lang/String;-><init>()V
+    invoke-direct {v1}, Ljava/lang/String;-><init>()V
 
-    iput-object v0, p0, Landroid/hardware/radio/V1_0/SetupDataCallResult;->addresses:Ljava/lang/String;
+    iput-object v1, p0, Landroid/hardware/radio/V1_0/SetupDataCallResult;->addresses:Ljava/lang/String;
 
     .line 12
-    new-instance v0, Ljava/lang/String;
+    new-instance v1, Ljava/lang/String;
 
-    invoke-direct {v0}, Ljava/lang/String;-><init>()V
+    invoke-direct {v1}, Ljava/lang/String;-><init>()V
 
-    iput-object v0, p0, Landroid/hardware/radio/V1_0/SetupDataCallResult;->dnses:Ljava/lang/String;
+    iput-object v1, p0, Landroid/hardware/radio/V1_0/SetupDataCallResult;->dnses:Ljava/lang/String;
 
     .line 13
-    new-instance v0, Ljava/lang/String;
+    new-instance v1, Ljava/lang/String;
 
-    invoke-direct {v0}, Ljava/lang/String;-><init>()V
+    invoke-direct {v1}, Ljava/lang/String;-><init>()V
 
-    iput-object v0, p0, Landroid/hardware/radio/V1_0/SetupDataCallResult;->gateways:Ljava/lang/String;
+    iput-object v1, p0, Landroid/hardware/radio/V1_0/SetupDataCallResult;->gateways:Ljava/lang/String;
 
     .line 14
-    new-instance v0, Ljava/lang/String;
+    new-instance v1, Ljava/lang/String;
 
-    invoke-direct {v0}, Ljava/lang/String;-><init>()V
+    invoke-direct {v1}, Ljava/lang/String;-><init>()V
 
-    iput-object v0, p0, Landroid/hardware/radio/V1_0/SetupDataCallResult;->pcscf:Ljava/lang/String;
+    iput-object v1, p0, Landroid/hardware/radio/V1_0/SetupDataCallResult;->pcscf:Ljava/lang/String;
+
+    .line 15
+    iput v0, p0, Landroid/hardware/radio/V1_0/SetupDataCallResult;->mtu:I
 
     return-void
 .end method
@@ -725,7 +742,7 @@
     iput-object v6, v0, Landroid/hardware/radio/V1_0/SetupDataCallResult;->type:Ljava/lang/String;
 
     .line 145
-    iget-object v6, v0, Landroid/hardware/radio/V1_0/SetupDataCallResult;->type:Ljava/lang/String;
+    nop
 
     .line 146
     invoke-virtual {v6}, Ljava/lang/String;->getBytes()[B
@@ -766,7 +783,7 @@
     iput-object v6, v0, Landroid/hardware/radio/V1_0/SetupDataCallResult;->ifname:Ljava/lang/String;
 
     .line 152
-    iget-object v6, v0, Landroid/hardware/radio/V1_0/SetupDataCallResult;->ifname:Ljava/lang/String;
+    nop
 
     .line 153
     invoke-virtual {v6}, Ljava/lang/String;->getBytes()[B
@@ -805,7 +822,7 @@
     iput-object v6, v0, Landroid/hardware/radio/V1_0/SetupDataCallResult;->addresses:Ljava/lang/String;
 
     .line 159
-    iget-object v6, v0, Landroid/hardware/radio/V1_0/SetupDataCallResult;->addresses:Ljava/lang/String;
+    nop
 
     .line 160
     invoke-virtual {v6}, Ljava/lang/String;->getBytes()[B
@@ -844,7 +861,7 @@
     iput-object v6, v0, Landroid/hardware/radio/V1_0/SetupDataCallResult;->dnses:Ljava/lang/String;
 
     .line 166
-    iget-object v6, v0, Landroid/hardware/radio/V1_0/SetupDataCallResult;->dnses:Ljava/lang/String;
+    nop
 
     .line 167
     invoke-virtual {v6}, Ljava/lang/String;->getBytes()[B
@@ -883,7 +900,7 @@
     iput-object v6, v0, Landroid/hardware/radio/V1_0/SetupDataCallResult;->gateways:Ljava/lang/String;
 
     .line 173
-    iget-object v6, v0, Landroid/hardware/radio/V1_0/SetupDataCallResult;->gateways:Ljava/lang/String;
+    nop
 
     .line 174
     invoke-virtual {v6}, Ljava/lang/String;->getBytes()[B
@@ -922,7 +939,7 @@
     iput-object v6, v0, Landroid/hardware/radio/V1_0/SetupDataCallResult;->pcscf:Ljava/lang/String;
 
     .line 180
-    iget-object v6, v0, Landroid/hardware/radio/V1_0/SetupDataCallResult;->pcscf:Ljava/lang/String;
+    nop
 
     .line 181
     invoke-virtual {v6}, Ljava/lang/String;->getBytes()[B

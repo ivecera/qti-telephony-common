@@ -943,8 +943,6 @@
     iput-object v0, p0, Lcom/qualcomm/qti/internal/telephony/DynamicSarService;->mSensorManager:Landroid/hardware/SensorManager;
 
     .line 277
-    iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/DynamicSarService;->mSensorManager:Landroid/hardware/SensorManager;
-
     const v1, 0x1fa2654
 
     const/4 v2, 0x1
@@ -956,15 +954,13 @@
     iput-object v0, p0, Lcom/qualcomm/qti/internal/telephony/DynamicSarService;->mSensor:Landroid/hardware/Sensor;
 
     .line 278
-    iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/DynamicSarService;->mSensorManager:Landroid/hardware/SensorManager;
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/DynamicSarService;->mSensorManager:Landroid/hardware/SensorManager;
 
-    iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/DynamicSarService;->mSensorEventListener:Landroid/hardware/SensorEventListener;
-
-    iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/DynamicSarService;->mSensor:Landroid/hardware/Sensor;
+    iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/DynamicSarService;->mSensorEventListener:Landroid/hardware/SensorEventListener;
 
     const/4 v3, 0x3
 
-    invoke-virtual {v0, v1, v2, v3}, Landroid/hardware/SensorManager;->registerListener(Landroid/hardware/SensorEventListener;Landroid/hardware/Sensor;I)Z
+    invoke-virtual {v1, v2, v0, v3}, Landroid/hardware/SensorManager;->registerListener(Landroid/hardware/SensorEventListener;Landroid/hardware/Sensor;I)Z
 
     .line 279
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/DynamicSarService;->mSarSensorListeners:Ljava/util/ArrayList;

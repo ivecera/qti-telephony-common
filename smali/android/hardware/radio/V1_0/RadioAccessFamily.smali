@@ -310,80 +310,64 @@
     :cond_e
     const v2, 0x8000
 
-    and-int/2addr v2, p0
+    and-int v3, p0, v2
 
-    const v3, 0x8000
-
-    if-ne v2, v3, :cond_f
+    if-ne v3, v2, :cond_f
 
     .line 149
-    const-string v2, "HSPAP"
+    const-string v3, "HSPAP"
 
-    invoke-virtual {v0, v2}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+    invoke-virtual {v0, v3}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
     .line 150
-    const v2, 0x8000
-
     or-int/2addr v1, v2
 
     .line 152
     :cond_f
     const/high16 v2, 0x10000
 
-    and-int/2addr v2, p0
+    and-int v3, p0, v2
 
-    const/high16 v3, 0x10000
-
-    if-ne v2, v3, :cond_10
+    if-ne v3, v2, :cond_10
 
     .line 153
-    const-string v2, "GSM"
+    const-string v3, "GSM"
 
-    invoke-virtual {v0, v2}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+    invoke-virtual {v0, v3}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
     .line 154
-    const/high16 v2, 0x10000
-
     or-int/2addr v1, v2
 
     .line 156
     :cond_10
     const/high16 v2, 0x20000
 
-    and-int/2addr v2, p0
+    and-int v3, p0, v2
 
-    const/high16 v3, 0x20000
-
-    if-ne v2, v3, :cond_11
+    if-ne v3, v2, :cond_11
 
     .line 157
-    const-string v2, "TD_SCDMA"
+    const-string v3, "TD_SCDMA"
 
-    invoke-virtual {v0, v2}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+    invoke-virtual {v0, v3}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
     .line 158
-    const/high16 v2, 0x20000
-
     or-int/2addr v1, v2
 
     .line 160
     :cond_11
     const/high16 v2, 0x80000
 
-    and-int/2addr v2, p0
+    and-int v3, p0, v2
 
-    const/high16 v3, 0x80000
-
-    if-ne v2, v3, :cond_12
+    if-ne v3, v2, :cond_12
 
     .line 161
-    const-string v2, "LTE_CA"
+    const-string v3, "LTE_CA"
 
-    invoke-virtual {v0, v2}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+    invoke-virtual {v0, v3}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
     .line 162
-    const/high16 v2, 0x80000
-
     or-int/2addr v1, v2
 
     .line 164

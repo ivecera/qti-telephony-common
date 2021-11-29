@@ -13,10 +13,21 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .locals 1
 
     .line 4
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 5
+    const/4 v0, 0x0
+
+    iput v0, p0, Landroid/hardware/radio/V1_0/LceDataInfo;->lastHopCapacityKbps:I
+
+    .line 6
+    iput-byte v0, p0, Landroid/hardware/radio/V1_0/LceDataInfo;->confidenceLevel:B
+
+    .line 7
+    iput-boolean v0, p0, Landroid/hardware/radio/V1_0/LceDataInfo;->lceSuspended:Z
 
     return-void
 .end method

@@ -359,69 +359,65 @@
 
 
 # virtual methods
-.method public disable5g(I)Lorg/codeaurora/internal/Token;
-    .locals 6
+.method public disable5g(ILorg/codeaurora/internal/Token;)V
+    .locals 5
     .param p1, "slotId"    # I
+    .param p2, "token"    # Lorg/codeaurora/internal/Token;
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
         }
     .end annotation
 
-    .line 275
+    .line 273
     const-string v0, "FakeHidlConnectionInterfaceImpl"
 
     const-string v1, "disable5g: "
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 276
-    invoke-direct {p0}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->getNextToken()Lorg/codeaurora/internal/Token;
+    .line 274
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->mWorkerHandler:Landroid/os/Handler;
 
-    move-result-object v1
+    .line 275
+    const/4 v2, 0x1
 
-    .line 277
-    .local v1, "token":Lorg/codeaurora/internal/Token;
-    iget-object v2, p0, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->mWorkerHandler:Landroid/os/Handler;
+    const/4 v3, -0x1
 
-    .line 278
-    const/4 v3, 0x1
-
-    const/4 v4, -0x1
-
-    invoke-virtual {v2, v3, p1, v4, v1}, Landroid/os/Handler;->obtainMessage(IIILjava/lang/Object;)Landroid/os/Message;
-
-    move-result-object v3
-
-    .line 277
-    const-wide/16 v4, 0x7d0
-
-    invoke-virtual {v2, v3, v4, v5}, Landroid/os/Handler;->sendMessageDelayed(Landroid/os/Message;J)Z
-
-    .line 279
-    new-instance v2, Ljava/lang/StringBuilder;
-
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v3, "disable5g: token = "
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v2, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual {v1, v2, p1, v3, p2}, Landroid/os/Handler;->obtainMessage(IIILjava/lang/Object;)Landroid/os/Message;
 
     move-result-object v2
 
-    invoke-static {v0, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    .line 274
+    const-wide/16 v3, 0x7d0
 
-    .line 280
-    return-object v1
+    invoke-virtual {v1, v2, v3, v4}, Landroid/os/Handler;->sendMessageDelayed(Landroid/os/Message;J)Z
+
+    .line 276
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "disable5g: token = "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 277
+    return-void
 .end method
 
-.method public enable5g(I)Lorg/codeaurora/internal/Token;
-    .locals 6
+.method public enable5g(ILorg/codeaurora/internal/Token;)V
+    .locals 5
     .param p1, "slotId"    # I
+    .param p2, "token"    # Lorg/codeaurora/internal/Token;
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -436,58 +432,185 @@
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 264
-    invoke-direct {p0}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->getNextToken()Lorg/codeaurora/internal/Token;
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->mCallback:Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionCallback;
 
-    move-result-object v1
+    if-eqz v1, :cond_0
 
     .line 265
-    .local v1, "token":Lorg/codeaurora/internal/Token;
-    iget-object v2, p0, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->mCallback:Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionCallback;
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->mWorkerHandler:Landroid/os/Handler;
 
-    if-eqz v2, :cond_0
+    const/4 v2, 0x0
 
-    .line 266
-    iget-object v2, p0, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->mWorkerHandler:Landroid/os/Handler;
-
-    const/4 v3, 0x0
-
-    const/4 v4, -0x1
-
-    .line 267
-    invoke-virtual {v2, v3, p1, v4, v1}, Landroid/os/Handler;->obtainMessage(IIILjava/lang/Object;)Landroid/os/Message;
-
-    move-result-object v3
-
-    const-wide/16 v4, 0x7d0
+    const/4 v3, -0x1
 
     .line 266
-    invoke-virtual {v2, v3, v4, v5}, Landroid/os/Handler;->sendMessageDelayed(Landroid/os/Message;J)Z
-
-    .line 269
-    :cond_0
-    new-instance v2, Ljava/lang/StringBuilder;
-
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v3, "enable5g: token = "
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v2, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual {v1, v2, p1, v3, p2}, Landroid/os/Handler;->obtainMessage(IIILjava/lang/Object;)Landroid/os/Message;
 
     move-result-object v2
 
-    invoke-static {v0, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    const-wide/16 v3, 0x7d0
 
-    .line 270
-    return-object v1
+    .line 265
+    invoke-virtual {v1, v2, v3, v4}, Landroid/os/Handler;->sendMessageDelayed(Landroid/os/Message;J)Z
+
+    .line 268
+    :cond_0
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "enable5g: token = "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 269
+    return-void
 .end method
 
-.method public enable5gOnly(I)Lorg/codeaurora/internal/Token;
-    .locals 1
+.method public enable5gOnly(ILorg/codeaurora/internal/Token;)V
+    .locals 0
     .param p1, "slotId"    # I
+    .param p2, "token"    # Lorg/codeaurora/internal/Token;
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Landroid/os/RemoteException;
+        }
+    .end annotation
+
+    .line 281
+    return-void
+.end method
+
+.method public enableEndc(IZLorg/codeaurora/internal/Token;)V
+    .locals 4
+    .param p1, "slotId"    # I
+    .param p2, "enable"    # Z
+    .param p3, "token"    # Lorg/codeaurora/internal/Token;
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Landroid/os/RemoteException;
+        }
+    .end annotation
+
+    .line 343
+    const-string v0, "FakeHidlConnectionInterfaceImpl"
+
+    const-string v1, "enableEndc: "
+
+    invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 344
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->mWorkerHandler:Landroid/os/Handler;
+
+    .line 345
+    const/16 v2, 0x9
+
+    const/4 v3, -0x1
+
+    invoke-virtual {v1, v2, p1, v3, p3}, Landroid/os/Handler;->obtainMessage(IIILjava/lang/Object;)Landroid/os/Message;
+
+    move-result-object v2
+
+    .line 344
+    invoke-virtual {v1, v2}, Landroid/os/Handler;->sendMessage(Landroid/os/Message;)Z
+
+    .line 346
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "enableEndc: token = "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1, p3}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 347
+    return-void
+.end method
+
+.method public generateNextToken()Lorg/codeaurora/internal/Token;
+    .locals 1
+
+    .line 359
+    invoke-direct {p0}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->getNextToken()Lorg/codeaurora/internal/Token;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public query5gConfigInfo(ILorg/codeaurora/internal/Token;)V
+    .locals 4
+    .param p1, "slotId"    # I
+    .param p2, "token"    # Lorg/codeaurora/internal/Token;
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Landroid/os/RemoteException;
+        }
+    .end annotation
+
+    .line 294
+    const-string v0, "FakeHidlConnectionInterfaceImpl"
+
+    const-string v1, "query5gConfigInfo: "
+
+    invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 296
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->mWorkerHandler:Landroid/os/Handler;
+
+    .line 297
+    const/4 v2, 0x7
+
+    const/4 v3, -0x1
+
+    invoke-virtual {v1, v2, p1, v3, p2}, Landroid/os/Handler;->obtainMessage(IIILjava/lang/Object;)Landroid/os/Message;
+
+    move-result-object v2
+
+    .line 296
+    invoke-virtual {v1, v2}, Landroid/os/Handler;->sendMessage(Landroid/os/Message;)Z
+
+    .line 298
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "query5gConfigInfo: token = "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 299
+    return-void
+.end method
+
+.method public query5gStatus(ILorg/codeaurora/internal/Token;)V
+    .locals 4
+    .param p1, "slotId"    # I
+    .param p2, "token"    # Lorg/codeaurora/internal/Token;
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -495,539 +618,371 @@
     .end annotation
 
     .line 285
-    const/4 v0, 0x0
-
-    return-object v0
-.end method
-
-.method public enableEndc(IZ)Lorg/codeaurora/internal/Token;
-    .locals 5
-    .param p1, "slotId"    # I
-    .param p2, "enable"    # Z
-    .annotation system Ldalvik/annotation/Throws;
-        value = {
-            Landroid/os/RemoteException;
-        }
-    .end annotation
-
-    .line 362
-    const-string v0, "FakeHidlConnectionInterfaceImpl"
-
-    const-string v1, "enableEndc: "
-
-    invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 363
-    invoke-direct {p0}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->getNextToken()Lorg/codeaurora/internal/Token;
-
-    move-result-object v1
-
-    .line 364
-    .local v1, "token":Lorg/codeaurora/internal/Token;
-    iget-object v2, p0, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->mWorkerHandler:Landroid/os/Handler;
-
-    .line 365
-    const/16 v3, 0x9
-
-    const/4 v4, -0x1
-
-    invoke-virtual {v2, v3, p1, v4, v1}, Landroid/os/Handler;->obtainMessage(IIILjava/lang/Object;)Landroid/os/Message;
-
-    move-result-object v3
-
-    .line 364
-    invoke-virtual {v2, v3}, Landroid/os/Handler;->sendMessage(Landroid/os/Message;)Z
-
-    .line 366
-    new-instance v2, Ljava/lang/StringBuilder;
-
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v3, "enableEndc: token = "
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v2, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v2
-
-    invoke-static {v0, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 367
-    return-object v1
-.end method
-
-.method public query5gConfigInfo(I)Lorg/codeaurora/internal/Token;
-    .locals 5
-    .param p1, "slotId"    # I
-    .annotation system Ldalvik/annotation/Throws;
-        value = {
-            Landroid/os/RemoteException;
-        }
-    .end annotation
-
-    .line 301
-    const-string v0, "FakeHidlConnectionInterfaceImpl"
-
-    const-string v1, "query5gConfigInfo: "
-
-    invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 302
-    invoke-direct {p0}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->getNextToken()Lorg/codeaurora/internal/Token;
-
-    move-result-object v1
-
-    .line 304
-    .local v1, "token":Lorg/codeaurora/internal/Token;
-    iget-object v2, p0, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->mWorkerHandler:Landroid/os/Handler;
-
-    .line 305
-    const/4 v3, 0x7
-
-    const/4 v4, -0x1
-
-    invoke-virtual {v2, v3, p1, v4, v1}, Landroid/os/Handler;->obtainMessage(IIILjava/lang/Object;)Landroid/os/Message;
-
-    move-result-object v3
-
-    .line 304
-    invoke-virtual {v2, v3}, Landroid/os/Handler;->sendMessage(Landroid/os/Message;)Z
-
-    .line 306
-    new-instance v2, Ljava/lang/StringBuilder;
-
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v3, "query5gConfigInfo: token = "
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v2, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v2
-
-    invoke-static {v0, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 307
-    return-object v1
-.end method
-
-.method public query5gStatus(I)Lorg/codeaurora/internal/Token;
-    .locals 5
-    .param p1, "slotId"    # I
-    .annotation system Ldalvik/annotation/Throws;
-        value = {
-            Landroid/os/RemoteException;
-        }
-    .end annotation
-
-    .line 290
     const-string v0, "FakeHidlConnectionInterfaceImpl"
 
     const-string v1, "query5gStatus: "
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 291
-    invoke-direct {p0}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->getNextToken()Lorg/codeaurora/internal/Token;
+    .line 287
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->mWorkerHandler:Landroid/os/Handler;
 
-    move-result-object v1
+    .line 288
+    const/4 v2, 0x2
 
-    .line 293
-    .local v1, "token":Lorg/codeaurora/internal/Token;
-    iget-object v2, p0, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->mWorkerHandler:Landroid/os/Handler;
+    const/4 v3, -0x1
 
-    .line 294
-    const/4 v3, 0x2
-
-    const/4 v4, -0x1
-
-    invoke-virtual {v2, v3, p1, v4, v1}, Landroid/os/Handler;->obtainMessage(IIILjava/lang/Object;)Landroid/os/Message;
-
-    move-result-object v3
-
-    .line 293
-    invoke-virtual {v2, v3}, Landroid/os/Handler;->sendMessage(Landroid/os/Message;)Z
-
-    .line 295
-    new-instance v2, Ljava/lang/StringBuilder;
-
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v3, "query5gStatus: token = "
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v2, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual {v1, v2, p1, v3, p2}, Landroid/os/Handler;->obtainMessage(IIILjava/lang/Object;)Landroid/os/Message;
 
     move-result-object v2
 
-    invoke-static {v0, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    .line 287
+    invoke-virtual {v1, v2}, Landroid/os/Handler;->sendMessage(Landroid/os/Message;)Z
 
-    .line 296
-    return-object v1
+    .line 289
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "query5gStatus: token = "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 290
+    return-void
 .end method
 
-.method public queryEndcStatus(I)Lorg/codeaurora/internal/Token;
-    .locals 5
+.method public queryEndcStatus(ILorg/codeaurora/internal/Token;)V
+    .locals 4
     .param p1, "slotId"    # I
+    .param p2, "token"    # Lorg/codeaurora/internal/Token;
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
         }
     .end annotation
 
-    .line 372
+    .line 351
     const-string v0, "FakeHidlConnectionInterfaceImpl"
 
     const-string v1, "queryEndcStatus: "
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 373
-    invoke-direct {p0}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->getNextToken()Lorg/codeaurora/internal/Token;
+    .line 352
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->mWorkerHandler:Landroid/os/Handler;
 
-    move-result-object v1
+    .line 353
+    const/16 v2, 0xa
 
-    .line 374
-    .local v1, "token":Lorg/codeaurora/internal/Token;
-    iget-object v2, p0, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->mWorkerHandler:Landroid/os/Handler;
+    const/4 v3, -0x1
 
-    .line 375
-    const/16 v3, 0xa
-
-    const/4 v4, -0x1
-
-    invoke-virtual {v2, v3, p1, v4, v1}, Landroid/os/Handler;->obtainMessage(IIILjava/lang/Object;)Landroid/os/Message;
-
-    move-result-object v3
-
-    .line 374
-    invoke-virtual {v2, v3}, Landroid/os/Handler;->sendMessage(Landroid/os/Message;)Z
-
-    .line 376
-    new-instance v2, Ljava/lang/StringBuilder;
-
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v3, "queryEndcStatus: token = "
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v2, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual {v1, v2, p1, v3, p2}, Landroid/os/Handler;->obtainMessage(IIILjava/lang/Object;)Landroid/os/Message;
 
     move-result-object v2
 
-    invoke-static {v0, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    .line 352
+    invoke-virtual {v1, v2}, Landroid/os/Handler;->sendMessage(Landroid/os/Message;)Z
 
-    .line 377
-    return-object v1
+    .line 354
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "queryEndcStatus: token = "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 355
+    return-void
 .end method
 
-.method public queryNrBearerAllocation(I)Lorg/codeaurora/internal/Token;
-    .locals 5
+.method public queryNrBearerAllocation(ILorg/codeaurora/internal/Token;)V
+    .locals 4
     .param p1, "slotId"    # I
+    .param p2, "token"    # Lorg/codeaurora/internal/Token;
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
         }
     .end annotation
 
-    .line 322
+    .line 311
     const-string v0, "FakeHidlConnectionInterfaceImpl"
 
     const-string v1, "queryNrBearerAllocation: "
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 323
-    invoke-direct {p0}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->getNextToken()Lorg/codeaurora/internal/Token;
+    .line 312
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->mWorkerHandler:Landroid/os/Handler;
 
-    move-result-object v1
+    .line 313
+    const/4 v2, 0x4
 
-    .line 324
-    .local v1, "token":Lorg/codeaurora/internal/Token;
-    iget-object v2, p0, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->mWorkerHandler:Landroid/os/Handler;
+    const/4 v3, -0x1
 
-    .line 325
-    const/4 v3, 0x4
-
-    const/4 v4, -0x1
-
-    invoke-virtual {v2, v3, p1, v4, v1}, Landroid/os/Handler;->obtainMessage(IIILjava/lang/Object;)Landroid/os/Message;
-
-    move-result-object v3
-
-    .line 324
-    invoke-virtual {v2, v3}, Landroid/os/Handler;->sendMessage(Landroid/os/Message;)Z
-
-    .line 326
-    new-instance v2, Ljava/lang/StringBuilder;
-
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v3, "queryNrBearerAllocation: token = "
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v2, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual {v1, v2, p1, v3, p2}, Landroid/os/Handler;->obtainMessage(IIILjava/lang/Object;)Landroid/os/Message;
 
     move-result-object v2
 
-    invoke-static {v0, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    .line 312
+    invoke-virtual {v1, v2}, Landroid/os/Handler;->sendMessage(Landroid/os/Message;)Z
 
-    .line 327
-    return-object v1
+    .line 314
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "queryNrBearerAllocation: token = "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 315
+    return-void
 .end method
 
-.method public queryNrDcParam(I)Lorg/codeaurora/internal/Token;
-    .locals 5
+.method public queryNrDcParam(ILorg/codeaurora/internal/Token;)V
+    .locals 4
     .param p1, "slotId"    # I
+    .param p2, "token"    # Lorg/codeaurora/internal/Token;
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
         }
     .end annotation
 
-    .line 312
+    .line 303
     const-string v0, "FakeHidlConnectionInterfaceImpl"
 
     const-string v1, "queryNrDcParam: "
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 313
-    invoke-direct {p0}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->getNextToken()Lorg/codeaurora/internal/Token;
+    .line 304
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->mWorkerHandler:Landroid/os/Handler;
 
-    move-result-object v1
+    .line 305
+    const/4 v2, 0x3
 
-    .line 314
-    .local v1, "token":Lorg/codeaurora/internal/Token;
-    iget-object v2, p0, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->mWorkerHandler:Landroid/os/Handler;
+    const/4 v3, -0x1
 
-    .line 315
-    const/4 v3, 0x3
-
-    const/4 v4, -0x1
-
-    invoke-virtual {v2, v3, p1, v4, v1}, Landroid/os/Handler;->obtainMessage(IIILjava/lang/Object;)Landroid/os/Message;
-
-    move-result-object v3
-
-    .line 314
-    invoke-virtual {v2, v3}, Landroid/os/Handler;->sendMessage(Landroid/os/Message;)Z
-
-    .line 316
-    new-instance v2, Ljava/lang/StringBuilder;
-
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v3, "queryNrDcParam: token = "
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v2, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual {v1, v2, p1, v3, p2}, Landroid/os/Handler;->obtainMessage(IIILjava/lang/Object;)Landroid/os/Message;
 
     move-result-object v2
 
-    invoke-static {v0, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    .line 304
+    invoke-virtual {v1, v2}, Landroid/os/Handler;->sendMessage(Landroid/os/Message;)Z
 
-    .line 317
-    return-object v1
+    .line 306
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "queryNrDcParam: token = "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 307
+    return-void
 .end method
 
-.method public queryNrIconType(I)Lorg/codeaurora/internal/Token;
-    .locals 5
+.method public queryNrIconType(ILorg/codeaurora/internal/Token;)V
+    .locals 4
     .param p1, "slotId"    # I
+    .param p2, "token"    # Lorg/codeaurora/internal/Token;
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
         }
     .end annotation
 
-    .line 352
+    .line 335
     const-string v0, "FakeHidlConnectionInterfaceImpl"
 
     const-string v1, "queryNrIconType: "
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 353
-    invoke-direct {p0}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->getNextToken()Lorg/codeaurora/internal/Token;
+    .line 336
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->mWorkerHandler:Landroid/os/Handler;
 
-    move-result-object v1
+    .line 337
+    const/16 v2, 0x8
 
-    .line 354
-    .local v1, "token":Lorg/codeaurora/internal/Token;
-    iget-object v2, p0, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->mWorkerHandler:Landroid/os/Handler;
+    const/4 v3, -0x1
 
-    .line 355
-    const/16 v3, 0x8
-
-    const/4 v4, -0x1
-
-    invoke-virtual {v2, v3, p1, v4, v1}, Landroid/os/Handler;->obtainMessage(IIILjava/lang/Object;)Landroid/os/Message;
-
-    move-result-object v3
-
-    .line 354
-    invoke-virtual {v2, v3}, Landroid/os/Handler;->sendMessage(Landroid/os/Message;)Z
-
-    .line 356
-    new-instance v2, Ljava/lang/StringBuilder;
-
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v3, "queryNrIconType: token = "
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v2, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual {v1, v2, p1, v3, p2}, Landroid/os/Handler;->obtainMessage(IIILjava/lang/Object;)Landroid/os/Message;
 
     move-result-object v2
 
-    invoke-static {v0, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    .line 336
+    invoke-virtual {v1, v2}, Landroid/os/Handler;->sendMessage(Landroid/os/Message;)Z
 
-    .line 357
-    return-object v1
+    .line 338
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "queryNrIconType: token = "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 339
+    return-void
 .end method
 
-.method public queryNrSignalStrength(I)Lorg/codeaurora/internal/Token;
-    .locals 5
+.method public queryNrSignalStrength(ILorg/codeaurora/internal/Token;)V
+    .locals 4
     .param p1, "slotId"    # I
+    .param p2, "token"    # Lorg/codeaurora/internal/Token;
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
         }
     .end annotation
 
-    .line 332
+    .line 319
     const-string v0, "FakeHidlConnectionInterfaceImpl"
 
     const-string v1, "queryNrSignalStrength: "
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 333
-    invoke-direct {p0}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->getNextToken()Lorg/codeaurora/internal/Token;
+    .line 320
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->mWorkerHandler:Landroid/os/Handler;
 
-    move-result-object v1
+    .line 321
+    const/4 v2, 0x5
 
-    .line 334
-    .local v1, "token":Lorg/codeaurora/internal/Token;
-    iget-object v2, p0, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->mWorkerHandler:Landroid/os/Handler;
+    const/4 v3, -0x1
 
-    .line 335
-    const/4 v3, 0x5
-
-    const/4 v4, -0x1
-
-    invoke-virtual {v2, v3, p1, v4, v1}, Landroid/os/Handler;->obtainMessage(IIILjava/lang/Object;)Landroid/os/Message;
-
-    move-result-object v3
-
-    .line 334
-    invoke-virtual {v2, v3}, Landroid/os/Handler;->sendMessage(Landroid/os/Message;)Z
-
-    .line 336
-    new-instance v2, Ljava/lang/StringBuilder;
-
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v3, "queryNrSignalStrength: token = "
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v2, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual {v1, v2, p1, v3, p2}, Landroid/os/Handler;->obtainMessage(IIILjava/lang/Object;)Landroid/os/Message;
 
     move-result-object v2
 
-    invoke-static {v0, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    .line 320
+    invoke-virtual {v1, v2}, Landroid/os/Handler;->sendMessage(Landroid/os/Message;)Z
 
-    .line 337
-    return-object v1
+    .line 322
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "queryNrSignalStrength: token = "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 323
+    return-void
 .end method
 
-.method public queryUpperLayerIndInfo(I)Lorg/codeaurora/internal/Token;
-    .locals 5
+.method public queryUpperLayerIndInfo(ILorg/codeaurora/internal/Token;)V
+    .locals 4
     .param p1, "slotId"    # I
+    .param p2, "token"    # Lorg/codeaurora/internal/Token;
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
         }
     .end annotation
 
-    .line 342
+    .line 327
     const-string v0, "FakeHidlConnectionInterfaceImpl"
 
     const-string v1, "queryUpperLayerIndInfo: "
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 343
-    invoke-direct {p0}, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->getNextToken()Lorg/codeaurora/internal/Token;
+    .line 328
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->mWorkerHandler:Landroid/os/Handler;
 
-    move-result-object v1
+    .line 329
+    const/4 v2, 0x6
 
-    .line 344
-    .local v1, "token":Lorg/codeaurora/internal/Token;
-    iget-object v2, p0, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->mWorkerHandler:Landroid/os/Handler;
+    const/4 v3, -0x1
 
-    .line 345
-    const/4 v3, 0x6
-
-    const/4 v4, -0x1
-
-    invoke-virtual {v2, v3, p1, v4, v1}, Landroid/os/Handler;->obtainMessage(IIILjava/lang/Object;)Landroid/os/Message;
-
-    move-result-object v3
-
-    .line 344
-    invoke-virtual {v2, v3}, Landroid/os/Handler;->sendMessage(Landroid/os/Message;)Z
-
-    .line 346
-    new-instance v2, Ljava/lang/StringBuilder;
-
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v3, "queryUpperLayerIndInfo: token = "
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v2, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual {v1, v2, p1, v3, p2}, Landroid/os/Handler;->obtainMessage(IIILjava/lang/Object;)Landroid/os/Message;
 
     move-result-object v2
 
-    invoke-static {v0, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    .line 328
+    invoke-virtual {v1, v2}, Landroid/os/Handler;->sendMessage(Landroid/os/Message;)Z
 
-    .line 347
-    return-object v1
+    .line 330
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "queryUpperLayerIndInfo: token = "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 331
+    return-void
 .end method
 
 .method public registerCallback(Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionCallback;)V
     .locals 2
     .param p1, "callback"    # Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionCallback;
 
-    .line 382
+    .line 364
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -1046,10 +1001,10 @@
 
     invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 383
+    .line 365
     iput-object p1, p0, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->mCallback:Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionCallback;
 
-    .line 384
+    .line 366
     return-void
 .end method
 
@@ -1057,7 +1012,7 @@
     .locals 2
     .param p1, "callback"    # Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionCallback;
 
-    .line 388
+    .line 370
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -1076,17 +1031,17 @@
 
     invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 389
+    .line 371
     iget-object v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->mCallback:Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionCallback;
 
     if-ne v0, p1, :cond_0
 
-    .line 390
+    .line 372
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/qualcomm/qti/internal/nrNetworkService/hidl/FakeHidlConnectionInterfaceImpl;->mCallback:Lcom/qualcomm/qti/internal/nrNetworkService/hidl/IHidlConnectionCallback;
 
-    .line 392
+    .line 374
     :cond_0
     return-void
 .end method

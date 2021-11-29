@@ -531,8 +531,6 @@
     sput v0, Lcom/qualcomm/qcrilhook/TunerOemHook;->mRefCount:I
 
     .line 97
-    sget v0, Lcom/qualcomm/qcrilhook/TunerOemHook;->mRefCount:I
-
     if-nez v0, :cond_0
 
     .line 98

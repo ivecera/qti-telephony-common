@@ -32,6 +32,17 @@
     .line 4
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
+    .line 5
+    const/4 v0, 0x0
+
+    iput v0, p0, Landroid/hardware/radio/V1_0/CdmaSmsMessage;->teleserviceId:I
+
+    .line 6
+    iput-boolean v0, p0, Landroid/hardware/radio/V1_0/CdmaSmsMessage;->isServicePresent:Z
+
+    .line 7
+    iput v0, p0, Landroid/hardware/radio/V1_0/CdmaSmsMessage;->serviceCategory:I
+
     .line 8
     new-instance v0, Landroid/hardware/radio/V1_0/CdmaSmsAddress;
 
@@ -605,17 +616,20 @@
     :goto_0
     if-ge v2, v11, :cond_0
 
+    .line 117
+    const/4 v3, 0x0
+
     .line 118
-    mul-int/lit8 v3, v2, 0x1
+    .local v3, "_hidl_vec_element":B
+    mul-int/lit8 v4, v2, 0x1
 
-    int-to-long v3, v3
+    int-to-long v4, v4
 
-    invoke-virtual {v1, v3, v4}, Landroid/os/HwBlob;->getInt8(J)B
+    invoke-virtual {v1, v4, v5}, Landroid/os/HwBlob;->getInt8(J)B
 
     move-result v3
 
     .line 119
-    .local v3, "_hidl_vec_element":B
     iget-object v4, v0, Landroid/hardware/radio/V1_0/CdmaSmsMessage;->bearerData:Ljava/util/ArrayList;
 
     invoke-static {v3}, Ljava/lang/Byte;->valueOf(B)Ljava/lang/Byte;
